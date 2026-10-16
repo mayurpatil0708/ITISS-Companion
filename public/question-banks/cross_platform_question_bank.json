@@ -1,0 +1,1254 @@
+{
+  "schema_version": "1.0.0",
+  "subject": "cross_platform",
+  "question_count": 24,
+  "questions": [
+    {
+      "question_id": "XPL-000001",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T002",
+      "subtopic_id": "XPL-DOMAIN-JOIN",
+      "topic": "Cross-platform Identity",
+      "subtopic": "Windows and Linux domain joining",
+      "difficulty": "advanced",
+      "question_type": "sequence",
+      "question_text": "Which pair of verification checks is listed for confirming a Linux machine joined to Active Directory?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Open IIS Manager and test an application pool"
+        },
+        {
+          "id": "B",
+          "text": "Run WSUS synchronization and approve updates"
+        },
+        {
+          "id": "C",
+          "text": "Create a GPT partition and mount an NFS export"
+        },
+        {
+          "id": "D",
+          "text": "Check domain membership and test AD user lookup or Kerberos authentication"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation": "The Linux join section lists verifying domain membership, testing AD user lookup, and testing Kerberos authentication.",
+      "option_explanations": {
+        "A": "Incorrect: These are the join verification checks in the source.",
+        "B": "Incorrect: These are Windows web-hosting checks.",
+        "C": "Incorrect: These are update-management operations.",
+        "D": "Correct: The Linux join section lists verifying domain membership, testing AD user lookup, and testing Kerberos authentication."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 46,
+        "pdf_page_end": 46,
+        "printed_page": null,
+        "section": "Cross-platform Identity — Windows and Linux domain joining",
+        "evidence_summary": "The Linux join section lists verifying domain membership, testing AD user lookup, and testing Kerberos authentication."
+      },
+      "tags": [
+        "domain-join",
+        "verification"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000002",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T003",
+      "subtopic_id": "XPL-FILE",
+      "topic": "Cross-platform File Services",
+      "subtopic": "Windows and Linux file sharing",
+      "difficulty": "advanced",
+      "question_type": "comparison",
+      "question_text": "A Windows server exports SMB shares while a Linux server provides NFS exports. Which client-use distinction is supported by the source comparison?",
+      "options": [
+        {
+          "id": "A",
+          "text": "SMB is an email transport; NFS is a DNS record"
+        },
+        {
+          "id": "B",
+          "text": "NFS is the Windows registry service; SMB assigns IP addresses"
+        },
+        {
+          "id": "C",
+          "text": "SMB supports Windows-style shared folders; NFS is a network filesystem mounted by clients"
+        },
+        {
+          "id": "D",
+          "text": "Both protocols are identical and have the same server configuration"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation": "The source compares Samba/SMB interoperability with Windows shares and NFS as a remote filesystem service.",
+      "option_explanations": {
+        "A": "Incorrect: Neither protocol is a registry or DHCP service.",
+        "B": "Incorrect: This states the separate service roles described in the comparison.",
+        "C": "Correct: The source compares Samba/SMB interoperability with Windows shares and NFS as a remote filesystem service.",
+        "D": "Incorrect: These are not email and DNS technologies."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 145,
+        "pdf_page_end": 148,
+        "printed_page": null,
+        "section": "Cross-platform File Services — Windows and Linux file sharing",
+        "evidence_summary": "The source compares Samba/SMB interoperability with Windows shares and NFS as a remote filesystem service."
+      },
+      "tags": [
+        "cross-platform",
+        "smb",
+        "nfs"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000003",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T003",
+      "subtopic_id": "XPL-FILE",
+      "topic": "Cross-platform File Services",
+      "subtopic": "Windows and Linux file sharing",
+      "difficulty": "intermediate",
+      "question_type": "scenario",
+      "question_text": "A mixed OS team must select a protocol for ordinary file sharing with Windows clients while using a Linux host. Which Linux service is identified for compatibility?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Dovecot"
+        },
+        {
+          "id": "B",
+          "text": "BIND"
+        },
+        {
+          "id": "C",
+          "text": "Samba"
+        },
+        {
+          "id": "D",
+          "text": "NFS only"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation": "The source names Samba as the Linux service implementing SMB/CIFS interoperability for Windows file sharing.",
+      "option_explanations": {
+        "A": "Incorrect: NFS is a distinct network filesystem protocol.",
+        "B": "Incorrect: Dovecot handles mail access.",
+        "C": "Correct: The source names Samba as the Linux service implementing SMB/CIFS interoperability for Windows file sharing.",
+        "D": "Incorrect: Samba provides Windows-compatible SMB file sharing from Linux."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 145,
+        "pdf_page_end": 148,
+        "printed_page": null,
+        "section": "Cross-platform File Services — Windows and Linux file sharing",
+        "evidence_summary": "The source names Samba as the Linux service implementing SMB/CIFS interoperability for Windows file sharing."
+      },
+      "tags": [
+        "cross-platform",
+        "samba",
+        "smb"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000004",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T004",
+      "subtopic_id": "XPL-WEB",
+      "topic": "Cross-platform Web Services",
+      "subtopic": "Apache and IIS roles",
+      "difficulty": "intermediate",
+      "question_type": "comparison",
+      "question_text": "An organization hosts websites on Linux and Windows. Which pair of server technologies is explicitly represented in the source comparison?",
+      "options": [
+        {
+          "id": "A",
+          "text": "NFS on Linux and SMTP on Windows"
+        },
+        {
+          "id": "B",
+          "text": "WSUS on Linux and Nginx on Windows"
+        },
+        {
+          "id": "C",
+          "text": "Apache HTTP Server on Linux and IIS on Windows"
+        },
+        {
+          "id": "D",
+          "text": "IIS on Linux and BIND on Windows"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation": "The web comparison and adjacent server material identify Apache/Nginx as Linux web servers and IIS as Microsoft’s Windows web server role.",
+      "option_explanations": {
+        "A": "Incorrect: WSUS is update management and Nginx is not WSUS.",
+        "B": "Incorrect: IIS is not the Linux server in the comparison and BIND is DNS.",
+        "C": "Correct: The web comparison and adjacent server material identify Apache/Nginx as Linux web servers and IIS as Microsoft’s Windows web server role.",
+        "D": "Incorrect: Apache is shown on Linux and IIS is the Windows web server role."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 389,
+        "pdf_page_end": 421,
+        "printed_page": null,
+        "section": "Cross-platform Web Services — Apache and IIS roles",
+        "evidence_summary": "The web comparison and adjacent server material identify Apache/Nginx as Linux web servers and IIS as Microsoft’s Windows web server role."
+      },
+      "tags": [
+        "cross-platform",
+        "web-servers"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000005",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T004",
+      "subtopic_id": "XPL-WEB",
+      "topic": "Cross-platform Web Services",
+      "subtopic": "Apache and IIS roles",
+      "difficulty": "advanced",
+      "question_type": "comparison",
+      "question_text": "A team administers Linux Apache and Windows IIS sites. Which shared request path element must both platforms handle before they can serve the requested host name?",
+      "options": [
+        {
+          "id": "A",
+          "text": "An LVM volume group and an FSMO transfer"
+        },
+        {
+          "id": "B",
+          "text": "A Kerberos TGT followed by a DHCP offer"
+        },
+        {
+          "id": "C",
+          "text": "A YUM repository followed by a WSUS approval"
+        },
+        {
+          "id": "D",
+          "text": "DNS resolution followed by an HTTP or HTTPS request"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation": "The web materials for both platforms describe hostname resolution and HTTP/HTTPS request handling before site content is returned.",
+      "option_explanations": {
+        "A": "Incorrect: Both web services depend on name resolution and web requests.",
+        "B": "Incorrect: These are unrelated storage and directory-role operations.",
+        "C": "Incorrect: These mix authentication and address assignment steps.",
+        "D": "Correct: The web materials for both platforms describe hostname resolution and HTTP/HTTPS request handling before site content is returned."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 388,
+        "pdf_page_end": 423,
+        "printed_page": null,
+        "section": "Cross-platform Web Services — Apache and IIS roles",
+        "evidence_summary": "The web materials for both platforms describe hostname resolution and HTTP/HTTPS request handling before site content is returned."
+      },
+      "tags": [
+        "cross-platform",
+        "web-request"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000006",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T001",
+      "subtopic_id": "XPL-SYSTEM-JOBS",
+      "topic": "Cross-platform Administration",
+      "subtopic": "Equivalent OS administration tasks",
+      "difficulty": "intermediate",
+      "question_type": "comparison",
+      "question_text": "Which Windows/Linux pair is shown for unattended operating-system installation?",
+      "options": [
+        {
+          "id": "A",
+          "text": "WSUS / APT"
+        },
+        {
+          "id": "B",
+          "text": "ADUC / NFS"
+        },
+        {
+          "id": "C",
+          "text": "IIS / Samba"
+        },
+        {
+          "id": "D",
+          "text": "WDS plus autounattend.xml / Kickstart ks.cfg plus PXE"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation": "The comparison table pairs Windows autounattend.xml and WDS with Linux Kickstart ks.cfg and PXE for unattended deployment.",
+      "option_explanations": {
+        "A": "Incorrect: This is the deployment pairing shown in the source.",
+        "B": "Incorrect: WSUS manages Windows updates; APT manages Debian-family packages.",
+        "C": "Incorrect: ADUC manages AD objects; NFS provides file access.",
+        "D": "Correct: The comparison table pairs Windows autounattend.xml and WDS with Linux Kickstart ks.cfg and PXE for unattended deployment."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 201,
+        "pdf_page_end": 201,
+        "printed_page": null,
+        "section": "Cross-platform Administration — Equivalent OS administration tasks",
+        "evidence_summary": "The comparison table pairs Windows autounattend.",
+        "additional_sources": [
+          {
+            "document_id": "amitCOSA",
+            "pdf_page_start": 201,
+            "pdf_page_end": 201,
+            "section": "Windows and Linux: The Same Jobs, Different Words"
+          }
+        ]
+      },
+      "tags": [
+        "deployment",
+        "kickstart",
+        "wds"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000007",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T001",
+      "subtopic_id": "XPL-SYSTEM-JOBS",
+      "topic": "Cross-platform Administration",
+      "subtopic": "Equivalent OS administration tasks",
+      "difficulty": "intermediate",
+      "question_type": "comparison",
+      "question_text": "Which pair maps startup-state management across Windows and Linux in the comparison table?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Windows NTFS / Linux ext4"
+        },
+        {
+          "id": "B",
+          "text": "Windows DNS / Linux BIND"
+        },
+        {
+          "id": "C",
+          "text": "Windows WSUS / Linux Samba"
+        },
+        {
+          "id": "D",
+          "text": "Windows Service Control Manager / Linux systemd units and targets"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation": "The source maps Windows services and the Service Control Manager to Linux systemd units and targets.",
+      "option_explanations": {
+        "A": "Incorrect: These are name-resolution services.",
+        "B": "Incorrect: This is the startup/service-management pairing shown.",
+        "C": "Incorrect: These are file systems, not startup-state managers.",
+        "D": "Correct: The source maps Windows services and the Service Control Manager to Linux systemd units and targets."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 201,
+        "pdf_page_end": 201,
+        "printed_page": null,
+        "section": "Cross-platform Administration — Equivalent OS administration tasks",
+        "evidence_summary": "The source maps Windows services and the Service Control Manager to Linux systemd units and targets."
+      },
+      "tags": [
+        "systemd",
+        "service-management"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000008",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T001",
+      "subtopic_id": "XPL-SYSTEM-JOBS",
+      "topic": "Cross-platform Administration",
+      "subtopic": "Equivalent OS administration tasks",
+      "difficulty": "advanced",
+      "question_type": "comparison",
+      "question_text": "Which cross-platform pair does the source list for centralized identity?",
+      "options": [
+        {
+          "id": "A",
+          "text": "IIS / Apache"
+        },
+        {
+          "id": "B",
+          "text": "Active Directory Domain Services / OpenLDAP or NIS with SSSD and Kerberos"
+        },
+        {
+          "id": "C",
+          "text": "NTFS / NFS"
+        },
+        {
+          "id": "D",
+          "text": "WSUS / DNF"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation": "The comparison table pairs Windows AD DS with Linux OpenLDAP/NIS and SSSD plus Kerberos for central identity.",
+      "option_explanations": {
+        "A": "Incorrect: This is the identity-management pairing.",
+        "B": "Correct: The comparison table pairs Windows AD DS with Linux OpenLDAP/NIS and SSSD plus Kerberos for central identity.",
+        "C": "Incorrect: These manage Windows updates and Linux packages.",
+        "D": "Incorrect: These are web servers."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 201,
+        "pdf_page_end": 201,
+        "printed_page": null,
+        "section": "Cross-platform Administration — Equivalent OS administration tasks",
+        "evidence_summary": "The comparison table pairs Windows AD DS with Linux OpenLDAP/NIS and SSSD plus Kerberos for central identity."
+      },
+      "tags": [
+        "identity",
+        "ldap",
+        "sssd"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000009",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T001",
+      "subtopic_id": "XPL-SYSTEM-JOBS",
+      "topic": "Cross-platform Administration",
+      "subtopic": "Equivalent OS administration tasks",
+      "difficulty": "intermediate",
+      "question_type": "comparison",
+      "question_text": "Which DNS implementation pair appears in the platform comparison?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Microsoft DNS, often AD-integrated / BIND (named)"
+        },
+        {
+          "id": "B",
+          "text": "IIS / Nginx"
+        },
+        {
+          "id": "C",
+          "text": "WSUS / Kea"
+        },
+        {
+          "id": "D",
+          "text": "DFS / NFS"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation": "The comparison table lists Microsoft DNS (AD-integrated) for Windows and BIND (named) for Linux.",
+      "option_explanations": {
+        "A": "Correct: The comparison table lists Microsoft DNS (AD-integrated) for Windows and BIND (named) for Linux.",
+        "B": "Incorrect: This is the DNS pair shown.",
+        "C": "Incorrect: These are web servers.",
+        "D": "Incorrect: WSUS is update management and Kea is DHCP."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 201,
+        "pdf_page_end": 201,
+        "printed_page": null,
+        "section": "Cross-platform Administration — Equivalent OS administration tasks",
+        "evidence_summary": "The comparison table lists Microsoft DNS (AD-integrated) for Windows and BIND (named) for Linux."
+      },
+      "tags": [
+        "dns",
+        "bind"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000010",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T001",
+      "subtopic_id": "XPL-SYSTEM-JOBS",
+      "topic": "Cross-platform Administration",
+      "subtopic": "Equivalent OS administration tasks",
+      "difficulty": "intermediate",
+      "question_type": "comparison",
+      "question_text": "Which implementation pair is listed for automatic address assignment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Windows DHCP Server / ISC dhcpd or Kea"
+        },
+        {
+          "id": "B",
+          "text": "IIS / Apache"
+        },
+        {
+          "id": "C",
+          "text": "AD DS / SSSD"
+        },
+        {
+          "id": "D",
+          "text": "Event Viewer / journald"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation": "The table pairs the Windows DHCP Server role with ISC dhcpd or Kea on Linux.",
+      "option_explanations": {
+        "A": "Correct: The table pairs the Windows DHCP Server role with ISC dhcpd or Kea on Linux.",
+        "B": "Incorrect: These are directory/identity components.",
+        "C": "Incorrect: This is the DHCP implementation pairing.",
+        "D": "Incorrect: These are web servers."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 201,
+        "pdf_page_end": 201,
+        "printed_page": null,
+        "section": "Cross-platform Administration — Equivalent OS administration tasks",
+        "evidence_summary": "The table pairs the Windows DHCP Server role with ISC dhcpd or Kea on Linux."
+      },
+      "tags": [
+        "dhcp"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000011",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T001",
+      "subtopic_id": "XPL-SYSTEM-JOBS",
+      "topic": "Cross-platform Administration",
+      "subtopic": "Equivalent OS administration tasks",
+      "difficulty": "intermediate",
+      "question_type": "comparison",
+      "question_text": "Which row correctly describes file-sharing choices in the platform comparison?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Windows: NFS only; Linux: NTFS and DFS only"
+        },
+        {
+          "id": "B",
+          "text": "Windows: SMB shares and DFS; Linux: NFS exports, Samba, and FTP"
+        },
+        {
+          "id": "C",
+          "text": "Windows: SMTP; Linux: DHCP"
+        },
+        {
+          "id": "D",
+          "text": "Windows: Bash; Linux: PowerShell"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation": "The source’s comparison table lists SMB shares and DFS for Windows and NFS exports, Samba, and FTP for Linux.",
+      "option_explanations": {
+        "A": "Incorrect: This matches the file-sharing row.",
+        "B": "Correct: The source’s comparison table lists SMB shares and DFS for Windows and NFS exports, Samba, and FTP for Linux.",
+        "C": "Incorrect: The source gives different platforms and technologies.",
+        "D": "Incorrect: SMTP is email; DHCP assigns addresses."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 201,
+        "pdf_page_end": 201,
+        "printed_page": null,
+        "section": "Cross-platform Administration — Equivalent OS administration tasks",
+        "evidence_summary": "The source’s comparison table lists SMB shares and DFS for Windows and NFS exports, Samba, and FTP for Linux.",
+        "additional_sources": [
+          {
+            "document_id": "amitCOSA",
+            "pdf_page_start": 148,
+            "pdf_page_end": 151,
+            "section": "Samba and FTP/NFS/Samba comparison"
+          }
+        ]
+      },
+      "tags": [
+        "file-sharing"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000012",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T001",
+      "subtopic_id": "XPL-SYSTEM-JOBS",
+      "topic": "Cross-platform Administration",
+      "subtopic": "Equivalent OS administration tasks",
+      "difficulty": "intermediate",
+      "question_type": "comparison",
+      "question_text": "Which platform pair is shown for web services?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Windows IIS / Linux Apache httpd and Nginx"
+        },
+        {
+          "id": "B",
+          "text": "Windows BIND / Linux IIS"
+        },
+        {
+          "id": "C",
+          "text": "Windows DFS / Linux PowerShell"
+        },
+        {
+          "id": "D",
+          "text": "Windows Postfix / Linux WSUS"
+        }
+      ],
+      "correct_option_id": "A",
+      "explanation": "The platform comparison lists IIS for Windows and Apache httpd plus Nginx for Linux.",
+      "option_explanations": {
+        "A": "Correct: The platform comparison lists IIS for Windows and Apache httpd plus Nginx for Linux.",
+        "B": "Incorrect: This is the web-service pairing shown.",
+        "C": "Incorrect: Postfix is a mail server and WSUS manages updates.",
+        "D": "Incorrect: BIND is DNS and IIS is the Windows web role."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 201,
+        "pdf_page_end": 201,
+        "printed_page": null,
+        "section": "Cross-platform Administration — Equivalent OS administration tasks",
+        "evidence_summary": "The platform comparison lists IIS for Windows and Apache httpd plus Nginx for Linux."
+      },
+      "tags": [
+        "web-server"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000013",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T001",
+      "subtopic_id": "XPL-SYSTEM-JOBS",
+      "topic": "Cross-platform Administration",
+      "subtopic": "Equivalent OS administration tasks",
+      "difficulty": "advanced",
+      "question_type": "comparison",
+      "question_text": "What does the source list for policy enforcement in Windows versus Linux?",
+      "options": [
+        {
+          "id": "A",
+          "text": "IIS / BIND"
+        },
+        {
+          "id": "B",
+          "text": "GPO / WSUS only"
+        },
+        {
+          "id": "C",
+          "text": "Group Policy Objects / configuration files, SELinux, and Ansible"
+        },
+        {
+          "id": "D",
+          "text": "NTFS / DHCP"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation": "The comparison row pairs Windows Group Policy Objects with Linux configuration files, SELinux, and Ansible.",
+      "option_explanations": {
+        "A": "Incorrect: NTFS is a filesystem and DHCP assigns addresses.",
+        "B": "Incorrect: This is the policy-enforcement row.",
+        "C": "Correct: The comparison row pairs Windows Group Policy Objects with Linux configuration files, SELinux, and Ansible.",
+        "D": "Incorrect: WSUS manages updates, not the Linux policy counterpart."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 201,
+        "pdf_page_end": 201,
+        "printed_page": null,
+        "section": "Cross-platform Administration — Equivalent OS administration tasks",
+        "evidence_summary": "The comparison row pairs Windows Group Policy Objects with Linux configuration files, SELinux, and Ansible."
+      },
+      "tags": [
+        "policy-enforcement"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000014",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T001",
+      "subtopic_id": "XPL-SYSTEM-JOBS",
+      "topic": "Cross-platform Administration",
+      "subtopic": "Equivalent OS administration tasks",
+      "difficulty": "intermediate",
+      "question_type": "comparison",
+      "question_text": "Which logging tool pair appears in the comparison?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Windows ADUC / Linux BIND"
+        },
+        {
+          "id": "B",
+          "text": "Windows NTFS / Linux Samba"
+        },
+        {
+          "id": "C",
+          "text": "Windows Task Manager / Linux DNF"
+        },
+        {
+          "id": "D",
+          "text": "Windows Event Viewer with EVTX / Linux journald and rsyslog under /var/log"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation": "The source pairs Event Viewer and EVTX on Windows with journald and rsyslog logs under /var/log on Linux.",
+      "option_explanations": {
+        "A": "Incorrect: Task Manager monitors processes; DNF manages packages.",
+        "B": "Incorrect: ADUC manages AD objects; BIND provides DNS.",
+        "C": "Incorrect: This is the logging row shown.",
+        "D": "Correct: The source pairs Event Viewer and EVTX on Windows with journald and rsyslog logs under /var/log on Linux."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 201,
+        "pdf_page_end": 201,
+        "printed_page": null,
+        "section": "Cross-platform Administration — Equivalent OS administration tasks",
+        "evidence_summary": "The source pairs Event Viewer and EVTX on Windows with journald and rsyslog logs under /var/log on Linux."
+      },
+      "tags": [
+        "logging"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000015",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T001",
+      "subtopic_id": "XPL-SYSTEM-JOBS",
+      "topic": "Cross-platform Administration",
+      "subtopic": "Equivalent OS administration tasks",
+      "difficulty": "foundational",
+      "question_type": "comparison",
+      "question_text": "Which automation language pairing is stated in the comparison table?",
+      "options": [
+        {
+          "id": "A",
+          "text": "PowerShell on both platforms only"
+        },
+        {
+          "id": "B",
+          "text": "Bash on Windows and SMTP on Linux"
+        },
+        {
+          "id": "C",
+          "text": "PowerShell on Windows and Bash on Linux"
+        },
+        {
+          "id": "D",
+          "text": "C# on Windows and SQL on Linux"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation": "The source’s automation-language row lists PowerShell for Windows Server and Bash for Linux.",
+      "option_explanations": {
+        "A": "Incorrect: SMTP is an email protocol, not a scripting language.",
+        "B": "Incorrect: This is the platform pairing shown.",
+        "C": "Correct: The source’s automation-language row lists PowerShell for Windows Server and Bash for Linux.",
+        "D": "Incorrect: The table gives Bash for Linux."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 201,
+        "pdf_page_end": 201,
+        "printed_page": null,
+        "section": "Cross-platform Administration — Equivalent OS administration tasks",
+        "evidence_summary": "The source’s automation-language row lists PowerShell for Windows Server and Bash for Linux."
+      },
+      "tags": [
+        "automation",
+        "shell"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000016",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T002",
+      "subtopic_id": "XPL-DOMAIN-JOIN",
+      "topic": "Cross-platform Identity",
+      "subtopic": "Windows and Linux domain joining",
+      "difficulty": "advanced",
+      "question_type": "troubleshooting",
+      "question_text": "A Windows Pro workstation cannot locate its domain during join. Which network setting should be checked first according to the source?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Whether its partition uses GPT"
+        },
+        {
+          "id": "B",
+          "text": "Whether it uses the Domain Controller as its DNS server"
+        },
+        {
+          "id": "C",
+          "text": "Whether its local user profile uses Bash"
+        },
+        {
+          "id": "D",
+          "text": "Whether its NFS export is read-only"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation": "The Windows join prerequisites stress using the DC’s IP as DNS so the machine can locate the AD domain; Linux domain joining also relies on domain discovery.",
+      "option_explanations": {
+        "A": "Incorrect: The Windows client shell is not the AD discovery setting.",
+        "B": "Correct: The Windows join prerequisites stress using the DC’s IP as DNS so the machine can locate the AD domain; Linux domain joining also relies on domain discovery.",
+        "C": "Incorrect: This is the critical name-resolution prerequisite.",
+        "D": "Incorrect: Partition style is unrelated to locating the domain."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 43,
+        "pdf_page_end": 43,
+        "printed_page": null,
+        "section": "Cross-platform Identity — Windows and Linux domain joining",
+        "evidence_summary": "The Windows join prerequisites stress using the DC’s IP as DNS so the machine can locate the AD domain; Linux domain joining also relies on domain discovery."
+      },
+      "tags": [
+        "domain-join",
+        "dns"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000017",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T002",
+      "subtopic_id": "XPL-DOMAIN-JOIN",
+      "topic": "Cross-platform Identity",
+      "subtopic": "Windows and Linux domain joining",
+      "difficulty": "foundational",
+      "question_type": "comparison",
+      "question_text": "Which Windows editions does the source say may join an AD domain?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Any edition without restriction"
+        },
+        {
+          "id": "B",
+          "text": "Pro, Enterprise, or Education"
+        },
+        {
+          "id": "C",
+          "text": "Windows Home and S only"
+        },
+        {
+          "id": "D",
+          "text": "Home only"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation": "The domain-join section lists Pro, Enterprise, and Education editions and says Home editions cannot join a domain.",
+      "option_explanations": {
+        "A": "Incorrect: The source does not list Home or S as the supported editions.",
+        "B": "Correct: The domain-join section lists Pro, Enterprise, and Education editions and says Home editions cannot join a domain.",
+        "C": "Incorrect: The source says Home cannot join.",
+        "D": "Incorrect: This is the edition list in the source."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 43,
+        "pdf_page_end": 43,
+        "printed_page": null,
+        "section": "Cross-platform Identity — Windows and Linux domain joining",
+        "evidence_summary": "The domain-join section lists Pro, Enterprise, and Education editions and says Home editions cannot join a domain."
+      },
+      "tags": [
+        "domain-join",
+        "windows-editions"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000018",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T002",
+      "subtopic_id": "XPL-DOMAIN-JOIN",
+      "topic": "Cross-platform Identity",
+      "subtopic": "Windows and Linux domain joining",
+      "difficulty": "advanced",
+      "question_type": "comparison",
+      "question_text": "Which tools or components are named for Linux domain membership in the supplied instructions?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Windows Settings > Access work or school"
+        },
+        {
+          "id": "B",
+          "text": "Domain-join packages, domain discovery, SSSD/home-directory configuration, and Kerberos verification"
+        },
+        {
+          "id": "C",
+          "text": "IIS Manager and NTFS ACLs"
+        },
+        {
+          "id": "D",
+          "text": "WDS boot and install images only"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation": "The Linux join slides outline package installation, domain discovery/join, SSSD and home-directory configuration, then membership/user/Kerberos verification.",
+      "option_explanations": {
+        "A": "Incorrect: WDS deploys operating systems and is not the Linux domain-join method.",
+        "B": "Correct: The Linux join slides outline package installation, domain discovery/join, SSSD and home-directory configuration, then membership/user/Kerberos verification.",
+        "C": "Incorrect: This summarizes the Linux join workflow.",
+        "D": "Incorrect: These are Windows web/file administration tools."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 45,
+        "pdf_page_end": 46,
+        "printed_page": null,
+        "section": "Cross-platform Identity — Windows and Linux domain joining",
+        "evidence_summary": "The Linux join slides outline package installation, domain discovery/join, SSSD and home-directory configuration, then membership/user/Kerberos verification."
+      },
+      "tags": [
+        "linux-domain-join",
+        "sssd",
+        "kerberos"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000019",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T003",
+      "subtopic_id": "XPL-FILE",
+      "topic": "Cross-platform File Services",
+      "subtopic": "Windows and Linux file sharing",
+      "difficulty": "foundational",
+      "question_type": "conceptual",
+      "question_text": "Which technology lets Windows clients access Linux/Unix file shares using the Windows-native file-sharing protocol?",
+      "options": [
+        {
+          "id": "A",
+          "text": "SMTP"
+        },
+        {
+          "id": "B",
+          "text": "NFS only with no client support"
+        },
+        {
+          "id": "C",
+          "text": "systemd"
+        },
+        {
+          "id": "D",
+          "text": "Samba using SMB/CIFS"
+        }
+      ],
+      "correct_option_id": "D",
+      "explanation": "The source identifies Samba as enabling Linux/Unix servers to integrate with Windows clients through SMB/CIFS shares.",
+      "option_explanations": {
+        "A": "Incorrect: The source says NFS is primarily Linux/Unix and requires Windows tools.",
+        "B": "Incorrect: Samba implements SMB/CIFS interoperability for Windows clients.",
+        "C": "Incorrect: SMTP transports email.",
+        "D": "Correct: The source identifies Samba as enabling Linux/Unix servers to integrate with Windows clients through SMB/CIFS shares."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 148,
+        "pdf_page_end": 151,
+        "printed_page": null,
+        "section": "Cross-platform File Services — Windows and Linux file sharing",
+        "evidence_summary": "The source identifies Samba as enabling Linux/Unix servers to integrate with Windows clients through SMB/CIFS shares."
+      },
+      "tags": [
+        "samba",
+        "smb"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000020",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T003",
+      "subtopic_id": "XPL-FILE",
+      "topic": "Cross-platform File Services",
+      "subtopic": "Windows and Linux file sharing",
+      "difficulty": "advanced",
+      "question_type": "comparison",
+      "question_text": "Which access pattern best distinguishes NFS from FTP in the source’s protocol table?",
+      "options": [
+        {
+          "id": "A",
+          "text": "FTP mounts remote folders as local files; NFS requires manual uploads"
+        },
+        {
+          "id": "B",
+          "text": "NFS mounts remote folders as local filesystem paths; FTP uses explicit upload/download transfers"
+        },
+        {
+          "id": "C",
+          "text": "NFS is only email transfer while FTP is DNS"
+        },
+        {
+          "id": "D",
+          "text": "Both are identical SMB network-drive protocols"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation": "The table describes NFS as transparent mounted file access and FTP as discrete explicit transfers where files are uploaded/downloaded.",
+      "option_explanations": {
+        "A": "Incorrect: This is the distinction in the source.",
+        "B": "Correct: The table describes NFS as transparent mounted file access and FTP as discrete explicit transfers where files are uploaded/downloaded.",
+        "C": "Incorrect: SMB is the protocol behind Samba, not the description of both.",
+        "D": "Incorrect: The functions are reversed."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 151,
+        "pdf_page_end": 151,
+        "printed_page": null,
+        "section": "Cross-platform File Services — Windows and Linux file sharing",
+        "evidence_summary": "The table describes NFS as transparent mounted file access and FTP as discrete explicit transfers where files are uploaded/downloaded."
+      },
+      "tags": [
+        "nfs",
+        "ftp"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000021",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T003",
+      "subtopic_id": "XPL-FILE",
+      "topic": "Cross-platform File Services",
+      "subtopic": "Windows and Linux file sharing",
+      "difficulty": "intermediate",
+      "question_type": "comparison",
+      "question_text": "When a Windows shared folder is accessed over the network, which two permission systems combine in the source?",
+      "options": [
+        {
+          "id": "A",
+          "text": "NFS export rules and a Kerberos TGT only"
+        },
+        {
+          "id": "B",
+          "text": "Linux rwx permissions and a DNS zone"
+        },
+        {
+          "id": "C",
+          "text": "SMB share permissions and NTFS file-system permissions"
+        },
+        {
+          "id": "D",
+          "text": "GPO and DHCP options"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation": "The Windows file-sharing section states that remote access is controlled by both SMB share permissions and NTFS permissions; it separately contrasts Linux rwx permissions.",
+      "option_explanations": {
+        "A": "Incorrect: GPO and DHCP options are not file permission systems.",
+        "B": "Incorrect: These are the two Windows permission layers described.",
+        "C": "Correct: The Windows file-sharing section states that remote access is controlled by both SMB share permissions and NTFS permissions; it separately contrasts Linux rwx permissions.",
+        "D": "Incorrect: Linux mode bits and DNS are unrelated to Windows share evaluation."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 304,
+        "pdf_page_end": 306,
+        "printed_page": null,
+        "section": "Cross-platform File Services — Windows and Linux file sharing",
+        "evidence_summary": "The Windows file-sharing section states that remote access is controlled by both SMB share permissions and NTFS permissions; it separately contrasts Linux rwx permissions.",
+        "additional_sources": [
+          {
+            "document_id": "devendraCOSA",
+            "pdf_page_start": 25,
+            "pdf_page_end": 26,
+            "section": "Linux file permissions"
+          }
+        ]
+      },
+      "tags": [
+        "share-permissions",
+        "ntfs"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000022",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T004",
+      "subtopic_id": "XPL-WEB",
+      "topic": "Cross-platform Web Services",
+      "subtopic": "Apache and IIS roles",
+      "difficulty": "intermediate",
+      "question_type": "comparison",
+      "question_text": "Which pairing is explicit for web serving in the source comparison?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Windows Dovecot / Linux Active Directory"
+        },
+        {
+          "id": "B",
+          "text": "Windows IIS / Linux Apache httpd or Nginx"
+        },
+        {
+          "id": "C",
+          "text": "Windows Samba / Linux WSUS"
+        },
+        {
+          "id": "D",
+          "text": "Windows Nginx / Linux IIS"
+        }
+      ],
+      "correct_option_id": "B",
+      "explanation": "The comparison table lists IIS for Windows and Apache httpd plus Nginx for Linux.",
+      "option_explanations": {
+        "A": "Incorrect: Samba is file sharing and WSUS updates Windows.",
+        "B": "Correct: The comparison table lists IIS for Windows and Apache httpd plus Nginx for Linux.",
+        "C": "Incorrect: The source maps IIS and Apache/Nginx to the opposite platforms.",
+        "D": "Incorrect: This is the web service mapping shown."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 201,
+        "pdf_page_end": 201,
+        "printed_page": null,
+        "section": "Cross-platform Web Services — Apache and IIS roles",
+        "evidence_summary": "The comparison table lists IIS for Windows and Apache httpd plus Nginx for Linux."
+      },
+      "tags": [
+        "web-services"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000023",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T004",
+      "subtopic_id": "XPL-WEB",
+      "topic": "Cross-platform Web Services",
+      "subtopic": "Apache and IIS roles",
+      "difficulty": "advanced",
+      "question_type": "comparison",
+      "question_text": "Which difference is shown between the Linux Apache and Windows IIS setup material?",
+      "options": [
+        {
+          "id": "A",
+          "text": "IIS uses /etc/httpd/conf/httpd.conf and Apache uses inetmgr.exe"
+        },
+        {
+          "id": "B",
+          "text": "Both are installed through apt on Windows"
+        },
+        {
+          "id": "C",
+          "text": "Apache is installed and managed with Linux packages/systemd; IIS is installed as a Windows Server role and managed in IIS Manager"
+        },
+        {
+          "id": "D",
+          "text": "Neither supports virtual hosting"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation": "The source shows Apache installed through Linux package managers and managed with systemctl, while IIS is added as the Web Server role and configured with IIS Manager/bindings.",
+      "option_explanations": {
+        "A": "Incorrect: Windows IIS is not installed through apt.",
+        "B": "Incorrect: This summarizes the platform-specific setup paths shown.",
+        "C": "Correct: The source shows Apache installed through Linux package managers and managed with systemctl, while IIS is added as the Web Server role and configured with IIS Manager/bindings.",
+        "D": "Incorrect: The configuration tools/paths are reversed."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 391,
+        "pdf_page_end": 424,
+        "printed_page": null,
+        "section": "Cross-platform Web Services — Apache and IIS roles",
+        "evidence_summary": "The source shows Apache installed through Linux package managers and managed with systemctl, while IIS is added as the Web Server role and configured with IIS Manager/bindings."
+      },
+      "tags": [
+        "apache",
+        "iis"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    },
+    {
+      "question_id": "XPL-000024",
+      "subject": "cross_platform",
+      "topic_id": "XPL-T002",
+      "subtopic_id": "XPL-DOMAIN-JOIN",
+      "topic": "Cross-platform Identity",
+      "subtopic": "Windows and Linux domain joining",
+      "difficulty": "advanced",
+      "question_type": "comparison",
+      "question_text": "Which comparison matches the domain-join paths shown for Windows and Linux clients?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Both platforms install AD DS locally before joining"
+        },
+        {
+          "id": "B",
+          "text": "Windows joins through NFS while Linux joins through IIS"
+        },
+        {
+          "id": "C",
+          "text": "Windows uses Settings or PowerShell to join; Linux installs join packages, discovers and joins the domain, then configures SSSD"
+        },
+        {
+          "id": "D",
+          "text": "Windows installs SSSD; Linux uses the Windows Settings app"
+        }
+      ],
+      "correct_option_id": "C",
+      "explanation": "The source gives Windows Settings/PowerShell join steps and a Linux package, discovery, join, and SSSD configuration workflow.",
+      "option_explanations": {
+        "A": "Incorrect: The tools are assigned to the wrong platforms.",
+        "B": "Incorrect: AD DS is installed on servers, not on each joining client.",
+        "C": "Correct: The source gives Windows Settings/PowerShell join steps and a Linux package, discovery, join, and SSSD configuration workflow.",
+        "D": "Incorrect: This summarizes the platform-specific join paths in the material."
+      },
+      "source": {
+        "document_id": "amitCOSA",
+        "pdf_page_start": 44,
+        "pdf_page_end": 45,
+        "printed_page": null,
+        "section": "Cross-platform Identity — Windows and Linux domain joining",
+        "evidence_summary": "The source gives Windows Settings/PowerShell join steps and a Linux package, discovery, join, and SSSD configuration workflow."
+      },
+      "tags": [
+        "cross-platform",
+        "domain-join"
+      ],
+      "related_question_ids": [],
+      "estimated_time_seconds": 55
+    }
+  ]
+}

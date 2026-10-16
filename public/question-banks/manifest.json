@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0.0",
+  "generated_on": "2026-10-17",
+  "subjects": [
+    "linux",
+    "windows",
+    "cross_platform"
+  ],
+  "source_documents": [
+    {
+      "document_id": "devendraCOSA",
+      "filename": "devendraCOSA.pdf",
+      "page_count": 149,
+      "path": "/home/mayur/Documents/temp/Final/devendraCOSA.pdf"
+    },
+    {
+      "document_id": "amitCOSA",
+      "filename": "amitCOSA.pdf",
+      "page_count": 447,
+      "path": "/home/mayur/Documents/temp/Final/amitCOSA.pdf"
+    }
+  ],
+  "total_source_pages": 596,
+  "questions_generated": 446,
+  "question_counts_by_subject": {
+    "linux": 204,
+    "windows": 218,
+    "cross_platform": 24
+  },
+  "question_counts_by_difficulty": {
+    "intermediate": 218,
+    "advanced": 137,
+    "foundational": 91
+  },
+  "difficulty_percentages": {
+    "foundational": 20.4,
+    "intermediate": 48.9,
+    "advanced": 30.7
+  },
+  "difficulty_target_percentages": {
+    "foundational": 20,
+    "intermediate": 35,
+    "advanced": 45
+  },
+  "difficulty_counts_by_subject": {
+    "linux": {
+      "intermediate": 98,
+      "advanced": 57,
+      "foundational": 49
+    },
+    "windows": {
+      "intermediate": 109,
+      "advanced": 70,
+      "foundational": 39
+    },
+    "cross_platform": {
+      "advanced": 10,
+      "intermediate": 11,
+      "foundational": 3
+    }
+  },
+  "question_counts_by_type": {
+    "conceptual": 180,
+    "command_syntax": 71,
+    "troubleshooting": 23,
+    "comparison": 62,
+    "scenario": 48,
+    "sequence": 35,
+    "configuration": 15,
+    "security": 4,
+    "command_output": 8
+  },
+  "question_counts_by_major_topic": {
+    "Programs and Processes": 5,
+    "Command Execution and I/O": 6,
+    "Text Processing": 15,
+    "Filesystems and Permissions": 16,
+    "Storage Management": 26,
+    "Package Management": 8,
+    "Linux Service Administration": 8,
+    "Linux Network Services": 66,
+    "Active Directory Structure": 13,
+    "AD Deployment": 14,
+    "Linux Networking": 17,
+    "Active Directory Operations": 25,
+    "Group Policy": 9,
+    "Group Policy Security": 8,
+    "Virtualization": 14,
+    "High Availability and Load Balancing": 13,
+    "File Services": 15,
+    "PowerShell": 14,
+    "Identity Administration": 20,
+    "Remote Access and Authentication": 7,
+    "Web Services": 6,
+    "Backup and Recovery": 7,
+    "Cross-platform Identity": 5,
+    "Cross-platform File Services": 5,
+    "Cross-platform Web Services": 4,
+    "Cross-platform Administration": 10,
+    "Boot and Initialization": 9,
+    "Linux Filesystem Hierarchy": 5,
+    "Authentication and Access": 10,
+    "Network Services": 16,
+    "Deployment Services": 6,
+    "Update Management": 7,
+    "Windows Server Administration": 6,
+    "Active Directory Fundamentals": 4,
+    "Storage and Virtualization": 4,
+    "OS and Linux Foundations": 5,
+    "Shells, Paths, and Linux Basics": 4,
+    "Linux Commands": 10,
+    "Editors": 4
+  },
+  "topic_count": 39,
+  "subtopic_count": 69,
+  "planned_question_count_total": 436,
+  "subtopics_below_planned_question_count": 0,
+  "source_issue_count": 19,
+  "quality_checks": {
+    "json_serialization": "passed",
+    "unique_question_ids": "passed",
+    "exact_duplicate_question_text": "none",
+    "four_distinct_options": "passed",
+    "correct_option_references_existing_option": "passed",
+    "four_option_explanations_per_question": "passed",
+    "valid_document_and_page_references": "passed",
+    "lexical_similarity_screen": "reviewed; close matches test distinct facts; manual semantic review remains open",
+    "difficulty_distribution_target": "not_met"
+  },
+  "completeness_status": "All source pages were text-extracted and section-mapped, and every subtopic meets or exceeds its planned question count. Concept-level coverage and full semantic review remain in progress, source items flagged for review need resolution, and the target difficulty distribution is not met; this bank should not be represented as exhaustive.",
+  "output_files": [
+    "topic_inventory.json",
+    "linux_question_bank.json",
+    "windows_question_bank.json",
+    "cross_platform_question_bank.json",
+    "source_issues.json",
+    "manifest.json",
+    "coverage_report.md"
+  ]
+}

@@ -1,0 +1,192 @@
+[
+  {
+    "issue_id": "DEV-001",
+    "document_id": "devendraCOSA",
+    "pdf_page_start": 3,
+    "pdf_page_end": 4,
+    "topic": "Kernel architecture and Linux modules",
+    "type": "internal_inconsistency",
+    "source_statement": "The notes describe loadable .ko files as dynamic kernel objects, then call them non-kernel components; the neighboring kernel-architecture examples also classify Windows and Linux in ways that are not consistently explained.",
+    "review_needed": "Clarify whether the material means built-in versus loadable kernel code and which architecture taxonomy is intended. Questions avoid relying on the disputed labels."
+  },
+  {
+    "issue_id": "DEV-002",
+    "document_id": "devendraCOSA",
+    "pdf_page_start": 15,
+    "pdf_page_end": 16,
+    "topic": "Regular expressions",
+    "type": "ambiguous_terminology",
+    "source_statement": "The notes divide regex operators into basic and extended wildcard sets without specifying the grep mode/escaping rules, and label fgrep as having no wildcard.",
+    "review_needed": "Separate regex operators from shell globbing and state whether BRE, ERE, or GNU extensions are intended. Questions use only unambiguous anchors and listed grep options."
+  },
+  {
+    "issue_id": "DEV-003",
+    "document_id": "devendraCOSA",
+    "pdf_page_start": 19,
+    "pdf_page_end": 21,
+    "topic": "sed substitutions",
+    "type": "potentially_inaccurate",
+    "source_statement": "The substitution example labels s/old_word/new_word/gi as case-sensitive.",
+    "review_needed": "Verify the intended meaning of the i flag for the sed implementation used in class before teaching this example; no question tests this claim."
+  },
+  {
+    "issue_id": "DEV-004",
+    "document_id": "devendraCOSA",
+    "pdf_page_start": 27,
+    "pdf_page_end": 28,
+    "topic": "Inode timestamps and filesystem layout",
+    "type": "overgeneralization",
+    "source_statement": "The notes list creation/access/modification timestamps as inode fields and describe a four-part filesystem layout as a general model across examples including NTFS.",
+    "review_needed": "Clarify timestamp names and qualify the simplified filesystem layout by filesystem type. Questions avoid creation-time semantics and universal-layout claims."
+  },
+  {
+    "issue_id": "DEV-005",
+    "document_id": "devendraCOSA",
+    "pdf_page_start": 31,
+    "pdf_page_end": 31,
+    "topic": "systemd targets",
+    "type": "internal_inconsistency",
+    "source_statement": "The runlevel table maps runlevel 2 and 3 to multi-user.target with different descriptions and marks 4 reserved; later notes present a different mapping.",
+    "review_needed": "Describe targets directly and qualify any runlevel compatibility mapping by distribution. No question relies on the numeric mapping."
+  },
+  {
+    "issue_id": "DEV-006",
+    "document_id": "devendraCOSA",
+    "pdf_page_start": 35,
+    "pdf_page_end": 35,
+    "topic": "RPM and DNF",
+    "type": "potentially_inaccurate",
+    "source_statement": "The notes say both RPM and YUM are superseded by DNF, while surrounding material continues to use RPM as the package format/low-level tool.",
+    "review_needed": "Distinguish the high-level dependency manager from the lower-level RPM tool and package format. Questions use that distinction and do not repeat the overbroad wording."
+  },
+  {
+    "issue_id": "DEV-007",
+    "document_id": "devendraCOSA",
+    "pdf_page_start": 83,
+    "pdf_page_end": 83,
+    "topic": "Persistent mounting",
+    "type": "formatting_ambiguity",
+    "source_statement": "The sample /etc/fstab column headings repeat defaults, obscuring the meaning of the final dump and pass fields.",
+    "review_needed": "Replace the header with the six actual fields and explain the two trailing numeric fields before using the sample as a configuration exercise."
+  },
+  {
+    "issue_id": "AMIT-001",
+    "document_id": "amitCOSA",
+    "pdf_page_start": 20,
+    "pdf_page_end": 21,
+    "topic": "AD replication timing",
+    "type": "version_or_topology_sensitive",
+    "source_statement": "The slides give fixed intra-site timing values and a maximum hop count without explaining topology, notification settings, or applicability.",
+    "review_needed": "Qualify replication timing/topology statements before using them as exact-value questions. The bank tests multi-master replication and KCC purpose, not these timings."
+  },
+  {
+    "issue_id": "AMIT-002",
+    "document_id": "amitCOSA",
+    "pdf_page_start": 52,
+    "pdf_page_end": 52,
+    "topic": "Additional DC hardware prerequisites",
+    "type": "version_sensitive",
+    "source_statement": "The additional-DC checklist gives low fixed CPU/RAM/storage numbers across a wide range of Windows Server versions.",
+    "review_needed": "Replace these with current, version-specific minimums and workload sizing guidance before using them for deployment planning. No question tests the figures."
+  },
+  {
+    "issue_id": "AMIT-003",
+    "document_id": "amitCOSA",
+    "pdf_page_start": 73,
+    "pdf_page_end": 91,
+    "topic": "DHCP server deployment",
+    "type": "overgeneralization",
+    "source_statement": "The best-practice slides say only one DHCP server should exist per network.",
+    "review_needed": "Clarify that multiple DHCP servers can be deployed when scopes/failover are coordinated. Questions cover DHCP messages, timers, ports, and reservations instead of this rule."
+  },
+  {
+    "issue_id": "AMIT-004",
+    "document_id": "amitCOSA",
+    "pdf_page_start": 76,
+    "pdf_page_end": 78,
+    "topic": "Kea version and feature claims",
+    "type": "time_sensitive_or_potentially_inaccurate",
+    "source_statement": "The source calls version 2.1.6 the latest and attributes DHCPv6-Shield to Kea.",
+    "review_needed": "Verify the current Kea release and distinguish server capabilities from network-device protection features before publishing version/feature claims. No question uses these claims."
+  },
+  {
+    "issue_id": "AMIT-005",
+    "document_id": "amitCOSA",
+    "pdf_page_start": 110,
+    "pdf_page_end": 110,
+    "topic": "BIND recursion",
+    "type": "internal_inconsistency",
+    "source_statement": "The configuration sets recursion no, but the caption says this enabled the cache manager.",
+    "review_needed": "Clarify whether the intended lesson is to disable recursion or configure recursive caching. Questions avoid interpreting the contradictory caption."
+  },
+  {
+    "issue_id": "AMIT-006",
+    "document_id": "amitCOSA",
+    "pdf_page_start": 166,
+    "pdf_page_end": 166,
+    "topic": "Default Domain Policy precedence",
+    "type": "potentially_inaccurate",
+    "source_statement": "The slide says Default Domain Policy has the highest precedence among all GPOs linked to the domain without qualifying link order or enforcement.",
+    "review_needed": "Explain GPO link order, enforced links, and inheritance before using this as a general precedence rule. No question tests the stated ranking."
+  },
+  {
+    "issue_id": "AMIT-007",
+    "document_id": "amitCOSA",
+    "pdf_page_start": 180,
+    "pdf_page_end": 180,
+    "topic": "Control Panel restrictions",
+    "type": "internal_inconsistency",
+    "source_statement": "The slide says the policy prevents Control.exe from starting, then says users can still access settings by running Control.exe directly.",
+    "review_needed": "Reconcile the contradictory description and specify the tested Windows versions/policy behavior. No question tests this limitation."
+  },
+  {
+    "issue_id": "AMIT-008",
+    "document_id": "amitCOSA",
+    "pdf_page_start": 260,
+    "pdf_page_end": 261,
+    "topic": "Email envelope and message headers",
+    "type": "terminology_ambiguity",
+    "source_statement": "The section titled Envelope Information lists From, To, Cc, Bcc, Subject, Date, attachments, and body together.",
+    "review_needed": "Separate SMTP envelope fields from RFC 5322 message headers and body before using this as a protocol question."
+  },
+  {
+    "issue_id": "AMIT-009",
+    "document_id": "amitCOSA",
+    "pdf_page_start": 304,
+    "pdf_page_end": 304,
+    "topic": "Windows Server file-sharing permissions",
+    "type": "typographical_error",
+    "source_statement": "The introduction names Windows Server 20225.",
+    "review_needed": "Correct the version typo to the intended Windows Server release before reusing the slide."
+  },
+  {
+    "issue_id": "AMIT-010",
+    "document_id": "amitCOSA",
+    "pdf_page_start": 336,
+    "pdf_page_end": 336,
+    "topic": "Services and daemons",
+    "type": "terminology_ambiguity",
+    "source_statement": "The slide calls services interactive while describing daemons as noninteractive background programs and says services operate in the background.",
+    "review_needed": "Clarify whether service refers to a user-facing capability or a background service process. The bank tests concrete systemd actions rather than this definition."
+  },
+  {
+    "issue_id": "AMIT-011",
+    "document_id": "amitCOSA",
+    "pdf_page_start": 343,
+    "pdf_page_end": 343,
+    "topic": "systemd unit overrides",
+    "type": "typographical_error",
+    "source_statement": "One instruction names /etc/system/system although nearby slides identify /etc/systemd/system for custom units.",
+    "review_needed": "Correct the directory path and keep the unit override instructions consistent."
+  },
+  {
+    "issue_id": "AMIT-012",
+    "document_id": "amitCOSA",
+    "pdf_page_start": 342,
+    "pdf_page_end": 342,
+    "topic": "systemd target/runlevel mapping",
+    "type": "version_or_distribution_sensitive",
+    "source_statement": "The runlevel-to-target table maps runlevels 2, 3, and 4 to multi-user.target with descriptions that vary by row.",
+    "review_needed": "Teach the target names directly and qualify runlevel compatibility mappings by distribution. Questions avoid exact numeric mappings."
+  }
+]
