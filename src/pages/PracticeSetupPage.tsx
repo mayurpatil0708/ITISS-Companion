@@ -28,8 +28,13 @@ export const PracticeSetupPage: React.FC = () => {
   const location = useLocation();
   const { subjectParam } = useParams<{ subjectParam?: string }>();
 
-  // Detect subject from URL path if on /practice/linux, /practice/windows, /practice/cross-platform
+  // Detect subject from URL query param or path
   const initialSubject: Subject | 'all' = useMemo(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const querySubject = searchParams.get('subject');
+    if (querySubject === 'linux' || querySubject === 'windows' || querySubject === 'cross_platform') {
+      return querySubject as Subject;
+    }
     if (location.pathname.includes('/linux')) return 'linux';
     if (location.pathname.includes('/windows')) return 'windows';
     if (location.pathname.includes('/cross-platform')) return 'cross_platform';
@@ -63,10 +68,18 @@ export const PracticeSetupPage: React.FC = () => {
 
   // Synchronize subject when route changes
   useEffect(() => {
-    if (location.pathname.includes('/linux')) setSubject('linux');
-    else if (location.pathname.includes('/windows')) setSubject('windows');
-    else if (location.pathname.includes('/cross-platform')) setSubject('cross_platform');
-  }, [location.pathname]);
+    const searchParams = new URLSearchParams(location.search);
+    const querySubject = searchParams.get('subject');
+    if (querySubject === 'linux' || querySubject === 'windows' || querySubject === 'cross_platform') {
+      setSubject(querySubject as Subject);
+    } else if (location.pathname.includes('/linux')) {
+      setSubject('linux');
+    } else if (location.pathname.includes('/windows')) {
+      setSubject('windows');
+    } else if (location.pathname.includes('/cross-platform')) {
+      setSubject('cross_platform');
+    }
+  }, [location.pathname, location.search]);
 
   // Load all questions from repository
   useEffect(() => {

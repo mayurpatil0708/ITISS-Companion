@@ -7,7 +7,7 @@ import {
   Bell,
   Menu,
   ChevronRight,
-  Shield,
+  BookOpenCheck,
   X,
   CheckCircle2,
   AlertCircle,
@@ -15,7 +15,9 @@ import {
 } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 import { useTheme } from '@/context/ThemeContext';
+import { useExamStage } from '@/context/ExamStageContext';
 import { APP_CONFIG } from '@/config/app.config';
+import { getModuleBySlug } from '@/data/module-registry';
 
 interface HeaderProps {
   onToggleSidebar: () => void;
@@ -25,19 +27,70 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
   const { setCommandPaletteOpen, notifications, dismissNotification, preferences } = useApp();
   const { theme, toggleTheme } = useTheme();
+  const { currentStage } = useExamStage();
   const location = useLocation();
   const [showNotifications, setShowNotifications] = useState(false);
 
-  // Derive breadcrumb from pathname
-  const pathSegments = location.pathname.split('/').filter(Boolean);
-  const breadcrumbs = [
-    { label: 'Academy', path: '/' },
-    ...pathSegments.map((seg, idx) => {
-      const url = `/${pathSegments.slice(0, idx + 1).join('/')}`;
-      const label = seg.charAt(0).toUpperCase() + seg.slice(1).replace(/-/g, ' ');
-      return { label, path: url };
-    }),
-  ];
+  // Build smart breadcrumbs
+  const buildBreadcrumbs = () => {
+    const crumbs: { label: string; path: string }[] = [
+      { label: APP_CONFIG.shortName, path: '/' },
+    ];
+
+    const pathSegments = location.pathname.split('/').filter(Boolean);
+
+    if (pathSegments.length === 0) {
+      return crumbs;
+    }
+
+    // First segment is usually the stage
+    if (pathSegments[0] === 'cmce' || pathSegments[0] === 'ccee') {
+      crumbs.push({
+        label: pathSegments[0].toUpperCase(),
+        path: `/${pathSegments[0]}`,
+      });
+
+      // Second segment could be a module slug
+      if (pathSegments[1]) {
+        const mod = getModuleBySlug(pathSegments[1]);
+        if (mod) {
+          crumbs.push({
+            label: mod.shortName,
+            path: `/${pathSegments[0]}/${pathSegments[1]}`,
+          });
+
+          // Third segment is a tool (practice, topics, etc.)
+          if (pathSegments[2]) {
+            const toolLabel = pathSegments[2].charAt(0).toUpperCase() + pathSegments[2].slice(1).replace(/-/g, ' ');
+            crumbs.push({
+              label: toolLabel,
+              path: `/${pathSegments.slice(0, 3).join('/')}`,
+            });
+          }
+        } else {
+          // Not a module, it's a tool at the stage level
+          const toolLabel = pathSegments[1].charAt(0).toUpperCase() + pathSegments[1].slice(1).replace(/-/g, ' ');
+          crumbs.push({
+            label: toolLabel,
+            path: `/${pathSegments.slice(0, 2).join('/')}`,
+          });
+        }
+      }
+    } else if (pathSegments[0] === 'settings') {
+      crumbs.push({ label: 'Settings', path: '/settings' });
+    } else {
+      // Generic fallback
+      pathSegments.forEach((seg, idx) => {
+        const url = `/${pathSegments.slice(0, idx + 1).join('/')}`;
+        const label = seg.charAt(0).toUpperCase() + seg.slice(1).replace(/-/g, ' ');
+        crumbs.push({ label, path: url });
+      });
+    }
+
+    return crumbs;
+  };
+
+  const breadcrumbs = buildBreadcrumbs();
 
   return (
     <header className="h-14 border-b border-nexus-border bg-nexus-surface/90 backdrop-blur-md sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6">
@@ -56,7 +109,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           {breadcrumbs.map((crumb, idx) => {
             const isLast = idx === breadcrumbs.length - 1;
             return (
-              <React.Fragment key={crumb.path}>
+              <React.Fragment key={crumb.path + idx}>
                 {idx > 0 && <ChevronRight className="w-3.5 h-3.5 text-nexus-text-muted" />}
                 {isLast ? (
                   <span className="font-medium text-nexus-text">{crumb.label}</span>
@@ -80,9 +133,9 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           aria-label="Search and command palette"
         >
           <Search className="w-3.5 h-3.5" />
-          <span className="hidden md:inline">Search bank, topics, commands...</span>
+          <span className="hidden md:inline">Search questions, topics...</span>
           <span className="md:hidden">Search</span>
-          <kbd className="hidden sm:inline-block px-1.5 py-0.2 text-[10px] font-mono bg-nexus-surface border border-nexus-border rounded text-nexus-text-muted">
+          <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-nexus-surface border border-nexus-border rounded text-nexus-text-muted">
             Ctrl+K
           </kbd>
         </button>
@@ -97,7 +150,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-500" />}
         </button>
 
-        {/* Real Notification Bell */}
+        {/* Notification Bell */}
         <div className="relative">
           <button
             onClick={() => setShowNotifications(!showNotifications)}
@@ -114,13 +167,13 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           {showNotifications && (
             <div className="absolute right-0 mt-2 w-80 bg-nexus-surface border border-nexus-border rounded-lg shadow-elevated z-50 overflow-hidden animate-fadeIn">
               <div className="px-4 py-2.5 border-b border-nexus-border flex items-center justify-between bg-nexus-elevated/40">
-                <span className="text-xs font-semibold text-nexus-text">System Notifications</span>
+                <span className="text-xs font-semibold text-nexus-text">Notifications</span>
                 <span className="text-[11px] font-mono text-nexus-text-muted">{notifications.length} active</span>
               </div>
               <div className="max-h-72 overflow-y-auto divide-y divide-nexus-border/30">
                 {notifications.length === 0 ? (
                   <div className="py-6 text-center text-xs text-nexus-text-muted">
-                    No recent system notifications.
+                    No recent notifications.
                   </div>
                 ) : (
                   notifications.map((n) => (
@@ -150,11 +203,13 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
         {/* Profile Tag */}
         <div className="flex items-center gap-2 pl-2 border-l border-nexus-border">
           <div className="w-7 h-7 rounded bg-gradient-to-br from-indigo-500/20 to-cyan-500/20 border border-nexus-accent/40 flex items-center justify-center text-nexus-accent">
-            <Shield className="w-4 h-4" />
+            <BookOpenCheck className="w-4 h-4" />
           </div>
           <div className="hidden xl:block text-left">
             <div className="text-xs font-medium text-nexus-text leading-tight">{preferences.userName}</div>
-            <div className="text-[10px] font-mono text-nexus-text-muted leading-tight">{APP_CONFIG.shortName} Candidate</div>
+            <div className="text-[10px] font-mono text-nexus-text-muted leading-tight">
+              {currentStage ? `${currentStage.toUpperCase()} Prep` : APP_CONFIG.shortName}
+            </div>
           </div>
         </div>
       </div>

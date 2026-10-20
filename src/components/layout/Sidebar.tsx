@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
   Sparkles,
@@ -14,17 +14,47 @@ import {
   Settings,
   ChevronLeft,
   ChevronRight,
+  BookOpenCheck,
+  BookOpen,
+  Shield,
+  Monitor,
+  Network,
+  Code2,
+  Cloud,
+  ClipboardCheck,
+  ShieldCheck,
+  Search,
+  Key,
   ShieldAlert,
-  HardDrive,
+  Lock,
+  Home,
+  ArrowLeftRight,
 } from 'lucide-react';
 import { APP_CONFIG } from '@/config/app.config';
 import { useApp } from '@/context/AppContext';
+import { useExamStage } from '@/context/ExamStageContext';
+import { getModulesByStage, ModuleDefinition, ExamStage } from '@/data/module-registry';
 
 interface SidebarProps {
   isCollapsed: boolean;
   onToggleCollapse: () => void;
   isMobileOpen: boolean;
   onCloseMobile: () => void;
+}
+
+const ICON_MAP: Record<string, React.FC<any>> = {
+  Monitor, Network, Code2, Cloud, ClipboardCheck, ShieldCheck,
+  Search, Key, ShieldAlert, Terminal, Server, Layers,
+};
+
+interface NavigationItem {
+  label: string;
+  path: string;
+  icon: React.FC<any>;
+  section: 'main' | 'modules' | 'tools';
+  badge?: string;
+  isModule?: boolean;
+  isAvailable?: boolean;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -34,45 +64,156 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onCloseMobile,
 }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { totalQuestionsCount } = useApp();
+  const { currentStage, setStage, clearStage } = useExamStage();
 
-  const navigationItems = [
-    { label: 'Overview', path: '/', icon: LayoutDashboard },
-    { label: 'Practice Setup', path: '/practice', icon: Sparkles, exact: true },
-    { label: 'Linux & OS Bank', path: '/practice/linux', icon: Terminal },
-    { label: 'Windows Server', path: '/practice/windows', icon: Server },
-    { label: 'Cross-platform', path: '/practice/cross-platform', icon: Layers },
-    { label: 'Topic Explorer', path: '/topics', icon: FolderTree },
-    { label: 'Mock Exam', path: '/exam', icon: GraduationCap },
-    { label: 'Review Mistakes', path: '/review', icon: RotateCcw },
-    { label: 'Analytics', path: '/analytics', icon: BarChart3 },
-    { label: 'Question Bank', path: '/question-bank', icon: Database, badge: totalQuestionsCount > 0 ? String(totalQuestionsCount) : undefined },
-    { label: 'Settings', path: '/settings', icon: Settings },
-  ];
+  const modules = currentStage ? getModulesByStage(currentStage) : [];
+
+  const handleStageSwitch = () => {
+    const newStage: ExamStage = currentStage === 'cmce' ? 'ccee' : 'cmce';
+    setStage(newStage);
+    navigate(`/${newStage}`);
+    onCloseMobile();
+  };
+
+  const handleGoHome = () => {
+    clearStage();
+    navigate('/');
+    onCloseMobile();
+  };
+
+  // Build navigation dynamically based on current stage
+  const buildNavigation = (): NavigationItem[] => {
+    if (!currentStage) {
+      return [
+        { label: 'Select Exam', path: '/', icon: Home, section: 'main' },
+        { label: 'Settings', path: '/settings', icon: Settings, section: 'main' },
+      ];
+    }
+
+    const stagePrefix = `/${currentStage}`;
+    const stageName = currentStage.toUpperCase();
+
+    const nav: NavigationItem[] = [
+      { label: `${stageName} Dashboard`, path: stagePrefix, icon: LayoutDashboard, section: 'main' },
+    ];
+
+    // Add module entries
+    for (const mod of modules) {
+      const ModIcon = ICON_MAP[mod.icon] || Monitor;
+      nav.push({
+        label: mod.shortName,
+        path: `${stagePrefix}/${mod.slug}`,
+        icon: ModIcon,
+        section: 'modules',
+        isModule: true,
+        isAvailable: mod.contentStatus !== 'coming_soon',
+      });
+    }
+
+    // Add tool entries (only if there are available modules)
+    const hasContent = modules.some((m) => m.contentStatus !== 'coming_soon');
+    if (hasContent) {
+      nav.push(
+        { label: 'Practice Setup', path: `${stagePrefix}/practice`, icon: Sparkles, section: 'tools' },
+        { label: 'Topic Explorer', path: `${stagePrefix}/topics`, icon: FolderTree, section: 'tools' },
+        { label: 'Mock Exam', path: `${stagePrefix}/exam`, icon: GraduationCap, section: 'tools' },
+        { label: 'Review Mistakes', path: `${stagePrefix}/review`, icon: RotateCcw, section: 'tools' },
+        { label: 'Analytics', path: `${stagePrefix}/analytics`, icon: BarChart3, section: 'tools' },
+        { label: 'Question Bank', path: `${stagePrefix}/question-bank`, icon: Database, section: 'tools', badge: totalQuestionsCount > 0 ? String(totalQuestionsCount) : undefined },
+      );
+    }
+
+    nav.push({ label: 'Settings', path: '/settings', icon: Settings, section: 'tools' });
+
+    return nav;
+  };
+
+  const navigationItems = buildNavigation();
+
+  // Group items by section
+  const mainItems = navigationItems.filter((n) => n.section === 'main');
+  const moduleItems = navigationItems.filter((n) => n.section === 'modules');
+  const toolItems = navigationItems.filter((n) => n.section === 'tools');
+
+  const renderNavItem = (item: NavigationItem) => {
+    const Icon = item.icon;
+    const isActive =
+      item.path === '/'
+        ? location.pathname === '/'
+        : location.pathname === item.path || location.pathname.startsWith(item.path + '/');
+
+    const isLocked = item.isModule && !item.isAvailable;
+
+    return (
+      <NavLink
+        key={item.path}
+        to={isLocked ? '#' : item.path}
+        onClick={(e) => {
+          if (isLocked) {
+            e.preventDefault();
+            return;
+          }
+          onCloseMobile();
+        }}
+        className={`flex items-center gap-3 px-3 py-2 rounded text-xs font-medium transition-all group relative ${
+          isLocked
+            ? 'text-nexus-text-muted cursor-not-allowed opacity-50'
+            : isActive
+            ? 'bg-nexus-accent/15 text-nexus-text border-l-2 border-nexus-accent font-semibold shadow-xs'
+            : 'text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated'
+        }`}
+        title={isCollapsed ? item.label : undefined}
+      >
+        <Icon
+          className={`w-4 h-4 flex-shrink-0 transition-colors ${
+            isLocked
+              ? 'text-nexus-text-muted'
+              : isActive
+              ? 'text-nexus-accent'
+              : 'text-nexus-text-muted group-hover:text-nexus-text'
+          }`}
+        />
+        {!isCollapsed && (
+          <div className="flex-1 flex items-center justify-between min-w-0">
+            <span className="truncate">{item.label}</span>
+            <div className="flex items-center gap-1">
+              {isLocked && <Lock className="w-3 h-3 text-nexus-text-muted" />}
+              {item.badge && (
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-nexus-elevated text-nexus-cyan border border-nexus-border">
+                  {item.badge}
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+      </NavLink>
+    );
+  };
 
   const content = (
     <div className="flex flex-col h-full bg-nexus-sidebar border-r border-nexus-border select-none">
       {/* Brand Header */}
       <div className="h-14 flex items-center justify-between px-4 border-b border-nexus-border">
-        <NavLink
-          to="/"
-          onClick={onCloseMobile}
+        <button
+          onClick={handleGoHome}
           className="flex items-center gap-2.5 overflow-hidden group focus-visible:outline-none"
         >
           <div className="w-8 h-8 rounded bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 flex items-center justify-center text-white shadow-subtle group-hover:scale-105 transition-transform flex-shrink-0">
-            <HardDrive className="w-4 h-4" />
+            <BookOpenCheck className="w-4 h-4" />
           </div>
           {!isCollapsed && (
             <div className="min-w-0">
               <span className="font-bold text-sm tracking-wider text-nexus-text block leading-none">
-                NEXUS
+                {APP_CONFIG.shortName}
               </span>
               <span className="text-[10px] font-mono text-nexus-cyan block truncate mt-0.5">
-                CMCE ACADEMY
+                COMPANION
               </span>
             </div>
           )}
-        </NavLink>
+        </button>
         {/* Desktop Collapse Toggle */}
         <button
           onClick={onToggleCollapse}
@@ -84,60 +225,79 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </button>
       </div>
 
+      {/* Exam Stage Switcher (when a stage is selected) */}
+      {currentStage && !isCollapsed && (
+        <div className="px-3 py-2.5 border-b border-nexus-border/60">
+          <button
+            onClick={handleStageSwitch}
+            className="w-full flex items-center justify-between gap-2 px-3 py-2 rounded bg-nexus-elevated/60 border border-nexus-border hover:border-nexus-accent/40 transition-all text-left group"
+          >
+            <div className="flex items-center gap-2 min-w-0">
+              {currentStage === 'cmce' ? (
+                <BookOpen className="w-4 h-4 text-nexus-accent flex-shrink-0" />
+              ) : (
+                <Shield className="w-4 h-4 text-nexus-cyan flex-shrink-0" />
+              )}
+              <div className="min-w-0">
+                <div className="text-xs font-semibold text-nexus-text">{currentStage.toUpperCase()}</div>
+                <div className="text-[10px] text-nexus-text-muted truncate">
+                  {currentStage === 'cmce' ? '4 modules' : '5 modules'}
+                </div>
+              </div>
+            </div>
+            <ArrowLeftRight className="w-3.5 h-3.5 text-nexus-text-muted group-hover:text-nexus-accent transition-colors flex-shrink-0" />
+          </button>
+        </div>
+      )}
+
       {/* Navigation Links */}
       <nav className="flex-1 overflow-y-auto px-2 py-3 space-y-1">
-        {navigationItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = item.exact
-            ? location.pathname === item.path
-            : location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
+        {/* Main section */}
+        {mainItems.map(renderNavItem)}
 
-          return (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              onClick={onCloseMobile}
-              className={`flex items-center gap-3 px-3 py-2 rounded text-xs font-medium transition-all group relative ${
-                isActive
-                  ? 'bg-nexus-accent/15 text-nexus-text border-l-2 border-nexus-accent font-semibold shadow-xs'
-                  : 'text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated'
-              }`}
-              title={isCollapsed ? item.label : undefined}
-            >
-              <Icon
-                className={`w-4 h-4 flex-shrink-0 transition-colors ${
-                  isActive ? 'text-nexus-accent' : 'text-nexus-text-muted group-hover:text-nexus-text'
-                }`}
-              />
-              {!isCollapsed && (
-                <div className="flex-1 flex items-center justify-between min-w-0">
-                  <span className="truncate">{item.label}</span>
-                  {item.badge && (
-                    <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-nexus-elevated text-nexus-cyan border border-nexus-border">
-                      {item.badge}
-                    </span>
-                  )}
-                </div>
-              )}
-            </NavLink>
-          );
-        })}
+        {/* Modules section */}
+        {moduleItems.length > 0 && (
+          <>
+            {!isCollapsed && (
+              <div className="px-3 pt-4 pb-1">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-nexus-text-muted">
+                  Modules
+                </span>
+              </div>
+            )}
+            {isCollapsed && <div className="pt-3 border-t border-nexus-border/30 mt-2" />}
+            {moduleItems.map(renderNavItem)}
+          </>
+        )}
+
+        {/* Tools section */}
+        {toolItems.length > 0 && (
+          <>
+            {!isCollapsed && (
+              <div className="px-3 pt-4 pb-1">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-nexus-text-muted">
+                  Tools
+                </span>
+              </div>
+            )}
+            {isCollapsed && <div className="pt-3 border-t border-nexus-border/30 mt-2" />}
+            {toolItems.map(renderNavItem)}
+          </>
+        )}
       </nav>
 
-      {/* System Status Banner at bottom */}
+      {/* Bottom Status */}
       {!isCollapsed && (
         <div className="p-3 m-2 rounded bg-nexus-elevated/40 border border-nexus-border/60">
-          <div className="flex items-center gap-2 text-xs font-medium text-nexus-text">
-            <ShieldAlert className="w-3.5 h-3.5 text-nexus-cyan" />
-            <span>CDAC CMCE Bank</span>
-          </div>
-          <div className="text-[11px] text-nexus-text-muted mt-1 leading-normal">
+          <div className="text-[11px] text-nexus-text-muted leading-normal">
             {APP_CONFIG.tagline}
           </div>
-          <div className="text-[10px] font-mono text-nexus-text-secondary mt-2 flex items-center justify-between">
-            <span>Verified Questions:</span>
-            <span className="text-nexus-cyan font-bold">{totalQuestionsCount}</span>
-          </div>
+          {totalQuestionsCount > 0 && (
+            <div className="text-[10px] font-mono text-nexus-text-secondary mt-2 flex items-center justify-between">
+              <span>Question Bank:</span>
+              <span className="text-nexus-cyan font-bold">{totalQuestionsCount}</span>
+            </div>
+          )}
         </div>
       )}
     </div>

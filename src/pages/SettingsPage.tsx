@@ -253,8 +253,8 @@ export const SettingsPage: React.FC = () => {
         </p>
 
         <div className="p-3 rounded bg-nexus-elevated/40 border border-nexus-border font-mono text-xs text-nexus-text-muted mb-4 space-y-1">
+          <div>Platform: <strong>{APP_CONFIG.name}</strong></div>
           <div>Storage Engine: <strong>HTML5 IndexedDB (Local-First)</strong></div>
-          <div>Database Name: <strong>nexus_cmce_database</strong></div>
           <div>Active Questions Stored: <strong>{totalQuestionsCount} records</strong></div>
         </div>
 
