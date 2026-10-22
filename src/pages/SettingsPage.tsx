@@ -177,36 +177,52 @@ export const SettingsPage: React.FC = () => {
         {/* Theme & Display Options */}
         <Card padding="md">
           <h3 className="text-xs font-semibold text-nexus-text uppercase tracking-wider mb-4 flex items-center gap-2">
-            <Moon className="w-4 h-4 text-indigo-400" />
-            Theme & Interface Appearance
+            <Moon className="w-4 h-4 text-nexus-accent" />
+            Theme & Design System
           </h3>
 
           <div className="space-y-4">
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-md">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl">
               <button
                 type="button"
                 onClick={() => setTheme('dark')}
-                className={`p-3 rounded border text-left flex items-center gap-2.5 transition-all ${
+                className={`p-3.5 rounded-xl border text-left flex items-start gap-3 transition-all ${
                   theme === 'dark'
-                    ? 'bg-nexus-accent/15 border-nexus-accent text-nexus-text font-semibold'
-                    : 'bg-nexus-elevated/40 border-nexus-border text-nexus-text-secondary hover:text-nexus-text'
+                    ? 'bg-nexus-elevated border-nexus-accent text-nexus-text ring-1 ring-nexus-accent shadow-xs'
+                    : 'bg-nexus-elevated/40 border-nexus-border text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated'
                 }`}
               >
-                <Moon className="w-4 h-4 text-amber-400" />
-                <span className="text-xs">Dark Theme (Default)</span>
+                <Moon className="w-5 h-5 text-nexus-accent shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-xs font-bold text-nexus-text">Dark (Netflix × Spotify)</span>
+                    {theme === 'dark' && <Badge variant="primary" size="sm">Active</Badge>}
+                  </div>
+                  <p className="text-[11px] text-nexus-text-muted leading-relaxed">
+                    Cinematic browsing, dark charcoal surfaces, Netflix warm red CTAs, and Spotify green progress cues.
+                  </p>
+                </div>
               </button>
 
               <button
                 type="button"
                 onClick={() => setTheme('light')}
-                className={`p-3 rounded border text-left flex items-center gap-2.5 transition-all ${
+                className={`p-3.5 rounded-xl border text-left flex items-start gap-3 transition-all ${
                   theme === 'light'
-                    ? 'bg-nexus-accent/15 border-nexus-accent text-nexus-text font-semibold'
-                    : 'bg-nexus-elevated/40 border-nexus-border text-nexus-text-secondary hover:text-nexus-text'
+                    ? 'bg-nexus-surface border-nexus-accent text-nexus-text ring-1 ring-nexus-accent shadow-xs'
+                    : 'bg-nexus-elevated/40 border-nexus-border text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated'
                 }`}
               >
-                <Sun className="w-4 h-4 text-indigo-500" />
-                <span className="text-xs">Light Theme</span>
+                <Sun className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-xs font-bold text-nexus-text">Light (Apple Inspired)</span>
+                    {theme === 'light' && <Badge variant="primary" size="sm">Active</Badge>}
+                  </div>
+                  <p className="text-[11px] text-nexus-text-muted leading-relaxed">
+                    Refined editorial layouts, warm ivory canvas, deep charcoal typography, and calm sage accents.
+                  </p>
+                </div>
               </button>
             </div>
 

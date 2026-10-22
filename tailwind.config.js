@@ -29,6 +29,8 @@ export default {
           success: 'var(--color-success)',
           warning: 'var(--color-warning)',
           error: 'var(--color-error)',
+          'brand-primary': 'var(--color-brand-primary)',
+          'brand-highlight': 'var(--color-brand-highlight)',
         }
       },
       fontFamily: {

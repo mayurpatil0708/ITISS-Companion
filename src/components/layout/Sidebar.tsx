@@ -33,6 +33,7 @@ import {
 import { APP_CONFIG } from '@/config/app.config';
 import { useApp } from '@/context/AppContext';
 import { useExamStage } from '@/context/ExamStageContext';
+import { useTheme } from '@/context/ThemeContext';
 import { getModulesByStage, ModuleDefinition, ExamStage } from '@/data/module-registry';
 
 interface SidebarProps {
@@ -43,15 +44,25 @@ interface SidebarProps {
 }
 
 const ICON_MAP: Record<string, React.FC<any>> = {
-  Monitor, Network, Code2, Cloud, ClipboardCheck, ShieldCheck,
-  Search, Key, ShieldAlert, Terminal, Server, Layers,
+  Monitor,
+  Network,
+  Code2,
+  Cloud,
+  ClipboardCheck,
+  ShieldCheck,
+  Search,
+  Key,
+  ShieldAlert,
+  Terminal,
+  Server,
+  Layers,
 };
 
 interface NavigationItem {
   label: string;
   path: string;
   icon: React.FC<any>;
-  section: 'main' | 'modules' | 'tools';
+  section: 'workspace' | 'exams' | 'modules' | 'study' | 'progress' | 'preferences';
   badge?: string;
   isModule?: boolean;
   isAvailable?: boolean;
@@ -67,6 +78,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const navigate = useNavigate();
   const { totalQuestionsCount } = useApp();
   const { currentStage, setStage, clearStage } = useExamStage();
+  const { theme } = useTheme();
 
   const modules = currentStage ? getModulesByStage(currentStage) : [];
 
@@ -83,49 +95,57 @@ export const Sidebar: React.FC<SidebarProps> = ({
     onCloseMobile();
   };
 
-  // Build navigation dynamically based on current stage
+  // Build Spotify-inspired categorized navigation
   const buildNavigation = (): NavigationItem[] => {
-    if (!currentStage) {
-      return [
-        { label: 'Select Exam', path: '/', icon: Home, section: 'main' },
-        { label: 'Settings', path: '/settings', icon: Settings, section: 'main' },
-      ];
-    }
-
-    const stagePrefix = `/${currentStage}`;
-    const stageName = currentStage.toUpperCase();
+    const stagePrefix = currentStage ? `/${currentStage}` : '/cmce';
 
     const nav: NavigationItem[] = [
-      { label: `${stageName} Dashboard`, path: stagePrefix, icon: LayoutDashboard, section: 'main' },
+      // 1. Your Workspace
+      { label: 'Home', path: '/', icon: Home, section: 'workspace' },
+      { label: 'Continue Learning', path: '/overview', icon: LayoutDashboard, section: 'workspace' },
+
+      // 2. Examinations
+      { label: 'CMCE Track', path: '/cmce', icon: BookOpen, section: 'exams' },
+      { label: 'CCEE Track', path: '/ccee', icon: Shield, section: 'exams' },
     ];
 
-    // Add module entries
-    for (const mod of modules) {
-      const ModIcon = ICON_MAP[mod.icon] || Monitor;
-      nav.push({
-        label: mod.shortName,
-        path: `${stagePrefix}/${mod.slug}`,
-        icon: ModIcon,
-        section: 'modules',
-        isModule: true,
-        isAvailable: mod.contentStatus !== 'coming_soon',
-      });
+    // 3. Active Stage Modules
+    if (currentStage && modules.length > 0) {
+      for (const mod of modules) {
+        const ModIcon = ICON_MAP[mod.icon] || Monitor;
+        nav.push({
+          label: mod.shortName,
+          path: `${stagePrefix}/${mod.slug}`,
+          icon: ModIcon,
+          section: 'modules',
+          isModule: true,
+          isAvailable: mod.contentStatus !== 'coming_soon',
+        });
+      }
     }
 
-    // Add tool entries (only if there are available modules)
-    const hasContent = modules.some((m) => m.contentStatus !== 'coming_soon');
-    if (hasContent) {
-      nav.push(
-        { label: 'Practice Setup', path: `${stagePrefix}/practice`, icon: Sparkles, section: 'tools' },
-        { label: 'Topic Explorer', path: `${stagePrefix}/topics`, icon: FolderTree, section: 'tools' },
-        { label: 'Mock Exam', path: `${stagePrefix}/exam`, icon: GraduationCap, section: 'tools' },
-        { label: 'Review Mistakes', path: `${stagePrefix}/review`, icon: RotateCcw, section: 'tools' },
-        { label: 'Analytics', path: `${stagePrefix}/analytics`, icon: BarChart3, section: 'tools' },
-        { label: 'Question Bank', path: `${stagePrefix}/question-bank`, icon: Database, section: 'tools', badge: totalQuestionsCount > 0 ? String(totalQuestionsCount) : undefined },
-      );
-    }
+    // 4. Study & Practice Engine
+    nav.push(
+      { label: 'MCQ Practice', path: `${stagePrefix}/practice`, icon: Sparkles, section: 'study' },
+      { label: 'Topic Explorer', path: `${stagePrefix}/topics`, icon: FolderTree, section: 'study' },
+      { label: 'Mock Exam', path: `${stagePrefix}/exam`, icon: GraduationCap, section: 'study' }
+    );
 
-    nav.push({ label: 'Settings', path: '/settings', icon: Settings, section: 'tools' });
+    // 5. Progress & Library
+    nav.push(
+      { label: 'Review Mistakes', path: `${stagePrefix}/review`, icon: RotateCcw, section: 'progress' },
+      {
+        label: 'Question Bank',
+        path: `${stagePrefix}/question-bank`,
+        icon: Database,
+        section: 'progress',
+        badge: totalQuestionsCount > 0 ? String(totalQuestionsCount) : undefined,
+      },
+      { label: 'Analytics', path: `${stagePrefix}/analytics`, icon: BarChart3, section: 'progress' }
+    );
+
+    // 6. Preferences
+    nav.push({ label: 'Settings', path: '/settings', icon: Settings, section: 'preferences' });
 
     return nav;
   };
@@ -133,18 +153,34 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const navigationItems = buildNavigation();
 
   // Group items by section
-  const mainItems = navigationItems.filter((n) => n.section === 'main');
+  const workspaceItems = navigationItems.filter((n) => n.section === 'workspace');
+  const examItems = navigationItems.filter((n) => n.section === 'exams');
   const moduleItems = navigationItems.filter((n) => n.section === 'modules');
-  const toolItems = navigationItems.filter((n) => n.section === 'tools');
+  const studyItems = navigationItems.filter((n) => n.section === 'study');
+  const progressItems = navigationItems.filter((n) => n.section === 'progress');
+  const preferenceItems = navigationItems.filter((n) => n.section === 'preferences');
 
   const renderNavItem = (item: NavigationItem) => {
     const Icon = item.icon;
     const isActive =
       item.path === '/'
         ? location.pathname === '/'
-        : location.pathname === item.path || location.pathname.startsWith(item.path + '/');
+        : location.pathname === item.path ||
+          (item.path !== '/overview' &&
+            item.path !== '/cmce' &&
+            item.path !== '/ccee' &&
+            location.pathname.startsWith(item.path + '/'));
 
     const isLocked = item.isModule && !item.isAvailable;
+
+    const activeStyles =
+      theme === 'dark'
+        ? isActive
+          ? 'bg-nexus-elevated text-white font-semibold border-l-2 border-nexus-cyan pl-2.5'
+          : 'text-nexus-text-secondary hover:text-white hover:bg-nexus-elevated/40'
+        : isActive
+        ? 'bg-nexus-surface text-nexus-text font-semibold shadow-subtle border border-nexus-border'
+        : 'text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated/60';
 
     return (
       <NavLink
@@ -160,9 +196,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         className={`flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-all group relative ${
           isLocked
             ? 'text-nexus-text-muted cursor-not-allowed opacity-40'
-            : isActive
-            ? 'bg-nexus-accent/10 text-nexus-accent font-semibold'
-            : 'text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated/60'
+            : activeStyles
         }`}
         title={isCollapsed ? item.label : undefined}
       >
@@ -171,7 +205,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
             isLocked
               ? 'text-nexus-text-muted'
               : isActive
-              ? 'text-nexus-accent'
+              ? theme === 'dark'
+                ? 'text-nexus-cyan'
+                : 'text-nexus-accent'
               : 'text-nexus-text-muted group-hover:text-nexus-text'
           }`}
         />
@@ -181,7 +217,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <div className="flex items-center gap-1">
               {isLocked && <Lock className="w-3 h-3 text-nexus-text-muted" />}
               {item.badge && (
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-nexus-elevated text-nexus-accent border border-nexus-border">
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-nexus-elevated text-nexus-cyan border border-nexus-border">
                   {item.badge}
                 </span>
               )}
@@ -189,6 +225,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
         )}
       </NavLink>
+    );
+  };
+
+  const renderSectionHeader = (title: string) => {
+    if (isCollapsed) return <div className="pt-2 border-t border-nexus-border/40 my-1" />;
+    return (
+      <div className="px-3 pt-3.5 pb-1">
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-nexus-text-muted">
+          {title}
+        </span>
+      </div>
     );
   };
 
@@ -225,7 +272,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </button>
       </div>
 
-      {/* Exam Stage Switcher (when a stage is selected) */}
+      {/* Stage Switcher Pill (if an exam stage is active) */}
       {currentStage && !isCollapsed && (
         <div className="px-3 py-2.5 border-b border-nexus-border/60">
           <button
@@ -236,12 +283,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
               {currentStage === 'cmce' ? (
                 <BookOpen className="w-4 h-4 text-nexus-accent flex-shrink-0" />
               ) : (
-                <Shield className="w-4 h-4 text-nexus-accent flex-shrink-0" />
+                <Shield className="w-4 h-4 text-nexus-cyan flex-shrink-0" />
               )}
               <div className="min-w-0">
                 <div className="text-xs font-semibold text-nexus-text">{currentStage.toUpperCase()}</div>
                 <div className="text-[10px] text-nexus-text-muted truncate">
-                  {currentStage === 'cmce' ? '4 modules' : '5 modules'}
+                  {currentStage === 'cmce' ? '4 modules available' : '5 modules coming soon'}
                 </div>
               </div>
             </div>
@@ -250,40 +297,35 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
       )}
 
-      {/* Navigation Links */}
+      {/* Navigation Links — Spotify-inspired grouping */}
       <nav className="flex-1 overflow-y-auto px-2 py-3 space-y-1">
-        {/* Main section */}
-        {mainItems.map(renderNavItem)}
+        {/* 1. Your Workspace */}
+        {renderSectionHeader('Your Workspace')}
+        {workspaceItems.map(renderNavItem)}
 
-        {/* Modules section */}
+        {/* 2. Examinations */}
+        {renderSectionHeader('Examinations')}
+        {examItems.map(renderNavItem)}
+
+        {/* 3. Stage Modules (when active stage) */}
         {moduleItems.length > 0 && (
           <>
-            {!isCollapsed && (
-              <div className="px-3 pt-4 pb-1">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-nexus-text-muted">
-                  Modules
-                </span>
-              </div>
-            )}
-            {isCollapsed && <div className="pt-3 border-t border-nexus-border/30 mt-2" />}
+            {renderSectionHeader(`${currentStage?.toUpperCase()} Modules`)}
             {moduleItems.map(renderNavItem)}
           </>
         )}
 
-        {/* Tools section */}
-        {toolItems.length > 0 && (
-          <>
-            {!isCollapsed && (
-              <div className="px-3 pt-4 pb-1">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-nexus-text-muted">
-                  Tools
-                </span>
-              </div>
-            )}
-            {isCollapsed && <div className="pt-3 border-t border-nexus-border/30 mt-2" />}
-            {toolItems.map(renderNavItem)}
-          </>
-        )}
+        {/* 4. Study & Practice */}
+        {renderSectionHeader('Study')}
+        {studyItems.map(renderNavItem)}
+
+        {/* 5. Progress & Library */}
+        {renderSectionHeader('Progress')}
+        {progressItems.map(renderNavItem)}
+
+        {/* 6. Preferences */}
+        {renderSectionHeader('Preferences')}
+        {preferenceItems.map(renderNavItem)}
       </nav>
 
       {/* Bottom Status */}
@@ -294,8 +336,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
           {totalQuestionsCount > 0 && (
             <div className="text-[10px] font-mono text-nexus-text-secondary mt-2 flex items-center justify-between">
-              <span>Question Bank:</span>
-              <span className="text-nexus-accent font-bold">{totalQuestionsCount}</span>
+              <span>Verified Bank:</span>
+              <span className="text-nexus-cyan font-bold">{totalQuestionsCount}</span>
             </div>
           )}
         </div>
