@@ -122,9 +122,9 @@ export const AnalyticsPage: React.FC = () => {
   const totalAttemptedQuestions = analytics.distinctAttemptedQuestions;
 
   const donutData = [
-    { name: 'Correct', value: totalCorrect, color: '#10B981' },
-    { name: 'Incorrect / To Review', value: Math.max(0, totalAttemptedQuestions - totalCorrect), color: '#EF4444' },
-    { name: 'Unattempted', value: Math.max(0, analytics.totalQuestions - totalAttemptedQuestions), color: '#334155' },
+    { name: 'Correct', value: totalCorrect, color: '#10b981' },
+    { name: 'Incorrect / To Review', value: Math.max(0, totalAttemptedQuestions - totalCorrect), color: '#ef4444' },
+    { name: 'Unattempted', value: Math.max(0, analytics.totalQuestions - totalAttemptedQuestions), color: '#64748b' },
   ];
 
   return (
@@ -147,7 +147,7 @@ export const AnalyticsPage: React.FC = () => {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <Card padding="md">
           <span className="text-xs font-medium text-nexus-text-secondary block">Overall Accuracy</span>
-          <div className="text-2xl font-bold font-mono text-nexus-cyan mt-1">
+          <div className="text-2xl font-bold font-mono text-nexus-accent mt-1">
             {analytics.overallAccuracyPct}%
           </div>
           <div className="text-[11px] text-nexus-text-muted mt-1">
@@ -216,7 +216,7 @@ export const AnalyticsPage: React.FC = () => {
                   }}
                   formatter={(val: any) => [`${val}%`, 'Accuracy']}
                 />
-                <Bar dataKey="accuracy" fill="#7777FF" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="accuracy" fill="#6366f1" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -249,7 +249,7 @@ export const AnalyticsPage: React.FC = () => {
                   }}
                   formatter={(val: any) => [`${val}%`, 'Accuracy']}
                 />
-                <Bar dataKey="accuracy" fill="#42D9E8" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="accuracy" fill="#14b8a6" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

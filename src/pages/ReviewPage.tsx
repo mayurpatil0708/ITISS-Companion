@@ -113,7 +113,7 @@ export const ReviewPage: React.FC = () => {
         selection: activeTab === 'incorrect' ? 'incorrect' : 'bookmarked',
         mode: 'practice',
         randomizeQuestions: true,
-        randomizeOptions: true,
+        randomizeOptions: false,
       });
 
       navigate(`/quiz/${attempt.id}`);
@@ -273,20 +273,66 @@ export const ReviewPage: React.FC = () => {
                 {q.question_text}
               </p>
 
-              {/* Correct Option Display */}
-              <div className="p-2.5 rounded bg-nexus-elevated/50 border border-nexus-border text-xs flex items-center justify-between">
-                <span className="text-nexus-text-muted">
-                  Correct Answer: <strong className="text-nexus-success">Option {q.correct_option_id}</strong> - {q.options.find((o) => o.id === q.correct_option_id)?.text}
-                </span>
-                <span className="font-mono text-[11px] text-nexus-cyan">
-                  {q.estimated_time_seconds || 60}s target
-                </span>
+              {/* 4 Answer Options (A, B, C, D) Canonically Ordered */}
+              <div className="space-y-2">
+                {QuizService.sortOptionsCanonically(q.options).map((opt, optIdx) => {
+                  const isKey = opt.id === q.correct_option_id;
+                  const displayLetter = String.fromCharCode(65 + optIdx);
+
+                  return (
+                    <div
+                      key={opt.id}
+                      className={`p-3 rounded-md border text-xs flex items-start gap-2.5 transition-colors ${
+                        isKey
+                          ? 'bg-nexus-success/15 border-nexus-success text-nexus-text font-medium'
+                          : 'bg-nexus-surface border-nexus-border text-nexus-text-secondary'
+                      }`}
+                    >
+                      <span
+                        className={`w-5 h-5 rounded flex items-center justify-center font-mono text-[10px] font-bold flex-shrink-0 ${
+                          isKey
+                            ? 'bg-nexus-success text-white'
+                            : 'bg-nexus-elevated border border-nexus-border text-nexus-text-muted'
+                        }`}
+                      >
+                        {displayLetter}
+                      </span>
+                      <span className="flex-1 leading-relaxed">{opt.text}</span>
+                      {isKey && (
+                        <span className="text-[10px] font-mono text-nexus-success font-bold uppercase tracking-wider">
+                          Correct Key
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
 
-              {/* Quick rationale */}
-              <p className="text-xs text-nexus-text-secondary leading-normal">
-                {q.explanation}
-              </p>
+              {/* Pedagogical Explanation & Distractor Rationales */}
+              <div className="p-3.5 rounded-lg bg-nexus-elevated/40 border border-nexus-border text-xs space-y-2 mt-2">
+                <div>
+                  <span className="font-semibold text-nexus-accent block mb-1">Pedagogical Explanation</span>
+                  <p className="text-nexus-text leading-relaxed">{q.explanation}</p>
+                </div>
+
+                {q.option_explanations && (
+                  <div className="pt-2 border-t border-nexus-border/60 space-y-1.5 text-nexus-text-secondary">
+                    {Object.entries(q.option_explanations).map(([id, exp]) => (
+                      <div key={id} className="flex items-start gap-2 text-[11px]">
+                        <span className="font-mono font-bold text-nexus-text-muted">[{id}]</span>
+                        <span className="leading-relaxed">{exp}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {q.source?.document_id && (
+                  <div className="pt-2 border-t border-nexus-border/60 flex items-center justify-between text-[11px] font-mono text-nexus-text-muted">
+                    <span>Verified Source: {q.source.document_id}</span>
+                    <span>{q.source.pdf_page_start ? `Pages ${q.source.pdf_page_start}-${q.source.pdf_page_end}` : ''}</span>
+                  </div>
+                )}
+              </div>
             </Card>
           ))
         )}

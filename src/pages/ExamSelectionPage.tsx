@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BookOpen, BookOpenCheck, Shield, ArrowRight, Clock, Layers, ChevronRight } from 'lucide-react';
-import { APP_CONFIG } from '@/config/app.config';
 import { EXAM_STAGES, getModulesByStage, ExamStage } from '@/data/module-registry';
 import { useExamStage } from '@/context/ExamStageContext';
 import { Card } from '@/components/common/Card';
@@ -21,36 +20,28 @@ export const ExamSelectionPage: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8 space-y-10 animate-fadeIn">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-nexus-surface/90 via-nexus-surface/60 to-nexus-surface/30 border border-nexus-border p-8 sm:p-12 text-center shadow-subtle">
-        {/* Subtle decorative radial glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-36 bg-nexus-accent/10 blur-3xl rounded-full pointer-events-none" />
-
-        <div className="relative z-10 flex flex-col items-center max-w-3xl mx-auto space-y-4">
-          {/* Logo Area */}
-          <div className="inline-flex items-center justify-center p-3 sm:p-4 rounded-2xl bg-nexus-accent/10 border border-nexus-accent/25 text-nexus-accent shadow-subtle">
-            <BookOpenCheck className="w-10 h-10 sm:w-12 sm:h-12" />
+    <div className="w-full max-w-5xl mx-auto py-6 sm:py-10 px-4 sm:px-6 lg:px-8 space-y-8 animate-fadeIn">
+      {/* 1. Clear, Welcoming Hero Section without excessive glow */}
+      <div className="rounded-2xl bg-nexus-surface border border-nexus-border/80 p-8 sm:p-12 text-center shadow-subtle">
+        <div className="flex flex-col items-center max-w-3xl mx-auto space-y-4">
+          {/* Logo Badge */}
+          <div className="inline-flex items-center justify-center p-3.5 rounded-xl bg-nexus-accent/10 border border-nexus-accent/20 text-nexus-accent">
+            <BookOpenCheck className="w-8 h-8 sm:w-10 sm:h-10" />
           </div>
 
-          {/* Title */}
+          {/* Heading */}
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-nexus-text tracking-tight">
-            ITISS Companion
+            Your PGCP-ITISS Journey, Organized.
           </h1>
 
           {/* Subtitle */}
-          <p className="text-base sm:text-lg lg:text-xl font-medium text-nexus-text-secondary leading-snug">
-            {APP_CONFIG.tagline}
-          </p>
-
-          {/* Small line */}
-          <p className="text-xs sm:text-sm text-nexus-text-muted max-w-2xl leading-relaxed pt-1">
-            {APP_CONFIG.description}
+          <p className="text-base sm:text-lg text-nexus-text-secondary max-w-2xl leading-relaxed">
+            Prepare for CMCE and CCEE with structured study resources, technical notes, practical guides, MCQs, mock tests, and focused revision—all in one place.
           </p>
         </div>
       </div>
 
-      {/* Exam Stage Selection Cards */}
+      {/* 2. Two Distinctive, Balanced Exam Stage Entry Points */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
         {/* CMCE Card */}
         <Card
@@ -66,7 +57,7 @@ export const ExamSelectionPage: React.FC = () => {
               handleSelectStage('cmce');
             }
           }}
-          className="group relative flex flex-col justify-between overflow-hidden cursor-pointer rounded-xl border border-nexus-border bg-nexus-surface hover:border-nexus-accent/60 hover:shadow-card hover:scale-[1.01] hover:-translate-y-1 transition-all duration-300"
+          className="group flex flex-col justify-between overflow-hidden cursor-pointer rounded-2xl border border-nexus-border/80 bg-nexus-surface hover:border-nexus-accent/50 hover:shadow-card transition-all duration-200"
         >
           <div className="p-6 sm:p-8 flex flex-col flex-1 justify-between gap-6">
             <div className="space-y-4">
@@ -82,7 +73,7 @@ export const ExamSelectionPage: React.FC = () => {
                   </Badge>
                   <Badge variant="primary" size="sm" className="gap-1.5 px-2.5 py-0.5">
                     <Layers className="w-3.5 h-3.5" />
-                    <span>4 Modules</span>
+                    <span>4 Modules Ready</span>
                   </Badge>
                 </div>
               </div>
@@ -112,9 +103,9 @@ export const ExamSelectionPage: React.FC = () => {
                   {cmceModules.map((module, idx) => (
                     <li
                       key={module.id}
-                      className="flex items-center gap-2.5 text-xs sm:text-sm text-nexus-text-secondary group-hover:text-nexus-text transition-colors p-2 rounded bg-nexus-elevated/40 border border-nexus-border/40"
+                      className="flex items-center gap-2.5 text-xs sm:text-sm text-nexus-text-secondary group-hover:text-nexus-text transition-colors p-2.5 rounded-lg bg-nexus-elevated/40 border border-nexus-border/40"
                     >
-                      <span className="shrink-0 w-5 h-5 rounded bg-nexus-surface border border-nexus-border flex items-center justify-center font-mono text-[10px] text-nexus-text-muted">
+                      <span className="shrink-0 w-5 h-5 rounded-md bg-nexus-surface border border-nexus-border flex items-center justify-center font-mono text-[10px] text-nexus-text-muted">
                         {idx + 1}
                       </span>
                       <span className="font-medium truncate">{module.name}</span>
@@ -130,7 +121,7 @@ export const ExamSelectionPage: React.FC = () => {
               <Button
                 variant="primary"
                 size="md"
-                className="w-full justify-center group-hover:bg-nexus-accent-hover font-semibold shadow-subtle"
+                className="w-full justify-center font-semibold"
                 icon={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
                 iconPosition="right"
                 onClick={(e) => {
@@ -138,7 +129,7 @@ export const ExamSelectionPage: React.FC = () => {
                   handleSelectStage('cmce');
                 }}
               >
-                Start Preparing
+                CMCE Preparation →
               </Button>
             </div>
           </div>
@@ -158,7 +149,7 @@ export const ExamSelectionPage: React.FC = () => {
               handleSelectStage('ccee');
             }
           }}
-          className="group relative flex flex-col justify-between overflow-hidden cursor-pointer rounded-xl border border-nexus-border bg-nexus-surface hover:border-nexus-cyan/60 hover:shadow-card hover:scale-[1.01] hover:-translate-y-1 transition-all duration-300"
+          className="group flex flex-col justify-between overflow-hidden cursor-pointer rounded-2xl border border-nexus-border/80 bg-nexus-surface hover:border-nexus-cyan/50 hover:shadow-card transition-all duration-200"
         >
           <div className="p-6 sm:p-8 flex flex-col flex-1 justify-between gap-6">
             <div className="space-y-4">
@@ -204,9 +195,9 @@ export const ExamSelectionPage: React.FC = () => {
                   {cceeModules.map((module, idx) => (
                     <li
                       key={module.id}
-                      className="flex items-center gap-2.5 text-xs sm:text-sm text-nexus-text-secondary group-hover:text-nexus-text transition-colors p-2 rounded bg-nexus-elevated/40 border border-nexus-border/40"
+                      className="flex items-center gap-2.5 text-xs sm:text-sm text-nexus-text-secondary group-hover:text-nexus-text transition-colors p-2.5 rounded-lg bg-nexus-elevated/40 border border-nexus-border/40"
                     >
-                      <span className="shrink-0 w-5 h-5 rounded bg-nexus-surface border border-nexus-border flex items-center justify-center font-mono text-[10px] text-nexus-text-muted">
+                      <span className="shrink-0 w-5 h-5 rounded-md bg-nexus-surface border border-nexus-border flex items-center justify-center font-mono text-[10px] text-nexus-text-muted">
                         {idx + 1}
                       </span>
                       <span className="font-medium truncate">{module.name}</span>
@@ -222,7 +213,7 @@ export const ExamSelectionPage: React.FC = () => {
               <Button
                 variant="cyan"
                 size="md"
-                className="w-full justify-center group-hover:bg-nexus-cyan-hover font-semibold shadow-subtle"
+                className="w-full justify-center font-semibold"
                 icon={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
                 iconPosition="right"
                 onClick={(e) => {
@@ -230,7 +221,7 @@ export const ExamSelectionPage: React.FC = () => {
                   handleSelectStage('ccee');
                 }}
               >
-                Start Preparing
+                CCEE Preparation →
               </Button>
             </div>
           </div>

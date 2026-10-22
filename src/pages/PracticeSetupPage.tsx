@@ -84,7 +84,7 @@ export const PracticeSetupPage: React.FC = () => {
   >('all');
   const [mode, setMode] = useState<'practice' | 'exam'>('practice');
   const [randomizeQuestions, setRandomizeQuestions] = useState(true);
-  const [randomizeOptions, setRandomizeOptions] = useState(true);
+  const [randomizeOptions, setRandomizeOptions] = useState(false);
   const [enableTimer, setEnableTimer] = useState(false);
   const [timerMinutes, setTimerMinutes] = useState(30);
   const [customQuestionCount, setCustomQuestionCount] = useState<number>(20);

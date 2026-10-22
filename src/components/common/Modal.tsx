@@ -47,14 +47,14 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-fadeIn"
       role="dialog"
       aria-modal="true"
       onClick={onClose}
     >
       <div
         ref={modalRef}
-        className={`w-full ${maxWidths[maxWidth]} bg-nexus-surface border border-nexus-border rounded-lg shadow-elevated overflow-hidden flex flex-col max-h-[90vh]`}
+        className={`w-full ${maxWidths[maxWidth]} bg-nexus-surface border border-nexus-border rounded-xl shadow-elevated overflow-hidden flex flex-col max-h-[90vh]`}
         onClick={(e) => e.stopPropagation()}
       >
         {title && (

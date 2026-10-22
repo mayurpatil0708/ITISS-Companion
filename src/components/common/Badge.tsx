@@ -15,15 +15,15 @@ export const Badge: React.FC<BadgeProps> = ({
   size = 'sm',
   className,
 }) => {
-  const base = 'inline-flex items-center font-mono font-medium rounded transition-colors';
+  const base = 'inline-flex items-center font-mono font-medium rounded-md transition-colors';
 
   const variants = {
-    default: 'bg-nexus-elevated text-nexus-text-secondary border border-nexus-border',
-    primary: 'bg-nexus-accent/15 text-nexus-accent border border-nexus-accent/30',
-    cyan: 'bg-nexus-cyan/15 text-nexus-cyan border border-nexus-cyan/30',
-    success: 'bg-nexus-success/15 text-nexus-success border border-nexus-success/30',
-    warning: 'bg-nexus-warning/15 text-nexus-warning border border-nexus-warning/30',
-    error: 'bg-nexus-error/15 text-nexus-error border border-nexus-error/30',
+    default: 'bg-nexus-elevated text-nexus-text-secondary border border-nexus-border/80',
+    primary: 'bg-nexus-accent/10 text-nexus-accent border border-nexus-accent/20',
+    cyan: 'bg-nexus-cyan/10 text-nexus-cyan border border-nexus-cyan/20',
+    success: 'bg-nexus-success/10 text-nexus-success border border-nexus-success/20',
+    warning: 'bg-nexus-warning/10 text-nexus-warning border border-nexus-warning/20',
+    error: 'bg-nexus-error/10 text-nexus-error border border-nexus-error/20',
     outline: 'border border-nexus-border text-nexus-text-secondary',
   };
 

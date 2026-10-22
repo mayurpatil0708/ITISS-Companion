@@ -202,7 +202,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
 
         {/* Profile Tag */}
         <div className="flex items-center gap-2 pl-2 border-l border-nexus-border">
-          <div className="w-7 h-7 rounded bg-gradient-to-br from-indigo-500/20 to-cyan-500/20 border border-nexus-accent/40 flex items-center justify-center text-nexus-accent">
+          <div className="w-7 h-7 rounded-lg bg-nexus-accent/10 border border-nexus-accent/20 flex items-center justify-center text-nexus-accent">
             <BookOpenCheck className="w-4 h-4" />
           </div>
           <div className="hidden xl:block text-left">

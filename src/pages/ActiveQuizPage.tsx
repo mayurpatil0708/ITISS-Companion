@@ -109,6 +109,19 @@ export const ActiveQuizPage: React.FC = () => {
     }
   }, [elapsedSeconds, attempt, persistProgress]);
 
+  const items = attempt?.items || [];
+  const currentItem = items[currentIndex];
+  const q = currentItem?.originalQuestion;
+
+  // Canonical A-D option ordering
+  const orderedDisplayOptions = React.useMemo(() => {
+    if (!currentItem) return [];
+    const rawOpts = currentItem.displayOptions && currentItem.displayOptions.length > 0
+      ? currentItem.displayOptions
+      : (currentItem.originalQuestion?.options || []);
+    return QuizService.sortOptionsCanonically(rawOpts);
+  }, [currentItem]);
+
   // Handle keyboard shortcuts (1-4, A-D, ArrowLeft/ArrowRight, M for mark, B for bookmark)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -117,10 +130,10 @@ export const ActiveQuizPage: React.FC = () => {
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement).tagName)) return;
 
       const key = e.key.toUpperCase();
-      if (['1', 'A'].includes(key)) handleSelectOption('A');
-      else if (['2', 'B'].includes(key)) handleSelectOption('B');
-      else if (['3', 'C'].includes(key)) handleSelectOption('C');
-      else if (['4', 'D'].includes(key)) handleSelectOption('D');
+      if (['1', 'A'].includes(key) && orderedDisplayOptions[0]) handleSelectOption(orderedDisplayOptions[0].id);
+      else if (['2', 'B'].includes(key) && orderedDisplayOptions[1]) handleSelectOption(orderedDisplayOptions[1].id);
+      else if (['3', 'C'].includes(key) && orderedDisplayOptions[2]) handleSelectOption(orderedDisplayOptions[2].id);
+      else if (['4', 'D'].includes(key) && orderedDisplayOptions[3]) handleSelectOption(orderedDisplayOptions[3].id);
       else if (e.key === 'ArrowLeft') handlePrev();
       else if (e.key === 'ArrowRight') handleNext();
       else if (key === 'M') handleToggleMarkForReview();
@@ -131,7 +144,7 @@ export const ActiveQuizPage: React.FC = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  });
+  }, [showSubmitModal, orderedDisplayOptions, currentItem, currentIndex, items]);
 
   if (isLoading || !attempt) {
     return (
@@ -141,10 +154,6 @@ export const ActiveQuizPage: React.FC = () => {
       </div>
     );
   }
-
-  const items = attempt.items;
-  const currentItem = items[currentIndex];
-  const q = currentItem?.originalQuestion;
 
   const answeredCount = items.filter((i) => i.selectedOptionId !== null).length;
   const markedCount = items.filter((i) => i.isMarkedForReview).length;
@@ -259,7 +268,7 @@ export const ActiveQuizPage: React.FC = () => {
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-semibold text-nexus-cyan uppercase">
+              <span className="text-xs font-mono font-semibold text-nexus-accent uppercase">
                 {attempt.title}
               </span>
               <Badge variant={attempt.mode === 'exam' ? 'warning' : 'primary'}>
@@ -280,7 +289,7 @@ export const ActiveQuizPage: React.FC = () => {
             <span>{items.length} Answered</span>
           </div>
           {markedCount > 0 && (
-            <div className="flex items-center gap-1 text-amber-400">
+            <div className="flex items-center gap-1 text-amber-500">
               <Flag className="w-3.5 h-3.5" />
               <span>{markedCount} Flagged</span>
             </div>
@@ -290,8 +299,8 @@ export const ActiveQuizPage: React.FC = () => {
         {/* Right: Timer & Submit Action */}
         <div className="flex items-center gap-3">
           {/* Timer Display */}
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-nexus-elevated border border-nexus-border text-xs font-mono text-nexus-text">
-            <Clock className="w-3.5 h-3.5 text-nexus-cyan" />
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-nexus-elevated border border-nexus-border text-xs font-mono text-nexus-text">
+            <Clock className="w-3.5 h-3.5 text-nexus-accent" />
             <span>{formatTimer(elapsedSeconds)}</span>
             <button
               onClick={() => setIsTimerPaused(!isTimerPaused)}
@@ -303,7 +312,7 @@ export const ActiveQuizPage: React.FC = () => {
           </div>
 
           <Button
-            variant="cyan"
+            variant="primary"
             size="sm"
             icon={<Send className="w-3.5 h-3.5" />}
             onClick={() => setShowSubmitModal(true)}
@@ -314,9 +323,9 @@ export const ActiveQuizPage: React.FC = () => {
       </div>
 
       {/* Progress Bar */}
-      <div className="w-full h-1 bg-nexus-elevated rounded-full overflow-hidden">
+      <div className="w-full h-1.5 bg-nexus-elevated rounded-full overflow-hidden">
         <div
-          className="h-full bg-gradient-to-r from-nexus-accent to-nexus-cyan transition-all duration-300"
+          className="h-full bg-nexus-accent transition-all duration-300"
           style={{ width: `${progressPercent}%` }}
         />
       </div>
@@ -437,7 +446,7 @@ export const ActiveQuizPage: React.FC = () => {
 
             {/* Four Answer Options (A, B, C, D) */}
             <div className="space-y-3" role="radiogroup" aria-label="Answer options">
-              {currentItem.displayOptions.map((opt: QuestionOption, optIdx: number) => {
+              {orderedDisplayOptions.map((opt: QuestionOption, optIdx: number) => {
                 const isSelected = currentItem.selectedOptionId === opt.id;
                 // In Practice mode, reveal feedback immediately if user made a choice
                 const isPracticeMode = attempt.mode === 'practice';
@@ -458,6 +467,8 @@ export const ActiveQuizPage: React.FC = () => {
                   }
                 }
 
+                const displayLetter = String.fromCharCode(65 + optIdx);
+
                 return (
                   <div
                     key={opt.id}
@@ -475,7 +486,7 @@ export const ActiveQuizPage: React.FC = () => {
                           : 'bg-nexus-surface border border-nexus-border text-nexus-text-secondary'
                       }`}
                     >
-                      {opt.id}
+                      {displayLetter}
                     </div>
 
                     {/* Option Text */}
@@ -499,7 +510,7 @@ export const ActiveQuizPage: React.FC = () => {
             {attempt.mode === 'practice' && currentItem.selectedOptionId !== null && (
               <div className="mt-6 p-4 rounded-lg bg-nexus-elevated border border-nexus-border animate-fadeIn space-y-3">
                 <div className="flex items-center gap-2">
-                  <Info className="w-4 h-4 text-nexus-cyan" />
+                  <Info className="w-4 h-4 text-nexus-accent" />
                   <span className="text-xs font-semibold text-nexus-text uppercase tracking-wider">
                     Detailed Explanation
                   </span>
@@ -540,7 +551,7 @@ export const ActiveQuizPage: React.FC = () => {
 
               {currentIndex === items.length - 1 ? (
                 <Button
-                  variant="cyan"
+                  variant="primary"
                   size="md"
                   onClick={() => setShowSubmitModal(true)}
                   icon={<Send className="w-4 h-4" />}
@@ -588,7 +599,7 @@ export const ActiveQuizPage: React.FC = () => {
               {q?.source?.document_id && (
                 <div className="pt-2 border-t border-nexus-border">
                   <span className="text-[11px] text-nexus-text-muted block">Verified CDAC Source</span>
-                  <span className="font-mono text-[11px] text-nexus-cyan">
+                  <span className="font-mono text-[11px] text-nexus-accent">
                     {q.source.document_id} {q.source.pdf_page_start ? `(Pages ${q.source.pdf_page_start}-${q.source.pdf_page_end})` : ''}
                   </span>
                 </div>

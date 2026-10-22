@@ -106,7 +106,7 @@ export const ResultsPage: React.FC = () => {
         selection: 'incorrect',
         mode: 'practice',
         randomizeQuestions: true,
-        randomizeOptions: true,
+        randomizeOptions: false,
       });
 
       navigate(`/quiz/${newAttempt.id}`);
@@ -390,9 +390,10 @@ export const ResultsPage: React.FC = () => {
 
                   {/* 4 Options breakdown */}
                   <div className="space-y-2 mb-4">
-                    {q.options.map((opt: QuestionOption) => {
+                    {QuizService.sortOptionsCanonically(q.options).map((opt: QuestionOption, optIdx: number) => {
                       const isCandidateChoice = item.selectedOptionId === opt.id;
                       const isCorrectKey = opt.id === q.correct_option_id;
+                      const displayLetter = String.fromCharCode(65 + optIdx);
 
                       let style = 'bg-nexus-elevated/20 border-nexus-border/60 text-nexus-text-secondary';
                       if (isCorrectKey) {
@@ -415,7 +416,7 @@ export const ResultsPage: React.FC = () => {
                                 : 'bg-nexus-surface border border-nexus-border text-nexus-text-muted'
                             }`}
                           >
-                            {opt.id}
+                            {displayLetter}
                           </span>
                           <span className="flex-1">{opt.text}</span>
                           {isCorrectKey && (

@@ -40,14 +40,27 @@ export class QuizService {
   }
 
   /**
-   * Prepare options for display. If randomizeOptions is true, shuffles them
-   * while keeping their original id intact.
+   * Sorts options in canonical sequence:
+   * Alphabetical A, B, C, D, ... or ascending alphanumeric order.
    */
-  public static prepareDisplayOptions(options: QuestionOption[], randomize: boolean): QuestionOption[] {
-    if (!randomize) {
-      return [...options];
+  public static sortOptionsCanonically(options: QuestionOption[]): QuestionOption[] {
+    return [...options].sort((a, b) => {
+      const idA = String(a.id).trim().toUpperCase();
+      const idB = String(b.id).trim().toUpperCase();
+      return idA.localeCompare(idB, undefined, { numeric: true, sensitivity: 'base' });
+    });
+  }
+
+  /**
+   * Prepare options for display.
+   * Guarantees canonical A, B, C, D sequence unless randomize is explicitly true.
+   * Preserves stable option IDs across all modes.
+   */
+  public static prepareDisplayOptions(options: QuestionOption[], randomize: boolean = false): QuestionOption[] {
+    if (randomize) {
+      return this.shuffle(options);
     }
-    return this.shuffle(options);
+    return this.sortOptionsCanonically(options);
   }
 
   /**

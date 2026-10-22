@@ -150,8 +150,8 @@ export const ExamDashboardPage: React.FC = () => {
 
         {/* Title and Description */}
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-nexus-accent/10 border border-nexus-accent/20 text-nexus-accent text-xs font-mono">
-            <span className="w-1.5 h-1.5 rounded-full bg-nexus-accent animate-ping" />
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-nexus-accent/10 border border-nexus-accent/20 text-nexus-accent text-xs font-mono font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-nexus-accent" />
             {APP_CONFIG.courseName}
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold text-nexus-text tracking-tight">

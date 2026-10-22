@@ -27,6 +27,7 @@ import { Badge } from '@/components/common/Badge';
 import { Modal } from '@/components/common/Modal';
 import { useApp } from '@/context/AppContext';
 import { questionRepository } from '@/services/storage/indexeddb.repository';
+import { QuizService } from '@/services/quiz/quiz.service';
 import { QuestionBankValidator, ValidationReport } from '@/services/validation/bank-validator';
 import { Question, Subject, Difficulty } from '@/types';
 
@@ -570,8 +571,9 @@ export const QuestionBankPage: React.FC = () => {
 
             <div className="space-y-2">
               <span className="text-[11px] font-mono text-nexus-text-muted uppercase">Answer Options</span>
-              {inspectQuestion.options.map((opt) => {
+              {QuizService.sortOptionsCanonically(inspectQuestion.options).map((opt, optIdx) => {
                 const isKey = opt.id === inspectQuestion.correct_option_id;
+                const displayLetter = String.fromCharCode(65 + optIdx);
                 return (
                   <div
                     key={opt.id}
@@ -586,7 +588,7 @@ export const QuestionBankPage: React.FC = () => {
                         isKey ? 'bg-nexus-success text-white' : 'bg-nexus-surface border border-nexus-border text-nexus-text-muted'
                       }`}
                     >
-                      {opt.id}
+                      {displayLetter}
                     </span>
                     <span className="flex-1">{opt.text}</span>
                     {isKey && <Badge variant="success">Correct Key</Badge>}

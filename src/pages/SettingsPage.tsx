@@ -75,7 +75,7 @@ export const SettingsPage: React.FC = () => {
       addNotification({
         type: 'success',
         title: 'System Factory Reset',
-        message: 'IndexedDB re-initialized with the 446 official CDAC questions.',
+        message: 'IndexedDB re-initialized with all 7,783 verified CDAC questions across all 4 CMCE modules.',
       });
     } catch (e) {
       console.error(e);

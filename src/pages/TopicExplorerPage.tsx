@@ -7,6 +7,10 @@ import {
   Terminal,
   Server,
   Layers,
+  Network,
+  Code2,
+  Monitor,
+  Cloud,
   Search,
   Sparkles,
   Play,
@@ -317,9 +321,12 @@ export const TopicExplorerPage: React.FC = () => {
 
                     {/* Subject Icon Badge */}
                     <div className="flex items-center gap-2">
-                      {node.subject === 'linux' && <Terminal className="w-4 h-4 text-indigo-400" />}
-                      {node.subject === 'windows' && <Server className="w-4 h-4 text-cyan-400" />}
-                      {node.subject === 'cross_platform' && <Layers className="w-4 h-4 text-emerald-400" />}
+                      {(node.subject === 'fundamental-computer-networks' || node.subject === 'fcn') && <Network className="w-4 h-4 text-blue-500" />}
+                      {(node.subject === 'programming-concepts' || node.subject === 'pc') && <Code2 className="w-4 h-4 text-violet-500" />}
+                      {(node.subject === 'cosa' || node.subject === 'linux') && <Monitor className="w-4 h-4 text-indigo-500" />}
+                      {node.subject === 'windows' && <Server className="w-4 h-4 text-cyan-500" />}
+                      {node.subject === 'cross_platform' && <Layers className="w-4 h-4 text-emerald-500" />}
+                      {(node.subject === 'it-infrastructure-devops' || node.subject === 'itid' || node.subject === 'iimd') && <Cloud className="w-4 h-4 text-sky-500" />}
                       <span className="font-mono text-xs text-nexus-text-muted">{node.topic_id}</span>
                     </div>
 

@@ -84,24 +84,15 @@ export const DashboardPage: React.FC = () => {
   return (
     <div className="space-y-8 animate-fadeIn">
       {/* 1. Compact Hero Section */}
-      <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-nexus-surface via-nexus-elevated to-nexus-surface border border-nexus-border p-6 sm:p-8">
-        {/* Subtle technical background grid */}
-        <div
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, #7777FF 1px, transparent 0)`,
-            backgroundSize: '24px 24px',
-          }}
-        />
-
+      <div className="relative overflow-hidden rounded-xl bg-nexus-surface border border-nexus-border p-6 sm:p-8 shadow-subtle">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-nexus-accent/10 border border-nexus-accent/20 text-nexus-accent text-xs font-mono">
-              <span className="w-1.5 h-1.5 rounded-full bg-nexus-accent animate-ping" />
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-nexus-accent/10 border border-nexus-accent/20 text-nexus-accent text-xs font-mono font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-nexus-accent" />
               CDAC CMCE / CCEE Certified Curriculum
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold text-nexus-text tracking-tight">
-              {getGreeting()}, <span className="text-nexus-cyan">{preferences.userName}</span>.
+              {getGreeting()}, <span className="text-nexus-accent">{preferences.userName}</span>.
             </h1>
             <p className="text-sm text-nexus-text-secondary leading-relaxed">
               Your next session starts here. Master Linux process architectures, Windows Active Directory, and hybrid cross-platform administration.

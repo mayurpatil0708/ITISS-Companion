@@ -62,7 +62,7 @@ export const MockExamPage: React.FC = () => {
         selection: 'randomized',
         mode: 'exam',
         randomizeQuestions: true,
-        randomizeOptions: true,
+        randomizeOptions: false,
         timeLimitMinutes: timerMinutes,
       });
 

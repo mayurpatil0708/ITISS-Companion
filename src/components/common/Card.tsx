@@ -14,20 +14,20 @@ export const Card: React.FC<CardProps> = ({
   className,
   ...props
 }) => {
-  const base = 'rounded border transition-all duration-150';
+  const base = 'rounded-xl border transition-all duration-150';
 
   const variants = {
-    default: 'bg-nexus-surface border-nexus-border shadow-subtle',
+    default: 'bg-nexus-surface border-nexus-border/80 shadow-subtle',
     elevated: 'bg-nexus-elevated border-nexus-border shadow-card',
-    interactive: 'bg-nexus-surface border-nexus-border hover:border-nexus-accent/50 hover:shadow-card cursor-pointer',
+    interactive: 'bg-nexus-surface border-nexus-border/80 hover:border-nexus-accent/40 hover:shadow-card cursor-pointer',
     outline: 'bg-transparent border-nexus-border',
   };
 
   const paddings = {
     none: 'p-0',
-    sm: 'p-3',
-    md: 'p-5',
-    lg: 'p-7',
+    sm: 'p-3.5',
+    md: 'p-5 sm:p-6',
+    lg: 'p-6 sm:p-8',
   };
 
   return (

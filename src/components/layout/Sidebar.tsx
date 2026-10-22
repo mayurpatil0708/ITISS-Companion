@@ -157,12 +157,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
           }
           onCloseMobile();
         }}
-        className={`flex items-center gap-3 px-3 py-2 rounded text-xs font-medium transition-all group relative ${
+        className={`flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-all group relative ${
           isLocked
-            ? 'text-nexus-text-muted cursor-not-allowed opacity-50'
+            ? 'text-nexus-text-muted cursor-not-allowed opacity-40'
             : isActive
-            ? 'bg-nexus-accent/15 text-nexus-text border-l-2 border-nexus-accent font-semibold shadow-xs'
-            : 'text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated'
+            ? 'bg-nexus-accent/10 text-nexus-accent font-semibold'
+            : 'text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated/60'
         }`}
         title={isCollapsed ? item.label : undefined}
       >
@@ -200,15 +200,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
           onClick={handleGoHome}
           className="flex items-center gap-2.5 overflow-hidden group focus-visible:outline-none"
         >
-          <div className="w-8 h-8 rounded bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 flex items-center justify-center text-white shadow-subtle group-hover:scale-105 transition-transform flex-shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-nexus-accent flex items-center justify-center text-white shadow-subtle group-hover:opacity-90 transition-opacity flex-shrink-0">
             <BookOpenCheck className="w-4 h-4" />
           </div>
           {!isCollapsed && (
-            <div className="min-w-0">
-              <span className="font-bold text-sm tracking-wider text-nexus-text block leading-none">
+            <div className="min-w-0 text-left">
+              <span className="font-bold text-sm tracking-wide text-nexus-text block leading-none">
                 {APP_CONFIG.shortName}
               </span>
-              <span className="text-[10px] font-mono text-nexus-cyan block truncate mt-0.5">
+              <span className="text-[10px] font-mono text-nexus-cyan font-medium block truncate mt-0.5">
                 COMPANION
               </span>
             </div>
@@ -217,7 +217,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         {/* Desktop Collapse Toggle */}
         <button
           onClick={onToggleCollapse}
-          className="hidden lg:flex p-1.5 rounded text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated transition-colors"
+          className="hidden lg:flex p-1.5 rounded-md text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated transition-colors"
           aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
@@ -230,7 +230,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div className="px-3 py-2.5 border-b border-nexus-border/60">
           <button
             onClick={handleStageSwitch}
-            className="w-full flex items-center justify-between gap-2 px-3 py-2 rounded bg-nexus-elevated/60 border border-nexus-border hover:border-nexus-accent/40 transition-all text-left group"
+            className="w-full flex items-center justify-between gap-2 px-3 py-2 rounded-lg bg-nexus-elevated/50 border border-nexus-border/80 hover:border-nexus-accent/30 transition-all text-left group"
           >
             <div className="flex items-center gap-2 min-w-0">
               {currentStage === 'cmce' ? (

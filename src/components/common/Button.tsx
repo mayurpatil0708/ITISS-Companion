@@ -21,15 +21,15 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none rounded select-none';
+  const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none rounded-md select-none';
 
   const variants = {
     primary: 'bg-nexus-accent hover:bg-nexus-accent-hover text-white shadow-subtle focus-visible:ring-nexus-accent',
-    cyan: 'bg-nexus-cyan hover:bg-nexus-cyan-hover text-slate-950 font-semibold shadow-subtle focus-visible:ring-nexus-cyan',
-    secondary: 'bg-nexus-elevated hover:bg-nexus-border text-nexus-text border border-nexus-border focus-visible:ring-nexus-accent',
+    cyan: 'bg-nexus-cyan hover:bg-nexus-cyan-hover text-white font-medium shadow-subtle focus-visible:ring-nexus-cyan',
+    secondary: 'bg-nexus-elevated hover:bg-nexus-border/60 text-nexus-text border border-nexus-border focus-visible:ring-nexus-accent',
     outline: 'border border-nexus-border hover:bg-nexus-elevated text-nexus-text focus-visible:ring-nexus-accent',
     ghost: 'hover:bg-nexus-elevated text-nexus-text-secondary hover:text-nexus-text focus-visible:ring-nexus-accent',
-    danger: 'bg-nexus-error/15 hover:bg-nexus-error/25 text-nexus-error border border-nexus-error/30 focus-visible:ring-nexus-error',
+    danger: 'bg-nexus-error/10 hover:bg-nexus-error/20 text-nexus-error border border-nexus-error/25 focus-visible:ring-nexus-error',
   };
 
   const sizes = {
