@@ -147,7 +147,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
         >
-          {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-500" />}
+          {theme === 'dark' ? <Sun className="w-4 h-4 text-nexus-terracotta" /> : <Moon className="w-4 h-4 text-nexus-accent" />}
         </button>
 
         {/* Notification Bell */}
@@ -159,7 +159,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           >
             <Bell className="w-4 h-4" />
             {notifications.length > 0 && (
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-nexus-accent animate-pulse" />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-nexus-accent" />
             )}
           </button>
 
@@ -181,7 +181,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
                       {n.type === 'success' && <CheckCircle2 className="w-4 h-4 text-nexus-success flex-shrink-0 mt-0.5" />}
                       {n.type === 'warning' && <AlertCircle className="w-4 h-4 text-nexus-warning flex-shrink-0 mt-0.5" />}
                       {n.type === 'error' && <AlertCircle className="w-4 h-4 text-nexus-error flex-shrink-0 mt-0.5" />}
-                      {n.type === 'info' && <Info className="w-4 h-4 text-nexus-cyan flex-shrink-0 mt-0.5" />}
+                      {n.type === 'info' && <Info className="w-4 h-4 text-nexus-accent flex-shrink-0 mt-0.5" />}
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-medium text-nexus-text">{n.title}</p>
                         {n.message && <p className="text-[11px] text-nexus-text-secondary mt-0.5">{n.message}</p>}

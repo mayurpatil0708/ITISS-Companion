@@ -24,6 +24,8 @@ export default {
           'cyan-hover': 'var(--color-cyan-hover)',
           teal: 'var(--color-cyan)',
           'teal-hover': 'var(--color-cyan-hover)',
+          terracotta: 'var(--color-terracotta)',
+          'terracotta-hover': 'var(--color-terracotta-hover)',
           success: 'var(--color-success)',
           warning: 'var(--color-warning)',
           error: 'var(--color-error)',

@@ -55,7 +55,8 @@ export const PracticeSetupPage: React.FC = () => {
     if (querySubject) {
       if (querySubject === 'fcn' || querySubject === 'fundamental-computer-networks') return 'fundamental-computer-networks';
       if (querySubject === 'pc' || querySubject === 'programming-concepts') return 'programming-concepts';
-      if (querySubject === 'cosa' || querySubject === 'linux' || querySubject === 'windows' || querySubject === 'cross_platform') return 'cosa';
+      if (querySubject === 'cosa') return 'cosa';
+      if (querySubject === 'linux' || querySubject === 'windows' || querySubject === 'cross_platform') return querySubject as Subject;
       if (querySubject === 'itid' || querySubject === 'iimd' || querySubject === 'it-infrastructure-devops') return 'it-infrastructure-devops';
       return querySubject as Subject;
     }
@@ -96,14 +97,15 @@ export const PracticeSetupPage: React.FC = () => {
   const [isStarting, setIsStarting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Synchronize subject when route changes
+  // Synchronize subject and state when route changes
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const querySubject = searchParams.get('subject') || searchParams.get('module');
     if (querySubject) {
       if (querySubject === 'fcn' || querySubject === 'fundamental-computer-networks') setSubject('fundamental-computer-networks');
       else if (querySubject === 'pc' || querySubject === 'programming-concepts') setSubject('programming-concepts');
-      else if (querySubject === 'cosa' || querySubject === 'linux' || querySubject === 'windows' || querySubject === 'cross_platform') setSubject('cosa');
+      else if (querySubject === 'cosa') setSubject('cosa');
+      else if (querySubject === 'linux' || querySubject === 'windows' || querySubject === 'cross_platform') setSubject(querySubject as Subject);
       else if (querySubject === 'itid' || querySubject === 'iimd' || querySubject === 'it-infrastructure-devops') setSubject('it-infrastructure-devops');
       else setSubject(querySubject as Subject);
     } else if (location.pathname.includes('/fcn') || location.pathname.includes('/fundamental-computer-networks')) {
@@ -115,7 +117,11 @@ export const PracticeSetupPage: React.FC = () => {
     } else if (location.pathname.includes('/itid') || location.pathname.includes('/iimd') || location.pathname.includes('/it-infrastructure-devops')) {
       setSubject('it-infrastructure-devops');
     }
-  }, [location.pathname, location.search]);
+
+    if (location.state && location.state.topics) {
+      setSelectedTopics(location.state.topics);
+    }
+  }, [location.pathname, location.search, location.state]);
 
   // Load all questions from repository
   useEffect(() => {
@@ -329,7 +335,7 @@ export const PracticeSetupPage: React.FC = () => {
                 { id: 'it-infrastructure-devops', label: 'Infra & DevOps (IIMD)', count: '1,266', icon: Cloud, color: 'text-sky-400' },
               ].map((sub) => {
                 const Icon = sub.icon;
-                const isSelected = subject === sub.id;
+                const isSelected = subject === sub.id || (sub.id === 'cosa' && (subject === 'linux' || subject === 'windows' || subject === 'cross_platform'));
                 return (
                   <button
                     key={sub.id}
@@ -349,7 +355,14 @@ export const PracticeSetupPage: React.FC = () => {
                       <Icon className={`w-4 h-4 ${sub.color}`} />
                       <span className="text-[10px] font-mono text-nexus-text-muted">{sub.count}</span>
                     </div>
-                    <span className="text-xs truncate font-medium">{sub.label}</span>
+                    <div className="flex items-center justify-between w-full">
+                      <span className="text-xs truncate font-medium">{sub.label}</span>
+                      {sub.id === 'cosa' && (subject === 'linux' || subject === 'windows' || subject === 'cross_platform') && (
+                        <span className="text-[9px] uppercase px-1 rounded bg-nexus-accent/20 text-nexus-accent font-mono ml-1">
+                          {subject === 'cross_platform' ? 'hybrid' : subject}
+                        </span>
+                      )}
+                    </div>
                   </button>
                 );
               })}

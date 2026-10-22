@@ -181,7 +181,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <div className="flex items-center gap-1">
               {isLocked && <Lock className="w-3 h-3 text-nexus-text-muted" />}
               {item.badge && (
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-nexus-elevated text-nexus-cyan border border-nexus-border">
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-nexus-elevated text-nexus-accent border border-nexus-border">
                   {item.badge}
                 </span>
               )}
@@ -208,7 +208,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <span className="font-bold text-sm tracking-wide text-nexus-text block leading-none">
                 {APP_CONFIG.shortName}
               </span>
-              <span className="text-[10px] font-mono text-nexus-cyan font-medium block truncate mt-0.5">
+              <span className="text-[10px] font-mono text-nexus-accent font-medium block truncate mt-0.5">
                 COMPANION
               </span>
             </div>
@@ -236,7 +236,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               {currentStage === 'cmce' ? (
                 <BookOpen className="w-4 h-4 text-nexus-accent flex-shrink-0" />
               ) : (
-                <Shield className="w-4 h-4 text-nexus-cyan flex-shrink-0" />
+                <Shield className="w-4 h-4 text-nexus-accent flex-shrink-0" />
               )}
               <div className="min-w-0">
                 <div className="text-xs font-semibold text-nexus-text">{currentStage.toUpperCase()}</div>
@@ -295,7 +295,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {totalQuestionsCount > 0 && (
             <div className="text-[10px] font-mono text-nexus-text-secondary mt-2 flex items-center justify-between">
               <span>Question Bank:</span>
-              <span className="text-nexus-cyan font-bold">{totalQuestionsCount}</span>
+              <span className="text-nexus-accent font-bold">{totalQuestionsCount}</span>
             </div>
           )}
         </div>

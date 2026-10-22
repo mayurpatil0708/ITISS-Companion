@@ -15,6 +15,25 @@ export type ExamStage = 'cmce' | 'ccee';
 
 export type ContentStatus = 'available' | 'coming_soon' | 'partial';
 
+export interface ModuleCategoryDefinition {
+  /** Stable identifier for the category */
+  id: string;
+  /** Full display name of the category */
+  name: string;
+  /** Short title for cards and navigation */
+  shortTitle: string;
+  /** Concise description of what this category covers */
+  description: string;
+  /** Icon name for rendering */
+  icon: string;
+  /** Real curriculum topics from the question bank matching this category */
+  topicNames: string[];
+  /** Optional subject filter (e.g., 'linux', 'windows', 'cross_platform' for COSA) */
+  subjectFilter?: string;
+  /** Optional estimated question count */
+  questionCount?: number;
+}
+
 export interface ModuleDefinition {
   /** Stable identifier — never changes once set */
   id: string;
@@ -40,6 +59,8 @@ export interface ModuleDefinition {
   contentStatus: ContentStatus;
   /** Which subjects (question bank files) map to this module */
   subjectMapping: string[];
+  /** Sub-categories explicitly configured for this module */
+  categories: ModuleCategoryDefinition[];
   /** Display order within the exam stage */
   order: number;
 }
@@ -91,9 +112,35 @@ export const MODULE_REGISTRY: ModuleDefinition[] = [
     durationHours: 120,
     topicCount: 8,
     icon: 'Network',
-    accentColor: 'border-blue-500/30 text-blue-400 bg-blue-500/10',
+    accentColor: 'border-nexus-accent/30 text-nexus-accent bg-nexus-accent/10',
     contentStatus: 'available',
     subjectMapping: ['fundamental-computer-networks', 'fcn'],
+    categories: [
+      {
+        id: 'fcn-models-arch',
+        name: 'Network Models, Physical Layer & Architecture',
+        shortTitle: 'Models & Architecture',
+        description: 'OSI 7-layer architecture, TCP/IP protocol suite, data encapsulation, physical layer mediums, cabling standards, topologies, and transmission modes.',
+        icon: 'Layers',
+        topicNames: ['Network Models & Architecture', 'Physical Layer & Cabling'],
+      },
+      {
+        id: 'fcn-switching-routing',
+        name: 'Ethernet Switching, Subnetting & Routing',
+        shortTitle: 'Switching & Routing',
+        description: 'Ethernet frames, MAC learning, VLANs, 802.1Q trunking, STP, IPv4/IPv6 CIDR subnetting, static routing, and dynamic protocols (OSPF, RIP, BGP).',
+        icon: 'Network',
+        topicNames: ['Data Link Layer & Switching', 'IP Addressing & Subnetting', 'Network Layer & Routing'],
+      },
+      {
+        id: 'fcn-protocols-security',
+        name: 'Transport, Application Protocols & Security',
+        shortTitle: 'Protocols & Security',
+        description: 'TCP three-way handshake, UDP, DNS, DHCP, HTTP/HTTPS, firewalls, Access Control Lists (ACLs), VPN tunnels, diagnostics, and WAN technologies.',
+        icon: 'ShieldCheck',
+        topicNames: ['Transport Layer Protocols', 'Application Layer Services & Protocols', 'Network Security, Diagnostics & WAN'],
+      },
+    ],
     order: 1,
   },
   {
@@ -106,9 +153,35 @@ export const MODULE_REGISTRY: ModuleDefinition[] = [
     durationHours: 90,
     topicCount: 8,
     icon: 'Code2',
-    accentColor: 'border-violet-500/30 text-violet-400 bg-violet-500/10',
+    accentColor: 'border-nexus-accent/30 text-nexus-accent bg-nexus-accent/10',
     contentStatus: 'available',
     subjectMapping: ['programming-concepts', 'pc'],
+    categories: [
+      {
+        id: 'pc-c-programming',
+        name: 'C Programming, Pointers & Memory Allocation',
+        shortTitle: 'C & Memory Management',
+        description: 'Structured programming in C, control structures, functions, pointers, dynamic memory allocation (malloc/free), arrays, structs, and file handling.',
+        icon: 'Code2',
+        topicNames: ['C Language Fundamentals', 'C Arrays, Pointers & Memory', 'C Structures & File Systems'],
+      },
+      {
+        id: 'pc-python-scripting',
+        name: 'Python Programming & Object-Oriented Principles',
+        shortTitle: 'Python & OOP',
+        description: 'Python syntax, built-in data types, control flow, functions, OOP concepts (inheritance, polymorphism, encapsulation), and exception handling.',
+        icon: 'Terminal',
+        topicNames: ['Python Language Essentials', 'Python Advanced & Object-Oriented'],
+      },
+      {
+        id: 'pc-database-sql',
+        name: 'Relational Database Management & SQL',
+        shortTitle: 'Databases & SQL',
+        description: 'DBMS fundamentals, relational data model, ER modeling, normalization (1NF through BCNF), ACID transaction semantics, and SQL (DDL, DML, joins).',
+        icon: 'Server',
+        topicNames: ['Database Management Systems & Relational Model', 'Database Design, Normalization & Transactions', 'SQL Queries & DDL/DML'],
+      },
+    ],
     order: 2,
   },
   {
@@ -121,9 +194,45 @@ export const MODULE_REGISTRY: ModuleDefinition[] = [
     durationHours: 210,
     topicCount: 8,
     icon: 'Monitor',
-    accentColor: 'border-indigo-500/30 text-indigo-400 bg-indigo-500/10',
+    accentColor: 'border-nexus-accent/30 text-nexus-accent bg-nexus-accent/10',
     contentStatus: 'available',
     subjectMapping: ['cosa', 'linux', 'windows', 'cross_platform'],
+    categories: [
+      {
+        id: 'cosa-linux',
+        name: 'Linux System Administration & Kernel Architecture',
+        shortTitle: 'Linux & OS',
+        description: 'Process life cycle, signals, storage hierarchies, LVM volume management, systemd service units, bash I/O, file permissions, and core administration.',
+        icon: 'Terminal',
+        subjectFilter: 'linux',
+        topicNames: [
+          'Linux Process & Service Management',
+          'Linux Basics & Command Line Interface',
+          'Linux Storage & File Systems',
+          'Linux User Management & Network Services',
+          'Linux Permissions & Security',
+          'Operating System Architecture & Concurrency',
+        ],
+      },
+      {
+        id: 'cosa-windows',
+        name: 'Windows Server 2022 & Active Directory Administration',
+        shortTitle: 'Windows Server',
+        description: 'Active Directory Domain Services (AD DS), forest trusts, FSMO roles, Group Policy Objects (GPO), PowerShell scripting, Hyper-V, and DNS/DHCP infrastructure.',
+        icon: 'Server',
+        subjectFilter: 'windows',
+        topicNames: ['Windows Group Policy & Administration', 'Windows Server & Active Directory'],
+      },
+      {
+        id: 'cosa-cross-platform',
+        name: 'Cross-Platform Enterprise Integration & Authentication',
+        shortTitle: 'Cross-Platform',
+        description: 'SSSD identity management, Kerberos domain realm join, Samba/NFS file interoperability, PAM authentication, and unified hybrid administration.',
+        icon: 'Layers',
+        subjectFilter: 'cross_platform',
+        topicNames: ['Cross-Platform Integration & Directory Services'],
+      },
+    ],
     order: 3,
   },
   {
@@ -136,9 +245,45 @@ export const MODULE_REGISTRY: ModuleDefinition[] = [
     durationHours: 120,
     topicCount: 10,
     icon: 'Cloud',
-    accentColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
+    accentColor: 'border-nexus-accent/30 text-nexus-accent bg-nexus-accent/10',
     contentStatus: 'available',
     subjectMapping: ['it-infrastructure-devops', 'itid', 'iimd'],
+    categories: [
+      {
+        id: 'itid-datacenter-cloud',
+        name: 'Data Center Infrastructure, Virtualization & Cloud',
+        shortTitle: 'Data Center & Cloud',
+        description: 'Server architectures, enterprise SAN/NAS storage, hypervisor virtualization, AWS cloud core services (IAM, EC2, VPC, S3), and cloud networking.',
+        icon: 'Cloud',
+        topicNames: ['Data Center Infrastructure & Storage', 'Cloud Computing Architecture & AWS'],
+      },
+      {
+        id: 'itid-devops-automation',
+        name: 'Containers, CI/CD Pipelines & Automation',
+        shortTitle: 'Containers & CI/CD',
+        description: 'Docker containerization, Dockerfiles, container networking, Git distributed version control, CI/CD pipeline automation, and Ansible IaC.',
+        icon: 'Code2',
+        topicNames: [
+          'Containers & Orchestration',
+          'DevOps Methodologies & CI/CD',
+          'Configuration Management & Infrastructure as Code',
+          'Version Control with Git',
+        ],
+      },
+      {
+        id: 'itid-itil-framework',
+        name: 'ITIL Service Management & Operations Framework',
+        shortTitle: 'ITIL Framework',
+        description: 'ITIL 4 Service Value System, Service Strategy, Service Design, Service Transition, Service Operation, Continual Service Improvement (CSI), and RACI matrix.',
+        icon: 'ClipboardCheck',
+        topicNames: [
+          'ITIL Core Concepts & Service Strategy',
+          'ITIL Service Design',
+          'ITIL Service Transition',
+          'ITIL Service Operation & Improvement',
+        ],
+      },
+    ],
     order: 4,
   },
 
@@ -153,9 +298,10 @@ export const MODULE_REGISTRY: ModuleDefinition[] = [
     durationHours: 30,
     topicCount: 10,
     icon: 'ClipboardCheck',
-    accentColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
+    accentColor: 'border-nexus-accent/30 text-nexus-accent bg-nexus-accent/10',
     contentStatus: 'coming_soon',
     subjectMapping: [],
+    categories: [],
     order: 1,
   },
   {
@@ -168,9 +314,10 @@ export const MODULE_REGISTRY: ModuleDefinition[] = [
     durationHours: 120,
     topicCount: 49,
     icon: 'ShieldCheck',
-    accentColor: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
+    accentColor: 'border-nexus-accent/30 text-nexus-accent bg-nexus-accent/10',
     contentStatus: 'coming_soon',
     subjectMapping: [],
+    categories: [],
     order: 2,
   },
   {
@@ -183,9 +330,10 @@ export const MODULE_REGISTRY: ModuleDefinition[] = [
     durationHours: 60,
     topicCount: 4,
     icon: 'Search',
-    accentColor: 'border-rose-500/30 text-rose-400 bg-rose-500/10',
+    accentColor: 'border-nexus-accent/30 text-nexus-accent bg-nexus-accent/10',
     contentStatus: 'coming_soon',
     subjectMapping: [],
+    categories: [],
     order: 3,
   },
   {
@@ -198,9 +346,10 @@ export const MODULE_REGISTRY: ModuleDefinition[] = [
     durationHours: 60,
     topicCount: 13,
     icon: 'Key',
-    accentColor: 'border-orange-500/30 text-orange-400 bg-orange-500/10',
+    accentColor: 'border-nexus-accent/30 text-nexus-accent bg-nexus-accent/10',
     contentStatus: 'coming_soon',
     subjectMapping: [],
+    categories: [],
     order: 4,
   },
   {
@@ -213,9 +362,10 @@ export const MODULE_REGISTRY: ModuleDefinition[] = [
     durationHours: 90,
     topicCount: 12,
     icon: 'ShieldAlert',
-    accentColor: 'border-red-500/30 text-red-400 bg-red-500/10',
+    accentColor: 'border-nexus-accent/30 text-nexus-accent bg-nexus-accent/10',
     contentStatus: 'coming_soon',
     subjectMapping: [],
+    categories: [],
     order: 5,
   },
 ];
@@ -254,3 +404,10 @@ export function getAvailableModules(): ModuleDefinition[] {
 export function getModuleForSubject(subject: string): ModuleDefinition | undefined {
   return MODULE_REGISTRY.find((m) => m.subjectMapping.includes(subject));
 }
+
+/** Get explicitly configured categories for a module by its ID or slug */
+export function getModuleCategories(idOrSlug: string): ModuleCategoryDefinition[] {
+  const mod = MODULE_REGISTRY.find((m) => m.id === idOrSlug || m.slug === idOrSlug);
+  return mod?.categories || [];
+}
+

@@ -167,7 +167,7 @@ export const ExamDashboardPage: React.FC = () => {
 
         {/* Status Pills / Badges */}
         <div className="flex flex-wrap items-center gap-2 pt-1">
-          <Badge variant="cyan" size="md">
+          <Badge variant="primary" size="md">
             <BookOpen className="w-3.5 h-3.5 mr-1.5" />
             {stageDef.moduleCount} Modules
           </Badge>
@@ -256,7 +256,7 @@ export const ExamDashboardPage: React.FC = () => {
                     {module.topicCount} topics
                   </Badge>
                   {isAvailable && (
-                    <Badge variant="cyan" size="sm">
+                    <Badge variant="primary" size="sm">
                       <Sparkles className="w-3 h-3 mr-1" />
                       {isLoadingCounts
                         ? 'Loading...'

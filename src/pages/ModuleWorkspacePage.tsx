@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import {
   ArrowLeft, BookOpen, FileText, FolderTree, HelpCircle, GraduationCap,
   RefreshCw, ExternalLink, BarChart3, Terminal, Server, Layers,
   Monitor, Network, Code2, Cloud, ClipboardCheck, ShieldCheck,
   Search, Key, ShieldAlert, Lock, Clock, CheckCircle2, ChevronRight,
-  Download, Copy, Check, FileCheck, BookmarkCheck, ArrowUpRight
+  Download, Copy, Check, FileCheck, BookmarkCheck, ArrowUpRight, Play
 } from 'lucide-react';
 import { Card } from '@/components/common/Card';
 import { Button } from '@/components/common/Button';
 import { Badge } from '@/components/common/Badge';
 import {
-  getModuleBySlug, ModuleDefinition, isModuleAvailable
+  getModuleBySlug, ModuleDefinition, isModuleAvailable, getModuleCategories, ModuleCategoryDefinition
 } from '@/data/module-registry';
 import { getModuleContentManifest, ModuleContentManifest } from '@/data/module-content';
 import { useExamStage } from '@/context/ExamStageContext';
@@ -250,58 +250,53 @@ export const ModuleWorkspacePage: React.FC = () => {
 
   const ModuleIcon = getModuleIcon(module.icon);
 
-  // Subject breakdown counts
-  const linuxCount = questions.filter((q) => q.subject === 'linux').length;
-  const windowsCount = questions.filter((q) => q.subject === 'windows').length;
-  const crossCount = questions.filter((q) => q.subject === 'cross_platform').length;
+  // Dynamic categories strictly belonging to this module
+  const categoriesList = useMemo(() => {
+    return module.categories && module.categories.length > 0
+      ? module.categories
+      : getModuleCategories(module.id);
+  }, [module]);
 
-  const subjectCards: {
-    subject: Subject;
-    name: string;
-    shortTitle: string;
-    description: string;
-    icon: React.FC<{ className?: string }>;
-    count: number;
-    colorClass: string;
-    practiceQuery: string;
-  }[] = [
-    {
-      subject: 'linux',
-      name: APP_CONFIG.subjects.linux?.name || 'Linux & Operating Systems',
-      shortTitle: APP_CONFIG.subjects.linux?.shortTitle || 'Linux & OS',
-      description:
-        APP_CONFIG.subjects.linux?.description ||
-        'Process management, ELF headers, storage, LVM, systemd, bash I/O, networking, and enterprise services.',
-      icon: Terminal,
-      count: linuxCount,
-      colorClass: 'border-indigo-500/30 text-indigo-400 bg-indigo-500/10',
-      practiceQuery: 'linux',
-    },
-    {
-      subject: 'windows',
-      name: APP_CONFIG.subjects.windows?.name || 'Windows Server Administration',
-      shortTitle: APP_CONFIG.subjects.windows?.shortTitle || 'Windows Server',
-      description:
-        APP_CONFIG.subjects.windows?.description ||
-        'Active Directory DS, FSMO roles, Group Policy, PowerShell, Hyper-V, WSUS, DNS, and failover clustering.',
-      icon: Server,
-      count: windowsCount,
-      colorClass: 'border-cyan-500/30 text-cyan-400 bg-cyan-500/10',
-      practiceQuery: 'windows',
-    },
-    {
-      subject: 'cross_platform',
-      name: APP_CONFIG.subjects.cross_platform?.name || 'Windows & Linux Cross-platform',
-      shortTitle: APP_CONFIG.subjects.cross_platform?.shortTitle || 'Cross-platform',
-      description:
-        APP_CONFIG.subjects.cross_platform?.description ||
-        'Active Directory realm joining, SSSD, Kerberos, Samba/NFS interop, Apache/IIS, and hybrid administration.',
-      icon: Layers,
-      count: crossCount,
-      colorClass: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
-      practiceQuery: 'cross_platform',
-    },
-  ];
+  const moduleCategories = useMemo(() => {
+    return categoriesList.map((cat) => {
+      let count = 0;
+      if (cat.subjectFilter) {
+        count = questions.filter((q) => q.subject === cat.subjectFilter).length;
+      } else if (cat.topicNames && cat.topicNames.length > 0) {
+        const topicSet = new Set(cat.topicNames);
+        count = questions.filter(
+          (q) => topicSet.has(q.topic) || (q.topicName && topicSet.has(q.topicName))
+        ).length;
+      }
+      if (count === 0 && cat.questionCount) {
+        count = cat.questionCount;
+      }
+
+      const CatIcon = ICON_MAP[cat.icon] || FolderTree;
+
+      const handlePractice = () => {
+        if (cat.subjectFilter) {
+          navigate(`/${targetStage}/${module.slug}/practice?subject=${cat.subjectFilter}`);
+        } else if (cat.topicNames && cat.topicNames.length > 0) {
+          navigate(`/${targetStage}/${module.slug}/practice`, {
+            state: {
+              subject: module.subjectMapping[0] || module.slug,
+              topics: cat.topicNames,
+            },
+          });
+        } else {
+          navigate(`/${targetStage}/${module.slug}/practice`);
+        }
+      };
+
+      return {
+        ...cat,
+        count,
+        Icon: CatIcon,
+        handlePractice,
+      };
+    });
+  }, [categoriesList, questions, navigate, targetStage, module.slug, module.subjectMapping]);
 
   const tabs: {
     id: WorkspaceTab;
@@ -332,7 +327,7 @@ export const ModuleWorkspacePage: React.FC = () => {
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to {targetStage.toUpperCase()} Dashboard</span>
         </Link>
-        <Badge variant="cyan" size="sm">
+        <Badge variant="primary" size="sm">
           {module.examStage.toUpperCase()}
         </Badge>
       </div>
@@ -382,7 +377,7 @@ export const ModuleWorkspacePage: React.FC = () => {
             </div>
             <div className="w-px h-8 bg-nexus-border/60" />
             <div className="text-center px-2">
-              <div className="text-lg sm:text-xl font-bold font-mono text-nexus-cyan">
+              <div className="text-lg sm:text-xl font-bold font-mono text-nexus-text">
                 {module.topicCount}
               </div>
               <div className="text-[11px] text-nexus-text-muted">Topics</div>
@@ -442,7 +437,7 @@ export const ModuleWorkspacePage: React.FC = () => {
                   <ChevronRight className="w-3.5 h-3.5 text-nexus-text-muted group-hover:translate-x-0.5 transition-transform" />
                 </div>
                 <div className="text-[11px] text-nexus-text-muted truncate">
-                  3 targeted subject banks ({questions.length} MCQs)
+                  {moduleCategories.length} curriculum domains ({questions.length} MCQs)
                 </div>
               </div>
             </Card>
@@ -453,7 +448,7 @@ export const ModuleWorkspacePage: React.FC = () => {
               onClick={() => setActiveTab('study_materials')}
               className="flex items-center gap-3.5 group"
             >
-              <div className="p-2.5 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20 group-hover:scale-105 transition-transform">
+              <div className="p-2.5 rounded-lg bg-nexus-elevated text-nexus-accent border border-nexus-border group-hover:scale-105 transition-transform">
                 <FileText className="w-5 h-5" />
               </div>
               <div className="min-w-0 flex-1">
@@ -473,7 +468,7 @@ export const ModuleWorkspacePage: React.FC = () => {
               onClick={() => setActiveTab('practical_guides')}
               className="flex items-center gap-3.5 group"
             >
-              <div className="p-2.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 group-hover:scale-105 transition-transform">
+              <div className="p-2.5 rounded-lg bg-nexus-elevated text-nexus-terracotta border border-nexus-border group-hover:scale-105 transition-transform">
                 <Code2 className="w-5 h-5" />
               </div>
               <div className="min-w-0 flex-1">
@@ -493,7 +488,7 @@ export const ModuleWorkspacePage: React.FC = () => {
               onClick={() => setActiveTab('exam')}
               className="flex items-center gap-3.5 group"
             >
-              <div className="p-2.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 group-hover:scale-105 transition-transform">
+              <div className="p-2.5 rounded-lg bg-nexus-elevated text-nexus-accent border border-nexus-border group-hover:scale-105 transition-transform">
                 <GraduationCap className="w-5 h-5" />
               </div>
               <div className="min-w-0 flex-1">
@@ -508,61 +503,61 @@ export const ModuleWorkspacePage: React.FC = () => {
             </Card>
           </div>
 
-          {/* Module Stats: Question count per subject */}
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-nexus-text uppercase tracking-wider">
-                Question Bank Breakdown by Subject
-              </h2>
-              <span className="text-xs text-nexus-text-muted font-mono">
-                {questions.length} total MCQs
-              </span>
-            </div>
+          {/* Module Stats: Question count per domain */}
+          {moduleCategories.length > 0 && (
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xs font-semibold text-nexus-text uppercase tracking-wider">
+                  Question Bank Breakdown by Domain
+                </h2>
+                <span className="text-xs text-nexus-text-muted font-mono">
+                  {questions.length} total MCQs
+                </span>
+              </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {subjectCards.map((sc) => {
-                const SubIcon = sc.icon;
-                return (
-                  <Card key={sc.subject} padding="md" className="space-y-3 flex flex-col justify-between">
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className={`p-2 rounded border ${sc.colorClass}`}>
-                            <SubIcon className="w-4 h-4" />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {moduleCategories.map((cat) => {
+                  const SubIcon = cat.Icon;
+                  return (
+                    <Card key={cat.id} padding="md" className="space-y-3 flex flex-col justify-between">
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <div className="p-2 rounded-lg bg-nexus-elevated border border-nexus-border text-nexus-accent">
+                              <SubIcon className="w-4 h-4" />
+                            </div>
+                            <span className="text-sm font-semibold text-nexus-text">{cat.shortTitle}</span>
                           </div>
-                          <span className="text-sm font-semibold text-nexus-text">{sc.shortTitle}</span>
+                          <Badge variant="default" size="sm" className="font-mono">
+                            {cat.count} MCQs
+                          </Badge>
                         </div>
-                        <Badge variant="default" size="sm" className="font-mono">
-                          {sc.count} MCQs
-                        </Badge>
+                        <p className="text-xs text-nexus-text-secondary leading-relaxed line-clamp-3">
+                          {cat.description}
+                        </p>
                       </div>
-                      <p className="text-xs text-nexus-text-secondary leading-relaxed line-clamp-3">
-                        {sc.description}
-                      </p>
-                    </div>
 
-                    <div className="pt-2 border-t border-nexus-border/60 flex items-center justify-between">
-                      <span className="text-[11px] text-nexus-text-muted font-mono">
-                        {Math.round((sc.count / (questions.length || 1)) * 100)}% of module
-                      </span>
-                      <Button
-                        size="sm"
-                        variant="secondary"
-                        onClick={() =>
-                          navigate(`/${targetStage}/${module.slug}/practice?subject=${sc.practiceQuery}`)
-                        }
-                        icon={<ChevronRight className="w-3.5 h-3.5" />}
-                        iconPosition="right"
-                        className="text-xs"
-                      >
-                        Practice
-                      </Button>
-                    </div>
-                  </Card>
-                );
-              })}
+                      <div className="pt-2 border-t border-nexus-border/60 flex items-center justify-between">
+                        <span className="text-[11px] text-nexus-text-muted font-mono">
+                          {Math.round((cat.count / (questions.length || 1)) * 100)}% of module
+                        </span>
+                        <Button
+                          size="sm"
+                          variant="secondary"
+                          onClick={cat.handlePractice}
+                          icon={<ChevronRight className="w-3.5 h-3.5" />}
+                          iconPosition="right"
+                          className="text-xs"
+                        >
+                          Practice
+                        </Button>
+                      </div>
+                    </Card>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Module Information & Syllabus Scope */}
           <Card padding="md" className="space-y-4">
@@ -571,40 +566,23 @@ export const ModuleWorkspacePage: React.FC = () => {
               <h3 className="text-sm font-semibold text-nexus-text">About This Module</h3>
             </div>
             <p className="text-xs sm:text-sm text-nexus-text-secondary leading-relaxed">
-              {module.description} The Concepts of Operating System and Administration (COSA) module is
-              a cornerstone of the CDAC PGCP-ITISS curriculum. Candidates are evaluated on both practical
-              system administration tasks and deep architectural concepts across Linux distributions and
-              Windows Server environments.
+              {module.description}
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-              <div className="p-3 rounded bg-nexus-elevated border border-nexus-border text-xs">
-                <div className="font-semibold text-nexus-text mb-1 flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-nexus-success" />
-                  Linux Administration
-                </div>
-                <div className="text-nexus-text-muted">
-                  Process scheduling, signals, storage hierarchies, LVM volumes, systemd service management.
-                </div>
+            {moduleCategories.length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                {moduleCategories.map((cat) => (
+                  <div key={cat.id} className="p-3.5 rounded-lg bg-nexus-elevated border border-nexus-border text-xs space-y-1.5">
+                    <div className="font-semibold text-nexus-text flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-nexus-accent" />
+                      {cat.shortTitle}
+                    </div>
+                    <div className="text-nexus-text-muted leading-relaxed">
+                      {cat.description}
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="p-3 rounded bg-nexus-elevated border border-nexus-border text-xs">
-                <div className="font-semibold text-nexus-text mb-1 flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-nexus-cyan" />
-                  Windows Server
-                </div>
-                <div className="text-nexus-text-muted">
-                  AD DS forest design, FSMO placement, Group Policy processing, PowerShell automation, Hyper-V.
-                </div>
-              </div>
-              <div className="p-3 rounded bg-nexus-elevated border border-nexus-border text-xs">
-                <div className="font-semibold text-nexus-text mb-1 flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-nexus-accent" />
-                  Cross-Platform Interop
-                </div>
-                <div className="text-nexus-text-muted">
-                  SSSD identity management, Kerberos domain join, Samba/NFS interoperability, unified auth.
-                </div>
-              </div>
-            </div>
+            )}
           </Card>
         </div>
       )}
@@ -615,9 +593,9 @@ export const ModuleWorkspacePage: React.FC = () => {
           {/* Header & Full Practice Launch */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-lg bg-nexus-surface border border-nexus-border">
             <div className="space-y-1">
-              <h2 className="text-sm font-semibold text-nexus-text">Practice Question Sets</h2>
+              <h2 className="text-sm font-semibold text-nexus-text">Curriculum Domain Question Sets</h2>
               <p className="text-xs text-nexus-text-secondary">
-                Select a specific subject bank below or launch a comprehensive session across all subjects.
+                Select a specific curriculum domain below or launch a comprehensive session across all topics.
               </p>
             </div>
             <Button
@@ -626,39 +604,39 @@ export const ModuleWorkspacePage: React.FC = () => {
               onClick={() => navigate(`/${targetStage}/${module.slug}/practice`)}
               icon={<Terminal className="w-4 h-4" />}
             >
-              All Subjects Practice ({questions.length} MCQs)
+              All Topics Practice ({questions.length} MCQs)
             </Button>
           </div>
 
-          {/* 3 Subject Cards */}
+          {/* Dynamic Category Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {subjectCards.map((sc) => {
-              const SubIcon = sc.icon;
+            {moduleCategories.map((cat) => {
+              const SubIcon = cat.Icon;
               return (
                 <Card
-                  key={sc.subject}
+                  key={cat.id}
                   padding="lg"
                   className="space-y-4 flex flex-col justify-between hover:border-nexus-accent/40 transition-all"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <div className={`p-2.5 rounded-lg border ${sc.colorClass}`}>
+                      <div className="p-2.5 rounded-lg bg-nexus-elevated border border-nexus-border text-nexus-accent">
                         <SubIcon className="w-5 h-5" />
                       </div>
                       <Badge variant="cyan" size="sm" className="font-mono">
-                        {sc.count} Questions
+                        {cat.count} Questions
                       </Badge>
                     </div>
 
                     <div>
-                      <h3 className="text-base font-bold text-nexus-text">{sc.name}</h3>
+                      <h3 className="text-base font-bold text-nexus-text">{cat.name}</h3>
                       <div className="text-xs text-nexus-accent font-medium mt-0.5">
-                        {sc.shortTitle}
+                        {cat.shortTitle}
                       </div>
                     </div>
 
                     <p className="text-xs text-nexus-text-secondary leading-relaxed">
-                      {sc.description}
+                      {cat.description}
                     </p>
                   </div>
 
@@ -666,13 +644,11 @@ export const ModuleWorkspacePage: React.FC = () => {
                     <Button
                       variant="primary"
                       className="w-full justify-center"
-                      onClick={() =>
-                        navigate(`/${targetStage}/${module.slug}/practice?subject=${sc.practiceQuery}`)
-                      }
+                      onClick={cat.handlePractice}
                       icon={<ChevronRight className="w-4 h-4" />}
                       iconPosition="right"
                     >
-                      Practice →
+                      Practice Domain →
                     </Button>
                   </div>
                 </Card>
@@ -825,7 +801,7 @@ export const ModuleWorkspacePage: React.FC = () => {
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
                         <Badge
-                          variant={guide.category === 'linux' ? 'primary' : guide.category === 'windows' ? 'cyan' : 'success'}
+                          variant="primary"
                           size="sm"
                           className="uppercase font-mono text-[10px]"
                         >
@@ -1046,7 +1022,7 @@ export const ModuleWorkspacePage: React.FC = () => {
             </div>
             <ul className="list-disc list-inside space-y-1 text-nexus-text-muted pl-1">
               <li>Timed environment with warning notifications at 10 and 5 minutes remaining.</li>
-              <li>Balanced question distribution across Linux, Windows Server, and Cross-Platform topics.</li>
+              <li>Balanced question distribution across all curriculum topics in {module.name}.</li>
               <li>Flag questions for review to revisit before submitting the attempt.</li>
               <li>Comprehensive diagnostic report generated upon submission.</li>
             </ul>
@@ -1242,49 +1218,31 @@ export const ModuleWorkspacePage: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-4 rounded-lg bg-nexus-elevated/40 border border-nexus-border space-y-3">
-            <div className="text-xs font-semibold text-nexus-text">Subject Coverage</div>
-            <div className="space-y-2">
-              <div className="space-y-1">
-                <div className="flex justify-between text-xs text-nexus-text-secondary">
-                  <span>Linux & OS ({linuxCount} questions)</span>
-                  <span className="font-mono text-nexus-text">{Math.round((linuxCount / (questions.length || 1)) * 100)}%</span>
-                </div>
-                <div className="w-full bg-nexus-elevated rounded-full h-1.5 overflow-hidden">
-                  <div
-                    className="bg-indigo-500 h-1.5 rounded-full"
-                    style={{ width: `${Math.round((linuxCount / (questions.length || 1)) * 100)}%` }}
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <div className="flex justify-between text-xs text-nexus-text-secondary">
-                  <span>Windows Server ({windowsCount} questions)</span>
-                  <span className="font-mono text-nexus-text">{Math.round((windowsCount / (questions.length || 1)) * 100)}%</span>
-                </div>
-                <div className="w-full bg-nexus-elevated rounded-full h-1.5 overflow-hidden">
-                  <div
-                    className="bg-cyan-500 h-1.5 rounded-full"
-                    style={{ width: `${Math.round((windowsCount / (questions.length || 1)) * 100)}%` }}
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <div className="flex justify-between text-xs text-nexus-text-secondary">
-                  <span>Cross-platform ({crossCount} questions)</span>
-                  <span className="font-mono text-nexus-text">{Math.round((crossCount / (questions.length || 1)) * 100)}%</span>
-                </div>
-                <div className="w-full bg-nexus-elevated rounded-full h-1.5 overflow-hidden">
-                  <div
-                    className="bg-emerald-500 h-1.5 rounded-full"
-                    style={{ width: `${Math.round((crossCount / (questions.length || 1)) * 100)}%` }}
-                  />
-                </div>
+          {moduleCategories.length > 0 && (
+            <div className="p-4 rounded-lg bg-nexus-elevated/40 border border-nexus-border space-y-3">
+              <div className="text-xs font-semibold text-nexus-text">Curriculum Domain Coverage</div>
+              <div className="space-y-3">
+                {moduleCategories.map((cat, idx) => {
+                  const pct = Math.round((cat.count / (questions.length || 1)) * 100);
+                  const barColor = idx === 0 ? 'bg-nexus-accent' : idx === 1 ? 'bg-nexus-terracotta' : 'bg-nexus-text-secondary';
+                  return (
+                    <div key={cat.id} className="space-y-1">
+                      <div className="flex justify-between text-xs text-nexus-text-secondary">
+                        <span>{cat.shortTitle} ({cat.count} questions)</span>
+                        <span className="font-mono text-nexus-text">{pct}%</span>
+                      </div>
+                      <div className="w-full bg-nexus-elevated rounded-full h-1.5 overflow-hidden">
+                        <div
+                          className={`${barColor} h-1.5 rounded-full transition-all duration-300`}
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
-          </div>
+          )}
         </Card>
       )}
     </div>
