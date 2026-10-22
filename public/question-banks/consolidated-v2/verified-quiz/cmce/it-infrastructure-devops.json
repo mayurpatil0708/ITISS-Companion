@@ -1,0 +1,3684 @@
+{
+  "schemaVersion": "2.0",
+  "examStage": "cmce",
+  "subject": {
+    "id": "it-infrastructure-devops",
+    "name": "IT Infrastructure Management & DevOps"
+  },
+  "metadata": {
+    "description": "Questions independently verified for the research batch so far.",
+    "totalQuestions": 22,
+    "verifiedQuestions": 22,
+    "correctedQuestions": 8,
+    "reviewRequiredQuestions": 0,
+    "sourceJsonFiles": 47,
+    "answerStatusCounts": {
+      "ambiguous": 1,
+      "corrected": 8,
+      "needs_manual_review": 624,
+      "verified_correct": 14,
+      "unresolved": 704
+    },
+    "explanationsCompleted": 22,
+    "activationStatus": "staged_not_published",
+    "explanationsProvisional": 4
+  },
+  "subtopics": [
+    {
+      "id": "cloud-computing",
+      "name": "Cloud Computing",
+      "topics": [
+        {
+          "id": "aws-cloud-services",
+          "name": "AWS and Cloud Services",
+          "questionCount": 281
+        }
+      ]
+    },
+    {
+      "id": "containers-and-virtualization",
+      "name": "Containers and Virtualization",
+      "topics": [
+        {
+          "id": "docker-kubernetes-vms",
+          "name": "Docker, Kubernetes, and Virtual Machines",
+          "questionCount": 70
+        }
+      ]
+    },
+    {
+      "id": "data-center-infrastructure",
+      "name": "Data Center Infrastructure",
+      "topics": [
+        {
+          "id": "data-center-design-operations",
+          "name": "Data Center Design and Operations",
+          "questionCount": 33
+        }
+      ]
+    },
+    {
+      "id": "devops-and-cicd",
+      "name": "DevOps and CI/CD",
+      "topics": [
+        {
+          "id": "pipelines-builds-release",
+          "name": "Pipelines, Builds, and Release",
+          "questionCount": 192
+        }
+      ]
+    },
+    {
+      "id": "infrastructure-automation",
+      "name": "Infrastructure Automation",
+      "topics": [
+        {
+          "id": "configuration-and-iac",
+          "name": "Configuration and Infrastructure as Code",
+          "questionCount": 28
+        }
+      ]
+    },
+    {
+      "id": "infrastructure-operations",
+      "name": "Infrastructure Operations",
+      "topics": [
+        {
+          "id": "general-infrastructure",
+          "name": "General Infrastructure",
+          "questionCount": 418
+        },
+        {
+          "id": "monitoring-service-operations",
+          "name": "Monitoring and Service Operations",
+          "questionCount": 50
+        }
+      ]
+    },
+    {
+      "id": "it-service-management",
+      "name": "IT Service Management",
+      "topics": [
+        {
+          "id": "itil-practices-service-lifecycle",
+          "name": "ITIL Practices and Service Lifecycle",
+          "questionCount": 279
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "iimd-00a58946da8df11e",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "containers-and-virtualization",
+      "subtopicName": "Containers and Virtualization",
+      "topicId": "docker-kubernetes-vms",
+      "topicName": "Docker, Kubernetes, and Virtual Machines",
+      "question": "Complete\nMark 0 out of 1\nWhich resources can be limited by Control Groups (cgroups) in libcontainer?\nSelect one:",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "Docker daemon resources"
+        },
+        {
+          "id": "B",
+          "text": "Disk space, CPU, memory"
+        },
+        {
+          "id": "C",
+          "text": "Container networking"
+        },
+        {
+          "id": "D",
+          "text": "Number of container processes (PIDs)"
+        }
+      ],
+      "correctOptionId": "D",
+      "correctOptionIds": [
+        "D"
+      ],
+      "explanation": "Cgroups can limit CPU time, memory, block-device I/O rates, and the number of processes in a cgroup. They do not directly impose a disk-capacity quota: the cgroup I/O controller limits bytes per second or I/O operations per second. The source key’s option B says disk space, which is inaccurate. The kernel’s pids.max control sets a hard maximum on the number of processes, so option D is the supported answer after clarifying it as a process-count limit.",
+      "optionExplanations": {
+        "A": "Cgroups constrain resources assigned to container processes; they do not set a general resource budget for the Docker daemon.",
+        "B": "Incorrect as worded: CPU and memory can be limited, but cgroup I/O controls limit I/O rates, not storage capacity (disk space).",
+        "C": "Network traffic control is handled by network facilities; this option is not the cgroup resource described here.",
+        "D": "Correct after clarification: the pids controller limits the number of processes in the cgroup."
+      },
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "devops_quiz__305c8d7c.json",
+            "sourceJson": "iimd/devops_quiz__305c8d7c.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/devops quiz.pdf",
+            "sourcePdfPath": null,
+            "page": 7,
+            "originalQuestionId": "IIMD-DEVOPS-QUIZ-305C8D7C-P007-Q0018",
+            "sourceQuestionNumber": "18",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "ocr",
+            "answerCandidateOptionIds": [],
+            "answerCandidateRawLabels": [],
+            "answerEvidenceOrigin": "none",
+            "answerEvidenceSummary": "No explicit answer key or option-intersecting PDF highlight annotation was detected.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "corrected",
+        "originalAnswerOptionIds": [
+          [
+            "B"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "D"
+        ],
+        "confidence": "high",
+        "reason": "The rendered source page prints B as its answer key, but Linux kernel documentation distinguishes I/O-rate limits from storage-capacity quotas and documents pids.max as a hard limit on process count. The original key’s disk space wording is inaccurate. The original D wording process IDs is clarified to mean the number of processes.",
+        "sources": [
+          {
+            "title": "Control Group v2",
+            "publisher": "Linux Kernel Documentation",
+            "url": "https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "CPU, memory, I/O, and pids controllers",
+            "supports": "The kernel documents CPU and memory controllers, io.max limits in BPS/IOPS, and pids.max as a hard limit on the number of processes."
+          },
+          {
+            "title": "Container Specification v1",
+            "publisher": "opencontainers/runc",
+            "url": "https://github.com/opencontainers/runc/blob/main/libcontainer/SPEC.md",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Resources / cgroup subsystems",
+            "supports": "libcontainer documents CPU, memory, blkio, and pids cgroup subsystems for container resource control."
+          }
+        ],
+        "visualAnswerEvidence": {
+          "sourceLabels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "answerLabel": "B",
+          "answerText": "Disk space, CPU, memory"
+        }
+      },
+      "classification": {
+        "status": "assigned",
+        "confidence": "medium",
+        "method": "content_and_source_subject_folder",
+        "topicMethod": "content_keyword_rule",
+        "originalLabels": []
+      },
+      "reviewReasons": [],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "containers-and-virtualization",
+        "docker-kubernetes-vms"
+      ],
+      "contentReview": {
+        "status": "source_visual_reviewed",
+        "evidence": [
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/devops quiz.pdf",
+            "page": 7,
+            "observedAnswerLabel": "B",
+            "notes": "The rendered quiz review page prints “The correct answer is: Disk space, CPU, memory.” The selected radio button A is the learner response, not the answer key."
+          }
+        ],
+        "edits": [
+          {
+            "field": "options.D",
+            "before": "Container process IDs",
+            "after": "Number of container processes (PIDs)",
+            "reason": "Clarifies the process-count limit exposed by the Linux pids controller; it does not change the option’s intended concept."
+          }
+        ]
+      }
+    },
+    {
+      "id": "iimd-00f4d289b10a38a3",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "cloud-computing",
+      "subtopicName": "Cloud Computing",
+      "topicId": "aws-cloud-services",
+      "topicName": "AWS and Cloud Services",
+      "question": "Which tool integrates with Prometheus to visualize metrics?",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "Nagios"
+        },
+        {
+          "id": "B",
+          "text": "Grafana"
+        },
+        {
+          "id": "C",
+          "text": "AWS CloudWatch"
+        },
+        {
+          "id": "D",
+          "text": "Puppet"
+        }
+      ],
+      "correctOptionId": "B",
+      "correctOptionIds": [
+        "B"
+      ],
+      "explanation": "Grafana connects to Prometheus as a data source, lets you query its time-series metrics, and displays the results in dashboards and panels. Nagios is a monitoring system, AWS CloudWatch is an AWS metrics service, and Puppet is mainly for configuration management. The correct source label is B (Grafana); the candidate had incorrectly normalized that label to option ID A.",
+      "optionExplanations": {
+        "A": "Nagios is a monitoring tool, but it is not the option the source identifies for Prometheus visualization.",
+        "B": "Correct: Grafana queries Prometheus and renders the metrics in dashboards and panels.",
+        "C": "CloudWatch is an AWS monitoring service, not the tool named in the source key.",
+        "D": "Puppet is a configuration-management tool, not the expected Prometheus visualization choice."
+      },
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "DEVOPS__4ed00649.json",
+            "sourceJson": "iimd/DEVOPS__4ed00649.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/Last or D-Day Material/Last Day Notes/DEVOPS.pdf",
+            "sourcePdfPath": null,
+            "page": 27,
+            "originalQuestionId": "IIMD-DEVOPS-4ED00649-P027-Q0044",
+            "sourceQuestionNumber": "7",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "B"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": true,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "corrected",
+        "originalAnswerOptionIds": [
+          [
+            "A"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "B"
+        ],
+        "confidence": "high",
+        "reason": "The rendered PDF shows the options A Nagios, B Grafana, C AWS CloudWatch, D Puppet, and prints B as correct. Grafana documentation confirms that Grafana has a Prometheus data source and supports dashboards and visualizations from Prometheus metrics; the staged answer ID A was a label-mapping error.",
+        "sources": [
+          {
+            "title": "Prometheus data source",
+            "publisher": "Grafana documentation",
+            "url": "https://grafana.com/docs/grafana/latest/datasources/prometheus/",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Prometheus data source and visualizations",
+            "supports": "Grafana documents its Prometheus data source, PromQL query support, dashboards, and visualizations."
+          }
+        ],
+        "visualAnswerEvidence": {
+          "sourceLabels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "answerLabel": "B",
+          "answerText": "Grafana"
+        }
+      },
+      "classification": {
+        "status": "assigned",
+        "confidence": "medium",
+        "method": "content_and_source_subject_folder",
+        "topicMethod": "content_keyword_rule",
+        "originalLabels": []
+      },
+      "reviewReasons": [],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "cloud-computing",
+        "aws-cloud-services"
+      ],
+      "contentReview": {
+        "status": "source_visual_reviewed",
+        "evidence": [
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/Last or D-Day Material/Last Day Notes/DEVOPS.pdf",
+            "page": 27,
+            "observedAnswerLabel": "B",
+            "notes": "The rendered page lists Grafana as choice B and prints “Answer: b) Grafana.” The extracted question had shifted the “a) Nagios” text into the stem and mapped the answer to candidate ID A."
+          }
+        ],
+        "edits": [
+          {
+            "field": "question_and_options",
+            "before": "The stem included “a) Nagios”; the choices were shifted and omitted the fourth choice, while raw answer label B was mapped to candidate ID A.",
+            "after": "Restored the stem and options A-D from the rendered page; set the answer to option B.",
+            "reason": "PDF visual evidence and Grafana documentation support B."
+          }
+        ]
+      }
+    },
+    {
+      "id": "iimd-00ffab6c3dd776bb",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "infrastructure-operations",
+      "subtopicName": "Infrastructure Operations",
+      "topicId": "general-infrastructure",
+      "topicName": "General Infrastructure",
+      "question": "Which service model provides virtualized computing resources over the internet?",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "PaaS"
+        },
+        {
+          "id": "B",
+          "text": "SaaS"
+        },
+        {
+          "id": "C",
+          "text": "IaaS"
+        },
+        {
+          "id": "D",
+          "text": "FaaS"
+        }
+      ],
+      "correctOptionId": "C",
+      "correctOptionIds": [
+        "C"
+      ],
+      "explanation": "Infrastructure as a Service (IaaS) provides fundamental computing resources such as processing, storage, and networks. Under NIST’s model, the consumer can deploy software, including operating systems and applications. The PDF labels IaaS as C; the staged bank had incorrectly mapped the raw source label C to option ID B.",
+      "optionExplanations": {
+        "A": "PaaS provides a platform for deploying applications, not the raw infrastructure model named here.",
+        "B": "SaaS gives users provider-run applications.",
+        "C": "Correct: IaaS provides fundamental computing resources such as compute, storage, and networks.",
+        "D": "FaaS is a function-execution model, not one of NIST’s three service models."
+      },
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "DEVOPS__4ed00649.json",
+            "sourceJson": "iimd/DEVOPS__4ed00649.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/Last or D-Day Material/Last Day Notes/DEVOPS.pdf",
+            "sourcePdfPath": null,
+            "page": 15,
+            "originalQuestionId": "IIMD-DEVOPS-4ED00649-P015-Q0025",
+            "sourceQuestionNumber": "5",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "B"
+            ],
+            "answerCandidateRawLabels": [
+              "C"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": true,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "corrected",
+        "originalAnswerOptionIds": [
+          [
+            "B"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "C"
+        ],
+        "confidence": "high",
+        "reason": "The rendered source page labels IaaS as option C. NIST defines IaaS as provisioning processing, storage, networks, and other fundamental computing resources; the candidate’s normalized answer ID B is a label-mapping error.",
+        "sources": [
+          {
+            "title": "SP 800-145: The NIST Definition of Cloud Computing",
+            "publisher": "National Institute of Standards and Technology",
+            "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Service Models — Infrastructure as a Service",
+            "supports": "NIST defines IaaS as provisioning processing, storage, networks, and other fundamental computing resources."
+          }
+        ],
+        "visualAnswerEvidence": {
+          "sourceLabels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "answerLabel": "C",
+          "answerText": "IaaS"
+        }
+      },
+      "classification": {
+        "status": "needs_manual_review",
+        "confidence": "low",
+        "method": "source_subject_folder_fallback",
+        "topicMethod": "subject_fallback",
+        "originalLabels": []
+      },
+      "reviewReasons": [
+        "subject_classification_low_confidence"
+      ],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "infrastructure-operations",
+        "general-infrastructure"
+      ],
+      "contentReview": {
+        "status": "source_visual_reviewed",
+        "evidence": [
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/Last or D-Day Material/Last Day Notes/DEVOPS.pdf",
+            "page": 15,
+            "observedAnswerLabel": "C",
+            "notes": "The rendered page lists PaaS, SaaS, IaaS, FaaS and prints “Answer: c) IaaS.”"
+          }
+        ],
+        "edits": [
+          {
+            "field": "question_and_options",
+            "before": "The stem included “a) PaaS”; the options were shifted and choice D was missing; raw answer label C was normalized to B.",
+            "after": "Restored choices A-D and mapped the printed answer to option C.",
+            "reason": "The PDF visually confirms the full option sequence and key."
+          }
+        ]
+      }
+    },
+    {
+      "id": "iimd-012dbbfe9f82de3a",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "it-service-management",
+      "subtopicName": "IT Service Management",
+      "topicId": "itil-practices-service-lifecycle",
+      "topicName": "ITIL Practices and Service Lifecycle",
+      "question": "Which of the following is NOT an aim of the Change Management process?",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "Overall business risk is optimized."
+        },
+        {
+          "id": "B",
+          "text": "Standardized methods and procedures are used for efficient and prompt handling of all changes."
+        },
+        {
+          "id": "C",
+          "text": "All budgets and expenditures are accounted for."
+        },
+        {
+          "id": "D",
+          "text": "All changes to service assets and configuration items are recorded in the Configuration Management System."
+        }
+      ],
+      "correctOptionId": "C",
+      "correctOptionIds": [
+        "C"
+      ],
+      "explanation": "In ITIL v3, Change Management coordinates changes and controls their risk. Its stated objectives include using standardized handling procedures, recording changes in the Configuration Management System, and optimizing business risk. Tracking budgets and expenditures belongs to financial management, so option C is the one that is not an aim listed here.",
+      "optionExplanations": {
+        "A": "Optimizing business risk is an ITIL v3 Change Management objective.",
+        "B": "Standardized methods and procedures are an objective.",
+        "C": "Correct: accounting for all budgets and expenditures is not one of the listed Change Management aims.",
+        "D": "Recording changes to service assets and configuration items in the CMS is an objective."
+      },
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "ITIL_Foundation_Questions__540fb06b.json",
+            "sourceJson": "iimd/ITIL_Foundation_Questions__540fb06b.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/ITIL/ITIL Foundation Questions.pdf",
+            "sourcePdfPath": null,
+            "page": 8,
+            "originalQuestionId": "IIMD-ITIL-FOUNDATION-QUESTIONS-540FB06B-P008-Q0023",
+            "sourceQuestionNumber": "23",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "C"
+            ],
+            "answerCandidateRawLabels": [
+              "C"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "ITIL_Foundation_Questions__b4239476.json",
+            "sourceJson": "iimd/ITIL_Foundation_Questions__b4239476.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/ITIL Foundation Questions.pdf",
+            "sourcePdfPath": null,
+            "page": 8,
+            "originalQuestionId": "IIMD-ITIL-FOUNDATION-QUESTIONS-B4239476-P008-Q0023",
+            "sourceQuestionNumber": "23",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "C"
+            ],
+            "answerCandidateRawLabels": [
+              "C"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "ITIL_Foundation_Questions__d9bdfd02.json",
+            "sourceJson": "iimd/ITIL_Foundation_Questions__d9bdfd02.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/Dcm/ITIL Foundation Questions.pdf",
+            "sourcePdfPath": null,
+            "page": 8,
+            "originalQuestionId": "IIMD-ITIL-FOUNDATION-QUESTIONS-D9BDFD02-P008-Q0023",
+            "sourceQuestionNumber": "23",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "C"
+            ],
+            "answerCandidateRawLabels": [
+              "C"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "verified_correct",
+        "originalAnswerOptionIds": [
+          [
+            "C"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "C"
+        ],
+        "confidence": "high",
+        "reason": "The question’s linked source material identifies ITIL v3. Its Change Management objectives include standardized methods, recording changes in the CMS, and optimizing business risk; accounting for all budgets and expenditures is not one of those listed aims.",
+        "sources": [
+          {
+            "title": "ITIL Version 3 Chapters: Service Transition",
+            "publisher": "HCI ITIL (reproduction of ITIL v3 Service Transition guidance)",
+            "url": "https://www.hci-itil.com/ITIL_v3/books/3_service_transition/service_transition_ch4_2.html",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "4.2.1 Purpose, Goals and Objectives",
+            "supports": "The listed Change Management objectives are standardized methods, recording changes in the CMS, and optimizing business risk; budget and expenditure accounting is not listed."
+          }
+        ],
+        "visualAnswerEvidence": {
+          "sourceLabels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "answerLabel": "C"
+        }
+      },
+      "classification": {
+        "status": "assigned",
+        "confidence": "medium",
+        "method": "content_and_source_subject_folder",
+        "topicMethod": "content_keyword_rule",
+        "originalLabels": []
+      },
+      "reviewReasons": [],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "it-service-management",
+        "itil-practices-service-lifecycle"
+      ],
+      "contentReview": {
+        "status": "source_visual_reviewed",
+        "evidence": [
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/ITIL/ITIL Foundation Questions.pdf",
+            "page": 8,
+            "observedAnswerLabel": "C",
+            "notes": "The rendered page shows question 23, choices A-D, and Answer: C; the file cites ITIL v3 exam material."
+          }
+        ],
+        "edits": [
+          {
+            "field": "options",
+            "before": "Option D included page number, section metadata, and an empty explanation field.",
+            "after": "Four clean options transcribed from the source page.",
+            "reason": "Visual inspection removed extraction contamination while preserving the source wording."
+          }
+        ]
+      }
+    },
+    {
+      "id": "iimd-013c17c3224aedf1",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "infrastructure-operations",
+      "subtopicName": "Infrastructure Operations",
+      "topicId": "general-infrastructure",
+      "topicName": "General Infrastructure",
+      "question": "Which NIST cloud service model gives the consumer the least control over the underlying infrastructure?",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "SaaS"
+        },
+        {
+          "id": "B",
+          "text": "IaaS"
+        },
+        {
+          "id": "C",
+          "text": "CaaS"
+        },
+        {
+          "id": "D",
+          "text": "PaaS"
+        }
+      ],
+      "correctOptionId": "A",
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Interpreting “most restrictive” as giving the consumer the least control, SaaS is the answer. In SaaS, the provider runs the application and controls the underlying cloud infrastructure; PaaS gives the consumer control over deployed applications, and IaaS gives more control over operating systems and applications. NIST therefore supports A, not the source key’s PaaS. I have clarified the stem to state the control criterion explicitly.",
+      "optionExplanations": {
+        "A": "Correct: SaaS gives consumers the least control over the underlying cloud infrastructure.",
+        "B": "IaaS gives consumers control over operating systems, storage, and deployed applications.",
+        "C": "CaaS is not one of NIST’s three standard cloud service models listed here.",
+        "D": "PaaS allows consumers to deploy and control their applications, so it is less restrictive than SaaS."
+      },
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "Cloud_Computing__257bf011.json",
+            "sourceJson": "iimd/Cloud_Computing__257bf011.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "sourcePdfPath": null,
+            "page": 30,
+            "originalQuestionId": "IIMD-CLOUD-COMPUTING-257BF011-P030-Q0115",
+            "sourceQuestionNumber": "1",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "D"
+            ],
+            "answerCandidateRawLabels": [
+              "D"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "corrected",
+        "originalAnswerOptionIds": [
+          [
+            "D"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "A"
+        ],
+        "confidence": "high",
+        "reason": "NIST defines SaaS as provider-run applications with no consumer control over the underlying infrastructure, while PaaS permits deploying consumer applications and IaaS permits control of operating systems and applications. Thus SaaS gives the consumer the least control; the source key D (PaaS) is incorrect under that meaning of “most restrictive.”",
+        "sources": [
+          {
+            "title": "SP 800-145: The NIST Definition of Cloud Computing",
+            "publisher": "National Institute of Standards and Technology",
+            "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Service Models — SaaS, PaaS, and IaaS",
+            "supports": "NIST contrasts SaaS (no underlying infrastructure control), PaaS (control over deployed applications), and IaaS (control over operating systems, storage, and applications)."
+          }
+        ],
+        "visualAnswerEvidence": {
+          "sourceLabels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "answerLabel": "D",
+          "answerText": "PaaS",
+          "independentFinalAnswerLabel": "A"
+        }
+      },
+      "classification": {
+        "status": "needs_manual_review",
+        "confidence": "low",
+        "method": "source_subject_folder_fallback",
+        "topicMethod": "subject_fallback",
+        "originalLabels": []
+      },
+      "reviewReasons": [
+        "subject_classification_low_confidence"
+      ],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "infrastructure-operations",
+        "general-infrastructure"
+      ],
+      "contentReview": {
+        "status": "source_visual_reviewed",
+        "evidence": [
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "page": 30,
+            "observedAnswerLabel": "D",
+            "notes": "The rendered page shows SaaS, IaaS, CaaS, PaaS and prints PaaS as the answer; NIST’s model definitions support correcting this key to SaaS."
+          }
+        ],
+        "edits": [
+          {
+            "field": "question",
+            "before": "Out of these, which one is the most restrictive and refined service model?",
+            "after": "Which NIST cloud service model gives the consumer the least control over the underlying infrastructure?",
+            "reason": "The original wording was vague; the revised stem states the measurable criterion used to distinguish SaaS, PaaS, and IaaS."
+          }
+        ]
+      }
+    },
+    {
+      "id": "iimd-01619d7270f471dd",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "cloud-computing",
+      "subtopicName": "Cloud Computing",
+      "topicId": "aws-cloud-services",
+      "topicName": "AWS and Cloud Services",
+      "question": "Which of the following terms refers to the management and location of cloud\ninfrastructure.",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "Application"
+        },
+        {
+          "id": "B",
+          "text": "Deployment"
+        },
+        {
+          "id": "C",
+          "text": "Service"
+        },
+        {
+          "id": "D",
+          "text": "None of the above"
+        }
+      ],
+      "correctOptionId": "B",
+      "correctOptionIds": [
+        "B"
+      ],
+      "explanation": "A cloud deployment model describes how a cloud is arranged and operated, including who may use it and where it may be hosted. NIST lists private, community, public, and hybrid deployment models. A service model instead describes the kind of capability offered, such as SaaS, PaaS, or IaaS.",
+      "optionExplanations": {
+        "A": "Application refers to software running in the cloud, not the infrastructure’s deployment arrangement.",
+        "B": "Deployment is the model describing how the cloud infrastructure is arranged and operated.",
+        "C": "Service models describe the type of cloud capability provided.",
+        "D": "The source includes a complete option D, so “None of the above” is not correct."
+      },
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "Cloud_Computing__257bf011.json",
+            "sourceJson": "iimd/Cloud_Computing__257bf011.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "sourcePdfPath": null,
+            "page": 47,
+            "originalQuestionId": "IIMD-CLOUD-COMPUTING-257BF011-P047-Q0178",
+            "sourceQuestionNumber": "40",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "B"
+            ],
+            "answerCandidateRawLabels": [
+              "B"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "verified_correct",
+        "originalAnswerOptionIds": [
+          [
+            "B"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "B"
+        ],
+        "confidence": "high",
+        "reason": "NIST SP 800-145 defines four cloud deployment models and describes distinctions involving who uses/operates the infrastructure and whether it is on or off premises. This matches “Deployment”; the source page marks B.",
+        "sources": [
+          {
+            "title": "SP 800-145: The NIST Definition of Cloud Computing",
+            "publisher": "NIST",
+            "url": "https://csrc.nist.gov/pubs/sp/800/145/final",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Definition; Essential Characteristics; Deployment Models",
+            "supports": "Defines cloud computing as on-demand network access to pooled resources; lists resource pooling as a characteristic and distinguishes service and deployment models."
+          }
+        ],
+        "visualAnswerEvidence": {
+          "sourceLabels": [
+            "B"
+          ],
+          "answerText": "Deployment"
+        }
+      },
+      "classification": {
+        "status": "needs_manual_review",
+        "confidence": "low",
+        "method": "source_subject_folder_fallback",
+        "topicMethod": "content_keyword_rule",
+        "originalLabels": []
+      },
+      "reviewReasons": [
+        "subject_classification_low_confidence"
+      ],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "cloud-computing",
+        "aws-cloud-services"
+      ],
+      "contentReview": {
+        "status": "source_visual_reviewed",
+        "evidence": [
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "page": 47,
+            "notes": "The page shows the full A-D options and prints “Answer: B) Deployment”.",
+            "observedAnswerLabel": "B"
+          }
+        ],
+        "edits": [
+          {
+            "field": "options",
+            "before": "Option D included the trailing word “infrastructure.” from the answer text.",
+            "after": "Option D: None of the above.",
+            "reason": "The rendered source page confirms the answer explanation is separate from option D."
+          }
+        ]
+      }
+    },
+    {
+      "id": "iimd-0174a53d5d8e554b",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "it-service-management",
+      "subtopicName": "IT Service Management",
+      "topicId": "itil-practices-service-lifecycle",
+      "topicName": "ITIL Practices and Service Lifecycle",
+      "question": "What is a RACI model used for?",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "Defining roles and responsibilities"
+        },
+        {
+          "id": "B",
+          "text": "Performance analysis"
+        },
+        {
+          "id": "C",
+          "text": "Recording Configuration Items"
+        },
+        {
+          "id": "D",
+          "text": "Monitoring services"
+        }
+      ],
+      "correctOptionId": "A",
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "A RACI matrix maps people or roles to tasks using four involvement labels: Responsible, Accountable, Consulted, and Informed. It makes ownership and communication responsibilities clear. It is not a performance-analysis tool, a configuration-item register, or a service-monitoring system.",
+      "optionExplanations": {
+        "A": "Correct: RACI clarifies the roles and responsibilities assigned to work.",
+        "B": "Performance analysis evaluates results or metrics, which is not what RACI defines.",
+        "C": "Configuration items are recorded in a configuration-management system.",
+        "D": "Service monitoring observes service health; RACI assigns involvement and accountability."
+      },
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "ITIL_Foundation_Questions__540fb06b.json",
+            "sourceJson": "iimd/ITIL_Foundation_Questions__540fb06b.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/ITIL/ITIL Foundation Questions.pdf",
+            "sourcePdfPath": null,
+            "page": 17,
+            "originalQuestionId": "IIMD-ITIL-FOUNDATION-QUESTIONS-540FB06B-P017-Q0055",
+            "sourceQuestionNumber": "55",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "ITIL_Foundation_Questions__b4239476.json",
+            "sourceJson": "iimd/ITIL_Foundation_Questions__b4239476.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/ITIL Foundation Questions.pdf",
+            "sourcePdfPath": null,
+            "page": 17,
+            "originalQuestionId": "IIMD-ITIL-FOUNDATION-QUESTIONS-B4239476-P017-Q0055",
+            "sourceQuestionNumber": "55",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "ITIL_Foundation_Questions__d9bdfd02.json",
+            "sourceJson": "iimd/ITIL_Foundation_Questions__d9bdfd02.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/Dcm/ITIL Foundation Questions.pdf",
+            "sourcePdfPath": null,
+            "page": 17,
+            "originalQuestionId": "IIMD-ITIL-FOUNDATION-QUESTIONS-D9BDFD02-P017-Q0055",
+            "sourceQuestionNumber": "55",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "verified_correct",
+        "originalAnswerOptionIds": [
+          [
+            "A"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "A"
+        ],
+        "confidence": "high",
+        "reason": "Microsoft Learn describes a RACI matrix as a framework for clarifying who is Responsible, Accountable, Consulted, and Informed for each task. That is the definition of roles and responsibilities in option A.",
+        "sources": [
+          {
+            "title": "Define roles and responsibilities - Power Platform adoption",
+            "publisher": "Microsoft Learn",
+            "url": "https://learn.microsoft.com/en-us/power-platform/guidance/adoption/roles",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "RACI matrix",
+            "supports": "Defines a RACI matrix as a way to clarify roles and responsibilities using Responsible, Accountable, Consulted, and Informed."
+          }
+        ]
+      },
+      "classification": {
+        "status": "assigned",
+        "confidence": "medium",
+        "method": "content_and_source_subject_folder",
+        "topicMethod": "content_keyword_rule",
+        "originalLabels": []
+      },
+      "reviewReasons": [],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "it-service-management",
+        "itil-practices-service-lifecycle"
+      ],
+      "contentReview": {
+        "status": "source_visual_reviewed",
+        "evidence": [
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/ITIL/ITIL Foundation Questions.pdf",
+            "page": 17,
+            "notes": "The rendered page confirms all four choices and that D is “Monitoring services”; this occurrence does not print an answer key."
+          }
+        ],
+        "edits": [
+          {
+            "field": "options",
+            "before": "Option D contained an appended website citation and empty explanation labels.",
+            "after": "Option D: Monitoring services.",
+            "reason": "The rendered source page confirms those lines are page metadata, not part of option D."
+          }
+        ]
+      }
+    },
+    {
+      "id": "iimd-019fadef9c1b5ae3",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "cloud-computing",
+      "subtopicName": "Cloud Computing",
+      "topicId": "aws-cloud-services",
+      "topicName": "AWS and Cloud Services",
+      "question": "Which one of the following statements is wrong?",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "The use of the word “cloud” makes reference to the two essential concepts."
+        },
+        {
+          "id": "B",
+          "text": "Cloud computing abstracts systems by pooling and sharing resources"
+        },
+        {
+          "id": "C",
+          "text": "Cloud computing is nothing more than the Internet."
+        },
+        {
+          "id": "D",
+          "text": "All of the mentioned"
+        }
+      ],
+      "correctOptionId": "C",
+      "correctOptionIds": [
+        "C"
+      ],
+      "explanation": "The false statement is C. Internet access is one way to reach cloud services, but cloud computing also involves on-demand provisioning, pooled resources, elasticity, metering, and service and deployment models. NIST explicitly lists resource pooling as a cloud characteristic, so B is broadly consistent with the standard definition. The source’s introductory explanation frames A as abstraction and virtualization. “All of the mentioned” cannot be right because the other statements are not all false.",
+      "optionExplanations": {
+        "A": "In the source’s introductory framing, “cloud” refers to abstraction and virtualization; the wording is broad but is not the false statement intended here.",
+        "B": "NIST includes resource pooling as a defining cloud characteristic, making this broadly true.",
+        "C": "Correct: cloud computing is not merely the Internet; it is a model for provisioned, pooled computing resources with additional characteristics and service/deployment models.",
+        "D": "Not correct because the statements are not all false."
+      },
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "Cloud_Computing__257bf011.json",
+            "sourceJson": "iimd/Cloud_Computing__257bf011.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "sourcePdfPath": null,
+            "page": 75,
+            "originalQuestionId": "IIMD-CLOUD-COMPUTING-257BF011-P075-Q0290",
+            "sourceQuestionNumber": "3",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "B"
+            ],
+            "answerCandidateRawLabels": [
+              "B"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "corrected",
+        "originalAnswerOptionIds": [
+          [
+            "B"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "C"
+        ],
+        "confidence": "medium",
+        "reason": "The source prints B as the answer, but NIST defines cloud computing using on-demand network access to pooled resources and several other characteristics; resource pooling is explicitly one of those characteristics, so B is not the false statement as written. The NIST definition also shows cloud computing is more than the Internet alone. The question’s accompanying course explanation identifies abstraction and virtualization as the two introductory concepts referenced by A. Therefore C is the best single false statement and the source key is corrected from B to C.",
+        "sources": [
+          {
+            "title": "SP 800-145: The NIST Definition of Cloud Computing",
+            "publisher": "NIST",
+            "url": "https://csrc.nist.gov/pubs/sp/800/145/final",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Definition; Essential Characteristics; Deployment Models",
+            "supports": "Defines cloud computing as on-demand network access to pooled resources; lists resource pooling as a characteristic and distinguishes service and deployment models."
+          },
+          {
+            "title": "NIST SP 500-292: Cloud Computing Reference Architecture",
+            "publisher": "NIST",
+            "url": "https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication500-292.pdf",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Sections 2.3 and 3.4.1",
+            "supports": "Describes cloud service architecture, virtualized resources, and network delivery; cloud services include more than Internet connectivity alone."
+          },
+          {
+            "title": "Cloud Computing: Lecture 2",
+            "publisher": "University of Trieste",
+            "url": "https://moodle2.units.it/pluginfile.php/362120/mod_resource/content/2/Lecture_2_CloudArchitecture.pdf",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Cloud abstraction and virtualization",
+            "supports": "Explains the introductory distinction between abstraction and virtualization in the phrase about what “cloud” refers to."
+          }
+        ],
+        "visualAnswerEvidence": {
+          "sourceLabels": [
+            "B"
+          ],
+          "answerText": "Cloud computing abstracts systems by pooling and sharing resources"
+        }
+      },
+      "classification": {
+        "status": "assigned",
+        "confidence": "medium",
+        "method": "content_and_source_subject_folder",
+        "topicMethod": "content_keyword_rule",
+        "originalLabels": []
+      },
+      "reviewReasons": [],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "cloud-computing",
+        "aws-cloud-services"
+      ],
+      "contentReview": {
+        "status": "source_visual_reviewed",
+        "evidence": [
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "page": 75,
+            "notes": "The rendered page shows the full choices and the printed source answer B with an explanation about abstraction and virtualization.",
+            "observedAnswerLabel": "B"
+          }
+        ],
+        "edits": [
+          {
+            "field": "options",
+            "before": "Option D included an appended explanation about abstraction and virtualization.",
+            "after": "Option D: All of the mentioned.",
+            "reason": "The rendered source page separates the explanation from the four answer options."
+          }
+        ]
+      }
+    },
+    {
+      "id": "iimd-01ec4c5b3b3cf9e5",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "cloud-computing",
+      "subtopicName": "Cloud Computing",
+      "topicId": "aws-cloud-services",
+      "topicName": "AWS and Cloud Services",
+      "question": "What does lift-and-shift migration refer to in cloud migration?",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "Migrating applications with major code changes"
+        },
+        {
+          "id": "B",
+          "text": "Moving applications to the cloud with minimal modification"
+        },
+        {
+          "id": "C",
+          "text": "Rewriting applications to use cloud-native features"
+        },
+        {
+          "id": "D",
+          "text": "Replicating data for disaster recovery"
+        }
+      ],
+      "correctOptionId": "B",
+      "correctOptionIds": [
+        "B"
+      ],
+      "explanation": "Lift-and-shift, also called rehosting, moves an existing application or workload to cloud infrastructure with little or no code change. The workload runs in a new location but keeps its basic architecture. Rewriting for cloud-native features is refactoring or modernization; copying data for disaster recovery is a separate strategy.",
+      "optionExplanations": {
+        "A": "Major code changes are not the defining feature of lift-and-shift.",
+        "B": "Correct: the workload is moved with minimal modification or no code changes.",
+        "C": "Rewriting the application to use cloud-native services is a refactor/modernization approach.",
+        "D": "Replicating data for recovery is not lift-and-shift migration."
+      },
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "DEVOPS__4ed00649.json",
+            "sourceJson": "iimd/DEVOPS__4ed00649.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/Last or D-Day Material/Last Day Notes/DEVOPS.pdf",
+            "sourcePdfPath": null,
+            "page": 20,
+            "originalQuestionId": "IIMD-DEVOPS-4ED00649-P020-Q0033",
+            "sourceQuestionNumber": "3",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "B"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": true,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "corrected",
+        "originalAnswerOptionIds": [
+          [
+            "A"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "B"
+        ],
+        "confidence": "high",
+        "reason": "The rendered source PDF shows four options and explicitly marks raw label B (“Moving applications to the cloud with minimal modification”). Extraction mistakenly placed option A’s text in the question and mapped raw label B to normalized option A. Microsoft Learn defines rehost/lift-and-shift as moving a workload without code changes, confirming the corrected final answer B.",
+        "sources": [
+          {
+            "title": "Migrate workloads to Azure",
+            "publisher": "Microsoft Learn",
+            "url": "https://learn.microsoft.com/en-us/azure/migration/migrate-to-azure",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Migration strategies: Rehost (lift and shift)",
+            "supports": "Rehost moves a workload to Azure infrastructure without code changes; replatform makes minimal changes, and refactor restructures code."
+          }
+        ],
+        "visualAnswerEvidence": {
+          "sourceLabels": [
+            "B"
+          ],
+          "answerText": "Moving applications to the cloud with minimal modification"
+        }
+      },
+      "classification": {
+        "status": "needs_manual_review",
+        "confidence": "low",
+        "method": "source_subject_folder_fallback",
+        "topicMethod": "content_keyword_rule",
+        "originalLabels": []
+      },
+      "reviewReasons": [
+        "subject_classification_low_confidence"
+      ],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "cloud-computing",
+        "aws-cloud-services"
+      ],
+      "contentReview": {
+        "status": "source_visual_reviewed",
+        "evidence": [
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/Last or D-Day Material/Last Day Notes/DEVOPS.pdf",
+            "page": 20,
+            "notes": "The page shows the full question, options A-D, and the printed answer B.",
+            "observedAnswerLabel": "B"
+          }
+        ],
+        "edits": [
+          {
+            "field": "question and options",
+            "before": "The first source choice was appended to the question text; the three remaining choices were relabeled A-C, causing printed answer B to map to extracted option A.",
+            "after": "Restored the source question with options A-D in their printed order; option B is the source-marked answer.",
+            "reason": "The rendered PDF confirms the original layout and answer label, correcting the extraction mapping without changing source meaning."
+          }
+        ]
+      }
+    },
+    {
+      "id": "iimd-0216212bf734d4d5",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "infrastructure-operations",
+      "subtopicName": "Infrastructure Operations",
+      "topicId": "general-infrastructure",
+      "topicName": "General Infrastructure",
+      "question": "What is full form of QoS?",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "Quality of Service"
+        },
+        {
+          "id": "B",
+          "text": "Quality of Scalability"
+        },
+        {
+          "id": "C",
+          "text": "Quality of Simplicity"
+        },
+        {
+          "id": "D",
+          "text": "None"
+        }
+      ],
+      "correctOptionId": "A",
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "QoS stands for Quality of Service. Networking QoS mechanisms manage traffic so selected applications can receive more predictable bandwidth, delay, jitter, or loss characteristics. “Quality of Scalability” and “Quality of Simplicity” are not expansions of the networking acronym.",
+      "optionExplanations": {
+        "A": "Correct: QoS means Quality of Service.",
+        "B": "This is not the expansion of the networking acronym.",
+        "C": "This is not the expansion of the networking acronym.",
+        "D": "The full form is provided in option A."
+      },
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "Cloud_Computing__257bf011.json",
+            "sourceJson": "iimd/Cloud_Computing__257bf011.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "sourcePdfPath": null,
+            "page": 1,
+            "originalQuestionId": "IIMD-CLOUD-COMPUTING-257BF011-P001-Q0002",
+            "sourceQuestionNumber": "2",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "ocr",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF. OCR-derived text requires visual confirmation against the source page.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "verified_correct",
+        "originalAnswerOptionIds": [
+          [
+            "A"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "A"
+        ],
+        "confidence": "high",
+        "reason": "Cisco explicitly expands QoS as Quality of Service. The source page prints A as the answer and all choices were visually confirmed.",
+        "sources": [
+          {
+            "title": "QoS Frequently Asked Questions",
+            "publisher": "Cisco",
+            "url": "https://www.cisco.com/c/en/us/support/docs/quality-of-service-qos/qos-policing/22833-qos-faq.html",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "General: What is Quality of Service (QoS)?",
+            "supports": "Cisco expands QoS as Quality of Service and describes it as technologies for predictable network service."
+          }
+        ],
+        "visualAnswerEvidence": {
+          "sourceLabels": [
+            "A"
+          ],
+          "answerText": "Quality of Service"
+        }
+      },
+      "classification": {
+        "status": "needs_manual_review",
+        "confidence": "low",
+        "method": "source_subject_folder_fallback",
+        "topicMethod": "subject_fallback",
+        "originalLabels": []
+      },
+      "reviewReasons": [
+        "subject_classification_low_confidence"
+      ],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "infrastructure-operations",
+        "general-infrastructure"
+      ],
+      "contentReview": {
+        "status": "source_visual_reviewed",
+        "evidence": [
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "page": 1,
+            "notes": "The rendered page shows options A-D and prints “Answer: a) Quality of Service”.",
+            "observedAnswerLabel": "A"
+          }
+        ],
+        "edits": []
+      }
+    },
+    {
+      "id": "iimd-02178fd4f5c4c989",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "infrastructure-operations",
+      "subtopicName": "Infrastructure Operations",
+      "topicId": "general-infrastructure",
+      "topicName": "General Infrastructure",
+      "question": "In the SPEC Benchmark, non-base options are also known as ______ metrics.",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "peak"
+        },
+        {
+          "id": "B",
+          "text": "apex"
+        },
+        {
+          "id": "C",
+          "text": "top"
+        },
+        {
+          "id": "D",
+          "text": "lean"
+        }
+      ],
+      "correctOptionId": "A",
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "SPEC reports benchmark results using base and peak metrics. Base results follow stricter, more uniform compilation rules; peak results allow greater flexibility for tuning individual benchmarks. Therefore non-base metrics are called peak metrics. “Apex,” “top,” and “lean” are not SPEC metric categories.",
+      "optionExplanations": {
+        "A": "Correct: SPEC uses “peak” for its more flexible, optional metric set.",
+        "B": "Apex is not the SPEC term.",
+        "C": "Top is not the SPEC term.",
+        "D": "Lean is not the SPEC term; Jayaswal is part of the source’s book reference."
+      },
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "DCM_sample_questions__852ce253.json",
+            "sourceJson": "iimd/DCM_sample_questions__852ce253.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM sample questions.pdf",
+            "sourcePdfPath": null,
+            "page": 23,
+            "originalQuestionId": "IIMD-DCM-SAMPLE-QUESTIONS-852CE253-P023-Q0035",
+            "sourceQuestionNumber": "35",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "DCM_sample_questions__8cde3c31.json",
+            "sourceJson": "iimd/DCM_sample_questions__8cde3c31.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/Last or D-Day Material/SURPRISE/IITM PPR/DCM sample questions.pdf",
+            "sourcePdfPath": null,
+            "page": 23,
+            "originalQuestionId": "IIMD-DCM-SAMPLE-QUESTIONS-8CDE3C31-P023-Q0035",
+            "sourceQuestionNumber": "35",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "DCM_sample_questions__9b6fd8b2.json",
+            "sourceJson": "iimd/DCM_sample_questions__9b6fd8b2.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/IITM PPR/DCM sample questions.pdf",
+            "sourcePdfPath": null,
+            "page": 23,
+            "originalQuestionId": "IIMD-DCM-SAMPLE-QUESTIONS-9B6FD8B2-P023-Q0035",
+            "sourceQuestionNumber": "35",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "DCM_sample_questions__c9392455.json",
+            "sourceJson": "iimd/DCM_sample_questions__c9392455.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/Dcm/DCM sample questions.pdf",
+            "sourcePdfPath": null,
+            "page": 23,
+            "originalQuestionId": "IIMD-DCM-SAMPLE-QUESTIONS-C9392455-P023-Q0035",
+            "sourceQuestionNumber": "35",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "DCM_sample_questions_ans_highlighted___23cf130c.json",
+            "sourceJson": "iimd/DCM_sample_questions_ans_highlighted___23cf130c.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM sample questions ans highlighted .pdf",
+            "sourcePdfPath": null,
+            "page": 23,
+            "originalQuestionId": "IIMD-DCM-SAMPLE-QUESTIONS-ANS-HIG-23CF130C-P023-Q0035",
+            "sourceQuestionNumber": "35",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_highlight_annotation+pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF. A highlight annotation agrees.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "DCM_sample_questions_with_ans___0f7559bd.json",
+            "sourceJson": "iimd/DCM_sample_questions_with_ans___0f7559bd.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM sample questions with ans .pdf",
+            "sourcePdfPath": null,
+            "page": 23,
+            "originalQuestionId": "IIMD-DCM-SAMPLE-QUESTIONS-WITH-AN-0F7559BD-P023-Q0035",
+            "sourceQuestionNumber": "35",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "verified_correct",
+        "originalAnswerOptionIds": [
+          [
+            "A"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "A"
+        ],
+        "confidence": "high",
+        "reason": "The SPEC CPU documentation distinguishes mandatory base metrics from optional peak metrics, so “peak” is the correct term for the non-base performance metrics described. The PDF page visually confirms option A and shows that “Jayaswal” belongs to the book reference, not option D.",
+        "sources": [
+          {
+            "title": "Overview - SPEC CPU 2026",
+            "publisher": "Standard Performance Evaluation Corporation (SPEC)",
+            "url": "https://www.spec.org/cpu2026/Docs/overview.html",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Q16, Base and peak metrics",
+            "supports": "SPEC distinguishes base metrics from optional peak metrics; peak permits more flexible per-benchmark compilation options."
+          }
+        ],
+        "visualAnswerEvidence": {
+          "sourceLabels": [
+            "A"
+          ],
+          "answerText": "peak"
+        }
+      },
+      "classification": {
+        "status": "needs_manual_review",
+        "confidence": "low",
+        "method": "source_subject_folder_fallback",
+        "topicMethod": "subject_fallback",
+        "originalLabels": []
+      },
+      "reviewReasons": [
+        "subject_classification_low_confidence"
+      ],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "infrastructure-operations",
+        "general-infrastructure"
+      ],
+      "contentReview": {
+        "status": "source_visual_reviewed",
+        "evidence": [
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM sample questions.pdf",
+            "page": 23,
+            "notes": "The page shows option D as “lean”, answer A, and a separate book-reference line ending in Jayaswal.",
+            "observedAnswerLabel": "A"
+          }
+        ],
+        "edits": [
+          {
+            "field": "option D",
+            "before": "lean followed by the author surname Jayaswal.",
+            "after": "lean",
+            "reason": "Visual inspection shows Jayaswal is part of the book reference, not answer option D."
+          }
+        ]
+      }
+    },
+    {
+      "id": "iimd-02f35e5481013b8c",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "containers-and-virtualization",
+      "subtopicName": "Containers and Virtualization",
+      "topicId": "docker-kubernetes-vms",
+      "topicName": "Docker, Kubernetes, and Virtual Machines",
+      "question": "A virtual machine is abstracted from the physical host’s ______.",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "underlying software"
+        },
+        {
+          "id": "B",
+          "text": "overlying hardware"
+        },
+        {
+          "id": "C",
+          "text": "underlying hardware"
+        },
+        {
+          "id": "D",
+          "text": "overlying software"
+        }
+      ],
+      "correctOptionId": "C",
+      "correctOptionIds": [
+        "C"
+      ],
+      "explanation": "A virtual machine behaves like a computer but receives virtualized processor, memory, storage, and device resources through a hypervisor. The hypervisor mediates access to the physical host’s hardware, so the guest is insulated from direct hardware details while still depending on that hardware.",
+      "optionExplanations": {
+        "A": "Software runs on or manages the VM; it is not the physical resource being abstracted here.",
+        "B": "Hardware is not ‘overlying’ the virtual machine in this relationship.",
+        "C": "Correct: the hypervisor abstracts the underlying physical hardware and presents virtual resources.",
+        "D": "Software above the VM is not the physical host resource the question describes."
+      },
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "Cloud_Computing__257bf011.json",
+            "sourceJson": "iimd/Cloud_Computing__257bf011.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "sourcePdfPath": null,
+            "page": 9,
+            "originalQuestionId": "IIMD-CLOUD-COMPUTING-257BF011-P009-Q0031",
+            "sourceQuestionNumber": "32",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "ocr",
+            "answerCandidateOptionIds": [
+              "C"
+            ],
+            "answerCandidateRawLabels": [
+              "C"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF. OCR-derived text requires visual confirmation against the source page.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "verified_correct",
+        "originalAnswerOptionIds": [
+          [
+            "C"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "C"
+        ],
+        "confidence": "high",
+        "reason": "Microsoft’s Hyper-V architecture documentation says guest partitions receive virtual views of hardware resources through a hypervisor; the underlying physical hardware is the resource being abstracted. The source key C is correct.",
+        "sources": [
+          {
+            "title": "Hyper-V Architecture",
+            "publisher": "Microsoft Learn",
+            "url": "https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/architecture",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Root and child partitions; Glossary: Hypervisor and VDev",
+            "supports": "A hypervisor arbitrates underlying hardware and presents virtual devices/resources to guest partitions."
+          }
+        ]
+      },
+      "classification": {
+        "status": "needs_manual_review",
+        "confidence": "low",
+        "method": "source_subject_folder_fallback",
+        "topicMethod": "content_keyword_rule",
+        "originalLabels": []
+      },
+      "reviewReasons": [
+        "ocr_text_requires_visual_confirmation",
+        "subject_classification_low_confidence"
+      ],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "containers-and-virtualization",
+        "docker-kubernetes-vms"
+      ],
+      "contentReview": {
+        "status": "not_needed",
+        "evidence": [],
+        "edits": [
+          {
+            "field": "question",
+            "before": "The VM (virtual machine) is divorced from the.........",
+            "after": "A virtual machine is abstracted from the physical host’s ______.",
+            "reason": "The wording was clarified to describe hardware abstraction without implying that a VM is independent of the physical host."
+          }
+        ]
+      }
+    },
+    {
+      "id": "iimd-035d87d4c55f4e12",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "infrastructure-operations",
+      "subtopicName": "Infrastructure Operations",
+      "topicId": "general-infrastructure",
+      "topicName": "General Infrastructure",
+      "question": "IaaS stands for?",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "Information as a service"
+        },
+        {
+          "id": "B",
+          "text": "Infrastructure as a service"
+        },
+        {
+          "id": "C",
+          "text": "Infrastructure as a software"
+        },
+        {
+          "id": "D",
+          "text": "None"
+        }
+      ],
+      "correctOptionId": "B",
+      "correctOptionIds": [
+        "B"
+      ],
+      "explanation": "IaaS means Infrastructure as a Service. A cloud provider supplies fundamental computing resources such as processing, storage, and networking, while the customer can deploy operating systems and applications. “Information as a service” is not the expansion of this standard cloud-service acronym.",
+      "optionExplanations": {
+        "A": "This is not the standard expansion of IaaS.",
+        "B": "Correct: IaaS expands to Infrastructure as a Service.",
+        "C": "IaaS ends with Service, not Software.",
+        "D": "An established expansion exists, so “None” is incorrect."
+      },
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "Cloud_Computing__257bf011.json",
+            "sourceJson": "iimd/Cloud_Computing__257bf011.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "sourcePdfPath": null,
+            "page": 48,
+            "originalQuestionId": "IIMD-CLOUD-COMPUTING-257BF011-P048-Q0181",
+            "sourceQuestionNumber": "43",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A",
+              "B"
+            ],
+            "answerCandidateRawLabels": [
+              "A",
+              "B"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "corrected",
+        "originalAnswerOptionIds": [
+          [
+            "A",
+            "B"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "B"
+        ],
+        "confidence": "high",
+        "reason": "The source PDF visually marks only B (“Infrastructure as a service”). The extraction incorrectly recorded both A and B. NIST SP 800-145 uses IaaS for Infrastructure as a Service.",
+        "sources": [
+          {
+            "title": "NIST SP 800-145: The NIST Definition of Cloud Computing",
+            "publisher": "National Institute of Standards and Technology",
+            "url": "https://csrc.nist.gov/pubs/sp/800/145/final",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Section 2, Service Models: Infrastructure as a Service (IaaS)",
+            "supports": "NIST defines IaaS as Infrastructure as a Service and describes consumer provisioning of processing, storage, networks, and other computing resources."
+          }
+        ],
+        "visualAnswerEvidence": {
+          "sourceLabels": [
+            "B"
+          ],
+          "answerText": "IaaS stands for Infrastructure as a service"
+        }
+      },
+      "classification": {
+        "status": "needs_manual_review",
+        "confidence": "low",
+        "method": "source_subject_folder_fallback",
+        "topicMethod": "subject_fallback",
+        "originalLabels": []
+      },
+      "reviewReasons": [
+        "subject_classification_low_confidence"
+      ],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "infrastructure-operations",
+        "general-infrastructure"
+      ],
+      "contentReview": {
+        "status": "source_visual_reviewed",
+        "evidence": [
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "page": 48,
+            "notes": "The original page displays options A-D and explicitly prints answer B.",
+            "observedAnswerLabel": "B"
+          }
+        ],
+        "edits": []
+      }
+    },
+    {
+      "id": "iimd-03b023fe5ae14fa8",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "infrastructure-operations",
+      "subtopicName": "Infrastructure Operations",
+      "topicId": "general-infrastructure",
+      "topicName": "General Infrastructure",
+      "question": "Compilation for ____________ benchmarks have stricter guidelines for compilation.",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "Base"
+        },
+        {
+          "id": "B",
+          "text": "Non Base"
+        },
+        {
+          "id": "C",
+          "text": "Point"
+        },
+        {
+          "id": "D",
+          "text": "Link"
+        }
+      ],
+      "correctOptionId": "A",
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "SPEC defines base builds with a common set of compiler optimizations and stricter rules. Peak builds permit more benchmark-specific tuning, so the blank is “Base.”\n\nPeak permits more tuning choices and is not the stricter option.",
+      "optionExplanations": null,
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "DCM_MCQ_s_1___5bf769c5.json",
+            "sourceJson": "iimd/DCM_MCQ_s_1___5bf769c5.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM (MCQ_s)(1).pdf",
+            "sourcePdfPath": null,
+            "page": 4,
+            "originalQuestionId": "IIMD-DCM-MCQ-S-1-5BF769C5-P004-Q0007",
+            "sourceQuestionNumber": "7",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "DCM_MCQ_s___ce90193e.json",
+            "sourceJson": "iimd/DCM_MCQ_s___ce90193e.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM (MCQ_s).pdf",
+            "sourcePdfPath": null,
+            "page": 4,
+            "originalQuestionId": "IIMD-DCM-MCQ-S-CE90193E-P004-Q0007",
+            "sourceQuestionNumber": "7",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "DCM_MCQ_s_ans_highlighted___26200cc2.json",
+            "sourceJson": "iimd/DCM_MCQ_s_ans_highlighted___26200cc2.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM (MCQ_s) ans highlighted .pdf",
+            "sourcePdfPath": null,
+            "page": 4,
+            "originalQuestionId": "IIMD-DCM-MCQ-S-ANS-HIGHLIGHTED-26200CC2-P004-Q0007",
+            "sourceQuestionNumber": "7",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_highlight_annotation+pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF. A highlight annotation agrees.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "Data_Center_Management__074f64d6.json",
+            "sourceJson": "iimd/Data_Center_Management__074f64d6.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/Data_Center_Management.pdf",
+            "sourcePdfPath": null,
+            "page": 4,
+            "originalQuestionId": "IIMD-DATA-CENTER-MANAGEMENT-074F64D6-P004-Q0007",
+            "sourceQuestionNumber": "7",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "Data_Center_Management__1ac1644f.json",
+            "sourceJson": "iimd/Data_Center_Management__1ac1644f.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/Dcm/Data_Center_Management.pdf",
+            "sourcePdfPath": null,
+            "page": 4,
+            "originalQuestionId": "IIMD-DATA-CENTER-MANAGEMENT-1AC1644F-P004-Q0007",
+            "sourceQuestionNumber": "7",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "Data_Center_Management__982c0e67.json",
+            "sourceJson": "iimd/Data_Center_Management__982c0e67.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/Last or D-Day Material/SURPRISE/IITM PPR/Data_Center_Management.pdf",
+            "sourcePdfPath": null,
+            "page": 4,
+            "originalQuestionId": "IIMD-DATA-CENTER-MANAGEMENT-982C0E67-P004-Q0007",
+            "sourceQuestionNumber": "7",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "Data_Center_Management__9b6bbbe7.json",
+            "sourceJson": "iimd/Data_Center_Management__9b6bbbe7.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/IITM PPR/Data_Center_Management.pdf",
+            "sourcePdfPath": null,
+            "page": 4,
+            "originalQuestionId": "IIMD-DATA-CENTER-MANAGEMENT-9B6BBBE7-P004-Q0007",
+            "sourceQuestionNumber": "7",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "verified_correct",
+        "originalAnswerOptionIds": [
+          [
+            "A"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "A"
+        ],
+        "confidence": "high",
+        "reason": "SPEC CPU2006 guidance says base metrics have stricter compilation guidelines than peak metrics. Source key marks A.",
+        "sources": [
+          {
+            "title": "Readme 1st CPU2006",
+            "publisher": "Standard Performance Evaluation Corporation (SPEC)",
+            "url": "https://spec.org/cpu2006/Docs/readme1st.html",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Q14: Base vs. peak metrics",
+            "supports": "SPEC says base metrics have stricter compilation guidelines than peak metrics."
+          }
+        ],
+        "visualAnswerEvidence": {
+          "sourceLabels": [
+            "A"
+          ],
+          "answerText": "Base"
+        }
+      },
+      "classification": {
+        "status": "needs_manual_review",
+        "confidence": "low",
+        "method": "source_subject_folder_fallback",
+        "topicMethod": "subject_fallback",
+        "originalLabels": []
+      },
+      "reviewReasons": [
+        "subject_classification_low_confidence"
+      ],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "infrastructure-operations",
+        "general-infrastructure"
+      ],
+      "contentReview": {
+        "status": "source_visual_reviewed",
+        "evidence": [
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM (MCQ_s)(1).pdf",
+            "page": 4,
+            "observedAnswerLabel": null,
+            "notes": "Rendered page shows question and options; answer key continues on p. 5."
+          },
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM (MCQ_s)(1).pdf",
+            "page": 5,
+            "observedAnswerLabel": "A",
+            "notes": "Rendered continuation shows answer A."
+          }
+        ],
+        "edits": [
+          {
+            "field": "options",
+            "before": "Option D included trailing name “Jayaswal”.",
+            "after": "Restored option D to “Link”.",
+            "reason": "Rendered page shows the name is not part of the choice."
+          }
+        ]
+      }
+    },
+    {
+      "id": "iimd-04f5f8df71a9a2f6",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "cloud-computing",
+      "subtopicName": "Cloud Computing",
+      "topicId": "aws-cloud-services",
+      "topicName": "AWS and Cloud Services",
+      "question": "Which acronym collectively refers to the SaaS, PaaS, and IaaS cloud service models?",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "CPI"
+        },
+        {
+          "id": "B",
+          "text": "SIP"
+        },
+        {
+          "id": "C",
+          "text": "SPI"
+        },
+        {
+          "id": "D",
+          "text": "All of the mentioned"
+        }
+      ],
+      "correctOptionId": "C",
+      "correctOptionIds": [
+        "C"
+      ],
+      "explanation": "SPI groups Software as a Service (SaaS), Platform as a Service (PaaS), and Infrastructure as a Service (IaaS). The source explanation expands those three models but its key marks “CPI,” so the key conflicts with the explanation; option C is correct.\n\n“CPI” and “SIP” do not name this three-model grouping, so “All” is also false.",
+      "optionExplanations": null,
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "Cloud_Computing__257bf011.json",
+            "sourceJson": "iimd/Cloud_Computing__257bf011.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "sourcePdfPath": null,
+            "page": 81,
+            "originalQuestionId": "IIMD-CLOUD-COMPUTING-257BF011-P081-Q0314",
+            "sourceQuestionNumber": "7",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "corrected",
+        "originalAnswerOptionIds": [
+          [
+            "A"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "C"
+        ],
+        "confidence": "high",
+        "reason": "The key marks A (“CPI”), while the source’s own explanation expands SaaS, PaaS, and IaaS and identifies SPI. Independent references confirm that grouping. Corrected A to C.",
+        "sources": [
+          {
+            "title": "Cloud Services Explained",
+            "publisher": "Cloud Security Alliance",
+            "url": "https://cloudsecurityalliance.org/blog/2022/07/05/cloud-services-explained",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Service models",
+            "supports": "CSA refers to SaaS, PaaS, and IaaS collectively as the SPI tiers."
+          },
+          {
+            "title": "The NIST Definition of Cloud Computing (SP 800-145)",
+            "publisher": "National Institute of Standards and Technology",
+            "url": "https://csrc.nist.gov/pubs/sp/800/145/final",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Cloud service models",
+            "supports": "NIST defines SaaS, PaaS, and IaaS as the three cloud service models grouped by the SPI shorthand."
+          }
+        ],
+        "visualAnswerEvidence": {
+          "sourceLabels": [
+            "A"
+          ],
+          "answerText": "CPI; following explanation identifies SPI"
+        }
+      },
+      "classification": {
+        "status": "assigned",
+        "confidence": "medium",
+        "method": "content_and_source_subject_folder",
+        "topicMethod": "content_keyword_rule",
+        "originalLabels": []
+      },
+      "reviewReasons": [],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "cloud-computing",
+        "aws-cloud-services"
+      ],
+      "contentReview": {
+        "status": "source_visual_reviewed",
+        "evidence": [
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "page": 81,
+            "observedAnswerLabel": "A",
+            "notes": "Rendered page shows printed A (CPI), while its explanation spells out SaaS, PaaS, and IaaS and says SPI."
+          }
+        ],
+        "edits": [
+          {
+            "field": "question",
+            "before": "Which one ... involving the three different service models together?",
+            "after": "Which acronym collectively refers to the SaaS, PaaS, and IaaS cloud service models?",
+            "reason": "Clarified the intended grouping from the page explanation."
+          },
+          {
+            "field": "answer",
+            "before": "A (CPI)",
+            "after": "C (SPI)",
+            "reason": "The source explanation and independent references establish SPI."
+          },
+          {
+            "field": "options",
+            "before": "Option D included explanatory text.",
+            "after": "Restored option D to “All of the mentioned”.",
+            "reason": "Explanation is separate from the answer option."
+          }
+        ]
+      }
+    },
+    {
+      "id": "iimd-05bb94c015e0a0a3",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "data-center-infrastructure",
+      "subtopicName": "Data Center Infrastructure",
+      "topicId": "data-center-design-operations",
+      "topicName": "Data Center Design and Operations",
+      "question": "A data center wants the virtualization layer to run directly on physical hardware without first loading a general-purpose host operating system. Which hypervisor type fits?",
+      "questionType": "comparison",
+      "options": [
+        {
+          "id": "A",
+          "text": "Type 1 bare-metal"
+        },
+        {
+          "id": "B",
+          "text": "A guest application"
+        },
+        {
+          "id": "C",
+          "text": "Type 2 hosted"
+        },
+        {
+          "id": "D",
+          "text": "A virtual switch"
+        }
+      ],
+      "correctOptionId": "A",
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "A Type 1 (bare-metal) hypervisor runs at the hardware virtualization layer and manages virtual machines without first running as an ordinary application on a general-purpose host OS. A Type 2 hypervisor is hosted by an operating system.",
+      "optionExplanations": null,
+      "explanationStatus": "complete",
+      "difficulty": "intermediate",
+      "source": {
+        "files": [
+          {
+            "filename": "windows_question_bank.json",
+            "sourceJson": "public/question-banks/windows_question_bank.json",
+            "sourcePdf": "amitCOSA.pdf",
+            "sourcePdfPath": "/home/mayur/Documents/temp/Final/amitCOSA.pdf",
+            "page": 186,
+            "originalQuestionId": "WIN-000038",
+            "sourceQuestionNumber": null,
+            "sourceSubjectFolder": "cosa",
+            "sourceTextMethod": "existing_website_bank",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "existing_curated_bank",
+            "answerEvidenceSummary": "",
+            "sourceDraftExplanation": "The source distinguishes Type 1 hypervisors as running directly on hardware from Type 2 hypervisors hosted by an operating system.",
+            "sourceDraftOptionExplanations": {
+              "A": "Correct: The source distinguishes Type 1 hypervisors as running directly on hardware from Type 2 hypervisors hosted by an operating system.",
+              "B": "Incorrect: Type 2 uses a host operating system.",
+              "C": "Incorrect: Type 1 runs directly on the physical host hardware.",
+              "D": "Incorrect: An application is not a hypervisor type."
+            },
+            "legacyTopic": "Virtualization",
+            "legacySubtopic": "Hypervisors and virtual machines",
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "comparison"
+          }
+        ]
+      },
+      "verification": {
+        "status": "verified_correct",
+        "originalAnswerOptionIds": [
+          [
+            "A"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "A"
+        ],
+        "confidence": "high",
+        "reason": "Microsoft identifies Hyper-V as a Type 1 hypervisor that runs directly on computing hardware, matching option A.",
+        "sources": [
+          {
+            "title": "Hyper-V virtualization in Windows Server and Windows",
+            "publisher": "Microsoft Learn",
+            "url": "https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-overview",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Overview",
+            "supports": "Microsoft identifies Hyper-V as a Type 1 hypervisor that runs directly on computing hardware."
+          }
+        ]
+      },
+      "classification": {
+        "status": "assigned",
+        "confidence": "high",
+        "method": "question_content_cues",
+        "topicMethod": "content_keyword_rule",
+        "originalLabels": [
+          "Virtualization / Hypervisors and virtual machines"
+        ]
+      },
+      "reviewReasons": [],
+      "sourceDraftExplanations": [
+        "The source distinguishes Type 1 hypervisors as running directly on hardware from Type 2 hypervisors hosted by an operating system."
+      ],
+      "tags": [
+        "iimd",
+        "data-center-infrastructure",
+        "data-center-design-operations"
+      ],
+      "contentReview": {
+        "status": "not_needed",
+        "evidence": [],
+        "edits": []
+      }
+    },
+    {
+      "id": "iimd-0ceef5850963c56a",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "infrastructure-operations",
+      "subtopicName": "Infrastructure Operations",
+      "topicId": "general-infrastructure",
+      "topicName": "General Infrastructure",
+      "question": "In the SPEC Benchmark, non-base options are also known as ______ metrics.",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "peak"
+        },
+        {
+          "id": "B",
+          "text": "apex"
+        },
+        {
+          "id": "C",
+          "text": "top"
+        },
+        {
+          "id": "D",
+          "text": "lean"
+        }
+      ],
+      "correctOptionId": "A",
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "In SPEC CPU2006 terminology, “peak” is the optional, more aggressively tuned metric, while “base” follows stricter common compilation rules. Thus non-base options are called peak metrics.",
+      "optionExplanations": null,
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "DCM_MCQ___0979276e.json",
+            "sourceJson": "iimd/DCM_MCQ___0979276e.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM(MCQ).pdf",
+            "sourcePdfPath": null,
+            "page": 3,
+            "originalQuestionId": "IIMD-DCM-MCQ-0979276E-P003-Q0010",
+            "sourceQuestionNumber": "10",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [],
+            "answerCandidateRawLabels": [],
+            "answerEvidenceOrigin": "none",
+            "answerEvidenceSummary": "No explicit answer key or option-intersecting PDF highlight annotation was detected.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "DCM_MCQ_s_1___5bf769c5.json",
+            "sourceJson": "iimd/DCM_MCQ_s_1___5bf769c5.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM (MCQ_s)(1).pdf",
+            "sourcePdfPath": null,
+            "page": 21,
+            "originalQuestionId": "IIMD-DCM-MCQ-S-1-5BF769C5-P021-Q0035",
+            "sourceQuestionNumber": "35",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "DCM_MCQ_s___ce90193e.json",
+            "sourceJson": "iimd/DCM_MCQ_s___ce90193e.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM (MCQ_s).pdf",
+            "sourcePdfPath": null,
+            "page": 21,
+            "originalQuestionId": "IIMD-DCM-MCQ-S-CE90193E-P021-Q0035",
+            "sourceQuestionNumber": "35",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "DCM_MCQ_s_ans_highlighted___26200cc2.json",
+            "sourceJson": "iimd/DCM_MCQ_s_ans_highlighted___26200cc2.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM (MCQ_s) ans highlighted .pdf",
+            "sourcePdfPath": null,
+            "page": 21,
+            "originalQuestionId": "IIMD-DCM-MCQ-S-ANS-HIGHLIGHTED-26200CC2-P021-Q0035",
+            "sourceQuestionNumber": "35",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_highlight_annotation+pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF. A highlight annotation agrees.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "Data_Center_Management__074f64d6.json",
+            "sourceJson": "iimd/Data_Center_Management__074f64d6.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/Data_Center_Management.pdf",
+            "sourcePdfPath": null,
+            "page": 21,
+            "originalQuestionId": "IIMD-DATA-CENTER-MANAGEMENT-074F64D6-P021-Q0035",
+            "sourceQuestionNumber": "35",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "Data_Center_Management__1ac1644f.json",
+            "sourceJson": "iimd/Data_Center_Management__1ac1644f.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/Dcm/Data_Center_Management.pdf",
+            "sourcePdfPath": null,
+            "page": 21,
+            "originalQuestionId": "IIMD-DATA-CENTER-MANAGEMENT-1AC1644F-P021-Q0035",
+            "sourceQuestionNumber": "35",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "Data_Center_Management__982c0e67.json",
+            "sourceJson": "iimd/Data_Center_Management__982c0e67.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/Last or D-Day Material/SURPRISE/IITM PPR/Data_Center_Management.pdf",
+            "sourcePdfPath": null,
+            "page": 21,
+            "originalQuestionId": "IIMD-DATA-CENTER-MANAGEMENT-982C0E67-P021-Q0035",
+            "sourceQuestionNumber": "35",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "Data_Center_Management__9b6bbbe7.json",
+            "sourceJson": "iimd/Data_Center_Management__9b6bbbe7.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/IITM PPR/Data_Center_Management.pdf",
+            "sourcePdfPath": null,
+            "page": 21,
+            "originalQuestionId": "IIMD-DATA-CENTER-MANAGEMENT-9B6BBBE7-P021-Q0035",
+            "sourceQuestionNumber": "35",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "verified_correct",
+        "originalAnswerOptionIds": [
+          [
+            "A"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "A"
+        ],
+        "confidence": "high",
+        "reason": "SPEC’s CPU2006 documentation calls non-base metrics “peak” metrics and contrasts their looser tuning rules with base metrics.",
+        "sources": [
+          {
+            "title": "Readme 1st CPU2006",
+            "publisher": "SPEC",
+            "url": "https://spec.org/cpu2006/Docs/readme1st.html",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Q14: Base and peak metrics",
+            "supports": "SPEC identifies peak metrics as optional, less strict compilation/tuning metrics; these are the non-base metrics."
+          }
+        ]
+      },
+      "classification": {
+        "status": "needs_manual_review",
+        "confidence": "low",
+        "method": "source_subject_folder_fallback",
+        "topicMethod": "subject_fallback",
+        "originalLabels": []
+      },
+      "reviewReasons": [
+        "subject_classification_low_confidence"
+      ],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "infrastructure-operations",
+        "general-infrastructure"
+      ],
+      "contentReview": {
+        "status": "not_needed",
+        "evidence": [],
+        "edits": []
+      }
+    },
+    {
+      "id": "iimd-0d523ddb1332d20c",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "cloud-computing",
+      "subtopicName": "Cloud Computing",
+      "topicId": "aws-cloud-services",
+      "topicName": "AWS and Cloud Services",
+      "question": "State whether true or false: Is google docs a type of cloud computing?.",
+      "questionType": "true_false",
+      "options": [
+        {
+          "id": "A",
+          "text": "True"
+        },
+        {
+          "id": "B",
+          "text": "False"
+        }
+      ],
+      "correctOptionId": "A",
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Google Docs is a cloud-hosted application accessed over the web, and Google lists Google Workspace as an example of SaaS. Users work with the finished application while Google operates the service. Therefore the statement is true (A).",
+      "optionExplanations": null,
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "Cloud_Computing__257bf011.json",
+            "sourceJson": "iimd/Cloud_Computing__257bf011.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "sourcePdfPath": null,
+            "page": 38,
+            "originalQuestionId": "IIMD-CLOUD-COMPUTING-257BF011-P038-Q0146",
+            "sourceQuestionNumber": "7",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "true_false"
+          }
+        ]
+      },
+      "verification": {
+        "status": "verified_correct",
+        "originalAnswerOptionIds": [
+          [
+            "A"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "A"
+        ],
+        "confidence": "high",
+        "reason": "Google Docs is an online document application in Workspace, and Google identifies Workspace as a SaaS example.",
+        "sources": [
+          {
+            "title": "Google Docs: Online Document Editor",
+            "publisher": "Google Workspace",
+            "url": "https://www.about.google/intl/en/docs/about/",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Google Docs is part of Google Workspace",
+            "supports": "Google identifies Docs as a web-based document application included in Google Workspace."
+          },
+          {
+            "title": "PaaS vs IaaS vs SaaS: What’s the difference?",
+            "publisher": "Google Cloud",
+            "url": "https://cloud.google.com/learn/paas-vs-iaas-vs-saas",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "SaaS definition and examples",
+            "supports": "Google Cloud explains SaaS as a ready-to-use cloud application managed by the provider and gives Google Workspace as an example."
+          }
+        ]
+      },
+      "classification": {
+        "status": "assigned",
+        "confidence": "medium",
+        "method": "content_and_source_subject_folder",
+        "topicMethod": "content_keyword_rule",
+        "originalLabels": []
+      },
+      "reviewReasons": [],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "cloud-computing",
+        "aws-cloud-services"
+      ],
+      "contentReview": {
+        "status": "not_needed",
+        "evidence": [],
+        "edits": []
+      }
+    },
+    {
+      "id": "iimd-0e4b32e51171a6e6",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "infrastructure-operations",
+      "subtopicName": "Infrastructure Operations",
+      "topicId": "general-infrastructure",
+      "topicName": "General Infrastructure",
+      "question": "Which type of network cable transmits digital signals in the form of pulses of light?",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "Coaxial"
+        },
+        {
+          "id": "B",
+          "text": "UTP"
+        },
+        {
+          "id": "C",
+          "text": "STP"
+        },
+        {
+          "id": "D",
+          "text": "Fiber Optic"
+        }
+      ],
+      "correctOptionId": "D",
+      "correctOptionIds": [
+        "D"
+      ],
+      "explanation": "Fiber-optic cable carries information as light pulses in an optical fiber. Coaxial, UTP, and STP carry electrical signals through copper conductors, so they are not the answer.",
+      "optionExplanations": null,
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "DCM_sample_questions__852ce253.json",
+            "sourceJson": "iimd/DCM_sample_questions__852ce253.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM sample questions.pdf",
+            "sourcePdfPath": null,
+            "page": 8,
+            "originalQuestionId": "IIMD-DCM-SAMPLE-QUESTIONS-852CE253-P008-Q0012",
+            "sourceQuestionNumber": "12",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "D"
+            ],
+            "answerCandidateRawLabels": [
+              "D"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "DCM_sample_questions__8cde3c31.json",
+            "sourceJson": "iimd/DCM_sample_questions__8cde3c31.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/Last or D-Day Material/SURPRISE/IITM PPR/DCM sample questions.pdf",
+            "sourcePdfPath": null,
+            "page": 8,
+            "originalQuestionId": "IIMD-DCM-SAMPLE-QUESTIONS-8CDE3C31-P008-Q0012",
+            "sourceQuestionNumber": "12",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "D"
+            ],
+            "answerCandidateRawLabels": [
+              "D"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "DCM_sample_questions__9b6fd8b2.json",
+            "sourceJson": "iimd/DCM_sample_questions__9b6fd8b2.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/IITM PPR/DCM sample questions.pdf",
+            "sourcePdfPath": null,
+            "page": 8,
+            "originalQuestionId": "IIMD-DCM-SAMPLE-QUESTIONS-9B6FD8B2-P008-Q0012",
+            "sourceQuestionNumber": "12",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "D"
+            ],
+            "answerCandidateRawLabels": [
+              "D"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "DCM_sample_questions__c9392455.json",
+            "sourceJson": "iimd/DCM_sample_questions__c9392455.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/Dcm/DCM sample questions.pdf",
+            "sourcePdfPath": null,
+            "page": 8,
+            "originalQuestionId": "IIMD-DCM-SAMPLE-QUESTIONS-C9392455-P008-Q0012",
+            "sourceQuestionNumber": "12",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "D"
+            ],
+            "answerCandidateRawLabels": [
+              "D"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "DCM_sample_questions_ans_highlighted___23cf130c.json",
+            "sourceJson": "iimd/DCM_sample_questions_ans_highlighted___23cf130c.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM sample questions ans highlighted .pdf",
+            "sourcePdfPath": null,
+            "page": 8,
+            "originalQuestionId": "IIMD-DCM-SAMPLE-QUESTIONS-ANS-HIG-23CF130C-P008-Q0012",
+            "sourceQuestionNumber": "12",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "D"
+            ],
+            "answerCandidateRawLabels": [
+              "D"
+            ],
+            "answerEvidenceOrigin": "pdf_highlight_annotation+pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF. A highlight annotation agrees.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          },
+          {
+            "filename": "DCM_sample_questions_with_ans___0f7559bd.json",
+            "sourceJson": "iimd/DCM_sample_questions_with_ans___0f7559bd.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM sample questions with ans .pdf",
+            "sourcePdfPath": null,
+            "page": 8,
+            "originalQuestionId": "IIMD-DCM-SAMPLE-QUESTIONS-WITH-AN-0F7559BD-P008-Q0012",
+            "sourceQuestionNumber": "12",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "D"
+            ],
+            "answerCandidateRawLabels": [
+              "D"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "verified_correct",
+        "originalAnswerOptionIds": [
+          [
+            "D"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "D"
+        ],
+        "confidence": "high",
+        "reason": "Cisco’s physical infrastructure guide explains that fiber transceivers encode data as light pulses sent through glass fiber.",
+        "sources": [
+          {
+            "title": "Physical infrastructure application guide",
+            "publisher": "Cisco",
+            "url": "https://www.cisco.com/c/en/us/td/docs/sanity/suman/CPwE-Physical-Infrastructure_Feb2023.html",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Optical Fiber Overview",
+            "supports": "The guide says a transceiver sends data as light pulses through glass fiber, where the receiving transceiver converts them back to electrical signals."
+          }
+        ]
+      },
+      "classification": {
+        "status": "needs_manual_review",
+        "confidence": "low",
+        "method": "source_subject_folder_fallback",
+        "topicMethod": "subject_fallback",
+        "originalLabels": []
+      },
+      "reviewReasons": [
+        "subject_classification_low_confidence"
+      ],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "infrastructure-operations",
+        "general-infrastructure"
+      ],
+      "contentReview": {
+        "status": "not_needed",
+        "evidence": [],
+        "edits": []
+      }
+    },
+    {
+      "id": "iimd-0e5b4d98dc1eb31b",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "containers-and-virtualization",
+      "subtopicName": "Containers and Virtualization",
+      "topicId": "docker-kubernetes-vms",
+      "topicName": "Docker, Kubernetes, and Virtual Machines",
+      "question": "Which command-line tool manages KVM-based VMs?",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "top"
+        },
+        {
+          "id": "B",
+          "text": "virsh"
+        },
+        {
+          "id": "C",
+          "text": "nano"
+        },
+        {
+          "id": "D",
+          "text": "docker"
+        }
+      ],
+      "correctOptionId": "B",
+      "correctOptionIds": [
+        "B"
+      ],
+      "explanation": "`virsh` is the libvirt command-line client for working with virtual machine domains. It can list, start, pause, and shut down VMs, including KVM guests. `top` monitors processes, `nano` edits text, and Docker manages containers.",
+      "optionExplanations": null,
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "mcqs__41bfdb51.json",
+            "sourceJson": "cosa/mcqs__41bfdb51.json",
+            "sourcePdf": "Concepts of Operating System and Administration/COSA/Linux/session 20/mcqs.pdf",
+            "sourcePdfPath": null,
+            "page": 2,
+            "originalQuestionId": "COSA-MCQS-41BFDB51-P002-Q0004",
+            "sourceQuestionNumber": "4",
+            "sourceSubjectFolder": "cosa",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "B"
+            ],
+            "answerCandidateRawLabels": [
+              "B"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "verified_correct",
+        "originalAnswerOptionIds": [
+          [
+            "B"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "B"
+        ],
+        "confidence": "high",
+        "reason": "The libvirt manual calls `virsh` its main command-line interface for managing guest domains and lists KVM as a supported backend.",
+        "sources": [
+          {
+            "title": "virsh manual page",
+            "publisher": "libvirt",
+            "url": "https://www.libvirt.org/manpages/virsh.html",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "DESCRIPTION",
+            "supports": "virsh is the main command-line interface for managing guest domains and supports KVM among its virtualization backends."
+          }
+        ]
+      },
+      "classification": {
+        "status": "assigned",
+        "confidence": "high",
+        "method": "question_content_cues",
+        "topicMethod": "content_keyword_rule",
+        "originalLabels": []
+      },
+      "reviewReasons": [],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "containers-and-virtualization",
+        "docker-kubernetes-vms"
+      ],
+      "contentReview": {
+        "status": "not_needed",
+        "evidence": [],
+        "edits": []
+      }
+    },
+    {
+      "id": "iimd-1326dac1f4161d94",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "infrastructure-operations",
+      "subtopicName": "Infrastructure Operations",
+      "topicId": "general-infrastructure",
+      "topicName": "General Infrastructure",
+      "question": "In which year did Google announce Compute Engine and make it available in limited preview?",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "2012"
+        },
+        {
+          "id": "B",
+          "text": "2009"
+        },
+        {
+          "id": "C",
+          "text": "2015"
+        },
+        {
+          "id": "D",
+          "text": "2006"
+        }
+      ],
+      "correctOptionId": "A",
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Google announced Compute Engine on June 28, 2012 and initially offered it as a limited preview, so the answer is 2012. Google’s release archive distinguishes that initial preview from general availability in December 2013.",
+      "optionExplanations": null,
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "Cloud_Computing__257bf011.json",
+            "sourceJson": "iimd/Cloud_Computing__257bf011.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "sourcePdfPath": null,
+            "page": 40,
+            "originalQuestionId": "IIMD-CLOUD-COMPUTING-257BF011-P040-Q0153",
+            "sourceQuestionNumber": "15",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "A"
+            ],
+            "answerCandidateRawLabels": [
+              "A"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "verified_correct",
+        "originalAnswerOptionIds": [
+          [
+            "A"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "A"
+        ],
+        "confidence": "high",
+        "reason": "Google announced Compute Engine in June 2012 and made it available in limited preview that year; it reached general availability in 2013. The stem now specifies initial announcement/preview.",
+        "sources": [
+          {
+            "title": "Google Compute Engine launches, expanding Google’s cloud offerings",
+            "publisher": "Google Cloud Blog",
+            "url": "https://cloudplatform.googleblog.com/2012/06/google-compute-engine-launches.html",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Announcement dated June 28, 2012",
+            "supports": "Google announced Compute Engine and introduced it in limited preview on June 28, 2012."
+          },
+          {
+            "title": "Compute Engine release notes archive",
+            "publisher": "Google Cloud Documentation",
+            "url": "https://docs.cloud.google.com/compute/docs/release-notes-archive",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "June 2012 and December 2013",
+            "supports": "Google distinguishes the June 2012 limited preview from the December 2013 general availability release."
+          }
+        ]
+      },
+      "classification": {
+        "status": "needs_manual_review",
+        "confidence": "low",
+        "method": "source_subject_folder_fallback",
+        "topicMethod": "subject_fallback",
+        "originalLabels": []
+      },
+      "reviewReasons": [
+        "subject_classification_low_confidence"
+      ],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "infrastructure-operations",
+        "general-infrastructure"
+      ],
+      "contentReview": {
+        "status": "not_needed",
+        "evidence": [],
+        "edits": [
+          {
+            "field": "question",
+            "before": "In which year was Google Compute Engine released?",
+            "after": "In which year did Google announce Compute Engine and make it available in limited preview?",
+            "reason": "The source answer refers to the 2012 announcement/preview; general availability followed in 2013."
+          }
+        ]
+      }
+    },
+    {
+      "id": "iimd-17f556977a4920eb",
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "cloud-computing",
+      "subtopicName": "Cloud Computing",
+      "topicId": "aws-cloud-services",
+      "topicName": "AWS and Cloud Services",
+      "question": "What does the term “elasticity” in cloud computing refer to?",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ability to scale down"
+        },
+        {
+          "id": "B",
+          "text": "Parallel"
+        },
+        {
+          "id": "C",
+          "text": "Ability to scale up"
+        },
+        {
+          "id": "D",
+          "text": "Both a and c are correct"
+        }
+      ],
+      "correctOptionId": "D",
+      "correctOptionIds": [
+        "D"
+      ],
+      "explanation": "Cloud elasticity is the ability to provision more resources when demand rises and release them when demand falls. The question’s “up” and “down” wording is a simplified description of that two-way adjustment.",
+      "optionExplanations": null,
+      "explanationStatus": "complete",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "Cloud_Computing__257bf011.json",
+            "sourceJson": "iimd/Cloud_Computing__257bf011.json",
+            "sourcePdf": "IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+            "sourcePdfPath": null,
+            "page": 38,
+            "originalQuestionId": "IIMD-CLOUD-COMPUTING-257BF011-P038-Q0147",
+            "sourceQuestionNumber": "8",
+            "sourceSubjectFolder": "it-infrastructure-devops",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [
+              "D"
+            ],
+            "answerCandidateRawLabels": [
+              "D"
+            ],
+            "answerEvidenceOrigin": "pdf_text_answer_key",
+            "answerEvidenceSummary": "Explicit answer marker in the source PDF.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": false,
+            "malformedOptions": false,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "verified_correct",
+        "originalAnswerOptionIds": [
+          [
+            "D"
+          ]
+        ],
+        "finalAnswerOptionIds": [
+          "D"
+        ],
+        "confidence": "high",
+        "reason": "NIST defines rapid elasticity as capacity scaling outward and inward with demand, which corresponds to both scaling up and down in the choices.",
+        "sources": [
+          {
+            "title": "Rapid elasticity — Glossary",
+            "publisher": "National Institute of Standards and Technology",
+            "url": "https://csrc.nist.gov/glossary/term/rapid_elasticity",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Definition sourced from NIST SP 800-145",
+            "supports": "Rapid elasticity is provisioning and releasing capacity to scale outward and inward with demand."
+          }
+        ]
+      },
+      "classification": {
+        "status": "assigned",
+        "confidence": "medium",
+        "method": "content_and_source_subject_folder",
+        "topicMethod": "content_keyword_rule",
+        "originalLabels": []
+      },
+      "reviewReasons": [],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "iimd",
+        "cloud-computing",
+        "aws-cloud-services"
+      ],
+      "contentReview": {
+        "status": "not_needed",
+        "evidence": [],
+        "edits": []
+      }
+    }
+  ]
+}

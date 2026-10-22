@@ -16,7 +16,7 @@ import {
 import { getModuleContentManifest, ModuleContentManifest } from '@/data/module-content';
 import { useExamStage } from '@/context/ExamStageContext';
 import { questionRepository } from '@/services/storage/indexeddb.repository';
-import { Question, Subject } from '@/types';
+import { Question, Subject, TopicItem } from '@/types';
 import { APP_CONFIG } from '@/config/app.config';
 
 /** Map icon names to Lucide components */
@@ -63,6 +63,7 @@ export const ModuleWorkspacePage: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<WorkspaceTab>('overview');
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [moduleTopics, setModuleTopics] = useState<TopicItem[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [copiedCommand, setCopiedCommand] = useState<string | null>(null);
   const [attemptStats, setAttemptStats] = useState<{
@@ -96,9 +97,10 @@ export const ModuleWorkspacePage: React.FC = () => {
     async function loadModuleData(mod: ModuleDefinition) {
       try {
         setIsLoading(true);
-        const [allQuestions, allAttempts] = await Promise.all([
+        const [allQuestions, allAttempts, allTopics] = await Promise.all([
           questionRepository.getAllQuestions(),
           questionRepository.getAllAttempts(),
+          questionRepository.getAllTopics(),
         ]);
 
         if (!isMounted) return;
@@ -108,6 +110,12 @@ export const ModuleWorkspacePage: React.FC = () => {
           mod.subjectMapping.includes(q.subject)
         );
         setQuestions(moduleQuestions);
+
+        // Filter topics belonging to this module
+        const matchingTopics = allTopics.filter((t) =>
+          mod.subjectMapping.includes(t.subject)
+        );
+        setModuleTopics(matchingTopics);
 
         // Calculate attempt metrics for this module
         const moduleQuestionIds = new Set(moduleQuestions.map((q) => q.question_id));
@@ -899,7 +907,7 @@ export const ModuleWorkspacePage: React.FC = () => {
                 <h2 className="text-lg font-bold text-nexus-text">Curriculum Topic Explorer</h2>
               </div>
               <p className="text-xs sm:text-sm text-nexus-text-secondary">
-                Navigate the {module.topicCount} syllabus topics across Linux, Windows Server, and Cross-Platform domains.
+                Navigate the {module.topicCount} syllabus topics and subtopics for {module.name}.
               </p>
             </div>
             <Button
@@ -911,46 +919,69 @@ export const ModuleWorkspacePage: React.FC = () => {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-            <div className="p-4 rounded-lg bg-nexus-elevated border border-nexus-border space-y-2">
-              <div className="flex items-center gap-2 font-semibold text-xs text-nexus-text">
-                <Terminal className="w-4 h-4 text-indigo-400" />
-                <span>Linux & OS Topics</span>
-              </div>
-              <p className="text-xs text-nexus-text-muted leading-relaxed">
-                Kernel architecture, runlevels, systemd targets, LVM volume groups, ext4/XFS filesystems, and process priorities.
-              </p>
-              <div className="text-[11px] font-mono text-indigo-400 pt-1">
-                15 Subtopics Mapped
-              </div>
+          {moduleTopics.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
+              {moduleTopics.map((top) => {
+                const topicQuestions = questions.filter(
+                  (q) => q.topic_id === top.topic_id || q.topic === top.topic
+                );
+                return (
+                  <div
+                    key={top.topic_id}
+                    className="p-4 rounded-lg bg-nexus-elevated border border-nexus-border space-y-2 flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="font-semibold text-xs text-nexus-text line-clamp-1" title={top.topic}>
+                          {top.topic}
+                        </span>
+                        <span className="text-[10px] font-mono text-nexus-cyan flex-shrink-0">
+                          {top.subtopics.length} Subtopics
+                        </span>
+                      </div>
+                      <div className="mt-2.5 space-y-1">
+                        {top.subtopics.slice(0, 3).map((st) => (
+                          <div
+                            key={st.subtopic_id}
+                            className="text-[11px] text-nexus-text-muted truncate flex items-center gap-1.5"
+                            title={st.subtopic}
+                          >
+                            <span className="w-1 h-1 rounded-full bg-nexus-accent flex-shrink-0" />
+                            <span className="truncate">{st.subtopic}</span>
+                          </div>
+                        ))}
+                        {top.subtopics.length > 3 && (
+                          <div className="text-[10px] text-nexus-text-secondary pl-2.5">
+                            +{top.subtopics.length - 3} more subtopics
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="pt-2 border-t border-nexus-border/40 flex items-center justify-between">
+                      <span className="text-[10px] font-mono text-nexus-text-muted">
+                        {topicQuestions.length} MCQs
+                      </span>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() =>
+                          navigate(`/${targetStage}/${module.slug}/practice`, {
+                            state: { subject: module.subjectMapping[0], topics: [top.topic] },
+                          })
+                        }
+                      >
+                        Practice →
+                      </Button>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-
-            <div className="p-4 rounded-lg bg-nexus-elevated border border-nexus-border space-y-2">
-              <div className="flex items-center gap-2 font-semibold text-xs text-nexus-text">
-                <Server className="w-4 h-4 text-cyan-400" />
-                <span>Windows Server Topics</span>
-              </div>
-              <p className="text-xs text-nexus-text-muted leading-relaxed">
-                Active Directory domains, PDC/RID/Infrastructure FSMO roles, GPO processing order, PowerShell DSC, and WSUS.
-              </p>
-              <div className="text-[11px] font-mono text-cyan-400 pt-1">
-                15 Subtopics Mapped
-              </div>
+          ) : (
+            <div className="py-8 text-center text-nexus-text-muted text-xs">
+              No topics currently mapped for this module.
             </div>
-
-            <div className="p-4 rounded-lg bg-nexus-elevated border border-nexus-border space-y-2">
-              <div className="flex items-center gap-2 font-semibold text-xs text-nexus-text">
-                <Layers className="w-4 h-4 text-emerald-400" />
-                <span>Cross-Platform Topics</span>
-              </div>
-              <p className="text-xs text-nexus-text-muted leading-relaxed">
-                SSSD configuration, Winbind, Kerberos ticketing, CIFS/NFS interoperability, and heterogeneous networking.
-              </p>
-              <div className="text-[11px] font-mono text-emerald-400 pt-1">
-                10 Subtopics Mapped
-              </div>
-            </div>
-          </div>
+          )}
 
           <div className="pt-2 flex justify-end">
             <Button

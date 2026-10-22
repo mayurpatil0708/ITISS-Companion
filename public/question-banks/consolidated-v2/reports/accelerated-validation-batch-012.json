@@ -1,0 +1,83 @@
+{
+  "batchId": "2026-10-22-batch-012",
+  "generatedAt": "2026-10-22T02:54:04.363845+00:00",
+  "valid": true,
+  "jsonFilesParsed": 42,
+  "sourceFilesHashChecked": 217,
+  "sourceFilesUnchanged": true,
+  "candidateQuestions": 8208,
+  "verifiedQuestions": 135,
+  "reviewQuestions": 8073,
+  "subjectCounts": {
+    "cosa": {
+      "candidate": 2881,
+      "verified": 39,
+      "review": 2842
+    },
+    "fundamental-computer-networks": {
+      "candidate": 2221,
+      "verified": 39,
+      "review": 2182
+    },
+    "it-infrastructure-devops": {
+      "candidate": 1351,
+      "verified": 22,
+      "review": 1329
+    },
+    "programming-concepts": {
+      "candidate": 1755,
+      "verified": 35,
+      "review": 1720
+    }
+  },
+  "reviewStructuralWarningCount": 572,
+  "reviewStructuralWarningIdsSample": [
+    "cosa-0493ab60efdd5f99",
+    "cosa-078c5177f0839e59",
+    "cosa-09a6709254245e7f",
+    "cosa-0d2858696c1752c8",
+    "cosa-0da40911ce178ef5",
+    "cosa-0f217f53fd35a61c",
+    "cosa-0f3a4a05b71461dc",
+    "cosa-0f9e983ec069fcbd",
+    "cosa-10c5bf71fb401e5e",
+    "cosa-12c3ee4bd34f36a3",
+    "cosa-1496a65e950dae8e",
+    "cosa-15ddde473881153d",
+    "cosa-1629c5de93c1484d",
+    "cosa-1886c0684c1f5d79",
+    "cosa-1cccbc94ca0b2776",
+    "cosa-1e09542b50719ac1",
+    "cosa-1e20e534d2932b3a",
+    "cosa-1e34abfe0285ab2a",
+    "cosa-1e95a50f3868f0dc",
+    "cosa-1eb9afb84aecf509",
+    "cosa-1f02d66a102f04b5",
+    "cosa-1f3013aba17ecaec",
+    "cosa-1f498ba7f1e0b601",
+    "cosa-2224932cd6b6df8b",
+    "cosa-243ca83b9e24ccb2",
+    "cosa-247421fef9752330",
+    "cosa-265d44b7481c8797",
+    "cosa-268c5bcfb585004a",
+    "cosa-27a6e96dc92e14fb",
+    "cosa-27d270233ecda3c5"
+  ],
+  "allStructuralWarningsIsolatedToReview": true,
+  "progressManifest": {
+    "processedQuestionCount": 157,
+    "verifiedUnchangedCount": 124,
+    "correctedAndVerifiedCount": 11,
+    "ambiguousCount": 15,
+    "unresolvedCount": 6341,
+    "manualReviewCount": 1717,
+    "verifiedOrCorrectedCount": 135,
+    "stillNotVerifiedCount": 8073,
+    "explanationsCompleted": 135,
+    "explanationsProvisional": 22,
+    "explanationsPending": 8051,
+    "quarantinedCount": 1
+  },
+  "errors": [],
+  "note": "Structural issues in review records are non-blocking and remain excluded from the verified quiz banks; all verified items passed answer-reference, evidence, explanation, and partition checks."
+}

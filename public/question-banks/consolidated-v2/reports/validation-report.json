@@ -1,0 +1,10 @@
+{
+  "valid": true,
+  "sourceOccurrences": 13516,
+  "canonicalRecordsValidated": 8208,
+  "consolidatedBankFilesValidated": 4,
+  "verifiedQuestions": 169,
+  "structuralReviewWarnings": 0,
+  "warnings": [],
+  "errors": []
+}

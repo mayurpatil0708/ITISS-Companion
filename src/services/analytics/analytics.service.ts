@@ -165,56 +165,55 @@ export class AnalyticsService {
       trendPct = Math.round(recentAvg - priorAvg);
     }
 
-    // Subject breakdown
-    const subjectBreakdown: Record<Subject, SubjectAnalytics> = {
-      linux: {
-        subject: 'linux',
-        totalQuestions: 0,
-        totalTopics: 0,
-        attemptedQuestions: 0,
-        correctAnswers: 0,
-        accuracyPct: 0,
-        coveragePct: 0,
-      },
-      windows: {
-        subject: 'windows',
-        totalQuestions: 0,
-        totalTopics: 0,
-        attemptedQuestions: 0,
-        correctAnswers: 0,
-        accuracyPct: 0,
-        coveragePct: 0,
-      },
-      cross_platform: {
-        subject: 'cross_platform',
-        totalQuestions: 0,
-        totalTopics: 0,
-        attemptedQuestions: 0,
-        correctAnswers: 0,
-        accuracyPct: 0,
-        coveragePct: 0,
-      },
-    };
+    // Dynamic Subject breakdown supporting all 4 CMCE modules + legacy subjects
+    const subjectBreakdown: Record<Subject, SubjectAnalytics> = {};
+    const topicsBySubject: Record<Subject, Set<string>> = {};
+    const attemptedBySubject: Record<Subject, Set<string>> = {};
 
-    const topicsBySubject: Record<Subject, Set<string>> = {
-      linux: new Set(),
-      windows: new Set(),
-      cross_platform: new Set(),
-    };
+    const defaultSubjects: Subject[] = [
+      'cosa',
+      'fundamental-computer-networks',
+      'programming-concepts',
+      'it-infrastructure-devops',
+      'linux',
+      'windows',
+      'cross_platform',
+    ];
 
-    const attemptedBySubject: Record<Subject, Set<string>> = {
-      linux: new Set(),
-      windows: new Set(),
-      cross_platform: new Set(),
-    };
+    for (const s of defaultSubjects) {
+      subjectBreakdown[s] = {
+        subject: s,
+        totalQuestions: 0,
+        totalTopics: 0,
+        attemptedQuestions: 0,
+        correctAnswers: 0,
+        accuracyPct: 0,
+        coveragePct: 0,
+      };
+      topicsBySubject[s] = new Set();
+      attemptedBySubject[s] = new Set();
+    }
 
     for (const q of questions) {
-      if (subjectBreakdown[q.subject]) {
-        subjectBreakdown[q.subject].totalQuestions++;
-        topicsBySubject[q.subject].add(q.topic);
-        if (distinctAttemptedIds.has(q.question_id)) {
-          attemptedBySubject[q.subject].add(q.question_id);
-        }
+      const s = q.subject || 'cosa';
+      if (!subjectBreakdown[s]) {
+        subjectBreakdown[s] = {
+          subject: s,
+          totalQuestions: 0,
+          totalTopics: 0,
+          attemptedQuestions: 0,
+          correctAnswers: 0,
+          accuracyPct: 0,
+          coveragePct: 0,
+        };
+        topicsBySubject[s] = new Set();
+        attemptedBySubject[s] = new Set();
+      }
+
+      subjectBreakdown[s].totalQuestions++;
+      topicsBySubject[s].add(q.topic);
+      if (distinctAttemptedIds.has(q.question_id)) {
+        attemptedBySubject[s].add(q.question_id);
       }
     }
 

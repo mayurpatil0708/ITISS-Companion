@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "2.0",
+  "examStage": "cmce",
+  "subject": {
+    "id": "cosa",
+    "name": "Concepts of Operating System and Administration"
+  },
+  "metadata": {
+    "totalQuestions": 0
+  },
+  "questions": []
+}

@@ -1,0 +1,50 @@
+{
+  "batchId": "2026-10-22-batch-021",
+  "generatedAt": "2026-10-22T03:18:03.597487+00:00",
+  "valid": true,
+  "jsonFilesParsed": 56,
+  "sourceFilesHashChecked": 217,
+  "sourceFilesUnchanged": true,
+  "candidateQuestions": 8208,
+  "verifiedQuestions": 169,
+  "reviewQuestions": 8039,
+  "subjectCounts": {
+    "it-infrastructure-devops": {
+      "candidate": 1351,
+      "verified": 22,
+      "review": 1329
+    },
+    "fundamental-computer-networks": {
+      "candidate": 2221,
+      "verified": 55,
+      "review": 2166
+    },
+    "cosa": {
+      "candidate": 2881,
+      "verified": 48,
+      "review": 2833
+    },
+    "programming-concepts": {
+      "candidate": 1755,
+      "verified": 44,
+      "review": 1711
+    }
+  },
+  "reviewStructuralWarningCount": 572,
+  "allStructuralWarningsIsolatedToReview": true,
+  "progressManifest": {
+    "processedQuestionCount": 191,
+    "verifiedUnchangedCount": 158,
+    "correctedAndVerifiedCount": 11,
+    "ambiguousCount": 15,
+    "unresolvedCount": 6307,
+    "manualReviewCount": 1717,
+    "verifiedOrCorrectedCount": 169,
+    "stillNotVerifiedCount": 8039,
+    "explanationsCompleted": 169,
+    "explanationsProvisional": 22,
+    "explanationsPending": 8017,
+    "quarantinedCount": 1
+  },
+  "errors": []
+}

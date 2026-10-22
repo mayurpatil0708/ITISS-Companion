@@ -1,0 +1,143 @@
+{
+  "schemaVersion": "2.0",
+  "examStage": "cmce",
+  "subject": {
+    "id": "fundamental-computer-networks",
+    "name": "Fundamental of Computer Networks"
+  },
+  "metadata": {
+    "totalQuestions": 1
+  },
+  "questions": [
+    {
+      "id": "fcn-018a05c9f0e568bd",
+      "subjectId": "fundamental-computer-networks",
+      "subtopicId": "ip-addressing-and-routing",
+      "subtopicName": "IP Addressing and Routing",
+      "topicId": "ip-addressing-subnetting",
+      "topicName": "IP Addressing and Subnetting",
+      "question": "Which of the following is the broadcast address for a network address and subnet mask\ncombination of 192.168.10.0 / 255.255.255.240?",
+      "questionType": "single_choice",
+      "options": [
+        {
+          "id": "A",
+          "text": "192.168.10.18"
+        },
+        {
+          "id": "B",
+          "text": "192.168.10.47"
+        },
+        {
+          "id": "C",
+          "text": "192.168.10.54"
+        },
+        {
+          "id": "D",
+          "text": "192.168.10.125"
+        }
+      ],
+      "correctOptionId": null,
+      "correctOptionIds": [],
+      "explanation": "Provisional: 255.255.255.240 is /28, leaving four host bits. The final four bits all set to 1 give the broadcast address; for the subnet starting at 192.168.10.0, that is 192.168.10.15. The source lists .18, .47, .54, and .125, so none is correct. The printed key selects .47, which belongs to a different /28 subnet.",
+      "optionExplanations": {
+        "A": "192.168.10.18 is outside the .0/28 block, which ends at .15.",
+        "B": "192.168.10.47 is not the broadcast address for the stated subnet; the source key marks it incorrectly.",
+        "C": "192.168.10.54 is outside the stated /28 block.",
+        "D": "192.168.10.125 is outside the stated /28 block."
+      },
+      "explanationStatus": "provisional",
+      "difficulty": null,
+      "source": {
+        "files": [
+          {
+            "filename": "fcn_sample_q_1__9568d349.json",
+            "sourceJson": "fcn/fcn_sample_q_1__9568d349.json",
+            "sourcePdf": "Fundamentals of Computer Networks/FCN/fcn sample q_1.pdf",
+            "sourcePdfPath": null,
+            "page": 10,
+            "originalQuestionId": "FCN-FCN-SAMPLE-Q-1-9568D349-P010-Q0069",
+            "sourceQuestionNumber": "30",
+            "sourceSubjectFolder": "fundamental-computer-networks",
+            "sourceTextMethod": "native_pdf_text",
+            "answerCandidateOptionIds": [],
+            "answerCandidateRawLabels": [],
+            "answerEvidenceOrigin": "none",
+            "answerEvidenceSummary": "No explicit answer key or option-intersecting PDF highlight annotation was detected.",
+            "sourceDraftExplanation": null,
+            "sourceDraftOptionExplanations": null,
+            "legacyTopic": null,
+            "legacySubtopic": null,
+            "parserAmbiguous": true,
+            "malformedOptions": true,
+            "invalidAnswerReference": false,
+            "sourceQuestionType": "single_choice"
+          }
+        ]
+      },
+      "verification": {
+        "status": "ambiguous",
+        "originalAnswerOptionIds": [
+          [
+            "B"
+          ]
+        ],
+        "finalAnswerOptionIds": [],
+        "confidence": "high",
+        "reason": "Visual inspection confirms the source marks B (192.168.10.47), but that is not the broadcast address for 192.168.10.0/28. A /28 has a block size of 16; the subnet spans .0 through .15 and its directed broadcast is .15. None of the four printed choices is correct, so the item is quarantined rather than repaired by inventing a choice.",
+        "sources": [
+          {
+            "title": "RFC 8386: Privacy Considerations for Protocols Relying on IP Broadcast or Multicast",
+            "publisher": "RFC Editor",
+            "url": "https://www.rfc-editor.org/rfc/rfc8386",
+            "accessedAt": "2026-10-22",
+            "relevantSection": "Section 1.1 Types and Usage of Broadcast and Multicast",
+            "supports": "Defines directed broadcast as the network prefix plus an all-ones local/host part, citing RFC 1812."
+          }
+        ],
+        "visualAnswerEvidence": {
+          "sourceLabels": [
+            "B"
+          ],
+          "answerText": "192.168.10.47"
+        }
+      },
+      "classification": {
+        "status": "assigned",
+        "confidence": "medium",
+        "method": "content_and_source_subject_folder",
+        "topicMethod": "content_keyword_rule",
+        "originalLabels": []
+      },
+      "reviewReasons": [
+        "external_evidence_does_not_establish_unique_answer"
+      ],
+      "sourceDraftExplanations": [],
+      "tags": [
+        "fcn",
+        "ip-addressing-and-routing",
+        "ip-addressing-subnetting"
+      ],
+      "contentReview": {
+        "status": "source_visual_reviewed",
+        "evidence": [
+          {
+            "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/fcn sample q_1.pdf",
+            "page": 10,
+            "notes": "The rendered page shows the full question, all four options, and the source highlights B (192.168.10.47) in red.",
+            "observedAnswerLabel": "B"
+          }
+        ],
+        "edits": [
+          {
+            "field": "options",
+            "before": "All four address choices were concatenated into one extracted option, with “Session 12” appended.",
+            "after": "A: 192.168.10.18; B: 192.168.10.47; C: 192.168.10.54; D: 192.168.10.125.",
+            "reason": "Reconstructed the labels from the rendered source page. Did not insert the mathematically correct address because it is absent from the source."
+          }
+        ]
+      },
+      "quarantined": true,
+      "quarantineReason": "The source has no correct answer choice: the calculated broadcast address is 192.168.10.15, but it is absent from all four options. The printed key marks B, 192.168.10.47, which is incorrect."
+    }
+  ]
+}

@@ -11,6 +11,11 @@ import {
   Server,
   Layers,
   ChevronRight,
+  Network,
+  Code2,
+  Monitor,
+  Cloud,
+  Sparkles,
 } from 'lucide-react';
 import { Card } from '@/components/common/Card';
 import { Button } from '@/components/common/Button';
@@ -22,21 +27,29 @@ import { APP_CONFIG } from '@/config/app.config';
 export const MockExamPage: React.FC = () => {
   const navigate = useNavigate();
   const [isLaunching, setIsLaunching] = useState(false);
-  const [examType, setExamType] = useState<'standard' | 'focused_linux' | 'focused_windows'>('standard');
+  const [examType, setExamType] = useState<'standard' | 'fcn' | 'pc' | 'cosa' | 'iimd'>('standard');
 
   const startMockExam = async () => {
     setIsLaunching(true);
     try {
-      let subject: 'all' | 'linux' | 'windows' = 'all';
+      let subject: any = 'all';
       let count = 50;
       let timerMinutes = 60;
 
-      if (examType === 'focused_linux') {
-        subject = 'linux';
+      if (examType === 'fcn') {
+        subject = 'fundamental-computer-networks';
         count = 40;
         timerMinutes = 45;
-      } else if (examType === 'focused_windows') {
-        subject = 'windows';
+      } else if (examType === 'pc') {
+        subject = 'programming-concepts';
+        count = 40;
+        timerMinutes = 45;
+      } else if (examType === 'cosa') {
+        subject = 'cosa';
+        count = 40;
+        timerMinutes = 45;
+      } else if (examType === 'iimd') {
+        subject = 'it-infrastructure-devops';
         count = 40;
         timerMinutes = 45;
       }
@@ -115,24 +128,24 @@ export const MockExamPage: React.FC = () => {
         <label className="text-xs font-semibold text-nexus-text uppercase tracking-wider block">
           Choose Examination Preset
         </label>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Preset 1: Standard Comprehensive */}
           <div
             onClick={() => setExamType('standard')}
             className={`p-4 rounded border cursor-pointer transition-all flex flex-col justify-between ${
               examType === 'standard'
-                ? 'bg-nexus-accent/10 border-nexus-accent shadow-xs'
+                ? 'bg-nexus-accent/15 border-nexus-accent shadow-xs'
                 : 'bg-nexus-surface border-nexus-border hover:bg-nexus-elevated'
             }`}
           >
             <div>
               <div className="flex items-center justify-between mb-2">
                 <Badge variant="primary">Full Suite</Badge>
-                <Clock className="w-4 h-4 text-nexus-text-muted" />
+                <Sparkles className="w-4 h-4 text-nexus-accent" />
               </div>
               <h3 className="text-sm font-bold text-nexus-text">CDAC CMCE Comprehensive</h3>
               <p className="text-[11px] text-nexus-text-secondary mt-1">
-                Balanced distribution: 22 Linux & OS, 24 Windows Server, 4 Cross-platform questions.
+                Balanced distribution across FCN, PC, COSA, and IIMD modules (7,783 question bank).
               </p>
             </div>
             <div className="mt-4 pt-3 border-t border-nexus-border/60 text-[11px] font-mono text-nexus-text-muted">
@@ -140,23 +153,23 @@ export const MockExamPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Preset 2: Focused Linux & OS */}
+          {/* Preset 2: Networks (FCN) */}
           <div
-            onClick={() => setExamType('focused_linux')}
+            onClick={() => setExamType('fcn')}
             className={`p-4 rounded border cursor-pointer transition-all flex flex-col justify-between ${
-              examType === 'focused_linux'
-                ? 'bg-indigo-500/10 border-indigo-500 shadow-xs'
+              examType === 'fcn'
+                ? 'bg-blue-500/15 border-blue-500 shadow-xs'
                 : 'bg-nexus-surface border-nexus-border hover:bg-nexus-elevated'
             }`}
           >
             <div>
               <div className="flex items-center justify-between mb-2">
-                <Badge variant="default">Linux Specialization</Badge>
-                <Terminal className="w-4 h-4 text-indigo-400" />
+                <Badge variant="default">FCN Specialization</Badge>
+                <Network className="w-4 h-4 text-blue-400" />
               </div>
-              <h3 className="text-sm font-bold text-nexus-text">Linux & OS Specialist Exam</h3>
+              <h3 className="text-sm font-bold text-nexus-text">Computer Networks Exam</h3>
               <p className="text-[11px] text-nexus-text-secondary mt-1">
-                Deep dive into processes, ELF layout, systemd, LVM, permissions, and network services.
+                OSI/TCP-IP models, subnetting, CIDR, static & dynamic routing, switches, VLANs, and DNS/DHCP.
               </p>
             </div>
             <div className="mt-4 pt-3 border-t border-nexus-border/60 text-[11px] font-mono text-nexus-text-muted">
@@ -164,23 +177,71 @@ export const MockExamPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Preset 3: Focused Windows Server */}
+          {/* Preset 3: Programming Concepts (PC) */}
           <div
-            onClick={() => setExamType('focused_windows')}
+            onClick={() => setExamType('pc')}
             className={`p-4 rounded border cursor-pointer transition-all flex flex-col justify-between ${
-              examType === 'focused_windows'
-                ? 'bg-cyan-500/10 border-cyan-500 shadow-xs'
+              examType === 'pc'
+                ? 'bg-violet-500/15 border-violet-500 shadow-xs'
                 : 'bg-nexus-surface border-nexus-border hover:bg-nexus-elevated'
             }`}
           >
             <div>
               <div className="flex items-center justify-between mb-2">
-                <Badge variant="cyan">Windows Specialization</Badge>
-                <Server className="w-4 h-4 text-cyan-400" />
+                <Badge variant="cyan">PC Specialization</Badge>
+                <Code2 className="w-4 h-4 text-violet-400" />
               </div>
-              <h3 className="text-sm font-bold text-nexus-text">Windows Server Specialist</h3>
+              <h3 className="text-sm font-bold text-nexus-text">Programming Concepts Exam</h3>
               <p className="text-[11px] text-nexus-text-secondary mt-1">
-                Full Active Directory, Group Policy, FSMO, Hyper-V, and PowerShell cmdlet mastery.
+                C syntax, pointers, memory allocation, linked lists, trees, SQL queries, and Python scripting.
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-nexus-border/60 text-[11px] font-mono text-nexus-text-muted">
+              40 Questions • 45 Mins
+            </div>
+          </div>
+
+          {/* Preset 4: Operating Systems (COSA) */}
+          <div
+            onClick={() => setExamType('cosa')}
+            className={`p-4 rounded border cursor-pointer transition-all flex flex-col justify-between ${
+              examType === 'cosa'
+                ? 'bg-indigo-500/15 border-indigo-500 shadow-xs'
+                : 'bg-nexus-surface border-nexus-border hover:bg-nexus-elevated'
+            }`}
+          >
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <Badge variant="default">COSA Specialization</Badge>
+                <Monitor className="w-4 h-4 text-indigo-400" />
+              </div>
+              <h3 className="text-sm font-bold text-nexus-text">Operating Systems & Admin</h3>
+              <p className="text-[11px] text-nexus-text-secondary mt-1">
+                Linux process management, LVM, permissions, Windows Server AD DS, Group Policy, and hybrid auth.
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-nexus-border/60 text-[11px] font-mono text-nexus-text-muted">
+              40 Questions • 45 Mins
+            </div>
+          </div>
+
+          {/* Preset 5: Infra & DevOps (IIMD) */}
+          <div
+            onClick={() => setExamType('iimd')}
+            className={`p-4 rounded border cursor-pointer transition-all flex flex-col justify-between ${
+              examType === 'iimd'
+                ? 'bg-sky-500/15 border-sky-500 shadow-xs'
+                : 'bg-nexus-surface border-nexus-border hover:bg-nexus-elevated'
+            }`}
+          >
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <Badge variant="warning">IIMD Specialization</Badge>
+                <Cloud className="w-4 h-4 text-sky-400" />
+              </div>
+              <h3 className="text-sm font-bold text-nexus-text">Infra & DevOps Exam</h3>
+              <p className="text-[11px] text-nexus-text-secondary mt-1">
+                Virtualization, Docker containers, CI/CD pipelines, AWS/Cloud fundamentals, and Ansible orchestration.
               </p>
             </div>
             <div className="mt-4 pt-3 border-t border-nexus-border/60 text-[11px] font-mono text-nexus-text-muted">

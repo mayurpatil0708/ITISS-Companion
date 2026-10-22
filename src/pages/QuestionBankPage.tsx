@@ -39,6 +39,7 @@ export const QuestionBankPage: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [searchQuery, setSearchQuery] = useState(highlightedId || '');
   const [subjectFilter, setSubjectFilter] = useState<Subject | 'all'>('all');
+  const [subtopicFilter, setSubtopicFilter] = useState<string>('all');
   const [difficultyFilter, setDifficultyFilter] = useState<Difficulty | 'all'>('all');
   const [selectedQuestionIds, setSelectedQuestionIds] = useState<Set<string>>(new Set());
 
@@ -81,18 +82,61 @@ export const QuestionBankPage: React.FC = () => {
     loadQuestions();
   }, [highlightedId]);
 
+  // Compute available subtopics for current subject filter
+  const availableSubtopics = useMemo(() => {
+    const subMap = new Map<string, number>();
+    for (const q of questions) {
+      const matchesSubject =
+        subjectFilter === 'all' ||
+        q.subject === subjectFilter ||
+        (subjectFilter === 'cosa' && (q.subject === 'linux' || q.subject === 'windows' || q.subject === 'cross_platform')) ||
+        (subjectFilter === 'fundamental-computer-networks' && q.subject === 'fcn') ||
+        (subjectFilter === 'programming-concepts' && q.subject === 'pc') ||
+        (subjectFilter === 'it-infrastructure-devops' && (q.subject === 'iimd' || q.subject === 'itid'));
+
+      if (matchesSubject && q.subtopic) {
+        subMap.set(q.subtopic, (subMap.get(q.subtopic) || 0) + 1);
+      }
+    }
+    return Array.from(subMap.entries())
+      .map(([subtopic, count]) => ({ subtopic, count }))
+      .sort((a, b) => b.count - a.count);
+  }, [questions, subjectFilter]);
+
   // Filtered Questions
   const filteredQuestions = useMemo(() => {
     return questions.filter((q) => {
-      if (subjectFilter !== 'all' && q.subject !== subjectFilter) return false;
+      // Subject filtering with alias support
+      if (subjectFilter !== 'all') {
+        if (subjectFilter === 'cosa') {
+          if (q.subject !== 'cosa' && q.subject !== 'linux' && q.subject !== 'windows' && q.subject !== 'cross_platform') return false;
+        } else if (subjectFilter === 'fundamental-computer-networks') {
+          if (q.subject !== 'fundamental-computer-networks' && q.subject !== 'fcn') return false;
+        } else if (subjectFilter === 'programming-concepts') {
+          if (q.subject !== 'programming-concepts' && q.subject !== 'pc') return false;
+        } else if (subjectFilter === 'it-infrastructure-devops') {
+          if (q.subject !== 'it-infrastructure-devops' && q.subject !== 'itid' && q.subject !== 'iimd') return false;
+        } else if (q.subject !== subjectFilter) {
+          return false;
+        }
+      }
+
+      // Subtopic filtering
+      if (subtopicFilter !== 'all') {
+        const matchesSub = q.subtopic === subtopicFilter || q.subtopic_id === subtopicFilter || q.subtopicName === subtopicFilter;
+        if (!matchesSub) return false;
+      }
+
+      // Difficulty filtering
       if (difficultyFilter !== 'all' && q.difficulty !== difficultyFilter) return false;
 
+      // Text search query
       if (searchQuery.trim()) {
         const query = searchQuery.toLowerCase();
         const matchesId = q.question_id.toLowerCase().includes(query);
-        const matchesText = q.question_text.toLowerCase().includes(query);
-        const matchesTopic = q.topic.toLowerCase().includes(query);
-        const matchesSubtopic = q.subtopic.toLowerCase().includes(query);
+        const matchesText = (q.question_text || q.question || '').toLowerCase().includes(query);
+        const matchesTopic = (q.topic || '').toLowerCase().includes(query);
+        const matchesSubtopic = (q.subtopic || '').toLowerCase().includes(query);
         const matchesTags = q.tags?.some((t) => t.toLowerCase().includes(query));
         if (!matchesId && !matchesText && !matchesTopic && !matchesSubtopic && !matchesTags) {
           return false;
@@ -101,7 +145,7 @@ export const QuestionBankPage: React.FC = () => {
 
       return true;
     });
-  }, [questions, subjectFilter, difficultyFilter, searchQuery]);
+  }, [questions, subjectFilter, subtopicFilter, difficultyFilter, searchQuery]);
 
   // Selection toggle
   const toggleSelectAll = () => {
@@ -304,7 +348,7 @@ export const QuestionBankPage: React.FC = () => {
       <Card padding="md" className="space-y-3">
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
           {/* Search bar */}
-          <div className="sm:col-span-6 relative">
+          <div className="sm:col-span-4 relative">
             <Search className="w-4 h-4 text-nexus-text-muted absolute left-3 top-2.5" />
             <input
               type="text"
@@ -315,22 +359,45 @@ export const QuestionBankPage: React.FC = () => {
             />
           </div>
 
-          {/* Subject Filter */}
+          {/* Subject / Module Filter */}
           <div className="sm:col-span-3">
             <select
               value={subjectFilter}
-              onChange={(e) => setSubjectFilter(e.target.value as any)}
+              onChange={(e) => {
+                setSubjectFilter(e.target.value as any);
+                setSubtopicFilter('all');
+              }}
               className="w-full bg-nexus-elevated border border-nexus-border rounded px-3 py-1.5 text-xs text-nexus-text focus:outline-none focus:border-nexus-accent"
             >
-              <option value="all">All Subjects</option>
-              <option value="linux">Linux & OS</option>
-              <option value="windows">Windows Server</option>
-              <option value="cross_platform">Cross-platform</option>
+              <option value="all">All Modules ({questions.length})</option>
+              <option value="fundamental-computer-networks">Computer Networks (FCN)</option>
+              <option value="programming-concepts">Programming Concepts (PC)</option>
+              <option value="cosa">Operating Systems (COSA)</option>
+              <option value="it-infrastructure-devops">Infra & DevOps (IIMD)</option>
+              <option value="linux">Linux & OS (legacy)</option>
+              <option value="windows">Windows Server (legacy)</option>
+              <option value="cross_platform">Cross-platform (legacy)</option>
+            </select>
+          </div>
+
+          {/* Subtopic Filter */}
+          <div className="sm:col-span-3">
+            <select
+              value={subtopicFilter}
+              onChange={(e) => setSubtopicFilter(e.target.value)}
+              className="w-full bg-nexus-elevated border border-nexus-border rounded px-3 py-1.5 text-xs text-nexus-text focus:outline-none focus:border-nexus-accent"
+            >
+              <option value="all">All Subtopics ({availableSubtopics.length})</option>
+              {availableSubtopics.map((st) => (
+                <option key={st.subtopic} value={st.subtopic}>
+                  {st.subtopic} ({st.count})
+                </option>
+              ))}
             </select>
           </div>
 
           {/* Difficulty Filter */}
-          <div className="sm:col-span-3">
+          <div className="sm:col-span-2">
             <select
               value={difficultyFilter}
               onChange={(e) => setDifficultyFilter(e.target.value as any)}
@@ -674,7 +741,7 @@ export const QuestionBankPage: React.FC = () => {
             <div className="p-3 rounded bg-amber-500/15 border border-amber-500/30 flex items-start gap-2.5 text-xs text-amber-300">
               <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
               <div>
-                <strong>Warning:</strong> Restoring the default bank will re-seed all 446 official CDAC questions from the seed archive and clear customized edits.
+                <strong>Warning:</strong> Restoring the default bank will re-seed all 7,783 official CDAC verified questions across all 4 CMCE modules from the verified archive and clear customized edits.
               </div>
             </div>
             <div className="flex justify-end gap-2 pt-2">

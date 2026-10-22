@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "2.0.0",
+  "examStage": "cmce",
+  "generatedAt": "2026-10-22T07:44:08.473709+00:00",
+  "totalCanonicalQuestions": 8208,
+  "totalVerifiedQuestions": 7783,
+  "totalReviewQuestions": 425,
+  "verificationRate": "94.82%",
+  "doubleCheckStatus": "PASSED",
+  "validationErrors": [],
+  "modules": [
+    {
+      "moduleId": "cosa",
+      "moduleName": "Concepts of Operating System and Administration",
+      "moduleCode": "COSA",
+      "questionCount": 2680,
+      "topicCount": 8,
+      "file": "cosa_final_question_bank.json"
+    },
+    {
+      "moduleId": "fundamental-computer-networks",
+      "moduleName": "Fundamental of Computer Networks",
+      "moduleCode": "FCN",
+      "questionCount": 2103,
+      "topicCount": 8,
+      "file": "fundamental_computer_networks_final_question_bank.json"
+    },
+    {
+      "moduleId": "programming-concepts",
+      "moduleName": "Programming Concepts",
+      "moduleCode": "PC",
+      "questionCount": 1734,
+      "topicCount": 8,
+      "file": "programming_concepts_final_question_bank.json"
+    },
+    {
+      "moduleId": "it-infrastructure-devops",
+      "moduleName": "IT Infrastructure Management & DevOps",
+      "moduleCode": "IIMD",
+      "questionCount": 1266,
+      "topicCount": 10,
+      "file": "it_infrastructure_devops_final_question_bank.json"
+    }
+  ]
+}

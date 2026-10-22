@@ -1,0 +1,28 @@
+{
+  "sourceOccurrenceCount": 13516,
+  "canonicalQuestionCount": 8208,
+  "questionsBySubject": {
+    "fundamental-computer-networks": 2221,
+    "programming-concepts": 1755,
+    "cosa": 2881,
+    "it-infrastructure-devops": 1351
+  },
+  "exactDuplicateGroups": 1518,
+  "duplicateOccurrencesMergedOrGrouped": 5308,
+  "conflictingAnswerGroups": 2,
+  "malformedOrParserAmbiguousQuestions": 1308,
+  "excludedQuestions": 0,
+  "externallyVerifiedQuestions": 169,
+  "answersCorrected": 11,
+  "questionsResearchedOrReviewed": 191,
+  "questionsAwaitingExternalVerification": 8039,
+  "verificationStatusCounts": {
+    "verified_correct": 158,
+    "ambiguous": 15,
+    "needs_manual_review": 1717,
+    "unresolved": 6307,
+    "corrected": 11
+  },
+  "explanationsCompleted": 169,
+  "explanationsProvisional": 22
+}

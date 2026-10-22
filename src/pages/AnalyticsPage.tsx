@@ -67,26 +67,30 @@ export const AnalyticsPage: React.FC = () => {
   }
 
   // Subject chart data
-  const subjectChartData = [
-    {
-      name: 'Linux & OS',
-      accuracy: analytics.subjectBreakdown.linux.accuracyPct,
-      attempted: analytics.subjectBreakdown.linux.attemptedQuestions,
-      total: analytics.subjectBreakdown.linux.totalQuestions,
-    },
-    {
-      name: 'Windows Server',
-      accuracy: analytics.subjectBreakdown.windows.accuracyPct,
-      attempted: analytics.subjectBreakdown.windows.attemptedQuestions,
-      total: analytics.subjectBreakdown.windows.totalQuestions,
-    },
-    {
-      name: 'Cross-platform',
-      accuracy: analytics.subjectBreakdown.cross_platform.accuracyPct,
-      attempted: analytics.subjectBreakdown.cross_platform.attemptedQuestions,
-      total: analytics.subjectBreakdown.cross_platform.totalQuestions,
-    },
-  ];
+  // Subject labels dictionary
+  const SUBJECT_DISPLAY_NAMES: Record<string, string> = {
+    'cosa': 'COSA (OS & Admin)',
+    'fundamental-computer-networks': 'Networks (FCN)',
+    'fcn': 'Networks (FCN)',
+    'programming-concepts': 'Programming (PC)',
+    'pc': 'Programming (PC)',
+    'it-infrastructure-devops': 'DevOps & Infra (IIMD)',
+    'iimd': 'DevOps & Infra (IIMD)',
+    'itid': 'DevOps & Infra (IIMD)',
+    'linux': 'Linux & OS',
+    'windows': 'Windows Server',
+    'cross_platform': 'Cross-platform',
+  };
+
+  // Dynamic Subject chart data
+  const subjectChartData = Object.values(analytics.subjectBreakdown)
+    .filter((s) => s.totalQuestions > 0)
+    .map((s) => ({
+      name: SUBJECT_DISPLAY_NAMES[s.subject] || s.subject.toUpperCase(),
+      accuracy: s.accuracyPct,
+      attempted: s.attemptedQuestions,
+      total: s.totalQuestions,
+    }));
 
   // Difficulty chart data
   const difficultyChartData = [
@@ -111,10 +115,10 @@ export const AnalyticsPage: React.FC = () => {
   ];
 
   // Pie chart data: Accuracy distribution
-  const totalCorrect =
-    analytics.subjectBreakdown.linux.correctAnswers +
-    analytics.subjectBreakdown.windows.correctAnswers +
-    analytics.subjectBreakdown.cross_platform.correctAnswers;
+  const totalCorrect = Object.values(analytics.subjectBreakdown).reduce(
+    (sum, s) => sum + s.correctAnswers,
+    0
+  );
   const totalAttemptedQuestions = analytics.distinctAttemptedQuestions;
 
   const donutData = [

@@ -1,0 +1,51 @@
+{
+  "batchId": "2026-10-22-batch-013",
+  "generatedAt": "2026-10-22T02:55:10.840252+00:00",
+  "valid": true,
+  "jsonFilesParsed": 43,
+  "sourceFilesHashChecked": 217,
+  "sourceFilesUnchanged": true,
+  "candidateQuestions": 8208,
+  "verifiedQuestions": 139,
+  "reviewQuestions": 8069,
+  "subjectCounts": {
+    "cosa": {
+      "candidate": 2881,
+      "verified": 43,
+      "review": 2838
+    },
+    "fundamental-computer-networks": {
+      "candidate": 2221,
+      "verified": 39,
+      "review": 2182
+    },
+    "it-infrastructure-devops": {
+      "candidate": 1351,
+      "verified": 22,
+      "review": 1329
+    },
+    "programming-concepts": {
+      "candidate": 1755,
+      "verified": 35,
+      "review": 1720
+    }
+  },
+  "reviewStructuralWarningCount": 572,
+  "allStructuralWarningsIsolatedToReview": true,
+  "progressManifest": {
+    "processedQuestionCount": 161,
+    "verifiedUnchangedCount": 128,
+    "correctedAndVerifiedCount": 11,
+    "ambiguousCount": 15,
+    "unresolvedCount": 6337,
+    "manualReviewCount": 1717,
+    "verifiedOrCorrectedCount": 139,
+    "stillNotVerifiedCount": 8069,
+    "explanationsCompleted": 139,
+    "explanationsProvisional": 22,
+    "explanationsPending": 8047,
+    "quarantinedCount": 1
+  },
+  "errors": [],
+  "note": "Structural warnings belong to unverified source records retained in review; every verified question passed answer-reference, evidence, explanation, subject, and partition checks."
+}

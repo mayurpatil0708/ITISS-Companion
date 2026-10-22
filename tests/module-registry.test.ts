@@ -27,23 +27,23 @@ describe('ITISS Companion: Module Registry & Exam Stage Isolation', () => {
     expect(cmceModules[0].id).toBe('fundamental-computer-networks');
     expect(cmceModules[0].slug).toBe('fcn');
     expect(cmceModules[0].durationHours).toBe(120);
-    expect(cmceModules[0].topicCount).toBe(16);
+    expect(cmceModules[0].topicCount).toBe(8);
 
     expect(cmceModules[1].id).toBe('programming-concepts');
     expect(cmceModules[1].slug).toBe('pc');
     expect(cmceModules[1].durationHours).toBe(90);
-    expect(cmceModules[1].topicCount).toBe(19);
+    expect(cmceModules[1].topicCount).toBe(8);
 
     expect(cmceModules[2].id).toBe('cosa');
     expect(cmceModules[2].slug).toBe('cosa');
     expect(cmceModules[2].name).toBe('Concepts of Operating System and Administration');
     expect(cmceModules[2].durationHours).toBe(210);
-    expect(cmceModules[2].topicCount).toBe(40);
+    expect(cmceModules[2].topicCount).toBe(8);
 
     expect(cmceModules[3].id).toBe('it-infrastructure-devops');
     expect(cmceModules[3].slug).toBe('itid');
     expect(cmceModules[3].durationHours).toBe(120);
-    expect(cmceModules[3].topicCount).toBe(11);
+    expect(cmceModules[3].topicCount).toBe(10);
   });
 
   it('contains exactly 5 modules under CCEE in correct order', () => {
@@ -76,17 +76,22 @@ describe('ITISS Companion: Module Registry & Exam Stage Isolation', () => {
     expect(cceeModules[4].topicCount).toBe(12);
   });
 
-  it('preserves existing COSA content as the only currently available module', () => {
+  it('makes all 4 CMCE modules available while strictly preserving all 5 CCEE modules as coming_soon', () => {
     const available = getAvailableModules();
-    expect(available).toHaveLength(1);
-    expect(available[0].id).toBe('cosa');
-    expect(available[0].contentStatus).toBe('available');
-    expect(available[0].subjectMapping).toEqual(['linux', 'windows', 'cross_platform']);
+    expect(available).toHaveLength(4);
+    const availableIds = available.map((m) => m.id);
+    expect(availableIds).toEqual([
+      'fundamental-computer-networks',
+      'programming-concepts',
+      'cosa',
+      'it-infrastructure-devops',
+    ]);
 
-    // Check all other 8 modules are coming_soon
+    // Check all other 5 modules are CCEE coming_soon
     const comingSoon = MODULE_REGISTRY.filter((m) => m.contentStatus === 'coming_soon');
-    expect(comingSoon).toHaveLength(8);
+    expect(comingSoon).toHaveLength(5);
     for (const mod of comingSoon) {
+      expect(mod.examStage).toBe('ccee');
       expect(isModuleAvailable(mod.id)).toBe(false);
       expect(mod.subjectMapping).toHaveLength(0);
     }

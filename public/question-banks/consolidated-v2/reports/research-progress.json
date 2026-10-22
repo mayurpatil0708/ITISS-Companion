@@ -1,0 +1,394 @@
+{
+  "schemaVersion": "1.0",
+  "updatedAt": "2026-10-22T03:15:28.575610+00:00",
+  "totalCandidateQuestions": 8208,
+  "sourceQuestionOccurrences": 13516,
+  "researchBatchCount": 21,
+  "processedQuestionCount": 191,
+  "verifiedUnchangedCount": 158,
+  "correctedAndVerifiedCount": 11,
+  "ambiguousCount": 15,
+  "unresolvedCount": 6307,
+  "manualReviewCount": 1717,
+  "outdatedContextCount": 0,
+  "verifiedOrCorrectedCount": 169,
+  "stillNotVerifiedCount": 8039,
+  "explanationsCompleted": 169,
+  "explanationsProvisional": 22,
+  "explanationsPending": 8017,
+  "quarantinedCount": 1,
+  "statusCounts": {
+    "verified_correct": 158,
+    "ambiguous": 15,
+    "needs_manual_review": 1717,
+    "unresolved": 6307,
+    "corrected": 11
+  },
+  "explanationStatusCounts": {
+    "complete": 169,
+    "provisional": 22,
+    "pending_independent_research": 8017
+  },
+  "batches": [
+    {
+      "batchId": "2026-10-22-batch-001",
+      "questionIds": [
+        "cosa-000df3f2b5ab3724",
+        "cosa-0019c30bb5e68d0b",
+        "cosa-001c106ce39073ee",
+        "cosa-b74e816ad1269e61",
+        "fcn-9a09f5c09102d8ed",
+        "fcn-e67c03e9e432cdc2",
+        "pc-3a02f2fba87504cd",
+        "pc-79df23d9d0286242",
+        "pc-990c7366666a9199"
+      ],
+      "completedAt": "2026-10-22T00:34:28+05:30",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-002",
+      "questionIds": [
+        "cosa-0023e5b937bb70d9",
+        "cosa-0028134b86662fcc",
+        "cosa-002e28bfa5f2bf98",
+        "fcn-0020b7ae3142f24c",
+        "fcn-0022229a87aa605b",
+        "fcn-00a84e29efd82198",
+        "iimd-00873d3ce14a5c8d",
+        "iimd-00a58946da8df11e",
+        "pc-0040273fc60b2f7f",
+        "pc-004d711d225f4bc4",
+        "pc-0060b1f3798ac996"
+      ],
+      "completedAt": "2026-10-22T00:39:26+05:30",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-003",
+      "questionIds": [
+        "cosa-002e8b9d04eaea7d",
+        "cosa-003dc86930c12c79",
+        "cosa-0053f7f595e3e3d8",
+        "cosa-0079e8b4b1002093",
+        "fcn-00b586ac8c51a99c",
+        "fcn-00dba0bc87f46eb4",
+        "fcn-00e91d94c610c423",
+        "fcn-00ed191573abd6a5",
+        "iimd-00a78f0fcf9d6ebe",
+        "pc-00683560ea79d817",
+        "pc-00930f13349f95aa",
+        "pc-009be336d708ab9b"
+      ],
+      "completedAt": "2026-10-22T00:43:37+05:30",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-004",
+      "questionIds": [
+        "cosa-007f8fd597c72129",
+        "cosa-008bb72a10f4a4ae",
+        "cosa-008d45d1a91fd0d0",
+        "fcn-010ac3f15cfa2337",
+        "fcn-0119aed670a91cb1",
+        "fcn-012d0e5f06fd13de",
+        "iimd-00c20e1022dc032e",
+        "iimd-00c4a38b508da86c",
+        "iimd-00f4d289b10a38a3",
+        "pc-00c15eda91c73464",
+        "pc-00eb05679f2490d7",
+        "pc-00f126f9c98991eb"
+      ],
+      "completedAt": "2026-10-22T00:48:41+05:30",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-005",
+      "questionIds": [
+        "cosa-00b82f77d515280c",
+        "cosa-00c06df0226af31b",
+        "cosa-00c803f9741d7bec",
+        "fcn-0148791a96f4499d",
+        "fcn-015e7f00b63538ab",
+        "fcn-0169ac5a825ef514",
+        "iimd-00ffab6c3dd776bb",
+        "iimd-012dbbfe9f82de3a",
+        "iimd-013c17c3224aedf1",
+        "pc-015c4cc30d6ba2d8",
+        "pc-0173427003c060f1",
+        "pc-01877e091e79b4f8"
+      ],
+      "completedAt": "2026-10-22T00:52:03+05:30",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-006",
+      "questionIds": [
+        "cosa-00c8ba664a554b99",
+        "cosa-00e65240c3ff2951",
+        "cosa-00fc310a2b0dbb55",
+        "fcn-018532edf664aff5",
+        "fcn-018a05c9f0e568bd",
+        "fcn-01cbc88669f92fec",
+        "iimd-01619d7270f471dd",
+        "iimd-0174a53d5d8e554b",
+        "iimd-019fadef9c1b5ae3",
+        "pc-01eb086cd582d97f",
+        "pc-01f2fbe3cba51385",
+        "pc-02004dd641bf804c"
+      ],
+      "completedAt": "2026-10-22T00:57:39+05:30",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-007",
+      "questionIds": [
+        "cosa-01414b897a3869da",
+        "cosa-01635f0d52c385f0",
+        "cosa-018d6b0913601247",
+        "fcn-01b3698e58d2a8bd",
+        "fcn-01d9b4f3db46a83f",
+        "fcn-020ff7127c1991f3",
+        "iimd-01ec4c5b3b3cf9e5",
+        "iimd-0216212bf734d4d5",
+        "iimd-02178fd4f5c4c989",
+        "pc-018d8ddb2c47b7e1",
+        "pc-020cb018dc509d2d",
+        "pc-027e827af0222fd4"
+      ],
+      "completedAt": "2026-10-22T01:01:31+05:30",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-008",
+      "questionIds": [
+        "cosa-018eea814e103ef2",
+        "cosa-019796bb10adba83",
+        "cosa-01991f776036d822",
+        "cosa-01f797e162167a1b",
+        "fcn-0243e1b5e15fa8c8",
+        "fcn-02523e2e5e203f46",
+        "fcn-02ddecf80543731a",
+        "iimd-02f35e5481013b8c",
+        "iimd-035d87d4c55f4e12",
+        "pc-02c7f60703a67d14",
+        "pc-03791e9f4380612d",
+        "pc-03fe34a0ec4a0b6d"
+      ],
+      "completedAt": "2026-10-21T19:36:19.858803+00:00",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-009",
+      "questionIds": [
+        "cosa-01d4e86933146661",
+        "cosa-01ec3afad9bb387d",
+        "cosa-01fc5d8b6683aaad",
+        "cosa-0216cd70aa3574a4",
+        "cosa-0256f4b5f35405a8",
+        "fcn-0261044e6cac6641",
+        "fcn-027b466aa9329d1d",
+        "fcn-0325700208cc0e6f",
+        "fcn-0336ce7f7b33df58",
+        "iimd-03b023fe5ae14fa8",
+        "iimd-04f5f8df71a9a2f6",
+        "pc-0347af776751d2d8",
+        "pc-044f8c026f185e78"
+      ],
+      "completedAt": "2026-10-22T02:42:08.460068+00:00",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-010",
+      "questionIds": [
+        "cosa-025c5c5b8a0cce6a",
+        "cosa-02aa77b0f551d5d2",
+        "cosa-03791244cac78f7c",
+        "fcn-035f1da943228c65",
+        "fcn-04faf5b457ca707e",
+        "fcn-05add50d0cb88fd3",
+        "fcn-08af54f67ac45346",
+        "iimd-05bb94c015e0a0a3",
+        "iimd-0ceef5850963c56a",
+        "iimd-0e4b32e51171a6e6",
+        "iimd-0e5b4d98dc1eb31b",
+        "iimd-17f556977a4920eb",
+        "pc-05a62bdf42c9a12d",
+        "pc-0698da382f544dcb",
+        "pc-077b71b4b4cf6d7d",
+        "pc-0972614851ff77fe"
+      ],
+      "completedAt": "2026-10-22T02:44:05.658123+00:00",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-011",
+      "questionIds": [
+        "cosa-02e54e5a2f33412f",
+        "cosa-02f451091f9dbc75",
+        "cosa-030830e9848205b7",
+        "cosa-03ea5c35e19c17c2",
+        "cosa-047bba82c61f02e1",
+        "fcn-041e169182a15dd6",
+        "fcn-05d8be9ec244bd2a",
+        "fcn-06f86647dd16935b",
+        "fcn-09e752c4acaed215",
+        "iimd-0d523ddb1332d20c",
+        "iimd-1326dac1f4161d94",
+        "pc-095227d9b59907e5",
+        "pc-099d16538d8cbbe8",
+        "pc-0aef5eadd95283dd"
+      ],
+      "completedAt": "2026-10-22T02:47:14.776271+00:00",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-012",
+      "questionIds": [
+        "cosa-0497341a5dc24594",
+        "cosa-0ed21d2e4bf04423",
+        "cosa-1395299c8b0821c9",
+        "cosa-14292bd7f0001101",
+        "cosa-142c47bc53d03b8d",
+        "fcn-0ae52fc004fa22fa",
+        "fcn-0c24364be5a1f9a3",
+        "fcn-145a8b24b8bb9166",
+        "fcn-15b89abc17155c3a",
+        "fcn-16498bad72c117ab",
+        "fcn-16a4935c6d22e9cc",
+        "fcn-1cec0ff03c17e05f",
+        "fcn-217aea865ea61607",
+        "pc-0bf4054841b54d7a",
+        "pc-0c16dc77feab1db1",
+        "pc-0c489df8ae51e055",
+        "pc-0e7ad9fca58afd3f",
+        "pc-0eb83431c62f04c6",
+        "pc-10ce8ca48f7cc259",
+        "pc-13a14407fd512f6b",
+        "pc-15f7707f4d6dca73",
+        "pc-186ee8ebfb92332e"
+      ],
+      "completedAt": "2026-10-22T02:52:47.198768+00:00",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-013",
+      "questionIds": [
+        "cosa-0b3280e38e319bf9",
+        "cosa-0c7516abb1578a88",
+        "cosa-17dd7ece15ec8a32",
+        "cosa-1f2ed3576f4e5be1"
+      ],
+      "completedAt": "2026-10-22T02:54:50.391396+00:00",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-014",
+      "questionIds": [
+        "fcn-0fbc7c8f996e8720",
+        "fcn-104d59e2769ec6a6",
+        "pc-06947676d8b4b4f9",
+        "pc-0f0bbd61457c7a63",
+        "pc-187cc3d955bb4292",
+        "pc-18fa15b287a1a0ad"
+      ],
+      "completedAt": "2026-10-22T02:56:01.601764+00:00",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-015",
+      "questionIds": [
+        "fcn-0515dcf700237dcd",
+        "fcn-065333867cf4976f",
+        "fcn-067695d173b926c6",
+        "fcn-076027f0f6256c97",
+        "fcn-07ca18673651d923",
+        "fcn-0887806d9ff14e10",
+        "fcn-08d36c07ef01c418",
+        "fcn-09c9fc64217736d7"
+      ],
+      "completedAt": "2026-10-22T02:57:26.022360+00:00",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-016",
+      "questionIds": [
+        "fcn-028a7754cf0ab11e",
+        "fcn-071f3a794c1e5e47",
+        "fcn-0a1bcb6ac1c7261d",
+        "fcn-f1974c7f796484d6",
+        "fcn-f76cd434a7a984be"
+      ],
+      "completedAt": "2026-10-22T03:13:15.150438+00:00",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-017",
+      "questionIds": [
+        "cosa-0381c764386f5f85",
+        "fcn-03e1c93dffaf1a81",
+        "pc-045c710fa410896c"
+      ],
+      "completedAt": "2026-10-22T03:13:46.691318+00:00",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-018",
+      "questionIds": [
+        "cosa-026b9ed8bf0a4abe",
+        "pc-028e834e4dcacf9e"
+      ],
+      "completedAt": "2026-10-22T03:14:18.164415+00:00",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-019",
+      "questionIds": [
+        "cosa-035fb43e43e23448",
+        "pc-04c97123bd9a0bf2"
+      ],
+      "completedAt": "2026-10-22T03:14:40.249885+00:00",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-020",
+      "questionIds": [
+        "cosa-02c4af9189cb8c4d",
+        "pc-0334e49b5cabfdf7"
+      ],
+      "completedAt": "2026-10-22T03:15:09.392950+00:00",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    },
+    {
+      "batchId": "2026-10-22-batch-021",
+      "questionIds": [
+        "cosa-043fea4ade9867c7",
+        "pc-03c88cbd1110a35b"
+      ],
+      "completedAt": "2026-10-22T03:15:27.273279+00:00",
+      "status": "saved_and_applied",
+      "researchResultsFile": "reports/research-results.json"
+    }
+  ],
+  "resumeInstructions": "Append new per-question results to reports/research-results.json using stable question IDs, then run python3 /home/mayur/Music/AntigravityCOSA/scripts/apply_itiss_research_progress.py. Do not regenerate the base consolidation unless needed; if it is regenerated, reapply this overlay afterward."
+}

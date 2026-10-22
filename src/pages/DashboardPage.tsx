@@ -18,6 +18,10 @@ import {
   PlayCircle,
   FileQuestion,
   ChevronRight,
+  Network,
+  Code2,
+  Monitor,
+  Cloud,
 } from 'lucide-react';
 import { Card } from '@/components/common/Card';
 import { Button } from '@/components/common/Button';
@@ -150,10 +154,10 @@ export const DashboardPage: React.FC = () => {
           </div>
           <div className="mt-4">
             <div className="text-2xl font-bold font-mono text-nexus-text">
-              {analytics?.totalQuestions ?? 446}
+              {analytics?.totalQuestions ?? 7783}
             </div>
             <div className="text-xs text-nexus-text-muted mt-1">
-              Linux (204) • Windows (218) • Cross (24)
+              FCN (2,103) • PC (1,734) • COSA (2,680) • IIMD (1,266)
             </div>
           </div>
         </Card>
@@ -248,146 +252,190 @@ export const DashboardPage: React.FC = () => {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {/* Subject 1: Linux and Operating Systems */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {/* Module 1: Fundamental of Computer Networks */}
+          <Card
+            variant="interactive"
+            padding="lg"
+            className="flex flex-col justify-between relative group border-t-2 border-t-blue-500"
+            onClick={() => navigate('/cmce/fcn')}
+          >
+            <div>
+              <div className="flex items-start justify-between">
+                <div className="w-10 h-10 rounded bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
+                  <Network className="w-5 h-5" />
+                </div>
+                <Badge variant="primary">2,103 Questions</Badge>
+              </div>
+              <h3 className="text-base font-semibold text-nexus-text mt-4 group-hover:text-nexus-accent transition-colors">
+                Computer Networks
+              </h3>
+              <p className="text-xs text-nexus-text-secondary mt-1 line-clamp-2">
+                OSI/TCP-IP models, IP subnetting, routing protocols, VLANs, switching, and security foundations.
+              </p>
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-nexus-border/60">
+              <div className="flex items-center justify-between text-xs text-nexus-text-secondary mb-2">
+                <span>Coverage: {analytics?.subjectBreakdown['fundamental-computer-networks']?.attemptedQuestions ?? 0} / 2,103</span>
+                <span className="font-mono text-nexus-text">
+                  {analytics?.subjectBreakdown['fundamental-computer-networks']?.coveragePct ?? 0}%
+                </span>
+              </div>
+              <div className="w-full h-1.5 rounded-full bg-nexus-elevated overflow-hidden">
+                <div
+                  className="h-full bg-blue-500 transition-all duration-500"
+                  style={{ width: `${analytics?.subjectBreakdown['fundamental-computer-networks']?.coveragePct ?? 0}%` }}
+                />
+              </div>
+
+              <div className="flex items-center justify-between mt-4">
+                <span className="text-xs font-mono text-nexus-text-muted">
+                  Accuracy: {analytics?.subjectBreakdown['fundamental-computer-networks']?.accuracyPct ?? 0}%
+                </span>
+                <span className="inline-flex items-center text-xs font-medium text-blue-400 group-hover:translate-x-1 transition-transform">
+                  Enter Module <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                </span>
+              </div>
+            </div>
+          </Card>
+
+          {/* Module 2: Programming Concepts */}
+          <Card
+            variant="interactive"
+            padding="lg"
+            className="flex flex-col justify-between relative group border-t-2 border-t-violet-500"
+            onClick={() => navigate('/cmce/pc')}
+          >
+            <div>
+              <div className="flex items-start justify-between">
+                <div className="w-10 h-10 rounded bg-violet-500/10 border border-violet-500/30 flex items-center justify-center text-violet-400">
+                  <Code2 className="w-5 h-5" />
+                </div>
+                <Badge variant="cyan">1,734 Questions</Badge>
+              </div>
+              <h3 className="text-base font-semibold text-nexus-text mt-4 group-hover:text-nexus-cyan transition-colors">
+                Programming Concepts
+              </h3>
+              <p className="text-xs text-nexus-text-secondary mt-1 line-clamp-2">
+                C programming, pointers, memory allocation, data structures, algorithms, and SQL databases.
+              </p>
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-nexus-border/60">
+              <div className="flex items-center justify-between text-xs text-nexus-text-secondary mb-2">
+                <span>Coverage: {analytics?.subjectBreakdown['programming-concepts']?.attemptedQuestions ?? 0} / 1,734</span>
+                <span className="font-mono text-nexus-text">
+                  {analytics?.subjectBreakdown['programming-concepts']?.coveragePct ?? 0}%
+                </span>
+              </div>
+              <div className="w-full h-1.5 rounded-full bg-nexus-elevated overflow-hidden">
+                <div
+                  className="h-full bg-violet-500 transition-all duration-500"
+                  style={{ width: `${analytics?.subjectBreakdown['programming-concepts']?.coveragePct ?? 0}%` }}
+                />
+              </div>
+
+              <div className="flex items-center justify-between mt-4">
+                <span className="text-xs font-mono text-nexus-text-muted">
+                  Accuracy: {analytics?.subjectBreakdown['programming-concepts']?.accuracyPct ?? 0}%
+                </span>
+                <span className="inline-flex items-center text-xs font-medium text-violet-400 group-hover:translate-x-1 transition-transform">
+                  Enter Module <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                </span>
+              </div>
+            </div>
+          </Card>
+
+          {/* Module 3: Concepts of Operating System and Administration */}
           <Card
             variant="interactive"
             padding="lg"
             className="flex flex-col justify-between relative group border-t-2 border-t-indigo-500"
-            onClick={() => navigate('/practice/linux')}
+            onClick={() => navigate('/cmce/cosa')}
           >
             <div>
               <div className="flex items-start justify-between">
                 <div className="w-10 h-10 rounded bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
-                  <Terminal className="w-5 h-5" />
+                  <Monitor className="w-5 h-5" />
                 </div>
-                <Badge variant="primary">204 Questions</Badge>
+                <Badge variant="primary">2,680 Questions</Badge>
               </div>
               <h3 className="text-base font-semibold text-nexus-text mt-4 group-hover:text-nexus-accent transition-colors">
-                Linux & Operating Systems
+                Operating Systems (COSA)
               </h3>
               <p className="text-xs text-nexus-text-secondary mt-1 line-clamp-2">
-                Process scheduling, ELF executables, systemd units, LVM storage, standard streams, and enterprise daemons.
+                Linux architectures, LVM, systemd, Windows Server AD DS, Group Policy, and hybrid auth.
               </p>
             </div>
 
             <div className="mt-6 pt-4 border-t border-nexus-border/60">
               <div className="flex items-center justify-between text-xs text-nexus-text-secondary mb-2">
-                <span>Coverage: {analytics?.subjectBreakdown.linux.attemptedQuestions ?? 0} / 204</span>
+                <span>Coverage: {analytics?.subjectBreakdown['cosa']?.attemptedQuestions ?? 0} / 2,680</span>
                 <span className="font-mono text-nexus-text">
-                  {analytics?.subjectBreakdown.linux.coveragePct ?? 0}%
+                  {analytics?.subjectBreakdown['cosa']?.coveragePct ?? 0}%
                 </span>
               </div>
-              {/* Progress bar */}
               <div className="w-full h-1.5 rounded-full bg-nexus-elevated overflow-hidden">
                 <div
                   className="h-full bg-indigo-500 transition-all duration-500"
-                  style={{ width: `${analytics?.subjectBreakdown.linux.coveragePct ?? 0}%` }}
+                  style={{ width: `${analytics?.subjectBreakdown['cosa']?.coveragePct ?? 0}%` }}
                 />
               </div>
 
               <div className="flex items-center justify-between mt-4">
                 <span className="text-xs font-mono text-nexus-text-muted">
-                  Accuracy: {analytics?.subjectBreakdown.linux.accuracyPct ?? 0}%
+                  Accuracy: {analytics?.subjectBreakdown['cosa']?.accuracyPct ?? 0}%
                 </span>
-                <span className="inline-flex items-center text-xs font-medium text-nexus-accent group-hover:translate-x-1 transition-transform">
-                  Start Practice <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                <span className="inline-flex items-center text-xs font-medium text-indigo-400 group-hover:translate-x-1 transition-transform">
+                  Enter Module <ArrowRight className="w-3.5 h-3.5 ml-1" />
                 </span>
               </div>
             </div>
           </Card>
 
-          {/* Subject 2: Windows Server Administration */}
+          {/* Module 4: IT Infrastructure Management & DevOps */}
           <Card
             variant="interactive"
             padding="lg"
-            className="flex flex-col justify-between relative group border-t-2 border-t-cyan-500"
-            onClick={() => navigate('/practice/windows')}
+            className="flex flex-col justify-between relative group border-t-2 border-t-sky-500"
+            onClick={() => navigate('/cmce/itid')}
           >
             <div>
               <div className="flex items-start justify-between">
-                <div className="w-10 h-10 rounded bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
-                  <Server className="w-5 h-5" />
+                <div className="w-10 h-10 rounded bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400">
+                  <Cloud className="w-5 h-5" />
                 </div>
-                <Badge variant="cyan">218 Questions</Badge>
+                <Badge variant="warning">1,266 Questions</Badge>
               </div>
-              <h3 className="text-base font-semibold text-nexus-text mt-4 group-hover:text-nexus-cyan transition-colors">
-                Windows Server Administration
+              <h3 className="text-base font-semibold text-nexus-text mt-4 group-hover:text-sky-400 transition-colors">
+                Infra & DevOps (IIMD)
               </h3>
               <p className="text-xs text-nexus-text-secondary mt-1 line-clamp-2">
-                Active Directory logical structures, FSMO operations, Group Policy enforcement, PowerShell cmdlets, and Hyper-V.
+                Virtualization, Docker containerization, CI/CD pipelines, AWS/Cloud fundamentals, and Ansible.
               </p>
             </div>
 
             <div className="mt-6 pt-4 border-t border-nexus-border/60">
               <div className="flex items-center justify-between text-xs text-nexus-text-secondary mb-2">
-                <span>Coverage: {analytics?.subjectBreakdown.windows.attemptedQuestions ?? 0} / 218</span>
+                <span>Coverage: {analytics?.subjectBreakdown['it-infrastructure-devops']?.attemptedQuestions ?? 0} / 1,266</span>
                 <span className="font-mono text-nexus-text">
-                  {analytics?.subjectBreakdown.windows.coveragePct ?? 0}%
+                  {analytics?.subjectBreakdown['it-infrastructure-devops']?.coveragePct ?? 0}%
                 </span>
               </div>
-              {/* Progress bar */}
               <div className="w-full h-1.5 rounded-full bg-nexus-elevated overflow-hidden">
                 <div
-                  className="h-full bg-cyan-500 transition-all duration-500"
-                  style={{ width: `${analytics?.subjectBreakdown.windows.coveragePct ?? 0}%` }}
+                  className="h-full bg-sky-500 transition-all duration-500"
+                  style={{ width: `${analytics?.subjectBreakdown['it-infrastructure-devops']?.coveragePct ?? 0}%` }}
                 />
               </div>
 
               <div className="flex items-center justify-between mt-4">
                 <span className="text-xs font-mono text-nexus-text-muted">
-                  Accuracy: {analytics?.subjectBreakdown.windows.accuracyPct ?? 0}%
+                  Accuracy: {analytics?.subjectBreakdown['it-infrastructure-devops']?.accuracyPct ?? 0}%
                 </span>
-                <span className="inline-flex items-center text-xs font-medium text-nexus-cyan group-hover:translate-x-1 transition-transform">
-                  Start Practice <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                </span>
-              </div>
-            </div>
-          </Card>
-
-          {/* Subject 3: Windows & Linux Cross-platform */}
-          <Card
-            variant="interactive"
-            padding="lg"
-            className="flex flex-col justify-between relative group border-t-2 border-t-emerald-500"
-            onClick={() => navigate('/practice/cross-platform')}
-          >
-            <div>
-              <div className="flex items-start justify-between">
-                <div className="w-10 h-10 rounded bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-                  <Layers className="w-5 h-5" />
-                </div>
-                <Badge variant="success">24 Questions</Badge>
-              </div>
-              <h3 className="text-base font-semibold text-nexus-text mt-4 group-hover:text-nexus-success transition-colors">
-                Cross-platform Systems
-              </h3>
-              <p className="text-xs text-nexus-text-secondary mt-1 line-clamp-2">
-                Active Directory realm joining, SSSD configuration, Kerberos authentication, SMB/NFS interoperability, and web server comparisons.
-              </p>
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-nexus-border/60">
-              <div className="flex items-center justify-between text-xs text-nexus-text-secondary mb-2">
-                <span>Coverage: {analytics?.subjectBreakdown.cross_platform.attemptedQuestions ?? 0} / 24</span>
-                <span className="font-mono text-nexus-text">
-                  {analytics?.subjectBreakdown.cross_platform.coveragePct ?? 0}%
-                </span>
-              </div>
-              {/* Progress bar */}
-              <div className="w-full h-1.5 rounded-full bg-nexus-elevated overflow-hidden">
-                <div
-                  className="h-full bg-emerald-500 transition-all duration-500"
-                  style={{ width: `${analytics?.subjectBreakdown.cross_platform.coveragePct ?? 0}%` }}
-                />
-              </div>
-
-              <div className="flex items-center justify-between mt-4">
-                <span className="text-xs font-mono text-nexus-text-muted">
-                  Accuracy: {analytics?.subjectBreakdown.cross_platform.accuracyPct ?? 0}%
-                </span>
-                <span className="inline-flex items-center text-xs font-medium text-emerald-400 group-hover:translate-x-1 transition-transform">
-                  Start Practice <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                <span className="inline-flex items-center text-xs font-medium text-sky-400 group-hover:translate-x-1 transition-transform">
+                  Enter Module <ArrowRight className="w-3.5 h-3.5 ml-1" />
                 </span>
               </div>
             </div>

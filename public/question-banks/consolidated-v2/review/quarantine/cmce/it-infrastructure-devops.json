@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "2.0",
+  "examStage": "cmce",
+  "subject": {
+    "id": "it-infrastructure-devops",
+    "name": "IT Infrastructure Management & DevOps"
+  },
+  "metadata": {
+    "totalQuestions": 0
+  },
+  "questions": []
+}

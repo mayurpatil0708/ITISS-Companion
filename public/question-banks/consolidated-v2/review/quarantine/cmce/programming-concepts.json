@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "2.0",
+  "examStage": "cmce",
+  "subject": {
+    "id": "programming-concepts",
+    "name": "Programming Concepts"
+  },
+  "metadata": {
+    "totalQuestions": 0
+  },
+  "questions": []
+}

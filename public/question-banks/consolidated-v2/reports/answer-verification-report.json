@@ -1,0 +1,23 @@
+{
+  "externalResearchPerformed": true,
+  "questionsExternallyVerified": 169,
+  "answersCorrected": 11,
+  "questionsAwaitingExternalVerification": 8039,
+  "sourceMarkedAnswerCounts": {
+    "unmarked": 2859,
+    "marked": 5349
+  },
+  "statusCounts": {
+    "verified_correct": 158,
+    "ambiguous": 15,
+    "needs_manual_review": 1717,
+    "unresolved": 6307,
+    "corrected": 11
+  },
+  "policy": "PDF answer keys/highlights and the existing website explanations are retained as source evidence only. They are not independent technical verification.",
+  "reason": "Progress is saved by stable question ID in reports/research-results.json; the per-question evidence and conclusion are in each record.",
+  "questionsResearchedOrReviewed": 191,
+  "explanationsCompleted": 169,
+  "explanationsProvisional": 22,
+  "researchBatchCount": 21
+}

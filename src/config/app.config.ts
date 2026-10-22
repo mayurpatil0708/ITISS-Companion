@@ -42,6 +42,38 @@ export const APP_CONFIG: AppConfig = {
   courseName: 'PGCP-ITISS at CDAC',
   defaultPassingThreshold: 70,
   subjects: {
+    cosa: {
+      id: 'cosa',
+      name: 'Concepts of Operating System and Administration',
+      shortTitle: 'COSA',
+      description: 'Linux process architecture, storage, LVM, systemd, Windows Server 2022 AD DS, Group Policy, PowerShell, and Hyper-V.',
+      icon: 'Monitor',
+      badgeColor: 'border-indigo-500/30 text-indigo-400 bg-indigo-500/10',
+    },
+    'fundamental-computer-networks': {
+      id: 'fundamental-computer-networks',
+      name: 'Fundamental of Computer Networks',
+      shortTitle: 'Networks',
+      description: 'OSI & TCP/IP models, IP addressing & subnetting, routing protocols (RIP, OSPF, BGP), VLANs, switching, and network security.',
+      icon: 'Network',
+      badgeColor: 'border-blue-500/30 text-blue-400 bg-blue-500/10',
+    },
+    'programming-concepts': {
+      id: 'programming-concepts',
+      name: 'Programming Concepts',
+      shortTitle: 'Programming',
+      description: 'C syntax, pointers & dynamic memory, Python OOP, data structures, relational database modeling, SQL queries, and ACID transactions.',
+      icon: 'Code2',
+      badgeColor: 'border-violet-500/30 text-violet-400 bg-violet-500/10',
+    },
+    'it-infrastructure-devops': {
+      id: 'it-infrastructure-devops',
+      name: 'IT Infrastructure Management & DevOps',
+      shortTitle: 'Infra & DevOps',
+      description: 'ITIL v3/4 lifecycle, Docker containerization, Kubernetes, Jenkins CI/CD, Ansible automation, and AWS cloud architecture.',
+      icon: 'Cloud',
+      badgeColor: 'border-sky-500/30 text-sky-400 bg-sky-500/10',
+    },
     linux: {
       id: 'linux',
       name: 'Linux & Operating Systems',

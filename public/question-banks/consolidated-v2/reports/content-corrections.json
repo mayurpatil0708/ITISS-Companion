@@ -1,0 +1,1400 @@
+{
+  "corrections": [
+    {
+      "questionId": "cosa-000df3f2b5ab3724",
+      "edits": [
+        {
+          "field": "question",
+          "before": "What are the permission of myfile.txt after executing this command? chmod 776 myfile.txt\nComplete\nMark 1 out of 1 Select one:",
+          "after": "What permissions does myfile.txt have after running `chmod 776 myfile.txt`?",
+          "reason": "The original PDF page confirms the question and the trailing words are quiz-interface text."
+        },
+        {
+          "field": "options",
+          "before": "The extracted OCR misread option A and appended the answer-key sentence to option D.",
+          "after": "Options A-D transcribed from the rendered source page.",
+          "reason": "Visual page inspection corrected OCR/answer-key contamination without changing the intended choices."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA Mock CCEE.pdf",
+          "page": 17,
+          "observedAnswerLabel": "D",
+          "notes": "The rendered source page shows the four choices and the printed answer rwxrwxrw-."
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-b74e816ad1269e61",
+      "edits": [
+        {
+          "field": "question_and_options",
+          "before": "Extracted choices were merged across question boundaries, included following-question text, and retained source labels E-H as malformed option IDs.",
+          "after": "Question and four choices transcribed from the source page, normalized to A-D.",
+          "reason": "The original page visibly contains four choices E-H and marks G; source answer label G maps to normalized choice C."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/ilovepdf_merged.pdf",
+          "page": 9,
+          "observedAnswerLabel": "G",
+          "notes": "The rendered page shows source choices E-H and marks G in green; reconstructed order E-H maps to output A-D, so G becomes C."
+        }
+      ]
+    },
+    {
+      "questionId": "pc-3a02f2fba87504cd",
+      "edits": [
+        {
+          "field": "options",
+          "before": "The parser split code-block choices into 16 pseudo-options and merged later question text.",
+          "after": "The four choices were reconstructed from the rendered page's A/F/K/P blocks and relabeled A-D.",
+          "reason": "The page layout visibly groups each code block as one choice and identifies A as the answer."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Programming Concepts/PC/Python.pdf",
+          "page": 19,
+          "observedAnswerLabel": "A",
+          "notes": "The page shows four composite choices A, F, K, and P; A is marked as the answer."
+        }
+      ]
+    },
+    {
+      "questionId": "pc-79df23d9d0286242",
+      "edits": [
+        {
+          "field": "options",
+          "before": "The extraction appended the source explanation to option D and produced an empty fifth option.",
+          "after": "Four choices A-D transcribed from the source page; the answer explanation is stored separately as provisional context.",
+          "reason": "The rendered page shows the original four choices and the source-marked answer C."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Programming Concepts/PC/DBMS.pdf",
+          "page": 18,
+          "observedAnswerLabel": "C",
+          "notes": "The page shows choices A-D, marks C, and gives the course explanation 'procedure component'."
+        }
+      ]
+    },
+    {
+      "questionId": "pc-990c7366666a9199",
+      "edits": [
+        {
+          "field": "options",
+          "before": "The parser split grouped code-block choices into 12 pseudo-options and merged the next question fragment.",
+          "after": "The four displayed code forms were reconstructed from the rendered source page and relabeled A-D.",
+          "reason": "The page layout visibly groups the choices and marks A as the answer."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Programming Concepts/PC/Python.pdf",
+          "page": 11,
+          "observedAnswerLabel": "A",
+          "notes": "The page shows grouped code options A, D, I, and L; the source marks A."
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-0023e5b937bb70d9",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D included the source explanation after its answer text.",
+          "after": "Option D is “none of the mentioned”.",
+          "reason": "The rendered page shows the explanation as a separate paragraph, not part of option D."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/Linux/Linux.pdf",
+          "page": 63,
+          "observedAnswerLabel": "A",
+          "notes": "The rendered source page shows question 4, choices A-D, answer A, and a separate explanation after the choices."
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-002e28bfa5f2bf98",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D included the source explanation after its text.",
+          "after": "Option D is “IPAM PowerShell”.",
+          "reason": "The rendered page shows the explanation as a separate paragraph."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/WIndows/session-6-7/mcqs.pdf",
+          "page": 12,
+          "observedAnswerLabel": "C",
+          "notes": "Rendered question 22 lists the four choices, marks source answer C, and places the explanation after the answer key."
+        }
+      ]
+    },
+    {
+      "questionId": "pc-0060b1f3798ac996",
+      "edits": [
+        {
+          "field": "options",
+          "before": "PDF text extraction changed the ordinary quote marks in all four code snippets to curly quote glyphs.",
+          "after": "The four snippets use straight Python string delimiters, as shown on the rendered PDF page.",
+          "reason": "Visual source review confirmed the original code punctuation and preserved the code meaning."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Programming Concepts/PC/Python.pdf",
+          "page": 1,
+          "observedAnswerLabel": "C",
+          "notes": "The rendered source page shows straight-quoted code examples and marks C as the answer."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-00a58946da8df11e",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "Container process IDs",
+          "after": "Number of container processes (PIDs)",
+          "reason": "Clarifies the process-count limit exposed by the Linux pids controller; it does not change the option’s intended concept."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/devops quiz.pdf",
+          "page": 7,
+          "observedAnswerLabel": "B",
+          "notes": "The rendered quiz review page prints “The correct answer is: Disk space, CPU, memory.” The selected radio button A is the learner response, not the answer key."
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-003dc86930c12c79",
+      "edits": [
+        {
+          "field": "question_and_options",
+          "before": "OCR retained quiz status/timer fragments and dropped all four options.",
+          "after": "Question and options A-D transcribed from the rendered source page.",
+          "reason": "The source screenshot was rendered at high resolution to restore the missing structure."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/Last or D-Day Material/Last Day Notes/COSA.pdf",
+          "page": 11,
+          "observedAnswerLabel": "D",
+          "notes": "The rendered page shows the full question and four choices; the page prints Enterprise Admins as the answer key. The learner selected Domain Admins, which was marked incorrect."
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-0053f7f595e3e3d8",
+      "edits": [
+        {
+          "field": "question",
+          "before": "Concatenation is performed by",
+          "after": "In AWK, how is string concatenation performed?",
+          "reason": "The original page’s surrounding material identifies AWK; adding the language makes the otherwise incomplete stem precise."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/Linux/Linux.pdf",
+          "page": 82,
+          "observedAnswerLabel": "A",
+          "notes": "The rendered page shows this item followed by AWK regular-expression questions and an AWK program; the printed answer is A."
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-0079e8b4b1002093",
+      "edits": [
+        {
+          "field": "question",
+          "before": "What control character signals the end of the input file?",
+          "after": "In canonical mode on a Linux terminal, which control key commonly sends an end-of-file indication?",
+          "reason": "The original wording conflates a terminal control key with a stored file character; Linux VEOF semantics are terminal-specific."
+        },
+        {
+          "field": "options.D",
+          "before": "ctrl + d\\nView Answer: d",
+          "after": "ctrl + d",
+          "reason": "The answer display was separated from the option in the source PDF."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/Linux/Linux.pdf",
+          "page": 91,
+          "observedAnswerLabel": "D",
+          "notes": "The rendered page shows the four control-key choices and View Answer: d."
+        }
+      ]
+    },
+    {
+      "questionId": "fcn-00dba0bc87f46eb4",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "128\\nExplanation: The standard subnet prefix length is 64 bits for network.\\nHard (10)",
+          "after": "128",
+          "reason": "The source page shows the explanation and difficulty label outside the option."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/session-13-14/mcqs.pdf",
+          "page": 10,
+          "observedAnswerLabel": "C",
+          "notes": "The rendered page shows the exact stem, options A-D, and source key C with a separate explanation."
+        }
+      ]
+    },
+    {
+      "questionId": "fcn-00ed191573abd6a5",
+      "edits": [
+        {
+          "field": "options",
+          "before": "The extraction merged all four options into a single malformed choice.",
+          "after": "A: WEP; B: WPA-Personal; C: WPA-Enterprise; D: TKIP.",
+          "reason": "The rendered source page visibly separates the four choices."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/fcn sample q_1.pdf",
+          "page": 9,
+          "observedAnswerLabel": "C",
+          "notes": "The rendered page shows all four choices and marks WPA-Enterprise in red as the answer."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-00a78f0fcf9d6ebe",
+      "edits": [
+        {
+          "field": "question_and_options",
+          "before": "OCR included quiz-result text and appended the answer key/URL to option D.",
+          "after": "Question and four options transcribed from the rendered page.",
+          "reason": "Visual review restored clean content and showed that the source is a combined mock CCEE exam, not an ordinary subject-specific MCQ file."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/Last or D-Day Material/Mock CCEE/Programming Concepts, DevOps, ITIL Mock CCEE.pdf",
+          "page": 1,
+          "observedAnswerLabel": "D",
+          "notes": "The page title identifies a mixed MOCK CCEE exam; question 2 shows Union, Intersection, Difference, None of the Above, with D marked correct."
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-008bb72a10f4a4ae",
+      "edits": [
+        {
+          "field": "question_and_options",
+          "before": "The stem included quiz-status text, and OCR collapsed the choices into three malformed options.",
+          "after": "Restored the stem and four choices A-D from the rendered source page.",
+          "reason": "The rendered page shows the source layout and answer label C."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA Mock CCEE.pdf",
+          "page": 15,
+          "observedAnswerLabel": "C",
+          "notes": "The rendered source page shows all four options and prints “vgremove group-name” as the correct answer."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-00c20e1022dc032e",
+      "edits": [
+        {
+          "field": "question_and_options",
+          "before": "The extracted stem contained quiz-result text and the answer key was appended to option D.",
+          "after": "Clean stem and four options transcribed from the rendered page.",
+          "reason": "The page also exposes the CCEE mock exam context and its printed answer key."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/Mock CCEE devops.pdf",
+          "page": 15,
+          "observedAnswerLabel": "C",
+          "notes": "The rendered page is headed “MOCK CCEE-ITAM & DevOps” and shows Products as the answer key for question 37."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-00c4a38b508da86c",
+      "edits": [
+        {
+          "field": "question_and_options",
+          "before": "OCR added quiz-result text and merged the printed answer into option C; only three malformed choices remained.",
+          "after": "The code and four options were transcribed from the rendered source page.",
+          "reason": "Visual inspection restored the complete item and showed the exam stage and printed key."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/Last or D-Day Material/Mock CCEE/Programming Concepts, DevOps, ITIL Mock CCEE.pdf",
+          "page": 17,
+          "observedAnswerLabel": "B",
+          "notes": "The rendered page title identifies a mixed MOCK CCEE exam. Question 39 shows the code, four options, and B marked correct."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-00f4d289b10a38a3",
+      "edits": [
+        {
+          "field": "question_and_options",
+          "before": "The stem included “a) Nagios”; the choices were shifted and omitted the fourth choice, while raw answer label B was mapped to candidate ID A.",
+          "after": "Restored the stem and options A-D from the rendered page; set the answer to option B.",
+          "reason": "PDF visual evidence and Grafana documentation support B."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/Last or D-Day Material/Last Day Notes/DEVOPS.pdf",
+          "page": 27,
+          "observedAnswerLabel": "B",
+          "notes": "The rendered page lists Grafana as choice B and prints “Answer: b) Grafana.” The extracted question had shifted the “a) Nagios” text into the stem and mapped the answer to candidate ID A."
+        }
+      ]
+    },
+    {
+      "questionId": "pc-00f126f9c98991eb",
+      "edits": [
+        {
+          "field": "question_and_options",
+          "before": "The extraction appended the source key and explanation to option D.",
+          "after": "Clean four-choice version transcribed from the source page.",
+          "reason": "Visual review restored the item; the source PDF path identifies it as FCN SDN content."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/SDN.pdf",
+          "page": 3,
+          "observedAnswerLabel": "A",
+          "notes": "The rendered FCN SDN page shows question 11 with choices A-D and prints “Correct: A.”"
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-00b82f77d515280c",
+      "edits": [
+        {
+          "field": "question_and_options",
+          "before": "The extraction placed shell output and an explanation into option D.",
+          "after": "Program and four choices restored from the rendered page.",
+          "reason": "Visual review confirmed the source key and two-line output."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/Linux/Linux.pdf",
+          "page": 69,
+          "observedAnswerLabel": "A",
+          "notes": "The rendered page shows the two assignments, loop bound i < 3, two output lines, and Answer: a."
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-00c06df0226af31b",
+      "edits": [
+        {
+          "field": "question_and_options",
+          "before": "The extracted fourth option included terminal output and prompt text.",
+          "after": "The code and four choices were cleaned using the rendered source page.",
+          "reason": "Visual review confirmed the program output and printed key."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/Linux/Linux.pdf",
+          "page": 70,
+          "observedAnswerLabel": "A",
+          "notes": "The rendered page shows the comma-separated subscript assignment, the matching print expression, output “sanfoundry,” and Answer: a."
+        }
+      ]
+    },
+    {
+      "questionId": "fcn-0148791a96f4499d",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D included the source explanation and difficulty label; option A listed only some flow-entry fields.",
+          "after": "Removed the contaminating text and expanded option A to include all fields documented by ONF.",
+          "reason": "The source page confirms A as the intended key; the specification supplies the complete field list."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/session-16/mcqs.pdf",
+          "page": 13,
+          "observedAnswerLabel": "A",
+          "notes": "The rendered source page shows question 33, options A-D, and Answer A. The answer option was expanded using the ONF specification."
+        }
+      ]
+    },
+    {
+      "questionId": "fcn-015e7f00b63538ab",
+      "edits": [
+        {
+          "field": "question_and_options",
+          "before": "The stem was split at “on” and the word “router?” was parsed as an option; the candidate had five choices.",
+          "after": "Restored the complete stem and four choices from the PDF.",
+          "reason": "The rendered source page shows the full question and answer."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/FCN Merged Final.pdf",
+          "page": 21,
+          "observedAnswerLabel": "C",
+          "notes": "The rendered page shows the full stem and four choices; NVRAM is highlighted red as the source key."
+        }
+      ]
+    },
+    {
+      "questionId": "fcn-0169ac5a825ef514",
+      "edits": [
+        {
+          "field": "question_and_options",
+          "before": "Question and choices were intact; no answer had been extracted.",
+          "after": "Question and choices retained; source key B recorded and independently corrected to A.",
+          "reason": "Cisco’s IOS command-mode documentation contradicts the source key."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/FCN Merged Final.pdf",
+          "page": 21,
+          "observedAnswerLabel": "B",
+          "notes": "The source page marks B in red, but Cisco documentation establishes that B is privileged EXEC and A is user EXEC."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-00ffab6c3dd776bb",
+      "edits": [
+        {
+          "field": "question_and_options",
+          "before": "The stem included “a) PaaS”; the options were shifted and choice D was missing; raw answer label C was normalized to B.",
+          "after": "Restored choices A-D and mapped the printed answer to option C.",
+          "reason": "The PDF visually confirms the full option sequence and key."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/Last or D-Day Material/Last Day Notes/DEVOPS.pdf",
+          "page": 15,
+          "observedAnswerLabel": "C",
+          "notes": "The rendered page lists PaaS, SaaS, IaaS, FaaS and prints “Answer: c) IaaS.”"
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-012dbbfe9f82de3a",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D included page number, section metadata, and an empty explanation field.",
+          "after": "Four clean options transcribed from the source page.",
+          "reason": "Visual inspection removed extraction contamination while preserving the source wording."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/ITIL/ITIL Foundation Questions.pdf",
+          "page": 8,
+          "observedAnswerLabel": "C",
+          "notes": "The rendered page shows question 23, choices A-D, and Answer: C; the file cites ITIL v3 exam material."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-013c17c3224aedf1",
+      "edits": [
+        {
+          "field": "question",
+          "before": "Out of these, which one is the most restrictive and refined service model?",
+          "after": "Which NIST cloud service model gives the consumer the least control over the underlying infrastructure?",
+          "reason": "The original wording was vague; the revised stem states the measurable criterion used to distinguish SaaS, PaaS, and IaaS."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+          "page": 30,
+          "observedAnswerLabel": "D",
+          "notes": "The rendered page shows SaaS, IaaS, CaaS, PaaS and prints PaaS as the answer; NIST’s model definitions support correcting this key to SaaS."
+        }
+      ]
+    },
+    {
+      "questionId": "pc-015c4cc30d6ba2d8",
+      "edits": [
+        {
+          "field": "question",
+          "before": "The extraction included “sql CopyEdit” interface text before the query.",
+          "after": "Clean SQL query restored from the rendered page continuation.",
+          "reason": "The page continuation shows the full query and answer choices."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Programming Concepts/PC/mysql/session 4 & 5/mcq.pdf",
+          "page": 14,
+          "observedAnswerLabel": "B",
+          "notes": "The rendered continuation page shows the full query, options A-D, and Answer: B."
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-00fc310a2b0dbb55",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D also contained the source explanation text.",
+          "after": "Option D: None of the above.",
+          "reason": "Reconstructed the four options from the rendered source PDF page; removed explanation spill from option D."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/WIndows/session-1-2/mcqs.pdf",
+          "page": 6,
+          "notes": "The page shows the full A-D choices, marks C as the answer, and prints the source explanation.",
+          "observedAnswerLabel": "C"
+        }
+      ]
+    },
+    {
+      "questionId": "fcn-018532edf664aff5",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D contained “DNS” followed by an extracted explanation.",
+          "after": "Option D: DNS.",
+          "reason": "The source pages show DNS as the complete fourth option; the following explanation belongs to the answer rationale."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/session-17/mcqs.pdf",
+          "page": 7,
+          "notes": "The rendered page shows the question stem."
+        },
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/session-17/mcqs.pdf",
+          "page": 8,
+          "notes": "The continuation page shows options A-D and the printed answer B.",
+          "observedAnswerLabel": "B"
+        }
+      ]
+    },
+    {
+      "questionId": "fcn-018a05c9f0e568bd",
+      "edits": [
+        {
+          "field": "options",
+          "before": "All four address choices were concatenated into one extracted option, with “Session 12” appended.",
+          "after": "A: 192.168.10.18; B: 192.168.10.47; C: 192.168.10.54; D: 192.168.10.125.",
+          "reason": "Reconstructed the labels from the rendered source page. Did not insert the mathematically correct address because it is absent from the source."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/fcn sample q_1.pdf",
+          "page": 10,
+          "notes": "The rendered page shows the full question, all four options, and the source highlights B (192.168.10.47) in red.",
+          "observedAnswerLabel": "B"
+        }
+      ]
+    },
+    {
+      "questionId": "fcn-01cbc88669f92fec",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D contained a trailing source explanation.",
+          "after": "Option D: None of the above.",
+          "reason": "The rendered source page confirms the explanation is separate from the option text."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/session-20/mcqs.pdf",
+          "page": 11,
+          "notes": "The page shows options A-D and the printed answer A.",
+          "observedAnswerLabel": "A"
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-01619d7270f471dd",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D included the trailing word “infrastructure.” from the answer text.",
+          "after": "Option D: None of the above.",
+          "reason": "The rendered source page confirms the answer explanation is separate from option D."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+          "page": 47,
+          "notes": "The page shows the full A-D options and prints “Answer: B) Deployment”.",
+          "observedAnswerLabel": "B"
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-0174a53d5d8e554b",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D contained an appended website citation and empty explanation labels.",
+          "after": "Option D: Monitoring services.",
+          "reason": "The rendered source page confirms those lines are page metadata, not part of option D."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/ITIL/ITIL Foundation Questions.pdf",
+          "page": 17,
+          "notes": "The rendered page confirms all four choices and that D is “Monitoring services”; this occurrence does not print an answer key."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-019fadef9c1b5ae3",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D included an appended explanation about abstraction and virtualization.",
+          "after": "Option D: All of the mentioned.",
+          "reason": "The rendered source page separates the explanation from the four answer options."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+          "page": 75,
+          "notes": "The rendered page shows the full choices and the printed source answer B with an explanation about abstraction and virtualization.",
+          "observedAnswerLabel": "B"
+        }
+      ]
+    },
+    {
+      "questionId": "pc-01f2fbe3cba51385",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D contained the following answer-key explanation text.",
+          "after": "Option D: Calls unrelated function.",
+          "reason": "The rendered next page confirms the explanation is separate from option D."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Programming Concepts/PC/PYTHON/session 17/session 12/mcq.pdf",
+          "page": 4,
+          "notes": "The page shows the question and options A-C; the option D continuation is on page 5."
+        },
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Programming Concepts/PC/PYTHON/session 17/session 12/mcq.pdf",
+          "page": 5,
+          "notes": "The next page shows option D, the printed answer A, and the source explanation.",
+          "observedAnswerLabel": "A"
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-01414b897a3869da",
+      "edits": [
+        {
+          "field": "option C",
+          "before": "Passwords are sent in plaintext",
+          "after": "Password hashes are sent over the network without encryption",
+          "reason": "Red Hat documentation distinguishes exposed password hashes from literal passwords and confirms NIS transmits those hashes without encryption."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/Linux/session 19/mcqs.pdf",
+          "page": 7,
+          "notes": "The page shows the NIS limitation question and option A."
+        },
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/Linux/session 19/mcqs.pdf",
+          "page": 8,
+          "notes": "The continuation shows options B-D and the printed answer C.",
+          "observedAnswerLabel": "C"
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-018d6b0913601247",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option texts were prefixed with OCR artifacts (©).",
+          "after": "The five options were transcribed from the rendered page without the OCR artifact.",
+          "reason": "Visual inspection confirmed the exact five-choice layout and option text."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/Linux/Linux.pdf",
+          "page": 30,
+          "notes": "The rendered page shows the question and five choices A-E; D is /etc/fstab."
+        }
+      ]
+    },
+    {
+      "questionId": "fcn-01b3698e58d2a8bd",
+      "edits": [
+        {
+          "field": "option D",
+          "before": "DHCP followed by the source answer and explanation.",
+          "after": "DHCP",
+          "reason": "The rendered source page confirms answer and explanation text is separate from option D."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/Virtual Networking.pdf",
+          "page": 14,
+          "notes": "The rendered page shows the full A-D choices and explicitly prints “Correct: C”.",
+          "observedAnswerLabel": "C"
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-01ec4c5b3b3cf9e5",
+      "edits": [
+        {
+          "field": "question and options",
+          "before": "The first source choice was appended to the question text; the three remaining choices were relabeled A-C, causing printed answer B to map to extracted option A.",
+          "after": "Restored the source question with options A-D in their printed order; option B is the source-marked answer.",
+          "reason": "The rendered PDF confirms the original layout and answer label, correcting the extraction mapping without changing source meaning."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/Last or D-Day Material/Last Day Notes/DEVOPS.pdf",
+          "page": 20,
+          "notes": "The page shows the full question, options A-D, and the printed answer B.",
+          "observedAnswerLabel": "B"
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-02178fd4f5c4c989",
+      "edits": [
+        {
+          "field": "option D",
+          "before": "lean followed by the author surname Jayaswal.",
+          "after": "lean",
+          "reason": "Visual inspection shows Jayaswal is part of the book reference, not answer option D."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM sample questions.pdf",
+          "page": 23,
+          "notes": "The page shows option D as “lean”, answer A, and a separate book-reference line ending in Jayaswal.",
+          "observedAnswerLabel": "A"
+        }
+      ]
+    },
+    {
+      "questionId": "pc-027e827af0222fd4",
+      "edits": [
+        {
+          "field": "option D",
+          "before": "dict[] followed by the source explanation.",
+          "after": "dict[]",
+          "reason": "The rendered source page separates the explanation from the fourth choice."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Programming Concepts/PC/PYTHON/session 17/Session 7 & 8/mcq.pdf",
+          "page": 1,
+          "notes": "The page shows all four options, prints the answer B, and states that {} creates an empty dictionary.",
+          "observedAnswerLabel": "B"
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-019796bb10adba83",
+      "edits": [
+        {
+          "field": "option D",
+          "before": "DNS Server\\nExplanation: FSRM provides quotas and file screening features.",
+          "after": "DNS Server",
+          "reason": "The rendered source page separates the answer explanation from option D."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/WIndows/session-15/mcqs.pdf",
+          "page": 1,
+          "notes": "The page shows this question, options A-D, and the printed answer B.",
+          "observedAnswerLabel": "B"
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-01991f776036d822",
+      "edits": [
+        {
+          "field": "question",
+          "before": "Which vsftpd.conf setting allows user uploads?",
+          "after": "Which `vsftpd.conf` setting enables FTP commands that change the filesystem, including STOR?",
+          "reason": "The original wording implied this one setting alone guarantees every kind of upload; the revised stem asks the precise behavior controlled by write_enable."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "cosa-01f797e162167a1b",
+      "edits": [
+        {
+          "field": "option D",
+          "before": "None of these\\nBash does not have a do-while construct like some languages.",
+          "after": "None of these",
+          "reason": "The source page prints this sentence as an explanation below the answer, not as part of option D."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/Linux/session 21-22/mcqs.pdf",
+          "page": 9,
+          "notes": "The page shows options A-D, printed answer D, and the note that Bash has no do-while construct.",
+          "observedAnswerLabel": "D"
+        }
+      ]
+    },
+    {
+      "questionId": "fcn-02523e2e5e203f46",
+      "edits": [
+        {
+          "field": "option D",
+          "before": "Firewall\\nExplanation: The SDN controller centrally manages the control plane functions.",
+          "after": "Firewall",
+          "reason": "The rendered source page and question layout distinguish the answer explanation from option D."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/session-16/mcqs.pdf",
+          "page": 1,
+          "notes": "The page shows the question and its four options; the extracted D choice had the explanation appended. The answer was independently checked against ONF architecture."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-02f35e5481013b8c",
+      "edits": [
+        {
+          "field": "question",
+          "before": "The VM (virtual machine) is divorced from the.........",
+          "after": "A virtual machine is abstracted from the physical host’s ______.",
+          "reason": "The wording was clarified to describe hardware abstraction without implying that a VM is independent of the physical host."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "pc-03791e9f4380612d",
+      "edits": [
+        {
+          "field": "option D",
+          "before": "divide()\\nExplanation: split() divides a string based on delimiter.",
+          "after": "divide()",
+          "reason": "The source page shows the explanation separately from the answer choices."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Programming Concepts/PC/PYTHON/session 9/mcq.pdf",
+          "page": 3,
+          "notes": "The page shows options A-D and printed answer A; the explanation is printed separately below the options.",
+          "observedAnswerLabel": "A"
+        }
+      ]
+    },
+    {
+      "questionId": "pc-03fe34a0ec4a0b6d",
+      "edits": [
+        {
+          "field": "option D",
+          "before": "A function\\nExplanation: Objects are instances of classes.\\nMedium Level (20 MCQs)",
+          "after": "A function",
+          "reason": "The rendered source page shows the answer explanation and section heading outside the option text."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Programming Concepts/PC/PYTHON/Session 6/mcq.pdf",
+          "page": 4,
+          "notes": "The page shows the four options and printed answer B.",
+          "observedAnswerLabel": "B"
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-01d4e86933146661",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D included the explanation sentence.",
+          "after": "Restored option D to “IPsec certificate”.",
+          "reason": "Rendered page separates the explanation from the option."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/WIndows/session-9/mcqs.pdf",
+          "page": 9,
+          "observedAnswerLabel": "B",
+          "notes": "Rendered page confirms choices, key, and that explanation text is separate from D."
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-01fc5d8b6683aaad",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D included the explanation sentence.",
+          "after": "Restored option D to “None of the above”.",
+          "reason": "Rendered page separates explanation from option."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/WIndows/session-15/mcqs.pdf",
+          "page": 9,
+          "observedAnswerLabel": "C",
+          "notes": "Rendered page confirms choices, key, and separate explanation."
+        }
+      ]
+    },
+    {
+      "questionId": "fcn-0261044e6cac6641",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D included explanation text.",
+          "after": "Restored option D to “None of the above”.",
+          "reason": "Rendered page separates explanation from option."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/session-17/mcqs.pdf",
+          "page": 8,
+          "observedAnswerLabel": "A",
+          "notes": "Rendered page confirms choices and key; removed explanation contamination from D."
+        }
+      ]
+    },
+    {
+      "questionId": "fcn-027b466aa9329d1d",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D included explanation text.",
+          "after": "Restored option D to “Only support fiber optic cables”.",
+          "reason": "Rendered page separates explanation from option."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/session-1-2/mcqs.pdf",
+          "page": 12,
+          "observedAnswerLabel": "B",
+          "notes": "Rendered page confirms choices, key, and separate explanation."
+        }
+      ]
+    },
+    {
+      "questionId": "fcn-0336ce7f7b33df58",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D included explanation text.",
+          "after": "Restored option D to “SMTP”.",
+          "reason": "Rendered page separates explanation from option."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/session-16/mcqs.pdf",
+          "page": 15,
+          "observedAnswerLabel": "A",
+          "notes": "Rendered page confirms choices/key and separate explanation."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-03b023fe5ae14fa8",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D included trailing name “Jayaswal”.",
+          "after": "Restored option D to “Link”.",
+          "reason": "Rendered page shows the name is not part of the choice."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM (MCQ_s)(1).pdf",
+          "page": 4,
+          "observedAnswerLabel": null,
+          "notes": "Rendered page shows question and options; answer key continues on p. 5."
+        },
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/DCM (MCQ_s)(1).pdf",
+          "page": 5,
+          "observedAnswerLabel": "A",
+          "notes": "Rendered continuation shows answer A."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-04f5f8df71a9a2f6",
+      "edits": [
+        {
+          "field": "question",
+          "before": "Which one ... involving the three different service models together?",
+          "after": "Which acronym collectively refers to the SaaS, PaaS, and IaaS cloud service models?",
+          "reason": "Clarified the intended grouping from the page explanation."
+        },
+        {
+          "field": "answer",
+          "before": "A (CPI)",
+          "after": "C (SPI)",
+          "reason": "The source explanation and independent references establish SPI."
+        },
+        {
+          "field": "options",
+          "before": "Option D included explanatory text.",
+          "after": "Restored option D to “All of the mentioned”.",
+          "reason": "Explanation is separate from the answer option."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+          "page": 81,
+          "observedAnswerLabel": "A",
+          "notes": "Rendered page shows printed A (CPI), while its explanation spells out SaaS, PaaS, and IaaS and says SPI."
+        }
+      ]
+    },
+    {
+      "questionId": "pc-0347af776751d2d8",
+      "edits": [
+        {
+          "field": "options",
+          "before": "Option D included explanation and quiz heading.",
+          "after": "Restored option D to “Accessing data directly”.",
+          "reason": "Rendered page separates these lines from the option."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Programming Concepts/PC/PYTHON/session 17/session 12/mcq.pdf",
+          "page": 12,
+          "observedAnswerLabel": "A",
+          "notes": "Rendered page confirms A; explanation and quiz heading are not part of D."
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-030830e9848205b7",
+      "edits": [
+        {
+          "field": "options.C",
+          "before": "Use STARTTLS or port 587",
+          "after": "Use STARTTLS (often for submission on port 587)",
+          "reason": "RFC 6409 defines 587 as a submission port; RFC 3207 identifies STARTTLS as the SMTP TLS negotiation mechanism, so the port alone must not be described as encryption."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/Linux/session 16/mcqs.pdf",
+          "page": 10,
+          "observedAnswerLabel": "C",
+          "notes": "Rendered source PDF page 10 (source page index 9) shows the exact stem, options, and key."
+        }
+      ]
+    },
+    {
+      "questionId": "cosa-047bba82c61f02e1",
+      "edits": [
+        {
+          "field": "question",
+          "before": "Which is NOT a systemd target?",
+          "after": "Which of the following is not a standard special systemd target?",
+          "reason": "Clarifies the documented standard target list; arbitrary custom .target units may also be created."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/Linux/session 3-4/mcqs.pdf",
+          "page": 9,
+          "observedAnswerLabel": "D",
+          "notes": "Rendered source PDF page 9 (source page index 8) shows choices A-D and answer D."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-1326dac1f4161d94",
+      "edits": [
+        {
+          "field": "question",
+          "before": "In which year was Google Compute Engine released?",
+          "after": "In which year did Google announce Compute Engine and make it available in limited preview?",
+          "reason": "The source answer refers to the 2012 announcement/preview; general availability followed in 2013."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "pc-06947676d8b4b4f9",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "find()\nExplanation: Use key in dict.",
+          "after": "find()",
+          "reason": "Removed an appended source explanation that was extracted into the distractor text; answer choices A-D remain otherwise unchanged."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "fcn-0515dcf700237dcd",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "4\nExplanation: Each block (hextet) contains 16 bits or 4 hex digits.",
+          "after": "4",
+          "reason": "Removed the source explanation appended to this distractor during text extraction; the answer choices themselves are preserved."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "fcn-065333867cf4976f",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "To increase bandwidth\nExplanation: NAT allows multiple devices to share one public IP.",
+          "after": "To increase bandwidth",
+          "reason": "Removed the source explanation appended to this distractor during text extraction; the answer choices themselves are preserved."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "fcn-067695d173b926c6",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "Block ARP requests\nExplanation: DHCP snooping blocks rogue DHCP servers by allowing only trusted DHCP servers to respond to DHCP requests.",
+          "after": "Block ARP requests",
+          "reason": "Removed the source explanation appended to this distractor during text extraction; the answer choices themselves are preserved."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "fcn-076027f0f6256c97",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "DHCPv6\nExplanation: Neighbor Discovery Protocol (NDP) replaces ARP in IPv6.",
+          "after": "DHCPv6",
+          "reason": "Removed the source explanation appended to this distractor during text extraction; the answer choices themselves are preserved."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "fcn-07ca18673651d923",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "2000::/3\nExplanation: ULAs use the FC00::/7 block for private IPv6 addresses.",
+          "after": "2000::/3",
+          "reason": "Removed the source explanation appended to this distractor during text extraction; the answer choices themselves are preserved."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "fcn-0887806d9ff14e10",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "Application Layer\nExplanation: VLANs function at Layer 2 (Data Link Layer).",
+          "after": "Application Layer",
+          "reason": "Removed the source explanation appended to this distractor during text extraction; the answer choices themselves are preserved."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "fcn-09c9fc64217736d7",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "arp\nExplanation: ipconfig displays IP configuration on Windows machines.",
+          "after": "arp",
+          "reason": "Removed the source explanation appended to this distractor during text extraction; the answer choices themselves are preserved."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "fcn-08d36c07ef01c418",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "Slash (/)\nExplanation: IPv6 addresses are written using colons.",
+          "after": "Slash (/)",
+          "reason": "Removed the source explanation appended to this distractor during text extraction; the answer choices themselves are preserved."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "fcn-071f3a794c1e5e47",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "Option D contained appended explanation or quiz metadata from extraction.",
+          "after": "Provides encryption",
+          "reason": "Removed extraction contamination from option D while retaining its answer-choice text."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "fcn-0a1bcb6ac1c7261d",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "Option D contained appended explanation or quiz metadata from extraction.",
+          "after": "Native VLAN carries only management traffic",
+          "reason": "Removed extraction contamination from option D while retaining its answer-choice text."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "fcn-f1974c7f796484d6",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "Option D contained appended explanation or quiz metadata from extraction.",
+          "after": "8 bytes",
+          "reason": "Removed extraction contamination from option D while retaining its answer-choice text."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "cosa-0381c764386f5f85",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "Appended extraction text contaminated option D.",
+          "after": "Lists running processes",
+          "reason": "Removed extraction metadata/explanation from the distractor; answer choices remain otherwise unchanged."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "pc-045c710fa410896c",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "Appended extraction text contaminated option D.",
+          "after": "functools.reduce import",
+          "reason": "Removed extraction metadata/explanation from the distractor; answer choices remain otherwise unchanged."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "cosa-026b9ed8bf0a4abe",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "Appended explanation text contaminated option D.",
+          "after": "backup-cli",
+          "reason": "Removed explanation appended by extraction while preserving the option text."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "cosa-035fb43e43e23448",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "Appended extraction explanation contaminated option D.",
+          "after": "cd",
+          "reason": "Removed the explanation appended during extraction; answer choice text preserved."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "pc-04c97123bd9a0bf2",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "Appended extraction explanation contaminated option D.",
+          "after": "ADD",
+          "reason": "Removed the explanation appended during extraction; answer choice text preserved."
+        }
+      ],
+      "sourceVisualEvidence": []
+    },
+    {
+      "questionId": "cosa-043fea4ade9867c7",
+      "edits": [
+        {
+          "field": "options.D",
+          "before": "Appended explanation contaminated option D.",
+          "after": "Unified Account Center",
+          "reason": "Removed extracted explanation text from option D while preserving its answer-choice text."
+        }
+      ],
+      "sourceVisualEvidence": []
+    }
+  ]
+}

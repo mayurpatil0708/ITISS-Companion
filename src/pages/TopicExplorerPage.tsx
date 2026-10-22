@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   FolderTree,
   ChevronRight,
@@ -40,6 +40,7 @@ interface TopicNodeData {
 
 export const TopicExplorerPage: React.FC = () => {
   const navigate = useNavigate();
+  const { moduleSlug } = useParams<{ moduleSlug?: string }>();
 
   const [topics, setTopics] = useState<TopicItem[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -48,6 +49,20 @@ export const TopicExplorerPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [difficultyFilter, setDifficultyFilter] = useState<Difficulty | 'all'>('all');
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (moduleSlug) {
+      if (moduleSlug === 'fcn' || moduleSlug === 'fundamental-computer-networks') {
+        setSubjectFilter('fundamental-computer-networks');
+      } else if (moduleSlug === 'pc' || moduleSlug === 'programming-concepts') {
+        setSubjectFilter('programming-concepts');
+      } else if (moduleSlug === 'cosa') {
+        setSubjectFilter('cosa');
+      } else if (moduleSlug === 'itid' || moduleSlug === 'iimd' || moduleSlug === 'it-infrastructure-devops') {
+        setSubjectFilter('it-infrastructure-devops');
+      }
+    }
+  }, [moduleSlug]);
 
   useEffect(() => {
     let isMounted = true;
@@ -135,7 +150,20 @@ export const TopicExplorerPage: React.FC = () => {
   // Filter hierarchy nodes by subject, search, and difficulty
   const filteredNodes = useMemo(() => {
     return hierarchyNodes.filter((node) => {
-      if (subjectFilter !== 'all' && node.subject !== subjectFilter) return false;
+      if (subjectFilter !== 'all') {
+        if (subjectFilter === 'cosa') {
+          if (node.subject !== 'cosa' && node.subject !== 'linux' && node.subject !== 'windows' && node.subject !== 'cross_platform') return false;
+        } else if (subjectFilter === 'fundamental-computer-networks') {
+          if (node.subject !== 'fundamental-computer-networks' && node.subject !== 'fcn') return false;
+        } else if (subjectFilter === 'programming-concepts') {
+          if (node.subject !== 'programming-concepts' && node.subject !== 'pc') return false;
+        } else if (subjectFilter === 'it-infrastructure-devops') {
+          if (node.subject !== 'it-infrastructure-devops' && node.subject !== 'itid' && node.subject !== 'iimd') return false;
+        } else if (node.subject !== subjectFilter) {
+          return false;
+        }
+      }
+
       if (difficultyFilter !== 'all' && node.difficultyCounts[difficultyFilter] === 0) return false;
 
       if (searchQuery.trim()) {
@@ -144,7 +172,7 @@ export const TopicExplorerPage: React.FC = () => {
         const matchesSubtopic = node.subtopics.some(
           (st) => st.subtopic.toLowerCase().includes(q) || (st.description && st.description.toLowerCase().includes(q))
         );
-        const matchesQuestions = node.questions.some((item) => item.question_text.toLowerCase().includes(q));
+        const matchesQuestions = node.questions.some((item) => (item.question_text || item.question || '').toLowerCase().includes(q));
         if (!matchesTopic && !matchesSubtopic && !matchesQuestions) return false;
       }
 
@@ -197,10 +225,11 @@ export const TopicExplorerPage: React.FC = () => {
           {/* Subject Pills */}
           <div className="flex items-center gap-1.5 w-full sm:w-auto overflow-x-auto pb-1">
             {[
-              { id: 'all', label: 'All Curricula' },
-              { id: 'linux', label: 'Linux & OS' },
-              { id: 'windows', label: 'Windows Server' },
-              { id: 'cross_platform', label: 'Cross-platform' },
+              { id: 'all', label: 'All Curricula (34 Topics)' },
+              { id: 'fundamental-computer-networks', label: 'Networks (FCN - 8)' },
+              { id: 'programming-concepts', label: 'Programming (PC - 8)' },
+              { id: 'cosa', label: 'Operating Systems (COSA - 8)' },
+              { id: 'it-infrastructure-devops', label: 'Infra & DevOps (IIMD - 10)' },
             ].map((sub) => (
               <button
                 key={sub.id}
@@ -343,9 +372,26 @@ export const TopicExplorerPage: React.FC = () => {
                             <span className="text-xs font-semibold text-nexus-text">{st.subtopic}</span>
                             <span className="font-mono text-[10px] text-nexus-text-muted">[{st.subtopic_id}]</span>
                           </div>
-                          <span className="text-[11px] font-mono text-nexus-cyan">
-                            {st.questions.length} Questions
-                          </span>
+                          <div className="flex items-center gap-2.5">
+                            <span className="text-[11px] font-mono text-nexus-cyan">
+                              {st.questions.length} Questions
+                            </span>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() =>
+                                navigate('/practice', {
+                                  state: {
+                                    subject: node.subject,
+                                    topics: [node.topic],
+                                    subtopics: [st.subtopic],
+                                  },
+                                })
+                              }
+                            >
+                              Practice →
+                            </Button>
+                          </div>
                         </div>
 
                         {st.description && (

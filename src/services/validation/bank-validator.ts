@@ -31,6 +31,10 @@ export class QuestionBankValidator {
     const seenIdsInBatch = new Set<string>();
 
     const subjectCounts: Record<string, number> = {
+      cosa: 0,
+      fcn: 0,
+      pc: 0,
+      iimd: 0,
       linux: 0,
       windows: 0,
       cross_platform: 0,
@@ -125,7 +129,8 @@ export class QuestionBankValidator {
 
       const result = QuestionSchema.safeParse(item);
       if (!result.success) {
-        const qId = (item as Record<string, unknown>)?.question_id ? String((item as Record<string, unknown>).question_id) : fallbackId;
+        const rawRec = item as Record<string, unknown>;
+        const qId = (rawRec?.question_id || rawRec?.id) ? String(rawRec.question_id || rawRec.id) : fallbackId;
         for (const issue of result.error.issues) {
           errors.push({
             questionId: qId,
@@ -138,26 +143,50 @@ export class QuestionBankValidator {
       }
 
       const q = result.data as Question;
+      const qId = q.question_id || q.id || fallbackId;
+      const correctOptId = q.correct_option_id || q.correctOptionId || '';
 
-      // Check option IDs completeness (must have A, B, C, D)
-      const optionIds = new Set(q.options.map((o) => o.id));
-      const hasAllOptions = ['A', 'B', 'C', 'D'].every((letter) => optionIds.has(letter as 'A' | 'B' | 'C' | 'D'));
-      if (!hasAllOptions) {
+      // Normalize dual-case keys
+      q.question_id = qId;
+      q.id = qId;
+      q.correct_option_id = correctOptId;
+      q.correctOptionId = correctOptId;
+      q.question_text = q.question_text || q.question || '';
+      q.question = q.question || q.question_text || '';
+      q.topic_id = q.topic_id || q.topicId || '';
+      q.topicId = q.topicId || q.topic_id || '';
+      q.subtopic_id = q.subtopic_id || q.subtopicId || '';
+      q.subtopicId = q.subtopicId || q.subtopic_id || '';
+
+      // Check options length (must have at least 2 options)
+      if (!q.options || q.options.length < 2) {
         errors.push({
           questionId: q.question_id,
           field: 'options',
-          message: 'Question options must specifically include IDs A, B, C, and D',
+          message: 'Question options must contain at least 2 choices',
+          severity: 'error',
+        });
+        continue;
+      }
+
+      // Check unique option IDs
+      const optionIds = new Set(q.options.map((o) => o.id));
+      if (optionIds.size !== q.options.length) {
+        errors.push({
+          questionId: q.question_id,
+          field: 'options',
+          message: 'Question options must have unique option IDs',
           severity: 'error',
         });
         continue;
       }
 
       // Check correct_option_id matches one of the options
-      if (!optionIds.has(q.correct_option_id)) {
+      if (!correctOptId || !optionIds.has(correctOptId)) {
         errors.push({
           questionId: q.question_id,
           field: 'correct_option_id',
-          message: `Correct option ID "${q.correct_option_id}" does not exist in options list`,
+          message: `Correct option ID "${correctOptId}" does not exist in options list`,
           severity: 'error',
         });
         continue;
@@ -187,9 +216,10 @@ export class QuestionBankValidator {
       }
 
       // Accumulate counts
-      if (subjectCounts[q.subject] !== undefined) {
-        subjectCounts[q.subject]++;
+      if (subjectCounts[q.subject] === undefined) {
+        subjectCounts[q.subject] = 0;
       }
+      subjectCounts[q.subject]++;
       if (difficultyCounts[q.difficulty] !== undefined) {
         difficultyCounts[q.difficulty]++;
       }

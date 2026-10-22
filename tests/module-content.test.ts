@@ -38,17 +38,17 @@ describe('ITISS Companion: Modular Content Architecture', () => {
   });
 
   it('returns clean Coming Soon manifest for modules without uploaded content', () => {
-    const fcnManifest = getModuleContentManifest('fundamental-computer-networks', 'fcn');
-    expect(fcnManifest.moduleId).toBe('fundamental-computer-networks');
-    expect(fcnManifest.hasStudyResources).toBe(false);
-    expect(fcnManifest.hasPracticalGuides).toBe(false);
-    expect(fcnManifest.hasQuestionBank).toBe(false);
-    expect(fcnManifest.studyResources).toHaveLength(0);
-    expect(fcnManifest.practicalGuides).toHaveLength(0);
-
     const caManifest = getModuleContentManifest('compliance-audit', 'ca');
     expect(caManifest.moduleId).toBe('compliance-audit');
     expect(caManifest.hasStudyResources).toBe(false);
+    expect(caManifest.hasPracticalGuides).toBe(false);
+    expect(caManifest.hasQuestionBank).toBe(false);
+    expect(caManifest.studyResources).toHaveLength(0);
+    expect(caManifest.practicalGuides).toHaveLength(0);
+
+    const scManifest = getModuleContentManifest('security-concepts', 'sc');
+    expect(scManifest.moduleId).toBe('security-concepts');
+    expect(scManifest.hasStudyResources).toBe(false);
   });
 
   it('safely registers new module manifests without corrupting existing modules', () => {

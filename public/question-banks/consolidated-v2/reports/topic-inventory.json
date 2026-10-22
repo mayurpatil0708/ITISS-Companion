@@ -1,0 +1,294 @@
+{
+  "schemaVersion": "2.0",
+  "examStage": "cmce",
+  "topics": [
+    {
+      "subjectId": "fundamental-computer-networks",
+      "subtopicId": "ethernet-and-switching",
+      "subtopic": "Ethernet and Switching",
+      "topicId": "ethernet-vlan-switching",
+      "topic": "Ethernet, VLANs, and Switching",
+      "questionCount": 343
+    },
+    {
+      "subjectId": "fundamental-computer-networks",
+      "subtopicId": "ip-addressing-and-routing",
+      "subtopic": "IP Addressing and Routing",
+      "topicId": "ip-addressing-subnetting",
+      "topic": "IP Addressing and Subnetting",
+      "questionCount": 416
+    },
+    {
+      "subjectId": "fundamental-computer-networks",
+      "subtopicId": "ip-addressing-and-routing",
+      "subtopic": "IP Addressing and Routing",
+      "topicId": "routing-protocols",
+      "topic": "Routing Protocols",
+      "questionCount": 386
+    },
+    {
+      "subjectId": "fundamental-computer-networks",
+      "subtopicId": "network-access-and-security",
+      "subtopic": "Network Access and Security",
+      "topicId": "wireless-network-security",
+      "topic": "Wireless and Network Security",
+      "questionCount": 184
+    },
+    {
+      "subjectId": "fundamental-computer-networks",
+      "subtopicId": "network-fundamentals",
+      "subtopic": "Network Fundamentals",
+      "topicId": "general-networking",
+      "topic": "General Networking",
+      "questionCount": 453
+    },
+    {
+      "subjectId": "fundamental-computer-networks",
+      "subtopicId": "network-models-and-protocols",
+      "subtopic": "Network Models and Protocols",
+      "topicId": "osi-and-tcp-ip-models",
+      "topic": "OSI and TCP/IP Models",
+      "questionCount": 241
+    },
+    {
+      "subjectId": "fundamental-computer-networks",
+      "subtopicId": "network-troubleshooting",
+      "subtopic": "Network Troubleshooting",
+      "topicId": "diagnostics-troubleshooting",
+      "topic": "Diagnostics and Troubleshooting",
+      "questionCount": 18
+    },
+    {
+      "subjectId": "fundamental-computer-networks",
+      "subtopicId": "transport-and-application-protocols",
+      "subtopic": "Transport and Application Protocols",
+      "topicId": "tcp-udp-dns-dhcp",
+      "topic": "TCP, UDP, DNS, and DHCP",
+      "questionCount": 180
+    },
+    {
+      "subjectId": "programming-concepts",
+      "subtopicId": "data-structures-and-algorithms",
+      "subtopic": "Data Structures and Algorithms",
+      "topicId": "data-structures-algorithms",
+      "topic": "Data Structures and Algorithms",
+      "questionCount": 20
+    },
+    {
+      "subjectId": "programming-concepts",
+      "subtopicId": "database-concepts",
+      "subtopic": "Database Concepts",
+      "topicId": "database-design-transactions",
+      "topic": "Database Design and Transactions",
+      "questionCount": 275
+    },
+    {
+      "subjectId": "programming-concepts",
+      "subtopicId": "programming-fundamentals",
+      "subtopic": "Programming Fundamentals",
+      "topicId": "general-programming",
+      "topic": "General Programming",
+      "questionCount": 458
+    },
+    {
+      "subjectId": "programming-concepts",
+      "subtopicId": "programming-fundamentals",
+      "subtopic": "Programming Fundamentals",
+      "topicId": "variables-operators-control-structures",
+      "topic": "Variables, Operators, and Control Structures",
+      "questionCount": 56
+    },
+    {
+      "subjectId": "programming-concepts",
+      "subtopicId": "python-programming",
+      "subtopic": "Python Programming",
+      "topicId": "python-control-functions-oop",
+      "topic": "Control Flow, Functions, and OOP",
+      "questionCount": 176
+    },
+    {
+      "subjectId": "programming-concepts",
+      "subtopicId": "python-programming",
+      "subtopic": "Python Programming",
+      "topicId": "python-syntax-data-types",
+      "topic": "Python Syntax and Data Types",
+      "questionCount": 519
+    },
+    {
+      "subjectId": "programming-concepts",
+      "subtopicId": "sql-and-mysql",
+      "subtopic": "SQL and MySQL",
+      "topicId": "sql-queries-joins",
+      "topic": "SQL Queries and Joins",
+      "questionCount": 251
+    },
+    {
+      "subjectId": "cosa",
+      "subtopicId": "linux-administration",
+      "subtopic": "Linux Administration",
+      "topicId": "linux-commands-and-shell",
+      "topic": "Linux Commands and Shell",
+      "questionCount": 503
+    },
+    {
+      "subjectId": "cosa",
+      "subtopicId": "linux-administration",
+      "subtopic": "Linux Administration",
+      "topicId": "users-permissions-packages",
+      "topic": "Users, Permissions, and Packages",
+      "questionCount": 381
+    },
+    {
+      "subjectId": "cosa",
+      "subtopicId": "network-administration",
+      "subtopic": "Network Administration",
+      "topicId": "dns-dhcp-network-services",
+      "topic": "DNS, DHCP, and Network Services",
+      "questionCount": 175
+    },
+    {
+      "subjectId": "cosa",
+      "subtopicId": "operating-system-fundamentals",
+      "subtopic": "Operating System Fundamentals",
+      "topicId": "memory-management",
+      "topic": "Memory Management",
+      "questionCount": 57
+    },
+    {
+      "subjectId": "cosa",
+      "subtopicId": "operating-system-fundamentals",
+      "subtopic": "Operating System Fundamentals",
+      "topicId": "os-architecture-and-boot",
+      "topic": "OS Architecture and Boot",
+      "questionCount": 210
+    },
+    {
+      "subjectId": "cosa",
+      "subtopicId": "operating-system-fundamentals",
+      "subtopic": "Operating System Fundamentals",
+      "topicId": "processes-and-threads",
+      "topic": "Processes and Threads",
+      "questionCount": 149
+    },
+    {
+      "subjectId": "cosa",
+      "subtopicId": "operating-system-fundamentals",
+      "subtopic": "Operating System Fundamentals",
+      "topicId": "scheduling-and-deadlocks",
+      "topic": "CPU Scheduling and Deadlocks",
+      "questionCount": 16
+    },
+    {
+      "subjectId": "cosa",
+      "subtopicId": "storage-and-file-systems",
+      "subtopic": "Storage and File Systems",
+      "topicId": "disks-lvm-filesystems",
+      "topic": "Disks, LVM, and File Systems",
+      "questionCount": 145
+    },
+    {
+      "subjectId": "cosa",
+      "subtopicId": "system-administration",
+      "subtopic": "System Administration",
+      "topicId": "general-administration",
+      "topic": "General Administration",
+      "questionCount": 879
+    },
+    {
+      "subjectId": "cosa",
+      "subtopicId": "system-administration",
+      "subtopic": "System Administration",
+      "topicId": "monitoring-backup-troubleshooting",
+      "topic": "Monitoring, Backup, and Troubleshooting",
+      "questionCount": 42
+    },
+    {
+      "subjectId": "cosa",
+      "subtopicId": "virtualization-and-security",
+      "subtopic": "Virtualization and Security",
+      "topicId": "virtualization-access-control",
+      "topic": "Virtualization and Access Control",
+      "questionCount": 59
+    },
+    {
+      "subjectId": "cosa",
+      "subtopicId": "windows-server-administration",
+      "subtopic": "Windows Server Administration",
+      "topicId": "active-directory-and-group-policy",
+      "topic": "Active Directory and Group Policy",
+      "questionCount": 96
+    },
+    {
+      "subjectId": "cosa",
+      "subtopicId": "windows-server-administration",
+      "subtopic": "Windows Server Administration",
+      "topicId": "windows-server-and-powershell",
+      "topic": "Windows Server and PowerShell",
+      "questionCount": 169
+    },
+    {
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "cloud-computing",
+      "subtopic": "Cloud Computing",
+      "topicId": "aws-cloud-services",
+      "topic": "AWS and Cloud Services",
+      "questionCount": 281
+    },
+    {
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "containers-and-virtualization",
+      "subtopic": "Containers and Virtualization",
+      "topicId": "docker-kubernetes-vms",
+      "topic": "Docker, Kubernetes, and Virtual Machines",
+      "questionCount": 70
+    },
+    {
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "data-center-infrastructure",
+      "subtopic": "Data Center Infrastructure",
+      "topicId": "data-center-design-operations",
+      "topic": "Data Center Design and Operations",
+      "questionCount": 33
+    },
+    {
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "devops-and-cicd",
+      "subtopic": "DevOps and CI/CD",
+      "topicId": "pipelines-builds-release",
+      "topic": "Pipelines, Builds, and Release",
+      "questionCount": 192
+    },
+    {
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "infrastructure-automation",
+      "subtopic": "Infrastructure Automation",
+      "topicId": "configuration-and-iac",
+      "topic": "Configuration and Infrastructure as Code",
+      "questionCount": 28
+    },
+    {
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "infrastructure-operations",
+      "subtopic": "Infrastructure Operations",
+      "topicId": "general-infrastructure",
+      "topic": "General Infrastructure",
+      "questionCount": 418
+    },
+    {
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "infrastructure-operations",
+      "subtopic": "Infrastructure Operations",
+      "topicId": "monitoring-service-operations",
+      "topic": "Monitoring and Service Operations",
+      "questionCount": 50
+    },
+    {
+      "subjectId": "it-infrastructure-devops",
+      "subtopicId": "it-service-management",
+      "subtopic": "IT Service Management",
+      "topicId": "itil-practices-service-lifecycle",
+      "topic": "ITIL Practices and Service Lifecycle",
+      "questionCount": 279
+    }
+  ]
+}

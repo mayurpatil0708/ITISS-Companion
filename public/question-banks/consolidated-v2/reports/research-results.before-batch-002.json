@@ -1,0 +1,512 @@
+{
+  "schemaVersion": "1.0",
+  "batchId": "2026-10-22-batch-001",
+  "generatedAt": "2026-10-22T00:34:28+05:30",
+  "items": [
+    {
+      "questionId": "cosa-000df3f2b5ab3724",
+      "status": "verified_correct",
+      "confidence": "high",
+      "finalAnswerOptionIds": [
+        "D"
+      ],
+      "reason": "The source page visually marks D and shows the expected mode string. The independent chmod manual defines each octal digit from read=4, write=2, execute=1; 776 therefore maps to rwx for owner, rwx for group, and rw- for others.",
+      "sources": [
+        {
+          "title": "chmod(1) - Linux manual page",
+          "publisher": "Linux man-pages project",
+          "url": "https://www.man7.org/linux/man-pages/man1/chmod.1.html",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "DESCRIPTION, numeric modes, lines 57-65",
+          "supports": "Octal permission digits use 4, 2, and 1 for read, write, and execute, applied separately to owner, group, and others."
+        }
+      ],
+      "explanation": "The three digits in 776 apply to the file owner, the group, and everyone else. A 7 is 4+2+1, so it grants read, write, and execute; a 6 is 4+2, so it grants read and write without execute. The result is rwxrwxrw- (option D). Option A would include execute permission for others, while B and C do not match the 7-7-6 permission groups.",
+      "optionExplanations": {
+        "A": "This is 777-style access: it gives the final group execute permission, which 776 does not.",
+        "B": "These permissions do not match the owner, group, and others digits 7, 7, and 6.",
+        "C": "This does not grant the owner and group the 7 permissions specified by the command.",
+        "D": "Correct: 7 maps to rwx, 7 maps to rwx, and 6 maps to rw-."
+      },
+      "explanationStatus": "complete",
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA Mock CCEE.pdf",
+          "page": 17,
+          "observedAnswerLabel": "D",
+          "notes": "The rendered source page shows the four choices and the printed answer rwxrwxrw-."
+        }
+      ],
+      "correctedQuestion": "What permissions does myfile.txt have after running `chmod 776 myfile.txt`?",
+      "correctedOptions": [
+        {
+          "id": "A",
+          "text": "rwxrwxrwx"
+        },
+        {
+          "id": "B",
+          "text": "rwx--xr--"
+        },
+        {
+          "id": "C",
+          "text": "--xrw-rw-"
+        },
+        {
+          "id": "D",
+          "text": "rwxrwxrw-"
+        }
+      ],
+      "contentEdits": [
+        {
+          "field": "question",
+          "before": "What are the permission of myfile.txt after executing this command? chmod 776 myfile.txt\nComplete\nMark 1 out of 1 Select one:",
+          "after": "What permissions does myfile.txt have after running `chmod 776 myfile.txt`?",
+          "reason": "The original PDF page confirms the question and the trailing words are quiz-interface text."
+        },
+        {
+          "field": "options",
+          "before": "The extracted OCR misread option A and appended the answer-key sentence to option D.",
+          "after": "Options A-D transcribed from the rendered source page.",
+          "reason": "Visual page inspection corrected OCR/answer-key contamination without changing the intended choices."
+        }
+      ],
+      "structureReviewed": true,
+      "visualAnswerEvidence": {
+        "sourceLabels": [
+          "D"
+        ],
+        "answerText": "rwxrwxrw-"
+      },
+      "batchId": "2026-10-22-batch-001"
+    },
+    {
+      "questionId": "cosa-0019c30bb5e68d0b",
+      "status": "verified_correct",
+      "confidence": "high",
+      "finalAnswerOptionIds": [
+        "B"
+      ],
+      "reason": "The Vim reference manual defines :wq as writing the current file and closing the window.",
+      "sources": [
+        {
+          "title": "Vim Reference Manual: Editing files",
+          "publisher": "Vim project",
+          "url": "https://vimhelp.org/editing.txt.html",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Writing and quitting, :wq",
+          "supports": ":wq writes the current file and closes the window; Vim exits if it was the last edit window."
+        }
+      ],
+      "explanation": "`:wq` writes the current buffer to its file and then closes the window, so it performs both parts of the task. `:w` saves but stays in Vim, while `:q` quits without saving changes and may refuse if the buffer was modified. `/pattern` searches for text rather than saving.",
+      "optionExplanations": {
+        "A": "`:q` quits without writing changes; it is not the save-and-quit command.",
+        "B": "Correct: `:wq` writes the file and closes the window.",
+        "C": "`/pattern` starts a search.",
+        "D": "`:w` writes the file but leaves the editor open."
+      },
+      "explanationStatus": "complete",
+      "batchId": "2026-10-22-batch-001"
+    },
+    {
+      "questionId": "cosa-001c106ce39073ee",
+      "status": "ambiguous",
+      "confidence": "low",
+      "finalAnswerOptionIds": [],
+      "reason": "The source-keyed answer is correct for a systemd-based system, but the question does not specify an init system or distribution/version. Red Hat documentation distinguishes chkconfig for RHEL 5/6 from systemctl for RHEL 7/8, so context is required to establish one uniquely correct answer.",
+      "sources": [
+        {
+          "title": "systemd.unit",
+          "publisher": "systemd project / freedesktop.org",
+          "url": "https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Examples: Allowing units to be enabled",
+          "supports": "systemctl enable creates a wants symlink so the unit is pulled in when the target starts."
+        },
+        {
+          "title": "Red Hat Enterprise Linux 7 Migration Planning Guide: system service commands",
+          "publisher": "Red Hat",
+          "url": "https://access.redhat.com/node/1189123/40/5/@url",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "System service management command comparison",
+          "supports": "The guide distinguishes chkconfig name on for RHEL 5/6 from systemctl enable name for RHEL 7/8."
+        }
+      ],
+      "explanation": "This item needs operating-system context to have one dependable answer. On a systemd-based Linux distribution, `systemctl enable squid` configures the service to start at boot; `enable` alone does not necessarily start it now. Older SysV-based releases may use `chkconfig squid on` instead. Check the distribution and version before choosing.",
+      "optionExplanations": {
+        "A": "This is not the documented service-enabling command in the cited systemd or Red Hat examples.",
+        "B": "Red Hat documents `chkconfig squid on` for older SysV-based RHEL releases.",
+        "C": "On systemd-based systems, `systemctl enable squid` configures the service to start at boot.",
+        "D": "This is not a complete service-management command in the documented examples."
+      },
+      "explanationStatus": "provisional",
+      "batchId": "2026-10-22-batch-001"
+    },
+    {
+      "questionId": "cosa-b74e816ad1269e61",
+      "status": "verified_correct",
+      "confidence": "high",
+      "finalAnswerOptionIds": [
+        "C"
+      ],
+      "reason": "The original rendered page marks source option G. Microsoft Learn states that changes cannot be made to the Active Directory database stored on an RODC and must be made on a writable domain controller, then replicated back. After repairing the merged choices and renumbering E-H to A-D, source G maps to C.",
+      "sources": [
+        {
+          "title": "Planning Domain Controller Placement",
+          "publisher": "Microsoft Learn",
+          "url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/planning-domain-controller-placement",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Read-only domain controllers",
+          "supports": "Changes cannot be made to the database stored on an RODC; changes must be made on a writable domain controller and replicated back."
+        }
+      ],
+      "explanation": "An RODC hosts a read-only copy of the Active Directory database. Creating an OU changes that database, so the change must be made on a writable domain controller and then replicated to the RODC. The branch office may authenticate users through the RODC, but that does not make it writable.",
+      "optionExplanations": {
+        "A": "The source's stated limitation is the read-only directory replica, not Edmond's permissions.",
+        "B": "A writable controller being unavailable may prevent a write from being completed, but the direct reason is that an RODC cannot accept directory changes.",
+        "C": "Correct: an RODC is read-only; directory changes must be made on a writable domain controller.",
+        "D": "This does not explain why the OU cannot be created."
+      },
+      "explanationStatus": "complete",
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Concepts of Operating System and Administration/COSA/ilovepdf_merged.pdf",
+          "page": 9,
+          "observedAnswerLabel": "G",
+          "notes": "The rendered page shows source choices E-H and marks G in green; reconstructed order E-H maps to output A-D, so G becomes C."
+        }
+      ],
+      "correctedQuestion": "Edmond administers a remote branch office with fewer than 10 users. The office has a Windows Server 2008 RODC for user authentication. He connects to that RODC and tries to create a new organizational unit, but cannot. Why?",
+      "correctedOptions": [
+        {
+          "id": "A",
+          "text": "He does not have sufficient privileges."
+        },
+        {
+          "id": "B",
+          "text": "The writable domain controller in the main office is down."
+        },
+        {
+          "id": "C",
+          "text": "He cannot create the OU on the RODC because it is a read-only copy."
+        },
+        {
+          "id": "D",
+          "text": "None of the above."
+        }
+      ],
+      "contentEdits": [
+        {
+          "field": "question_and_options",
+          "before": "Extracted choices were merged across question boundaries, included following-question text, and retained source labels E-H as malformed option IDs.",
+          "after": "Question and four choices transcribed from the source page, normalized to A-D.",
+          "reason": "The original page visibly contains four choices E-H and marks G; source answer label G maps to normalized choice C."
+        }
+      ],
+      "structureReviewed": true,
+      "visualAnswerEvidence": {
+        "sourceLabels": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "answerLabel": "G",
+        "normalizedAnswerOptionId": "C"
+      },
+      "batchId": "2026-10-22-batch-001"
+    },
+    {
+      "questionId": "pc-3a02f2fba87504cd",
+      "status": "verified_correct",
+      "confidence": "high",
+      "finalAnswerOptionIds": [
+        "A"
+      ],
+      "reason": "The rendered source page marks A. The Python language reference grammar requires def, a function name, a parenthesized parameter list, a colon, and a suite; only the first reconstructed choice has that form.",
+      "sources": [
+        {
+          "title": "The Python Language Reference: Compound statements",
+          "publisher": "Python Software Foundation",
+          "url": "https://docs.python.org/3/reference/compound_stmts.html#function-definitions",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "8.7 Function definitions",
+          "supports": "Function definition grammar is def, function name, parenthesized optional parameter list, colon, and suite."
+        }
+      ],
+      "explanation": "A Python function definition starts with `def`, followed by one function name, parentheses containing its parameters, and a colon. The function body is an indented suite below that line. The other code choices repeat the keyword `function` where Python expects the function name, so they are invalid; the `None` choice is therefore incorrect.",
+      "optionExplanations": {
+        "A": "Correct: this has the required `def name(parameters):` header and an indented body.",
+        "B": "Invalid: Python does not use a second `function` keyword after `def`.",
+        "C": "Invalid: it repeats the `function` keyword before the name.",
+        "D": "Incorrect because choice A has the proper function-definition form."
+      },
+      "explanationStatus": "complete",
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Programming Concepts/PC/Python.pdf",
+          "page": 19,
+          "observedAnswerLabel": "A",
+          "notes": "The page shows four composite choices A, F, K, and P; A is marked as the answer."
+        }
+      ],
+      "correctedQuestion": "Which of the following is the proper syntax to define a function in Python?",
+      "correctedOptions": [
+        {
+          "id": "A",
+          "text": "def function_name(parameters):\n    ...\n    Statements\n    ..."
+        },
+        {
+          "id": "B",
+          "text": "def function function_name:\n    ...\n    Statements\n    ..."
+        },
+        {
+          "id": "C",
+          "text": "def function function_name(parameters):\n    ...\n    Statements\n    ..."
+        },
+        {
+          "id": "D",
+          "text": "None of the mentioned above."
+        }
+      ],
+      "contentEdits": [
+        {
+          "field": "options",
+          "before": "The parser split code-block choices into 16 pseudo-options and merged later question text.",
+          "after": "The four choices were reconstructed from the rendered page's A/F/K/P blocks and relabeled A-D.",
+          "reason": "The page layout visibly groups each code block as one choice and identifies A as the answer."
+        }
+      ],
+      "structureReviewed": true,
+      "visualAnswerEvidence": {
+        "sourceLabels": [
+          "A",
+          "F",
+          "K",
+          "P"
+        ],
+        "answerLabel": "A",
+        "normalizedAnswerOptionId": "A"
+      },
+      "batchId": "2026-10-22-batch-001"
+    },
+    {
+      "questionId": "pc-79df23d9d0286242",
+      "status": "ambiguous",
+      "confidence": "low",
+      "finalAnswerOptionIds": [],
+      "reason": "The source page marks C and explains the intended course answer as Procedure. NIST describes procedures as resources/elements of a system, but the question does not define whether 'security protocol' means a human procedure or a software protocol. The external evidence does not establish a unique answer from these choices, so it remains out of the quiz bank.",
+      "sources": [
+        {
+          "title": "System - Glossary",
+          "publisher": "NIST Computer Security Resource Center",
+          "url": "https://csrc.nist.gov/glossary/term/system",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "System definition and note on interacting elements",
+          "supports": "NIST includes procedures among system resources/elements; it does not uniquely classify every login security protocol as a procedure."
+        }
+      ],
+      "explanation": "The source page's intended answer is Procedure, treating the login protocol as a prescribed set of steps. However, a security protocol can also refer to a software-implemented protocol, which makes Software plausible without a course-specific definition. The question needs that context before one answer can be treated as verified.",
+      "explanationStatus": "provisional",
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Programming Concepts/PC/DBMS.pdf",
+          "page": 18,
+          "observedAnswerLabel": "C",
+          "notes": "The page shows choices A-D, marks C, and gives the course explanation 'procedure component'."
+        }
+      ],
+      "correctedQuestion": "A computer security protocol used for logging in can be considered an example of which information-system component?",
+      "correctedOptions": [
+        {
+          "id": "A",
+          "text": "Data"
+        },
+        {
+          "id": "B",
+          "text": "Software"
+        },
+        {
+          "id": "C",
+          "text": "Procedure"
+        },
+        {
+          "id": "D",
+          "text": "Hardware"
+        }
+      ],
+      "contentEdits": [
+        {
+          "field": "options",
+          "before": "The extraction appended the source explanation to option D and produced an empty fifth option.",
+          "after": "Four choices A-D transcribed from the source page; the answer explanation is stored separately as provisional context.",
+          "reason": "The rendered page shows the original four choices and the source-marked answer C."
+        }
+      ],
+      "structureReviewed": true,
+      "visualAnswerEvidence": {
+        "sourceLabels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "answerLabel": "C",
+        "normalizedAnswerOptionId": "C"
+      },
+      "batchId": "2026-10-22-batch-001"
+    },
+    {
+      "questionId": "pc-990c7366666a9199",
+      "status": "verified_correct",
+      "confidence": "high",
+      "finalAnswerOptionIds": [
+        "A"
+      ],
+      "reason": "The source page marks A. The Python language reference grammar for if statements requires the if keyword, a condition, a colon, and a suite; the other reconstructed forms omit the colon or use non-Python brace syntax.",
+      "sources": [
+        {
+          "title": "The Python Language Reference: Compound statements",
+          "publisher": "Python Software Foundation",
+          "url": "https://docs.python.org/3/reference/compound_stmts.html#if-statements",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "8.1 The if statement",
+          "supports": "The grammar is if, an assignment expression, a colon, and a suite."
+        }
+      ],
+      "explanation": "Python begins a conditional block with `if condition:` and then places the body on an indented line. The colon is required. Braces are not used to delimit Python blocks, and parentheses around the condition do not replace the colon. Therefore A is the valid form.",
+      "optionExplanations": {
+        "A": "Correct: the condition is followed by the required colon and an indented block.",
+        "B": "Invalid Python syntax: Python does not use braces to delimit an `if` body.",
+        "C": "Invalid as written because it omits the required colon after the condition.",
+        "D": "Incorrect because A is valid Python syntax."
+      },
+      "explanationStatus": "complete",
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Programming Concepts/PC/Python.pdf",
+          "page": 11,
+          "observedAnswerLabel": "A",
+          "notes": "The page shows grouped code options A, D, I, and L; the source marks A."
+        }
+      ],
+      "correctedQuestion": "Which of the following is valid Python `if` syntax?",
+      "correctedOptions": [
+        {
+          "id": "A",
+          "text": "if condition:\n    # statements run when the condition is true"
+        },
+        {
+          "id": "B",
+          "text": "if condition {\n    # statements run when the condition is true\n}"
+        },
+        {
+          "id": "C",
+          "text": "if (condition)\n    # statements run when the condition is true"
+        },
+        {
+          "id": "D",
+          "text": "None of the mentioned above."
+        }
+      ],
+      "contentEdits": [
+        {
+          "field": "options",
+          "before": "The parser split grouped code-block choices into 12 pseudo-options and merged the next question fragment.",
+          "after": "The four displayed code forms were reconstructed from the rendered source page and relabeled A-D.",
+          "reason": "The page layout visibly groups the choices and marks A as the answer."
+        }
+      ],
+      "structureReviewed": true,
+      "visualAnswerEvidence": {
+        "sourceLabels": [
+          "A",
+          "D",
+          "I",
+          "L"
+        ],
+        "answerLabel": "A",
+        "normalizedAnswerOptionId": "A"
+      },
+      "batchId": "2026-10-22-batch-001"
+    },
+    {
+      "questionId": "fcn-e67c03e9e432cdc2",
+      "originalAnswerOptionIds": [
+        [
+          "B"
+        ],
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "status": "corrected",
+      "confidence": "high",
+      "finalAnswerOptionIds": [
+        "B"
+      ],
+      "reason": "Cisco's troubleshooting table lists a missing clock-rate command as a cause when a serial interface is up but line protocol is down in DCE mode. It separately describes no shutdown as the remedy for an administratively-down interface. That resolves the extracted conflict in favor of B; the extra A mark is incompatible with the stated interface state.",
+      "sources": [
+        {
+          "title": "Troubleshooting Serial Lines",
+          "publisher": "Cisco Systems",
+          "url": "https://www.cisco.com/en/US/docs/internetworking/troubleshooting/guide/tr1915.html",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Table 15-1, Serial interface status conditions",
+          "supports": "For serial x up / line protocol down in DCE mode, a missing clockrate command is a possible cause; an administratively-down interface calls for no shutdown."
+        }
+      ],
+      "explanation": "The physical serial interface is reported as up, but its line protocol is down. Cisco's troubleshooting guidance lists a missing clock-rate configuration as a possible cause when the router end is DCE. `no shutdown` addresses an administratively-down interface, which is a different status. So B is the supported answer; the conflicting source occurrence that also marked A appears to have over-selected.",
+      "optionExplanations": {
+        "A": "A missing `no shutdown` would make the interface administratively down, unlike the stated up status.",
+        "B": "Correct: a DCE serial interface may need `clock rate` configured to provide timing.",
+        "C": "The source evidence does not identify uncleared timers as the stated cause.",
+        "D": "Fast Ethernet is not used to provide serial-link clocking in this scenario."
+      },
+      "explanationStatus": "complete",
+      "contentEdits": [],
+      "structureReviewed": true,
+      "batchId": "2026-10-22-batch-001"
+    },
+    {
+      "questionId": "fcn-9a09f5c09102d8ed",
+      "status": "ambiguous",
+      "confidence": "low",
+      "finalAnswerOptionIds": [],
+      "reason": "RFC 5694 states that P2P peers both request and provide services, so option D is false. It describes decentralized control as a feature some authors associate with P2P but also notes that P2P systems may use centralized enrollment. The wording 'access control is decentralized' is therefore not universally established and does not exactly match the RFC's claim. Keep the question in review rather than treating B as certain.",
+      "sources": [
+        {
+          "title": "RFC 5694: Peer-to-Peer (P2P) Architecture",
+          "publisher": "Internet Architecture Board / RFC Editor",
+          "url": "https://www.rfc-editor.org/rfc/rfc5694.html",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Section 2, P2P definition; discussion of centralized enrollment and decentralized control",
+          "supports": "Peers both request and provide services; P2P systems can still have centralized enrollment, while decentralized control is described as an additional property in some definitions."
+        }
+      ],
+      "explanation": "A peer-to-peer node can both request and provide services, so option D is incorrect. The source set disagrees between B and D. The RFC supports peer reciprocity, but it does not establish that every P2P file-sharing system has decentralized access control; some P2P systems retain centralized enrollment or management functions. The choice wording is too broad to verify uniquely, so this question remains under review.",
+      "explanationStatus": "provisional",
+      "contentEdits": [],
+      "structureReviewed": true,
+      "batchId": "2026-10-22-batch-001"
+    }
+  ],
+  "batches": [
+    {
+      "batchId": "2026-10-22-batch-001",
+      "questionIds": [
+        "cosa-000df3f2b5ab3724",
+        "cosa-0019c30bb5e68d0b",
+        "cosa-001c106ce39073ee",
+        "cosa-b74e816ad1269e61",
+        "fcn-9a09f5c09102d8ed",
+        "fcn-e67c03e9e432cdc2",
+        "pc-3a02f2fba87504cd",
+        "pc-79df23d9d0286242",
+        "pc-990c7366666a9199"
+      ],
+      "completedAt": "2026-10-22T00:34:28+05:30",
+      "status": "saved_and_applied"
+    }
+  ]
+}

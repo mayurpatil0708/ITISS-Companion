@@ -1,0 +1,352 @@
+{
+  "corrections": [
+    {
+      "questionId": "fcn-e67c03e9e432cdc2",
+      "originalAnswerOptionIds": [
+        [
+          "B"
+        ],
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "finalAnswerOptionIds": [
+        "B"
+      ],
+      "reason": "Cisco's troubleshooting table lists a missing clock-rate command as a cause when a serial interface is up but line protocol is down in DCE mode. It separately describes no shutdown as the remedy for an administratively-down interface. That resolves the extracted conflict in favor of B; the extra A mark is incompatible with the stated interface state.",
+      "sources": [
+        {
+          "title": "Troubleshooting Serial Lines",
+          "publisher": "Cisco Systems",
+          "url": "https://www.cisco.com/en/US/docs/internetworking/troubleshooting/guide/tr1915.html",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Table 15-1, Serial interface status conditions",
+          "supports": "For serial x up / line protocol down in DCE mode, a missing clockrate command is a possible cause; an administratively-down interface calls for no shutdown."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-00a58946da8df11e",
+      "originalAnswerOptionIds": [
+        [
+          "B"
+        ]
+      ],
+      "finalAnswerOptionIds": [
+        "D"
+      ],
+      "reason": "The rendered source page prints B as its answer key, but Linux kernel documentation distinguishes I/O-rate limits from storage-capacity quotas and documents pids.max as a hard limit on process count. The original key’s disk space wording is inaccurate. The original D wording process IDs is clarified to mean the number of processes.",
+      "sources": [
+        {
+          "title": "Control Group v2",
+          "publisher": "Linux Kernel Documentation",
+          "url": "https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "CPU, memory, I/O, and pids controllers",
+          "supports": "The kernel documents CPU and memory controllers, io.max limits in BPS/IOPS, and pids.max as a hard limit on the number of processes."
+        },
+        {
+          "title": "Container Specification v1",
+          "publisher": "opencontainers/runc",
+          "url": "https://github.com/opencontainers/runc/blob/main/libcontainer/SPEC.md",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Resources / cgroup subsystems",
+          "supports": "libcontainer documents CPU, memory, blkio, and pids cgroup subsystems for container resource control."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/DCM/devops quiz.pdf",
+          "page": 7,
+          "observedAnswerLabel": "B",
+          "notes": "The rendered quiz review page prints “The correct answer is: Disk space, CPU, memory.” The selected radio button A is the learner response, not the answer key."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-00f4d289b10a38a3",
+      "originalAnswerOptionIds": [
+        [
+          "A"
+        ]
+      ],
+      "finalAnswerOptionIds": [
+        "B"
+      ],
+      "reason": "The rendered PDF shows the options A Nagios, B Grafana, C AWS CloudWatch, D Puppet, and prints B as correct. Grafana documentation confirms that Grafana has a Prometheus data source and supports dashboards and visualizations from Prometheus metrics; the staged answer ID A was a label-mapping error.",
+      "sources": [
+        {
+          "title": "Prometheus data source",
+          "publisher": "Grafana documentation",
+          "url": "https://grafana.com/docs/grafana/latest/datasources/prometheus/",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Prometheus data source and visualizations",
+          "supports": "Grafana documents its Prometheus data source, PromQL query support, dashboards, and visualizations."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/Last or D-Day Material/Last Day Notes/DEVOPS.pdf",
+          "page": 27,
+          "observedAnswerLabel": "B",
+          "notes": "The rendered page lists Grafana as choice B and prints “Answer: b) Grafana.” The extracted question had shifted the “a) Nagios” text into the stem and mapped the answer to candidate ID A."
+        }
+      ]
+    },
+    {
+      "questionId": "fcn-0169ac5a825ef514",
+      "originalAnswerOptionIds": [
+        [
+          "B"
+        ]
+      ],
+      "finalAnswerOptionIds": [
+        "A"
+      ],
+      "reason": "Cisco documentation defines a hostname followed by `>` as the user EXEC prompt and a hostname followed by `#` as the privileged EXEC prompt. The PDF highlights B (`R1#`), but that key is incorrect; A (`R1>`) is the correct answer.",
+      "sources": [
+        {
+          "title": "Using the Cisco IOS Command-Line Interface",
+          "publisher": "Cisco",
+          "url": "https://www.cisco.com/c/en/us/td/docs/ios/fundamentals/configuration/guide/TIPs_Conversion/cf_15_1s_book/cf_cli-basics.html",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "User EXEC mode and Privileged EXEC Mode",
+          "supports": "Cisco says the user EXEC prompt ends in `>` and the privileged EXEC prompt ends in `#`."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/Fundamentals of Computer Networks/FCN/FCN Merged Final.pdf",
+          "page": 21,
+          "observedAnswerLabel": "B",
+          "notes": "The source page marks B in red, but Cisco documentation establishes that B is privileged EXEC and A is user EXEC."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-00ffab6c3dd776bb",
+      "originalAnswerOptionIds": [
+        [
+          "B"
+        ]
+      ],
+      "finalAnswerOptionIds": [
+        "C"
+      ],
+      "reason": "The rendered source page labels IaaS as option C. NIST defines IaaS as provisioning processing, storage, networks, and other fundamental computing resources; the candidate’s normalized answer ID B is a label-mapping error.",
+      "sources": [
+        {
+          "title": "SP 800-145: The NIST Definition of Cloud Computing",
+          "publisher": "National Institute of Standards and Technology",
+          "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Service Models — Infrastructure as a Service",
+          "supports": "NIST defines IaaS as provisioning processing, storage, networks, and other fundamental computing resources."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/Last or D-Day Material/Last Day Notes/DEVOPS.pdf",
+          "page": 15,
+          "observedAnswerLabel": "C",
+          "notes": "The rendered page lists PaaS, SaaS, IaaS, FaaS and prints “Answer: c) IaaS.”"
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-013c17c3224aedf1",
+      "originalAnswerOptionIds": [
+        [
+          "D"
+        ]
+      ],
+      "finalAnswerOptionIds": [
+        "A"
+      ],
+      "reason": "NIST defines SaaS as provider-run applications with no consumer control over the underlying infrastructure, while PaaS permits deploying consumer applications and IaaS permits control of operating systems and applications. Thus SaaS gives the consumer the least control; the source key D (PaaS) is incorrect under that meaning of “most restrictive.”",
+      "sources": [
+        {
+          "title": "SP 800-145: The NIST Definition of Cloud Computing",
+          "publisher": "National Institute of Standards and Technology",
+          "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Service Models — SaaS, PaaS, and IaaS",
+          "supports": "NIST contrasts SaaS (no underlying infrastructure control), PaaS (control over deployed applications), and IaaS (control over operating systems, storage, and applications)."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+          "page": 30,
+          "observedAnswerLabel": "D",
+          "notes": "The rendered page shows SaaS, IaaS, CaaS, PaaS and prints PaaS as the answer; NIST’s model definitions support correcting this key to SaaS."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-019fadef9c1b5ae3",
+      "originalAnswerOptionIds": [
+        [
+          "B"
+        ]
+      ],
+      "finalAnswerOptionIds": [
+        "C"
+      ],
+      "reason": "The source prints B as the answer, but NIST defines cloud computing using on-demand network access to pooled resources and several other characteristics; resource pooling is explicitly one of those characteristics, so B is not the false statement as written. The NIST definition also shows cloud computing is more than the Internet alone. The question’s accompanying course explanation identifies abstraction and virtualization as the two introductory concepts referenced by A. Therefore C is the best single false statement and the source key is corrected from B to C.",
+      "sources": [
+        {
+          "title": "SP 800-145: The NIST Definition of Cloud Computing",
+          "publisher": "NIST",
+          "url": "https://csrc.nist.gov/pubs/sp/800/145/final",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Definition; Essential Characteristics; Deployment Models",
+          "supports": "Defines cloud computing as on-demand network access to pooled resources; lists resource pooling as a characteristic and distinguishes service and deployment models."
+        },
+        {
+          "title": "NIST SP 500-292: Cloud Computing Reference Architecture",
+          "publisher": "NIST",
+          "url": "https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication500-292.pdf",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Sections 2.3 and 3.4.1",
+          "supports": "Describes cloud service architecture, virtualized resources, and network delivery; cloud services include more than Internet connectivity alone."
+        },
+        {
+          "title": "Cloud Computing: Lecture 2",
+          "publisher": "University of Trieste",
+          "url": "https://moodle2.units.it/pluginfile.php/362120/mod_resource/content/2/Lecture_2_CloudArchitecture.pdf",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Cloud abstraction and virtualization",
+          "supports": "Explains the introductory distinction between abstraction and virtualization in the phrase about what “cloud” refers to."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+          "page": 75,
+          "notes": "The rendered page shows the full choices and the printed source answer B with an explanation about abstraction and virtualization.",
+          "observedAnswerLabel": "B"
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-01ec4c5b3b3cf9e5",
+      "originalAnswerOptionIds": [
+        [
+          "A"
+        ]
+      ],
+      "finalAnswerOptionIds": [
+        "B"
+      ],
+      "reason": "The rendered source PDF shows four options and explicitly marks raw label B (“Moving applications to the cloud with minimal modification”). Extraction mistakenly placed option A’s text in the question and mapped raw label B to normalized option A. Microsoft Learn defines rehost/lift-and-shift as moving a workload without code changes, confirming the corrected final answer B.",
+      "sources": [
+        {
+          "title": "Migrate workloads to Azure",
+          "publisher": "Microsoft Learn",
+          "url": "https://learn.microsoft.com/en-us/azure/migration/migrate-to-azure",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Migration strategies: Rehost (lift and shift)",
+          "supports": "Rehost moves a workload to Azure infrastructure without code changes; replatform makes minimal changes, and refactor restructures code."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/Last or D-Day Material/Last Day Notes/DEVOPS.pdf",
+          "page": 20,
+          "notes": "The page shows the full question, options A-D, and the printed answer B.",
+          "observedAnswerLabel": "B"
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-035d87d4c55f4e12",
+      "originalAnswerOptionIds": [
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "finalAnswerOptionIds": [
+        "B"
+      ],
+      "reason": "The source PDF visually marks only B (“Infrastructure as a service”). The extraction incorrectly recorded both A and B. NIST SP 800-145 uses IaaS for Infrastructure as a Service.",
+      "sources": [
+        {
+          "title": "NIST SP 800-145: The NIST Definition of Cloud Computing",
+          "publisher": "National Institute of Standards and Technology",
+          "url": "https://csrc.nist.gov/pubs/sp/800/145/final",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Section 2, Service Models: Infrastructure as a Service (IaaS)",
+          "supports": "NIST defines IaaS as Infrastructure as a Service and describes consumer provisioning of processing, storage, networks, and other computing resources."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+          "page": 48,
+          "notes": "The original page displays options A-D and explicitly prints answer B.",
+          "observedAnswerLabel": "B"
+        }
+      ]
+    },
+    {
+      "questionId": "pc-02c7f60703a67d14",
+      "originalAnswerOptionIds": [],
+      "finalAnswerOptionIds": [
+        "B"
+      ],
+      "reason": "No extracted answer key was present. Python’s official history says Python was created by Guido van Rossum; option B is the only matching choice, so I supplied and verified that key.",
+      "sources": [
+        {
+          "title": "History and License (Python documentation)",
+          "publisher": "Python Software Foundation",
+          "url": "https://docs.python.org/3/license.html",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "History of the software",
+          "supports": "The official Python documentation states that Python was created in the early 1990s by Guido van Rossum, who remains its principal author."
+        }
+      ]
+    },
+    {
+      "questionId": "iimd-04f5f8df71a9a2f6",
+      "originalAnswerOptionIds": [
+        [
+          "A"
+        ]
+      ],
+      "finalAnswerOptionIds": [
+        "C"
+      ],
+      "reason": "The key marks A (“CPI”), while the source’s own explanation expands SaaS, PaaS, and IaaS and identifies SPI. Independent references confirm that grouping. Corrected A to C.",
+      "sources": [
+        {
+          "title": "Cloud Services Explained",
+          "publisher": "Cloud Security Alliance",
+          "url": "https://cloudsecurityalliance.org/blog/2022/07/05/cloud-services-explained",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Service models",
+          "supports": "CSA refers to SaaS, PaaS, and IaaS collectively as the SPI tiers."
+        },
+        {
+          "title": "The NIST Definition of Cloud Computing (SP 800-145)",
+          "publisher": "National Institute of Standards and Technology",
+          "url": "https://csrc.nist.gov/pubs/sp/800/145/final",
+          "accessedAt": "2026-10-22",
+          "relevantSection": "Cloud service models",
+          "supports": "NIST defines SaaS, PaaS, and IaaS as the three cloud service models grouped by the SPI shorthand."
+        }
+      ],
+      "sourceVisualEvidence": [
+        {
+          "sourcePdf": "/home/mayur/Music/Material/CCEE/SORTED/IT Infrastructure Management & DevOps/ITIL, DevOps & DCM/Cloud Computing/Cloud Computing.pdf",
+          "page": 81,
+          "observedAnswerLabel": "A",
+          "notes": "Rendered page shows printed A (CPI), while its explanation spells out SaaS, PaaS, and IaaS and says SPI."
+        }
+      ]
+    }
+  ],
+  "note": "Only evidence-supported answer corrections are recorded here."
+}

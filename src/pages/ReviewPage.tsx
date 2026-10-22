@@ -75,7 +75,17 @@ export const ReviewPage: React.FC = () => {
     let list = ids.map((id) => questionMap.get(id)).filter((q): q is Question => q !== undefined);
 
     if (subjectFilter !== 'all') {
-      list = list.filter((q) => q.subject === subjectFilter);
+      if (subjectFilter === 'cosa') {
+        list = list.filter((q) => q.subject === 'cosa' || q.subject === 'linux' || q.subject === 'windows' || q.subject === 'cross_platform');
+      } else if (subjectFilter === 'fundamental-computer-networks') {
+        list = list.filter((q) => q.subject === 'fundamental-computer-networks' || q.subject === 'fcn');
+      } else if (subjectFilter === 'programming-concepts') {
+        list = list.filter((q) => q.subject === 'programming-concepts' || q.subject === 'pc');
+      } else if (subjectFilter === 'it-infrastructure-devops') {
+        list = list.filter((q) => q.subject === 'it-infrastructure-devops' || q.subject === 'itid' || q.subject === 'iimd');
+      } else {
+        list = list.filter((q) => q.subject === subjectFilter);
+      }
     }
 
     if (searchQuery.trim()) {
@@ -83,8 +93,8 @@ export const ReviewPage: React.FC = () => {
       list = list.filter(
         (q) =>
           q.question_id.toLowerCase().includes(query) ||
-          q.question_text.toLowerCase().includes(query) ||
-          q.topic.toLowerCase().includes(query)
+          (q.question_text || q.question || '').toLowerCase().includes(query) ||
+          (q.topic || '').toLowerCase().includes(query)
       );
     }
 
@@ -175,16 +185,17 @@ export const ReviewPage: React.FC = () => {
           {/* Subject Filter */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
             {[
-              { id: 'all', label: 'All' },
-              { id: 'linux', label: 'Linux' },
-              { id: 'windows', label: 'Windows' },
-              { id: 'cross_platform', label: 'Cross-plat' },
+              { id: 'all', label: 'All Modules' },
+              { id: 'fundamental-computer-networks', label: 'Networks (FCN)' },
+              { id: 'programming-concepts', label: 'Programming (PC)' },
+              { id: 'cosa', label: 'Operating Systems (COSA)' },
+              { id: 'it-infrastructure-devops', label: 'Infra & DevOps (IIMD)' },
             ].map((sub) => (
               <button
                 key={sub.id}
                 type="button"
                 onClick={() => setSubjectFilter(sub.id as any)}
-                className={`px-2.5 py-1 rounded text-xs font-mono transition-colors ${
+                className={`px-2.5 py-1 rounded text-xs font-mono transition-colors whitespace-nowrap ${
                   subjectFilter === sub.id
                     ? 'bg-nexus-elevated border border-nexus-accent text-nexus-accent font-semibold'
                     : 'bg-nexus-elevated/40 text-nexus-text-muted hover:text-nexus-text'

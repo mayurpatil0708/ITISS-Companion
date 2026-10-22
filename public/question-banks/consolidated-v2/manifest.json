@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "2.0",
+  "generatedAt": "2026-10-21T18:56:10.371394+00:00",
+  "project": "/home/mayur/Music/AntigravityCOSA",
+  "sourceDirectory": "/home/mayur/Music/Material/CCEE/SORTED/extrated/question_banks",
+  "existingWebsiteBanks": "/home/mayur/Music/AntigravityCOSA/public/question-banks",
+  "sourceJsonFileCounts": {
+    "extracted_pdf_bank": 214,
+    "existing_website_bank": 3
+  },
+  "sourceJsonFileCount": 217,
+  "sourceQuestionOccurrenceCount": 13516,
+  "canonicalQuestionCount": 8208,
+  "examStagesIncluded": [
+    "cmce"
+  ],
+  "subjects": [
+    {
+      "moduleId": "fundamental-computer-networks",
+      "subjectName": "Fundamental of Computer Networks",
+      "examStage": "cmce",
+      "candidateBank": "cmce/fundamental-computer-networks.json",
+      "verifiedQuizBank": "verified-quiz/cmce/fundamental-computer-networks.json",
+      "reviewCollection": "review/cmce/fundamental-computer-networks.json",
+      "questionCount": 2221,
+      "verifiedQuestionCount": 55,
+      "status": "staged_research_in_progress",
+      "activationStatus": "not_loaded_by_current_app",
+      "correctedQuestionCount": 2,
+      "reviewRequiredQuestionCount": 2166
+    },
+    {
+      "moduleId": "programming-concepts",
+      "subjectName": "Programming Concepts",
+      "examStage": "cmce",
+      "candidateBank": "cmce/programming-concepts.json",
+      "verifiedQuizBank": "verified-quiz/cmce/programming-concepts.json",
+      "reviewCollection": "review/cmce/programming-concepts.json",
+      "questionCount": 1755,
+      "verifiedQuestionCount": 44,
+      "status": "staged_research_in_progress",
+      "activationStatus": "not_loaded_by_current_app",
+      "correctedQuestionCount": 1,
+      "reviewRequiredQuestionCount": 1711
+    },
+    {
+      "moduleId": "cosa",
+      "subjectName": "Concepts of Operating System and Administration",
+      "examStage": "cmce",
+      "candidateBank": "cmce/cosa.json",
+      "verifiedQuizBank": "verified-quiz/cmce/cosa.json",
+      "reviewCollection": "review/cmce/cosa.json",
+      "questionCount": 2881,
+      "verifiedQuestionCount": 48,
+      "status": "staged_research_in_progress",
+      "activationStatus": "not_loaded_by_current_app",
+      "correctedQuestionCount": 0,
+      "reviewRequiredQuestionCount": 2833
+    },
+    {
+      "moduleId": "it-infrastructure-devops",
+      "subjectName": "IT Infrastructure Management & DevOps",
+      "examStage": "cmce",
+      "candidateBank": "cmce/it-infrastructure-devops.json",
+      "verifiedQuizBank": "verified-quiz/cmce/it-infrastructure-devops.json",
+      "reviewCollection": "review/cmce/it-infrastructure-devops.json",
+      "questionCount": 1351,
+      "verifiedQuestionCount": 22,
+      "status": "staged_research_in_progress",
+      "activationStatus": "not_loaded_by_current_app",
+      "correctedQuestionCount": 8,
+      "reviewRequiredQuestionCount": 1329
+    }
+  ],
+  "cceeModulesWithoutInput": [
+    {
+      "moduleId": "compliance-audit",
+      "name": "Compliance Audit",
+      "sourceJsonFiles": 0,
+      "status": "no_input_questions_found"
+    },
+    {
+      "moduleId": "security-concepts",
+      "name": "Security Concepts",
+      "sourceJsonFiles": 0,
+      "status": "no_input_questions_found"
+    },
+    {
+      "moduleId": "cyber-forensics",
+      "name": "Cyber Forensics",
+      "sourceJsonFiles": 0,
+      "status": "no_input_questions_found"
+    },
+    {
+      "moduleId": "public-key-infrastructure",
+      "name": "Public Key Infrastructure",
+      "sourceJsonFiles": 0,
+      "status": "no_input_questions_found"
+    },
+    {
+      "moduleId": "network-defense-countermeasures",
+      "name": "Network Defense and Countermeasures (NDC)",
+      "sourceJsonFiles": 0,
+      "status": "no_input_questions_found"
+    }
+  ],
+  "outputFiles": [
+    "README.md",
+    "cmce/cosa.json",
+    "cmce/fundamental-computer-networks.json",
+    "cmce/it-infrastructure-devops.json",
+    "cmce/programming-concepts.json",
+    "manifest.json",
+    "reports/answer-corrections.json",
+    "reports/answer-verification-report.json",
+    "reports/consolidation-report.json",
+    "reports/content-corrections.json",
+    "reports/duplicate-report.json",
+    "reports/input-inventory.json",
+    "reports/quality-assurance-report.md",
+    "reports/quarantine-report.json",
+    "reports/research-progress.json",
+    "reports/research-results.json",
+    "reports/source-references.json",
+    "reports/topic-inventory.json",
+    "reports/unresolved-questions.json",
+    "reports/validation-report.json",
+    "review/cmce/cosa.json",
+    "review/cmce/fundamental-computer-networks.json",
+    "review/cmce/it-infrastructure-devops.json",
+    "review/cmce/programming-concepts.json",
+    "review/quarantine/cmce/cosa.json",
+    "review/quarantine/cmce/fundamental-computer-networks.json",
+    "review/quarantine/cmce/it-infrastructure-devops.json",
+    "review/quarantine/cmce/programming-concepts.json",
+    "verified-quiz/cmce/cosa.json",
+    "verified-quiz/cmce/fundamental-computer-networks.json",
+    "verified-quiz/cmce/it-infrastructure-devops.json",
+    "verified-quiz/cmce/programming-concepts.json"
+  ],
+  "researchStatus": {
+    "externalQuestionLevelVerification": "in_progress",
+    "processedQuestionCount": 191,
+    "verifiedUnchangedQuestionCount": 158,
+    "correctedQuestionCount": 11,
+    "verifiedOrCorrectedQuestionCount": 169,
+    "ambiguousQuestionCount": 15,
+    "stillNotVerifiedCount": 8039,
+    "explanationsCompleted": 169,
+    "explanationsProvisional": 22,
+    "quarantinedCount": 1,
+    "progressFile": "reports/research-progress.json",
+    "resultsFile": "reports/research-results.json"
+  },
+  "currentWebsiteBanksPreserved": true,
+  "note": "This staging export is not imported into the active quiz database. The current runtime accepts only linux/windows/cross_platform COSA records and does not represent independent answer research."
+}

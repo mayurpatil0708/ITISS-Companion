@@ -15,6 +15,12 @@ import {
   HelpCircle,
   Play,
   RotateCcw,
+  Network,
+  Code2,
+  Monitor,
+  Cloud,
+  ChevronDown,
+  ChevronRight,
 } from 'lucide-react';
 import { Card } from '@/components/common/Card';
 import { Button } from '@/components/common/Button';
@@ -22,6 +28,20 @@ import { Badge } from '@/components/common/Badge';
 import { questionRepository } from '@/services/storage/indexeddb.repository';
 import { QuizService, PracticeConfig } from '@/services/quiz/quiz.service';
 import { Subject, Difficulty, Question } from '@/types';
+
+interface SubtopicInfo {
+  subtopic: string;
+  subtopicId?: string;
+  count: number;
+}
+
+interface TopicGroup {
+  topic: string;
+  topicId?: string;
+  count: number;
+  subject: Subject;
+  subtopics: SubtopicInfo[];
+}
 
 export const PracticeSetupPage: React.FC = () => {
   const navigate = useNavigate();
@@ -31,13 +51,18 @@ export const PracticeSetupPage: React.FC = () => {
   // Detect subject from URL query param or path
   const initialSubject: Subject | 'all' = useMemo(() => {
     const searchParams = new URLSearchParams(location.search);
-    const querySubject = searchParams.get('subject');
-    if (querySubject === 'linux' || querySubject === 'windows' || querySubject === 'cross_platform') {
+    const querySubject = searchParams.get('subject') || searchParams.get('module');
+    if (querySubject) {
+      if (querySubject === 'fcn' || querySubject === 'fundamental-computer-networks') return 'fundamental-computer-networks';
+      if (querySubject === 'pc' || querySubject === 'programming-concepts') return 'programming-concepts';
+      if (querySubject === 'cosa' || querySubject === 'linux' || querySubject === 'windows' || querySubject === 'cross_platform') return 'cosa';
+      if (querySubject === 'itid' || querySubject === 'iimd' || querySubject === 'it-infrastructure-devops') return 'it-infrastructure-devops';
       return querySubject as Subject;
     }
-    if (location.pathname.includes('/linux')) return 'linux';
-    if (location.pathname.includes('/windows')) return 'windows';
-    if (location.pathname.includes('/cross-platform')) return 'cross_platform';
+    if (location.pathname.includes('/fcn') || location.pathname.includes('/fundamental-computer-networks')) return 'fundamental-computer-networks';
+    if (location.pathname.includes('/pc') || location.pathname.includes('/programming-concepts')) return 'programming-concepts';
+    if (location.pathname.includes('/cosa') || location.pathname.includes('/linux') || location.pathname.includes('/windows') || location.pathname.includes('/cross-platform')) return 'cosa';
+    if (location.pathname.includes('/itid') || location.pathname.includes('/iimd') || location.pathname.includes('/it-infrastructure-devops')) return 'it-infrastructure-devops';
     if (location.state && location.state.subject) return location.state.subject;
     return 'all';
   }, [location]);
@@ -47,6 +72,11 @@ export const PracticeSetupPage: React.FC = () => {
     if (location.state && location.state.topics) return location.state.topics;
     return [];
   });
+  const [selectedSubtopics, setSelectedSubtopics] = useState<string[]>(() => {
+    if (location.state && location.state.subtopics) return location.state.subtopics;
+    return [];
+  });
+  const [expandedTopics, setExpandedTopics] = useState<Set<string>>(new Set());
   const [topicSearch, setTopicSearch] = useState('');
   const [difficulty, setDifficulty] = useState<Difficulty | 'mixed'>('mixed');
   const [selection, setSelection] = useState<
@@ -61,7 +91,7 @@ export const PracticeSetupPage: React.FC = () => {
 
   // Question bank state
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
-  const [availableTopics, setAvailableTopics] = useState<{ topic: string; count: number; subject: Subject }[]>([]);
+  const [availableTopics, setAvailableTopics] = useState<TopicGroup[]>([]);
   const [eligibleCount, setEligibleCount] = useState<number>(0);
   const [isStarting, setIsStarting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -69,15 +99,21 @@ export const PracticeSetupPage: React.FC = () => {
   // Synchronize subject when route changes
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const querySubject = searchParams.get('subject');
-    if (querySubject === 'linux' || querySubject === 'windows' || querySubject === 'cross_platform') {
-      setSubject(querySubject as Subject);
-    } else if (location.pathname.includes('/linux')) {
-      setSubject('linux');
-    } else if (location.pathname.includes('/windows')) {
-      setSubject('windows');
-    } else if (location.pathname.includes('/cross-platform')) {
-      setSubject('cross_platform');
+    const querySubject = searchParams.get('subject') || searchParams.get('module');
+    if (querySubject) {
+      if (querySubject === 'fcn' || querySubject === 'fundamental-computer-networks') setSubject('fundamental-computer-networks');
+      else if (querySubject === 'pc' || querySubject === 'programming-concepts') setSubject('programming-concepts');
+      else if (querySubject === 'cosa' || querySubject === 'linux' || querySubject === 'windows' || querySubject === 'cross_platform') setSubject('cosa');
+      else if (querySubject === 'itid' || querySubject === 'iimd' || querySubject === 'it-infrastructure-devops') setSubject('it-infrastructure-devops');
+      else setSubject(querySubject as Subject);
+    } else if (location.pathname.includes('/fcn') || location.pathname.includes('/fundamental-computer-networks')) {
+      setSubject('fundamental-computer-networks');
+    } else if (location.pathname.includes('/pc') || location.pathname.includes('/programming-concepts')) {
+      setSubject('programming-concepts');
+    } else if (location.pathname.includes('/cosa') || location.pathname.includes('/linux') || location.pathname.includes('/windows') || location.pathname.includes('/cross-platform')) {
+      setSubject('cosa');
+    } else if (location.pathname.includes('/itid') || location.pathname.includes('/iimd') || location.pathname.includes('/it-infrastructure-devops')) {
+      setSubject('it-infrastructure-devops');
     }
   }, [location.pathname, location.search]);
 
@@ -101,23 +137,64 @@ export const PracticeSetupPage: React.FC = () => {
     };
   }, []);
 
-  // Compute available topics based on chosen subject
+  // Compute available topics and nested subtopics based on chosen subject
   useEffect(() => {
-    const topicMap: Record<string, { count: number; subject: Subject }> = {};
+    const topicMap: Record<
+      string,
+      {
+        count: number;
+        subject: Subject;
+        topicId?: string;
+        subtopics: Record<string, { count: number; subtopicId?: string }>;
+      }
+    > = {};
+
     for (const q of allQuestions) {
-      if (subject === 'all' || q.subject === subject) {
-        if (!topicMap[q.topic]) {
-          topicMap[q.topic] = { count: 0, subject: q.subject };
+      const matchesSubject =
+        subject === 'all' ||
+        q.subject === subject ||
+        (subject === 'cosa' && (q.subject === 'linux' || q.subject === 'windows' || q.subject === 'cross_platform')) ||
+        (subject === 'fundamental-computer-networks' && q.subject === 'fcn') ||
+        (subject === 'programming-concepts' && q.subject === 'pc') ||
+        (subject === 'it-infrastructure-devops' && (q.subject === 'iimd' || q.subject === 'itid'));
+
+      if (matchesSubject) {
+        const topName = q.topic || 'General';
+        if (!topicMap[topName]) {
+          topicMap[topName] = {
+            count: 0,
+            subject: q.subject,
+            topicId: q.topic_id || q.topicId,
+            subtopics: {},
+          };
         }
-        topicMap[q.topic].count++;
+        topicMap[topName].count++;
+
+        const subName = q.subtopic || topName;
+        if (!topicMap[topName].subtopics[subName]) {
+          topicMap[topName].subtopics[subName] = {
+            count: 0,
+            subtopicId: q.subtopic_id || q.subtopicId,
+          };
+        }
+        topicMap[topName].subtopics[subName].count++;
       }
     }
 
-    const list = Object.entries(topicMap).map(([topic, data]) => ({
+    const list: TopicGroup[] = Object.entries(topicMap).map(([topic, data]) => ({
       topic,
+      topicId: data.topicId,
       count: data.count,
       subject: data.subject,
+      subtopics: Object.entries(data.subtopics)
+        .map(([subtopic, subData]) => ({
+          subtopic,
+          subtopicId: subData.subtopicId,
+          count: subData.count,
+        }))
+        .sort((a, b) => b.count - a.count),
     }));
+
     setAvailableTopics(list.sort((a, b) => b.count - a.count));
   }, [allQuestions, subject]);
 
@@ -129,6 +206,7 @@ export const PracticeSetupPage: React.FC = () => {
         const matches = await questionRepository.getQuestions({
           subject,
           topics: selectedTopics.length > 0 ? selectedTopics : undefined,
+          subtopics: selectedSubtopics.length > 0 ? selectedSubtopics : undefined,
           difficulty,
           selection,
         });
@@ -143,13 +221,16 @@ export const PracticeSetupPage: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, [subject, selectedTopics, difficulty, selection]);
+  }, [subject, selectedTopics, selectedSubtopics, difficulty, selection]);
 
   // Filtered topics for search
   const filteredTopics = useMemo(() => {
     if (!topicSearch.trim()) return availableTopics;
-    return availableTopics.filter((t) =>
-      t.topic.toLowerCase().includes(topicSearch.toLowerCase())
+    const query = topicSearch.toLowerCase();
+    return availableTopics.filter(
+      (t) =>
+        t.topic.toLowerCase().includes(query) ||
+        t.subtopics.some((st) => st.subtopic.toLowerCase().includes(query))
     );
   }, [availableTopics, topicSearch]);
 
@@ -159,12 +240,34 @@ export const PracticeSetupPage: React.FC = () => {
     );
   };
 
+  const toggleSubtopic = (subtopicName: string, parentTopicName: string) => {
+    setSelectedSubtopics((prev) => {
+      if (prev.includes(subtopicName)) {
+        return prev.filter((st) => st !== subtopicName);
+      } else {
+        return [...prev, subtopicName];
+      }
+    });
+  };
+
+  const toggleTopicExpand = (topicName: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setExpandedTopics((prev) => {
+      const next = new Set(prev);
+      if (next.has(topicName)) next.delete(topicName);
+      else next.add(topicName);
+      return next;
+    });
+  };
+
   const selectAllTopics = () => {
     setSelectedTopics(filteredTopics.map((t) => t.topic));
+    setSelectedSubtopics([]);
   };
 
   const clearTopicSelection = () => {
     setSelectedTopics([]);
+    setSelectedSubtopics([]);
   };
 
   const handleStartPractice = async () => {
@@ -174,6 +277,7 @@ export const PracticeSetupPage: React.FC = () => {
       const config: PracticeConfig = {
         subject,
         topics: selectedTopics,
+        subtopics: selectedSubtopics.length > 0 ? selectedSubtopics : undefined,
         difficulty,
         questionCount: Math.min(customQuestionCount, eligibleCount),
         selection,
@@ -214,14 +318,15 @@ export const PracticeSetupPage: React.FC = () => {
           {/* Step 1: Subject Selection */}
           <Card padding="md">
             <label className="text-xs font-semibold text-nexus-text uppercase tracking-wider block mb-3">
-              1. Select Certification Subject
+              1. Select Certification Subject / Module
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
               {[
-                { id: 'all', label: 'All Subjects', icon: Sparkles, color: 'text-nexus-accent' },
-                { id: 'linux', label: 'Linux & OS', icon: Terminal, color: 'text-indigo-400' },
-                { id: 'windows', label: 'Windows Server', icon: Server, color: 'text-cyan-400' },
-                { id: 'cross_platform', label: 'Cross-platform', icon: Layers, color: 'text-emerald-400' },
+                { id: 'all', label: 'All CMCE', count: '7,783', icon: Sparkles, color: 'text-nexus-accent' },
+                { id: 'fundamental-computer-networks', label: 'Networks (FCN)', count: '2,103', icon: Network, color: 'text-blue-400' },
+                { id: 'programming-concepts', label: 'Programming (PC)', count: '1,734', icon: Code2, color: 'text-violet-400' },
+                { id: 'cosa', label: 'OS & Admin (COSA)', count: '2,680', icon: Monitor, color: 'text-indigo-400' },
+                { id: 'it-infrastructure-devops', label: 'Infra & DevOps (IIMD)', count: '1,266', icon: Cloud, color: 'text-sky-400' },
               ].map((sub) => {
                 const Icon = sub.icon;
                 const isSelected = subject === sub.id;
@@ -232,6 +337,7 @@ export const PracticeSetupPage: React.FC = () => {
                     onClick={() => {
                       setSubject(sub.id as Subject | 'all');
                       setSelectedTopics([]);
+                      setSelectedSubtopics([]);
                     }}
                     className={`p-3 rounded border text-left flex flex-col justify-between transition-all ${
                       isSelected
@@ -239,30 +345,37 @@ export const PracticeSetupPage: React.FC = () => {
                         : 'bg-nexus-elevated/40 border-nexus-border text-nexus-text-secondary hover:text-nexus-text hover:border-nexus-border'
                     }`}
                   >
-                    <Icon className={`w-4 h-4 ${sub.color} mb-2`} />
-                    <span className="text-xs truncate">{sub.label}</span>
+                    <div className="flex items-center justify-between w-full mb-1">
+                      <Icon className={`w-4 h-4 ${sub.color}`} />
+                      <span className="text-[10px] font-mono text-nexus-text-muted">{sub.count}</span>
+                    </div>
+                    <span className="text-xs truncate font-medium">{sub.label}</span>
                   </button>
                 );
               })}
             </div>
           </Card>
 
-          {/* Step 2: Topics Selection */}
+          {/* Step 2: Topics & Subtopics Selection */}
           <Card padding="md">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
               <div>
                 <label className="text-xs font-semibold text-nexus-text uppercase tracking-wider block">
-                  2. Select Topics ({selectedTopics.length === 0 ? 'All Topics' : `${selectedTopics.length} Selected`})
+                  2. Select Topics & Subtopics (
+                  {selectedTopics.length === 0 && selectedSubtopics.length === 0
+                    ? 'All Selected'
+                    : `${selectedTopics.length} Topics, ${selectedSubtopics.length} Subtopics`}
+                  )
                 </label>
                 <span className="text-[11px] text-nexus-text-muted">
-                  Leave empty to include all {availableTopics.length} topics
+                  Click a topic to toggle, or expand to drill down into specific subtopics
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Button variant="ghost" size="sm" onClick={selectAllTopics}>
                   Select All
                 </Button>
-                {selectedTopics.length > 0 && (
+                {(selectedTopics.length > 0 || selectedSubtopics.length > 0) && (
                   <Button variant="ghost" size="sm" onClick={clearTopicSelection}>
                     Clear
                   </Button>
@@ -277,40 +390,109 @@ export const PracticeSetupPage: React.FC = () => {
                 type="text"
                 value={topicSearch}
                 onChange={(e) => setTopicSearch(e.target.value)}
-                placeholder="Search topics (e.g. Active Directory, LVM, Processes)..."
+                placeholder="Search topics or subtopics (e.g. DNS, Routing, Pointers, Docker)..."
                 className="w-full bg-nexus-elevated border border-nexus-border rounded pl-9 pr-3 py-1.5 text-xs text-nexus-text placeholder:text-nexus-text-muted focus:outline-none focus:border-nexus-accent"
               />
             </div>
 
-            {/* Topics Scrollable List */}
-            <div className="max-h-52 overflow-y-auto space-y-1.5 pr-1">
+            {/* Topics & Subtopics Scrollable List */}
+            <div className="max-h-64 overflow-y-auto space-y-2 pr-1">
               {filteredTopics.map((top) => {
                 const isSelected = selectedTopics.includes(top.topic);
+                const isExpanded = expandedTopics.has(top.topic);
+                const activeSubtopicsInTopic = top.subtopics.filter((st) => selectedSubtopics.includes(st.subtopic));
+
                 return (
                   <div
                     key={top.topic}
-                    onClick={() => toggleTopic(top.topic)}
-                    className={`flex items-center justify-between px-3 py-2 rounded text-xs cursor-pointer border transition-colors ${
-                      isSelected
-                        ? 'bg-nexus-accent/15 border-nexus-accent text-nexus-text'
-                        : 'bg-nexus-elevated/30 border-nexus-border/60 text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated/60'
+                    className={`rounded border transition-colors ${
+                      isSelected || activeSubtopicsInTopic.length > 0
+                        ? 'border-nexus-accent/60 bg-nexus-accent/5'
+                        : 'border-nexus-border/60 bg-nexus-elevated/20'
                     }`}
                   >
-                    <div className="flex items-center gap-2.5 truncate pr-2">
-                      <div
-                        className={`w-3.5 h-3.5 rounded border flex items-center justify-center flex-shrink-0 ${
-                          isSelected
-                            ? 'bg-nexus-accent border-nexus-accent text-white'
-                            : 'border-nexus-border'
-                        }`}
-                      >
-                        {isSelected && <Check className="w-2.5 h-2.5" />}
+                    <div
+                      onClick={() => toggleTopic(top.topic)}
+                      className={`flex items-center justify-between px-3 py-2 text-xs cursor-pointer rounded transition-colors ${
+                        isSelected
+                          ? 'bg-nexus-accent/15 text-nexus-text font-semibold'
+                          : 'text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated/60'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5 truncate pr-2">
+                        <div
+                          className={`w-3.5 h-3.5 rounded border flex items-center justify-center flex-shrink-0 ${
+                            isSelected
+                              ? 'bg-nexus-accent border-nexus-accent text-white'
+                              : 'border-nexus-border'
+                          }`}
+                        >
+                          {isSelected && <Check className="w-2.5 h-2.5" />}
+                        </div>
+                        <span className="truncate">{top.topic}</span>
+                        {activeSubtopicsInTopic.length > 0 && !isSelected && (
+                          <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-nexus-accent/20 text-nexus-accent">
+                            {activeSubtopicsInTopic.length} subtopics
+                          </span>
+                        )}
                       </div>
-                      <span className="truncate">{top.topic}</span>
+
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-nexus-surface border border-nexus-border text-nexus-text-muted">
+                          {top.count} Qs
+                        </span>
+                        {top.subtopics.length > 0 && (
+                          <button
+                            type="button"
+                            onClick={(e) => toggleTopicExpand(top.topic, e)}
+                            className="p-1 rounded hover:bg-nexus-surface text-nexus-text-muted hover:text-nexus-text transition-colors"
+                            title={isExpanded ? 'Collapse subtopics' : 'Expand subtopics'}
+                          >
+                            {isExpanded ? (
+                              <ChevronDown className="w-3.5 h-3.5" />
+                            ) : (
+                              <ChevronRight className="w-3.5 h-3.5" />
+                            )}
+                          </button>
+                        )}
+                      </div>
                     </div>
-                    <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-nexus-surface border border-nexus-border text-nexus-text-muted flex-shrink-0">
-                      {top.count} Qs
-                    </span>
+
+                    {/* Subtopics Indented Drawer */}
+                    {isExpanded && top.subtopics.length > 0 && (
+                      <div className="pl-7 pr-3 pb-2 pt-1 space-y-1 border-t border-nexus-border/30 bg-nexus-surface/40">
+                        {top.subtopics.map((st) => {
+                          const isSubSelected = selectedSubtopics.includes(st.subtopic);
+                          return (
+                            <div
+                              key={st.subtopic}
+                              onClick={() => toggleSubtopic(st.subtopic, top.topic)}
+                              className={`flex items-center justify-between px-2.5 py-1.5 rounded text-[11px] cursor-pointer border transition-colors ${
+                                isSubSelected
+                                  ? 'bg-nexus-cyan/15 border-nexus-cyan/50 text-nexus-text font-medium'
+                                  : 'bg-nexus-elevated/40 border-nexus-border/40 text-nexus-text-muted hover:text-nexus-text hover:bg-nexus-elevated'
+                              }`}
+                            >
+                              <div className="flex items-center gap-2 truncate pr-2">
+                                <div
+                                  className={`w-3 h-3 rounded border flex items-center justify-center flex-shrink-0 ${
+                                    isSubSelected
+                                      ? 'bg-nexus-cyan border-nexus-cyan text-black'
+                                      : 'border-nexus-border'
+                                  }`}
+                                >
+                                  {isSubSelected && <Check className="w-2 h-2 stroke-[3]" />}
+                                </div>
+                                <span className="truncate">{st.subtopic}</span>
+                              </div>
+                              <span className="text-[9px] font-mono px-1 py-0.2 rounded bg-nexus-surface text-nexus-text-muted flex-shrink-0">
+                                {st.count} Qs
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                 );
               })}

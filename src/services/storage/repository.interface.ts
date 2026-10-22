@@ -3,6 +3,7 @@ import { Question, Subject, Difficulty, AttemptRecord, BookmarkRecord, TopicItem
 export interface QuestionFilter {
   subject?: Subject | 'all';
   topics?: string[];
+  subtopics?: string[];
   difficulty?: Difficulty | 'mixed';
   selection?: 'all' | 'unseen' | 'incorrect' | 'bookmarked' | 'randomized' | 'previously_attempted';
   searchQuery?: string;

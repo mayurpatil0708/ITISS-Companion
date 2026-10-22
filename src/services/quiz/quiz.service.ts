@@ -4,6 +4,7 @@ import { questionRepository } from '../storage/indexeddb.repository';
 export interface PracticeConfig {
   subject: Subject | 'all';
   topics: string[];
+  subtopics?: string[];
   difficulty: Difficulty | 'mixed';
   questionCount: number;
   selection: 'all' | 'unseen' | 'incorrect' | 'bookmarked' | 'randomized' | 'previously_attempted';
@@ -56,6 +57,7 @@ export class QuizService {
     const eligibleQuestions = await questionRepository.getQuestions({
       subject: config.subject,
       topics: config.topics,
+      subtopics: config.subtopics,
       difficulty: config.difficulty,
       selection: config.selection,
     });
@@ -93,6 +95,7 @@ export class QuizService {
       title: `${subjectTitle} ${modeTitle}`,
       subjectFilter: config.subject,
       topicFilter: config.topics,
+      subtopicFilter: config.subtopics,
       difficultyFilter: config.difficulty,
       startedAt: now,
       totalQuestions: items.length,

@@ -275,10 +275,354 @@ export const COSA_CONTENT_MANIFEST: ModuleContentManifest = {
   ],
 };
 
+// ─── Concrete Manifest: FCN (Fundamental of Computer Networks) ───
+
+export const FCN_CONTENT_MANIFEST: ModuleContentManifest = {
+  moduleId: 'fundamental-computer-networks',
+  moduleSlug: 'fcn',
+  hasQuestionBank: true,
+  hasTopics: true,
+  hasStudyResources: true,
+  hasPracticalGuides: true,
+  hasUsefulLinks: true,
+  hasRevisionResources: true,
+  studyResources: [
+    {
+      id: 'fcn-high-yield-summary',
+      title: 'Computer Networks High-Yield Core Summary',
+      description: 'Comprehensive guide covering OSI 7-layer architecture, TCP/IP encapsulation, IPv4/IPv6 headers, and switching fundamentals.',
+      type: 'notes',
+      fileUrl: '/materials/fcn/FCN_HighYield.pdf',
+      badge: 'High Yield',
+    },
+    {
+      id: 'fcn-cisco-routing-switching',
+      title: 'Cisco IOS Routing & Switching Lab Guide',
+      description: 'Cisco switch/router CLI configuration: VLAN 802.1Q tagging, Spanning Tree (STP), inter-VLAN routing, and OSPF/RIP routing.',
+      type: 'pdf',
+      fileUrl: '/materials/fcn/Cisco_Routing_Switching.pdf',
+      badge: 'Core Reference',
+    },
+  ],
+  practicalGuides: [
+    {
+      id: 'guide-cisco-vlan-routing',
+      title: 'Inter-VLAN Routing & 802.1Q Trunking Configuration',
+      category: 'networking',
+      summary: 'Configuring access ports, 802.1Q trunk links, sub-interfaces on routers (Router-on-a-Stick), and verifying switchport modes.',
+      difficulty: 'intermediate',
+      estimatedMinutes: 30,
+      keyCommands: [
+        'switchport mode trunk',
+        'switchport trunk allowed vlan 10,20',
+        'interface GigabitEthernet0/0.10',
+        'encapsulation dot1Q 10',
+        'show vlan brief',
+      ],
+      stepsSummary: [
+        'Create VLANs in global configuration with vlan <id>',
+        'Assign access ports to VLAN with switchport access vlan <id>',
+        'Configure inter-switch trunk links with switchport mode trunk',
+        'Define 802.1Q sub-interfaces on router interface for inter-VLAN routing',
+        'Assign default gateway IP addresses to each sub-interface and verify with ping',
+      ],
+    },
+    {
+      id: 'guide-subnetting-vlsm',
+      title: 'IPv4 Subnetting & VLSM Design Walkthrough',
+      category: 'networking',
+      summary: 'Step-by-step methodology to calculate network IDs, broadcast addresses, usable host ranges, and custom subnet masks.',
+      difficulty: 'foundational',
+      estimatedMinutes: 25,
+      keyCommands: ['ipcalc 192.168.1.0/26', 'ip route 10.0.0.0 255.255.255.0 192.168.1.1'],
+      stepsSummary: [
+        'Determine required subnets and host capacity per subnet',
+        'Calculate prefix length (/n) and borrow host bits for subnetting',
+        'Derive subnet mask in dotted decimal (255.255.255.x)',
+        'Compute block sizes (256 - mask octet) to determine subnet increments',
+        'Assign valid host IPs reserving network ID and broadcast address',
+      ],
+    },
+  ],
+  usefulLinks: [
+    {
+      id: 'link-iana-ports',
+      title: 'IANA Service Name and Transport Protocol Port Number Registry',
+      url: 'https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml',
+      description: 'Official standard assignments for TCP/UDP well-known, registered, and dynamic ports.',
+      category: 'standards',
+      isExternal: true,
+    },
+    {
+      id: 'link-wireshark-docs',
+      title: 'Wireshark User Guide & Packet Analysis',
+      url: 'https://www.wireshark.org/docs/',
+      description: 'Deep-dive packet capture analysis for TCP handshakes, DNS queries, HTTP headers, and ARP requests.',
+      category: 'tools',
+      isExternal: true,
+    },
+  ],
+  revisionResources: [
+    {
+      id: 'rev-osi-tcpip-matrix',
+      title: 'OSI 7-Layer vs TCP/IP 4-Layer Mapping & PDU Matrix',
+      summary: 'Essential comparison of protocol data units, addressing types, and standard protocols across network layers.',
+      category: 'Network Architecture',
+      highYieldBullets: [
+        'Layer 7 (Application): Data — HTTP/HTTPS, DNS, DHCP, FTP, SSH, SMTP, SNMP.',
+        'Layer 4 (Transport): Segment — TCP (reliable, connection-oriented, 3-way handshake) vs UDP (lightweight datagrams).',
+        'Layer 3 (Network): Packet — Logical addressing (IPv4/IPv6), routing (OSPF, RIP, BGP), ICMP, ARP.',
+        'Layer 2 (Data Link): Frame — Physical MAC addressing, CSMA/CD, switches, VLANs (802.1Q), STP (802.1D).',
+        'Layer 1 (Physical): Bits — Guided media (UTP Cat6, Fiber), hubs, repeaters, signaling.',
+      ],
+      keyTerms: [
+        { term: 'Three-Way Handshake', explanation: 'TCP connection initiation sequence: SYN -> SYN-ACK -> ACK.' },
+        { term: 'DORA Process', explanation: 'DHCP lease acquisition: Discover -> Offer -> Request -> Acknowledge.' },
+      ],
+    },
+  ],
+};
+
+// ─── Concrete Manifest: PC (Programming Concepts) ───
+
+export const PC_CONTENT_MANIFEST: ModuleContentManifest = {
+  moduleId: 'programming-concepts',
+  moduleSlug: 'pc',
+  hasQuestionBank: true,
+  hasTopics: true,
+  hasStudyResources: true,
+  hasPracticalGuides: true,
+  hasUsefulLinks: true,
+  hasRevisionResources: true,
+  studyResources: [
+    {
+      id: 'pc-c-systems-guide',
+      title: 'C Programming & Memory Architecture Manual',
+      description: 'In-depth reference on C pointers, pointer arithmetic, memory layout (stack/heap), structures, and stream I/O.',
+      type: 'pdf',
+      fileUrl: '/materials/pc/C_Programming_Manual.pdf',
+      badge: 'Core Reference',
+    },
+    {
+      id: 'pc-python-rdbms-guide',
+      title: 'Python Essentials, OOP & RDBMS Design Guide',
+      description: 'Comprehensive notes covering Python data structures, list comprehensions, exceptions, SQL queries, and normalization.',
+      type: 'notes',
+      fileUrl: '/materials/pc/Python_RDBMS_Guide.pdf',
+      badge: 'High Yield',
+    },
+  ],
+  practicalGuides: [
+    {
+      id: 'guide-c-pointers',
+      title: 'C Pointer Arithmetic, Structs & Heap Allocation',
+      category: 'devops',
+      summary: 'Practical code examples illustrating pointer dereferencing, dynamic memory (malloc/free), linked lists, and function pointers.',
+      difficulty: 'intermediate',
+      estimatedMinutes: 30,
+      keyCommands: [
+        'int *ptr = (int*)malloc(sizeof(int) * 10);',
+        'free(ptr); ptr = NULL;',
+        'struct Node { int val; struct Node *next; };',
+      ],
+      stepsSummary: [
+        'Declare pointers with correct type signature (int *p, char **argv)',
+        'Allocate dynamic heap storage with malloc/calloc and verify against NULL',
+        'Use pointer arithmetic (*(p + i)) vs array subscripting (p[i])',
+        'Access struct members via arrow operator (node->val)',
+        'Safely free heap allocations and set pointers to NULL to prevent dangling pointers',
+      ],
+    },
+    {
+      id: 'guide-sql-joins-transactions',
+      title: 'Relational Database Queries, Multi-Table JOINs & Transactions',
+      category: 'devops',
+      summary: 'Crafting complex SELECT queries with INNER/LEFT/RIGHT JOINs, GROUP BY, HAVING, subqueries, and ACID transaction control.',
+      difficulty: 'intermediate',
+      estimatedMinutes: 25,
+      keyCommands: [
+        'SELECT e.name, d.dept_name FROM employees e INNER JOIN departments d ON e.dept_id = d.id;',
+        'SELECT dept_id, COUNT(*) FROM employees GROUP BY dept_id HAVING COUNT(*) > 5;',
+        'START TRANSACTION; UPDATE accounts SET balance = balance - 100 WHERE id = 1; COMMIT;',
+      ],
+      stepsSummary: [
+        'Filter rows using WHERE clause before aggregation',
+        'Group data using GROUP BY and filter grouped sets with HAVING',
+        'Combine relational tables with INNER JOIN on matching primary/foreign keys',
+        'Handle non-matching records with LEFT/RIGHT OUTER JOIN',
+        'Enforce ACID semantics using START TRANSACTION, COMMIT, and ROLLBACK',
+      ],
+    },
+  ],
+  usefulLinks: [
+    {
+      id: 'link-python-docs',
+      title: 'Python 3 Official Documentation',
+      url: 'https://docs.python.org/3/',
+      description: 'Authoritative documentation for Python built-in types, operators, standard library, and OOP models.',
+      category: 'official_doc',
+      isExternal: true,
+    },
+    {
+      id: 'link-postgresql-manual',
+      title: 'PostgreSQL Relational Database Documentation',
+      url: 'https://www.postgresql.org/docs/',
+      description: 'Comprehensive guide to SQL queries, transaction isolation levels, indexing, and normalization.',
+      category: 'official_doc',
+      isExternal: true,
+    },
+  ],
+  revisionResources: [
+    {
+      id: 'rev-db-normalization-matrix',
+      title: 'Database Normalization (1NF, 2NF, 3NF, BCNF) & ACID Matrix',
+      summary: 'Clear rules for decomposing relational tables to eliminate redundancy and update anomalies.',
+      category: 'Database Management',
+      highYieldBullets: [
+        '1NF (First Normal Form): Eliminate repeating groups; ensure all attribute values are atomic.',
+        '2NF (Second Normal Form): In 1NF + eliminate partial functional dependencies (all non-key attributes fully dependent on whole primary key).',
+        '3NF (Third Normal Form): In 2NF + eliminate transitive functional dependencies (non-key attribute depends on another non-key attribute).',
+        'BCNF (Boyce-Codd Normal Form): Stricter 3NF; for every functional dependency X -> Y, X must be a superkey.',
+        'ACID Properties: Atomicity (all-or-nothing), Consistency (valid state transitions), Isolation (independent concurrent execution), Durability (committed changes persist).',
+      ],
+      keyTerms: [
+        { term: 'Candidate Key', explanation: 'A minimal set of attributes that uniquely identifies a tuple in a relation.' },
+        { term: 'Transitive Dependency', explanation: 'When A -> B and B -> C, then A -> C indirectly; disallowed in 3NF.' },
+      ],
+    },
+  ],
+};
+
+// ─── Concrete Manifest: IIMD (IT Infrastructure Management & DevOps) ───
+
+export const IIMD_CONTENT_MANIFEST: ModuleContentManifest = {
+  moduleId: 'it-infrastructure-devops',
+  moduleSlug: 'itid',
+  hasQuestionBank: true,
+  hasTopics: true,
+  hasStudyResources: true,
+  hasPracticalGuides: true,
+  hasUsefulLinks: true,
+  hasRevisionResources: true,
+  studyResources: [
+    {
+      id: 'iimd-itil-devops-guide',
+      title: 'ITIL Lifecycle & DevOps Architecture Handbook',
+      description: 'Comprehensive curriculum guide on ITIL v3/4 service management, Deming cycle, RACI, CI/CD, Docker, Kubernetes, and Ansible.',
+      type: 'pdf',
+      fileUrl: '/materials/itid/ITIL_DevOps_Handbook.pdf',
+      badge: 'Core Reference',
+    },
+    {
+      id: 'iimd-cloud-infra-summary',
+      title: 'Cloud Infrastructure & Automation High-Yield Summary',
+      description: 'High-yield notes covering AWS EC2, S3, VPC, Terraform IaC, Jenkinsfile pipelines, and data center facilities.',
+      type: 'notes',
+      fileUrl: '/materials/itid/Cloud_DevOps_Summary.pdf',
+      badge: 'High Yield',
+    },
+  ],
+  practicalGuides: [
+    {
+      id: 'guide-docker-containerization',
+      title: 'Docker Image Optimization, Multi-Stage Builds & Compose',
+      category: 'devops',
+      summary: 'Creating lean Docker images with multi-stage Dockerfiles, managing container networks, volumes, and multi-container Docker Compose stacks.',
+      difficulty: 'intermediate',
+      estimatedMinutes: 25,
+      keyCommands: [
+        'docker build -t app:latest .',
+        'docker run -d -p 8080:80 --name web app:latest',
+        'docker compose up -d',
+        'docker exec -it web /bin/sh',
+      ],
+      stepsSummary: [
+        'Write Dockerfile using minimal base image (alpine, distroless)',
+        'Separate build stage from runtime stage using multi-stage builds',
+        'Order instructions from least frequently to most frequently changing for layer caching',
+        'Manage persistent data using Docker named volumes',
+        'Orchestrate multi-tier web/database stacks with docker-compose.yml',
+      ],
+    },
+    {
+      id: 'guide-jenkins-pipeline-ci',
+      title: 'Jenkinsfile Declarative Pipeline & Automated CI/CD',
+      category: 'devops',
+      summary: 'Constructing automated multi-stage pipelines: Git checkout, automated test execution, Docker packaging, and artifact deployment.',
+      difficulty: 'intermediate',
+      estimatedMinutes: 30,
+      keyCommands: [
+        'pipeline { agent any stages { stage("Build") { steps { sh "make" } } } }',
+        'git commit -am "Update Jenkinsfile"',
+      ],
+      stepsSummary: [
+        'Define pipeline root block and assign build agent',
+        'Create logical stages: Checkout, Unit Test, Build, Package, Deploy',
+        'Incorporate post-build actions for notifications and test report archiving',
+        'Version control Jenkinsfile directly inside application repository',
+        'Trigger automated builds via GitHub webhook on push/pull request',
+      ],
+    },
+  ],
+  usefulLinks: [
+    {
+      id: 'link-docker-docs',
+      title: 'Docker Official Documentation & CLI Reference',
+      url: 'https://docs.docker.com/',
+      description: 'Official references for Docker engine, Dockerfile instructions, Compose specifications, and Swarm mode.',
+      category: 'official_doc',
+      isExternal: true,
+    },
+    {
+      id: 'link-jenkins-pipeline',
+      title: 'Jenkins Pipeline as Code Syntax Documentation',
+      url: 'https://www.jenkins.io/doc/book/pipeline/',
+      description: 'Complete reference for Declarative and Scripted Jenkinsfile pipeline directives.',
+      category: 'official_doc',
+      isExternal: true,
+    },
+    {
+      id: 'link-ansible-docs',
+      title: 'Ansible Community Documentation',
+      url: 'https://docs.ansible.com/ansible/latest/',
+      description: 'Guides on playbooks, YAML syntax, inventory management, and built-in modules.',
+      category: 'tools',
+      isExternal: true,
+    },
+  ],
+  revisionResources: [
+    {
+      id: 'rev-itil-calms-matrix',
+      title: 'ITIL Four Ps, Lifecycle Phases & CALMS DevOps Matrix',
+      summary: 'Essential framework comparing ITIL service delivery structures with modern DevOps culture and automation practices.',
+      category: 'IT Service Management',
+      highYieldBullets: [
+        'ITIL Four Ps: People, Processes, Products (services/technology/tools), Partners (suppliers).',
+        'ITIL Five Lifecycle Phases: Service Strategy -> Service Design -> Service Transition -> Service Operation -> Continual Service Improvement (CSI).',
+        'ITIL CSI 6-Step Model: 1) What is the vision? 2) Where are we now? 3) Where do we want to be? 4) How do we get there? 5) Did we get there? 6) How do we keep the momentum going?',
+        'RACI Matrix: Responsible (doer), Accountable (single owner/decision-maker), Consulted (two-way), Informed (one-way).',
+        'CALMS DevOps Framework: Culture, Automation, Lean, Measurement, Sharing.',
+        'Cloud Models: IaaS (virtualized compute/storage/network), PaaS (development/runtime platform), SaaS (fully hosted application).',
+      ],
+      keyTerms: [
+        { term: 'Service Design Package (SDP)', explanation: 'Comprehensive deliverable passed from Service Design to Service Transition detailing all aspects of an IT service.' },
+        { term: 'Infrastructure as Code (IaC)', explanation: 'Managing and provisioning data center and cloud infrastructure through machine-readable code scripts.' },
+      ],
+    },
+  ],
+};
+
 // ─── Content Manifest Registry ───────────────────────────────
 
 const MANIFEST_REGISTRY: Map<string, ModuleContentManifest> = new Map([
   ['cosa', COSA_CONTENT_MANIFEST],
+  ['fundamental-computer-networks', FCN_CONTENT_MANIFEST],
+  ['fcn', FCN_CONTENT_MANIFEST],
+  ['programming-concepts', PC_CONTENT_MANIFEST],
+  ['pc', PC_CONTENT_MANIFEST],
+  ['it-infrastructure-devops', IIMD_CONTENT_MANIFEST],
+  ['itid', IIMD_CONTENT_MANIFEST],
+  ['iimd', IIMD_CONTENT_MANIFEST],
 ]);
 
 /**
