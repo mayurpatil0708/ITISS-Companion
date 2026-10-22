@@ -1,51 +1,26 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  BookOpen,
-  BookOpenCheck,
-  Shield,
   ArrowRight,
-  Clock,
-  Layers,
-  ChevronRight,
-  ChevronLeft,
   Play,
-  Terminal,
-  Server,
-  Code2,
-  Cloud,
-  Sparkles,
-  FileText,
-  CheckCircle2,
   RotateCcw,
+  Sparkles,
+  ChevronRight,
+  BookOpen,
+  Layers,
   GraduationCap,
   Database,
-  BarChart3,
-  Bookmark,
-  ShieldCheck,
+  Compass,
+  FileCheck2,
+  Clock,
+  CheckCircle2,
   Lock,
 } from 'lucide-react';
 import { EXAM_STAGES, getModulesByStage, ExamStage, ModuleDefinition } from '@/data/module-registry';
 import { useExamStage } from '@/context/ExamStageContext';
 import { useTheme } from '@/context/ThemeContext';
-import { Card } from '@/components/common/Card';
-import { Button } from '@/components/common/Button';
-import { Badge } from '@/components/common/Badge';
 import { questionRepository } from '@/services/storage/indexeddb.repository';
 import { AttemptRecord } from '@/types';
-
-const ICON_MAP: Record<string, React.FC<{ className?: string }>> = {
-  Network: Layers,
-  Code2,
-  Monitor: Terminal,
-  Cloud,
-  ClipboardCheck: CheckCircle2,
-  ShieldCheck,
-  Search: FileText,
-  Key: Shield,
-  ShieldAlert: Shield,
-  BookOpen,
-};
 
 export const ExamSelectionPage: React.FC = () => {
   const navigate = useNavigate();
@@ -89,128 +64,194 @@ export const ExamSelectionPage: React.FC = () => {
   };
 
   // ─────────────────────────────────────────────────────────────
-  // Netflix-style Horizontal Scroll Helper
-  // ─────────────────────────────────────────────────────────────
-  const HorizontalScrollContainer: React.FC<{
-    title: string;
-    subtitle?: string;
-    badge?: string;
-    children: React.ReactNode;
-  }> = ({ title, subtitle, badge, children }) => {
-    const scrollRef = useRef<HTMLDivElement>(null);
-
-    const scroll = (direction: 'left' | 'right') => {
-      if (scrollRef.current) {
-        const amount = direction === 'left' ? -380 : 380;
-        scrollRef.current.scrollBy({ left: amount, behavior: 'smooth' });
-      }
-    };
-
-    return (
-      <div className="space-y-3.5">
-        <div className="flex items-center justify-between">
-          <div className="space-y-0.5">
-            <div className="flex items-center gap-2">
-              <h2 className="text-base sm:text-lg font-bold text-nexus-text tracking-tight">
-                {title}
-              </h2>
-              {badge && (
-                <Badge variant="cyan" size="sm" className="font-mono text-[10px]">
-                  {badge}
-                </Badge>
-              )}
-            </div>
-            {subtitle && (
-              <p className="text-xs text-nexus-text-secondary">{subtitle}</p>
-            )}
-          </div>
-          <div className="flex items-center gap-1.5">
-            <button
-              onClick={() => scroll('left')}
-              className="p-1.5 rounded-full bg-nexus-elevated border border-nexus-border text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-surface transition-colors"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => scroll('right')}
-              className="p-1.5 rounded-full bg-nexus-elevated border border-nexus-border text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-surface transition-colors"
-              aria-label="Scroll right"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-
-        <div
-          ref={scrollRef}
-          className="flex gap-4 overflow-x-auto no-scrollbar scroll-smooth pb-2 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0"
-        >
-          {children}
-        </div>
-      </div>
-    );
-  };
-
-  // ─────────────────────────────────────────────────────────────
-  // DARK THEME (Netflix × Spotify Inspired Experience)
+  // 1. DARK THEME — Netflix × Spotify Inspired Cinematic Experience
   // ─────────────────────────────────────────────────────────────
   if (theme === 'dark') {
     return (
-      <div className="w-full max-w-7xl mx-auto py-6 sm:py-8 px-4 sm:px-6 lg:px-8 space-y-10 animate-fadeIn select-none">
-        {/* Welcome Section */}
-        <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-nexus-accent/15 border border-nexus-accent/30 text-nexus-accent text-xs font-mono font-medium">
-            <span className="w-1.5 h-1.5 rounded-full bg-nexus-accent animate-pulse" />
-            CDAC PGCP-ITISS Certification Suite
+      <div className="w-full max-w-6xl mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8 space-y-14 animate-fadeIn select-none">
+        {/* Editorial Brand Hero */}
+        <section className="space-y-4 pt-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 text-neutral-300 text-xs font-mono tracking-wider uppercase">
+            <span>PGCP-ITISS Certification Platform</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-nexus-text tracking-tight">
-            Your next milestone starts here.
-          </h1>
-          <p className="text-sm sm:text-base text-nexus-text-secondary max-w-3xl leading-relaxed">
-            Prepare for CMCE and CCEE with focused study sessions, technical resources, practice questions, and revision tools.
-          </p>
-        </div>
 
-        {/* Featured Learning Section (Adapts to real user activity) */}
-        {recentAttempt ? (
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-nexus-surface via-nexus-elevated to-nexus-surface border border-nexus-border p-6 sm:p-8 shadow-card">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <div className="space-y-2 max-w-2xl">
-                <div className="flex items-center gap-2">
-                  <Badge variant="cyan" size="sm">
-                    Continue Learning
-                  </Badge>
-                  <span className="text-xs text-nexus-text-muted font-mono">
-                    Last active session
+          <div className="space-y-2">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
+              ITISS Companion
+            </h1>
+            <p className="text-xl sm:text-2xl font-medium text-neutral-200">
+              Your PGCP-ITISS journey, organized.
+            </p>
+          </div>
+
+          <p className="text-sm sm:text-base text-neutral-400 max-w-2xl leading-relaxed">
+            Study smarter for CMCE and CCEE with structured learning resources, practical guides, MCQs, mock examinations, and focused revision.
+          </p>
+        </section>
+
+        {/* Two Prominent Entry Points (CMCE & CCEE) */}
+        <section className="space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-400">
+              Examination Stages
+            </h2>
+            <span className="text-xs text-neutral-500 font-mono hidden sm:inline">Select your current milestone</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            {/* CMCE Preparation Card */}
+            <div
+              onClick={() => handleSelectStage('cmce')}
+              className="group relative rounded-2xl bg-[#161619] border border-white/10 hover:border-white/20 p-7 sm:p-8 flex flex-col justify-between transition-all duration-200 cursor-pointer shadow-lg hover:shadow-2xl hover:bg-[#1a1a1e]"
+            >
+              <div className="space-y-5">
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-mono font-semibold tracking-wide">
+                    STAGE 01 • ACTIVE
+                  </span>
+                  <span className="text-xs text-neutral-400 font-mono">
+                    ~3 Months into course
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-nexus-text tracking-tight">
-                  {recentAttempt.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-nexus-text-secondary leading-relaxed">
-                  {recentAttempt.items.length} questions •{' '}
-                  {recentAttempt.items.filter((i) => i.selectedOptionId).length} answered • Mode:{' '}
-                  <span className="capitalize">{recentAttempt.mode}</span>
+
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-neutral-100 transition-colors">
+                    CMCE Preparation
+                  </h3>
+                  <p className="text-sm font-medium text-neutral-400 mt-1">
+                    Common Module Comprehensive Examination
+                  </p>
+                </div>
+
+                <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+                  {EXAM_STAGES.cmce.description}
                 </p>
-                <div className="w-full max-w-md bg-nexus-border/60 rounded-full h-1.5 overflow-hidden mt-3">
-                  <div
-                    className="bg-nexus-cyan h-1.5 rounded-full transition-all duration-300"
-                    style={{
-                      width: `${Math.round(
-                        (recentAttempt.items.filter((i) => i.selectedOptionId).length /
-                          (recentAttempt.items.length || 1)) *
-                          100
-                      )}%`,
-                    }}
-                  />
+
+                {/* Module List Preview */}
+                <div className="pt-2 space-y-2">
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-500">
+                    Included Modules (4 Ready)
+                  </div>
+                  <div className="space-y-1.5">
+                    {cmceModules.map((mod, idx) => (
+                      <div
+                        key={mod.id}
+                        className="flex items-center justify-between px-3 py-2 rounded-lg bg-white/[0.03] text-xs text-neutral-300 group-hover:text-white transition-colors"
+                      >
+                        <span className="font-mono text-neutral-400 text-[11px] mr-2">0{idx + 1}</span>
+                        <span className="font-medium truncate flex-1">{mod.name}</span>
+                        <span className="font-mono text-[11px] text-neutral-400 shrink-0 ml-3">{mod.durationHours}h</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 
+              {/* Direct CTA */}
+              <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between">
+                <span className="text-xs font-mono text-neutral-400">
+                  {totalQuestions.toLocaleString()} Practice Questions
+                </span>
+                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#e50914] hover:bg-[#f40612] text-white text-xs font-bold tracking-wide transition-all shadow-md group-hover:translate-x-0.5">
+                  CMCE Workspace
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
+            </div>
+
+            {/* CCEE Preparation Card */}
+            <div
+              onClick={() => handleSelectStage('ccee')}
+              className="group relative rounded-2xl bg-[#141416]/90 border border-white/5 hover:border-white/15 p-7 sm:p-8 flex flex-col justify-between transition-all duration-200 cursor-pointer shadow-md hover:shadow-xl hover:bg-[#18181c]"
+            >
+              <div className="space-y-5">
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 text-neutral-300 text-xs font-mono font-semibold tracking-wide">
+                    STAGE 02 • SPECIALIZATION
+                  </span>
+                  <span className="text-xs text-neutral-500 font-mono flex items-center gap-1">
+                    <Lock className="w-3 h-3" /> End-Term Examination
+                  </span>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-neutral-100 transition-colors">
+                    CCEE Preparation
+                  </h3>
+                  <p className="text-sm font-medium text-neutral-400 mt-1">
+                    Course Comprehensive End Examination
+                  </p>
+                </div>
+
+                <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+                  {EXAM_STAGES.ccee.description}
+                </p>
+
+                {/* Module List Preview */}
+                <div className="pt-2 space-y-2">
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-500">
+                    Advanced Specialization Modules (5 Tracks)
+                  </div>
+                  <div className="space-y-1.5">
+                    {cceeModules.map((mod, idx) => (
+                      <div
+                        key={mod.id}
+                        className="flex items-center justify-between px-3 py-2 rounded-lg bg-white/[0.02] text-xs text-neutral-400 group-hover:text-neutral-300 transition-colors"
+                      >
+                        <span className="font-mono text-neutral-400 text-[11px] mr-2">0{idx + 1}</span>
+                        <span className="font-medium truncate flex-1">{mod.name}</span>
+                        <span className="font-mono text-[11px] text-neutral-400 shrink-0 ml-3">{mod.durationHours}h</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Direct CTA */}
+              <div className="pt-6 mt-6 border-t border-white/5 flex items-center justify-between">
+                <span className="text-xs font-mono text-neutral-400">
+                  {EXAM_STAGES.ccee.timing}
+                </span>
+                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold tracking-wide transition-all group-hover:translate-x-0.5">
+                  CCEE Overview
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Continue Learning OR Curated Starting Recommendation */}
+        <section className="space-y-3">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-400">
+              {recentAttempt ? 'Continue Learning' : 'Curated Curriculum Starting Point'}
+            </h2>
+            <span className="text-xs text-neutral-500 font-mono">
+              {recentAttempt ? 'Active session on this device' : 'Recommended baseline'}
+            </span>
+          </div>
+
+          {recentAttempt ? (
+            <div className="rounded-xl bg-[#18181c] border border-white/10 p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-5">
+              <div className="space-y-1.5 max-w-xl">
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-500/20 text-emerald-400 uppercase">
+                    Session In Progress
+                  </span>
+                  <span className="text-xs text-neutral-400 font-mono">Mode: {recentAttempt.mode}</span>
+                </div>
+                <h4 className="text-lg font-bold text-white tracking-tight">
+                  {recentAttempt.title}
+                </h4>
+                <p className="text-xs text-neutral-400">
+                  {recentAttempt.items.length} questions •{' '}
+                  {recentAttempt.items.filter((i) => i.selectedOptionId).length} completed
+                </p>
+              </div>
+
               <div className="flex items-center gap-3 shrink-0">
-                <Button
-                  variant="primary"
-                  size="md"
+                <button
                   onClick={() =>
                     navigate(
                       recentAttempt.isCompleted
@@ -218,319 +259,190 @@ export const ExamSelectionPage: React.FC = () => {
                         : `/quiz/${recentAttempt.id}`
                     )
                   }
-                  icon={<Play className="w-4 h-4 fill-current" />}
-                  className="font-semibold shadow-subtle"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#e50914] hover:bg-[#f40612] text-white text-xs font-bold transition-colors"
                 >
+                  <Play className="w-3.5 h-3.5 fill-current" />
                   {recentAttempt.isCompleted ? 'Review Results' : 'Resume Session'}
-                </Button>
-                <Button
-                  variant="secondary"
-                  size="md"
+                </button>
+                <button
                   onClick={() => handleSelectStage('cmce')}
+                  className="px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/15 text-neutral-200 text-xs font-medium transition-colors"
                 >
-                  Browse CMCE
-                </Button>
+                  Switch Module
+                </button>
               </div>
             </div>
-          </div>
-        ) : (
-          /* New User Curated Starting Point */
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-nexus-surface via-nexus-elevated to-nexus-surface border border-nexus-border p-6 sm:p-8 shadow-card">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <div className="space-y-2.5 max-w-2xl">
+          ) : (
+            <div className="rounded-xl bg-[#18181c] border border-white/10 p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-5">
+              <div className="space-y-1.5 max-w-2xl">
                 <div className="flex items-center gap-2">
-                  <Badge variant="primary" size="sm">
-                    Featured Curriculum
-                  </Badge>
-                  <span className="text-xs text-nexus-text-muted font-mono">
-                    CMCE Module 1
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-white/10 text-neutral-300 uppercase">
+                    CMCE Module 01 Recommended
                   </span>
+                  <span className="text-xs text-neutral-400 font-mono">2,103 Questions</span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-nexus-text tracking-tight">
-                  Fundamental of Computer Networks
-                </h3>
-                <p className="text-xs sm:text-sm text-nexus-text-secondary leading-relaxed">
-                  2,103 Questions • 120 Hours • 8 Topics • Master OSI 7-layer architecture, IPv4/IPv6 CIDR subnetting, Ethernet switching, and routing protocols (OSPF, RIP, BGP).
+                <h4 className="text-lg font-bold text-white tracking-tight">
+                  Fundamental of Computer Networks (FCN)
+                </h4>
+                <p className="text-xs text-neutral-400 leading-relaxed">
+                  Start with the foundational core: OSI 7-layer architecture, IPv4/IPv6 CIDR subnetting, Ethernet switching, and dynamic routing protocols.
                 </p>
               </div>
 
               <div className="flex items-center gap-3 shrink-0">
-                <Button
-                  variant="primary"
-                  size="md"
+                <button
                   onClick={() => navigate('/cmce/fcn/practice')}
-                  icon={<Play className="w-4 h-4 fill-current" />}
-                  className="font-semibold"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#e50914] hover:bg-[#f40612] text-white text-xs font-bold transition-colors shadow"
                 >
+                  <Play className="w-3.5 h-3.5 fill-current" />
                   Start Practice
-                </Button>
-                <Button
-                  variant="secondary"
-                  size="md"
+                </button>
+                <button
                   onClick={() => navigate('/cmce/fcn')}
+                  className="px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/15 text-neutral-200 text-xs font-medium transition-colors"
                 >
-                  Explore Module
-                </Button>
+                  Explore Curriculum
+                </button>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </section>
 
-        {/* Collection 1: CMCE Examination Track (Netflix Row Pattern) */}
-        <HorizontalScrollContainer
-          title="CMCE Examination Modules"
-          subtitle="Foundational stage covering core network, programming, operating system, and DevOps administration"
-          badge="4 Modules Ready"
-        >
-          {cmceModules.map((mod) => {
-            const ModIcon = ICON_MAP[mod.icon] || BookOpen;
-            return (
+        {/* Section: Your Modules */}
+        <section className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-400">
+                Your Modules
+              </h2>
+              <p className="text-xs text-neutral-500 mt-0.5">
+                Current CMCE active curriculum modules ready for study
+              </p>
+            </div>
+            <button
+              onClick={() => handleSelectStage('cmce')}
+              className="text-xs font-medium text-neutral-400 hover:text-white transition-colors"
+            >
+              View all 4 modules →
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {cmceModules.map((mod, idx) => (
               <div
                 key={mod.id}
                 onClick={() => navigate(`/cmce/${mod.slug}`)}
-                className="w-72 sm:w-80 shrink-0 p-5 rounded-xl bg-nexus-surface border border-nexus-border hover:border-nexus-accent/60 hover:bg-nexus-elevated transition-all duration-200 cursor-pointer flex flex-col justify-between group"
+                className="group rounded-xl bg-[#161619] border border-white/5 hover:border-white/20 p-5 flex flex-col justify-between cursor-pointer transition-all hover:bg-[#1b1b1f]"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <div className="p-2.5 rounded-lg bg-nexus-elevated border border-nexus-border text-nexus-text group-hover:text-nexus-accent transition-colors">
-                      <ModIcon className="w-5 h-5" />
-                    </div>
-                    <Badge variant="cyan" size="sm" className="font-mono text-[10px]">
-                      Module {mod.order}
-                    </Badge>
+                    <span className="font-mono text-xs text-neutral-500 font-bold">
+                      0{idx + 1}
+                    </span>
+                    <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">
+                      Available
+                    </span>
                   </div>
 
                   <div>
-                    <h3 className="text-base font-bold text-nexus-text group-hover:text-nexus-accent transition-colors">
+                    <h4 className="text-sm font-bold text-white group-hover:text-neutral-100 transition-colors">
                       {mod.name}
-                    </h3>
-                    <p className="text-xs text-nexus-text-secondary mt-1 line-clamp-2 leading-relaxed">
+                    </h4>
+                    <p className="text-xs text-neutral-400 mt-1 line-clamp-2 leading-relaxed">
                       {mod.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-nexus-border/60 flex items-center justify-between text-xs text-nexus-text-muted">
-                  <span className="font-mono">{mod.durationHours} hrs • {mod.topicCount} topics</span>
-                  <ChevronRight className="w-4 h-4 text-nexus-text-muted group-hover:text-nexus-accent group-hover:translate-x-0.5 transition-all" />
+                <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-xs text-neutral-400">
+                  <span className="font-mono text-[11px]">{mod.durationHours}h • {mod.topicCount} topics</span>
+                  <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
                 </div>
               </div>
-            );
-          })}
-        </HorizontalScrollContainer>
+            ))}
+          </div>
+        </section>
 
-        {/* Collection 2: Fast-Track Practice Domains (Spotify / Netflix Discovery) */}
-        <HorizontalScrollContainer
-          title="Fast-Track Practice Domains"
-          subtitle="Directly jump into focused MCQ banks by specialized technical domain"
-        >
-          {[
-            {
-              title: 'Ethernet Switching & Subnetting',
-              module: 'Networks',
-              slug: 'fcn',
-              count: 895,
-              icon: Layers,
-              topics: ['Data Link Layer & Switching', 'IP Addressing & Subnetting', 'Network Layer & Routing'],
-            },
-            {
-              title: 'C Programming & Memory Allocation',
-              module: 'Programming',
-              slug: 'pc',
-              count: 452,
-              icon: Code2,
-              topics: ['C Language Fundamentals', 'C Arrays, Pointers & Memory', 'C Structures & File Systems'],
-            },
-            {
-              title: 'Linux System Administration & OS',
-              module: 'COSA',
-              slug: 'cosa',
-              count: 1232,
-              icon: Terminal,
-              subjectQuery: 'linux',
-            },
-            {
-              title: 'Windows Server 2022 & Active Directory',
-              module: 'COSA',
-              slug: 'cosa',
-              count: 1108,
-              icon: Server,
-              subjectQuery: 'windows',
-            },
-            {
-              title: 'Relational Database Design & SQL',
-              module: 'Programming',
-              slug: 'pc',
-              count: 669,
-              icon: Database,
-              topics: ['Database Management Systems & Relational Model', 'Database Design, Normalization & Transactions', 'SQL Queries & DDL/DML'],
-            },
-            {
-              title: 'Data Center & Cloud Infrastructure',
-              module: 'DevOps',
-              slug: 'itid',
-              count: 588,
-              icon: Cloud,
-              topics: ['Data Center Infrastructure & Storage', 'Cloud Computing Architecture & AWS'],
-            },
-          ].map((item, idx) => {
-            const ItemIcon = item.icon;
-            return (
-              <div
-                key={idx}
-                onClick={() => {
-                  if (item.subjectQuery) {
-                    navigate(`/cmce/${item.slug}/practice?subject=${item.subjectQuery}`);
-                  } else {
-                    navigate(`/cmce/${item.slug}/practice`, {
-                      state: { topics: item.topics },
-                    });
-                  }
-                }}
-                className="w-64 sm:w-72 shrink-0 p-4 rounded-xl bg-nexus-surface border border-nexus-border hover:border-nexus-cyan/60 hover:bg-nexus-elevated transition-all duration-200 cursor-pointer flex flex-col justify-between group"
-              >
-                <div className="space-y-2.5">
-                  <div className="flex items-center justify-between">
-                    <div className="p-2 rounded-lg bg-nexus-elevated border border-nexus-border text-nexus-cyan">
-                      <ItemIcon className="w-4 h-4" />
-                    </div>
-                    <span className="text-[10px] font-mono text-nexus-text-muted px-2 py-0.5 rounded bg-nexus-elevated border border-nexus-border">
-                      {item.module}
-                    </span>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-nexus-text group-hover:text-nexus-cyan transition-colors line-clamp-1">
-                      {item.title}
-                    </h4>
-                    <p className="text-[11px] text-nexus-text-secondary mt-0.5">
-                      Curriculum targeted question set
-                    </p>
-                  </div>
-                </div>
+        {/* Section: Study Resources */}
+        <section className="space-y-4 pt-4 border-t border-white/10">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-400">
+              Study Resources
+            </h2>
+            <span className="text-xs text-neutral-500 font-mono">Curriculum tools & revision</span>
+          </div>
 
-                <div className="pt-3 mt-3 border-t border-nexus-border/60 flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold text-nexus-cyan">
-                    {item.count} MCQs
-                  </span>
-                  <span className="text-xs font-medium text-nexus-text-secondary group-hover:text-nexus-text flex items-center gap-1">
-                    Practice <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </HorizontalScrollContainer>
-
-        {/* Collection 3: CCEE Specialization Track (Upcoming End-Term Modules) */}
-        <HorizontalScrollContainer
-          title="CCEE Specialization Track"
-          subtitle="Advanced cybersecurity and defense modules conducted at course completion"
-          badge="5 Specializations"
-        >
-          {cceeModules.map((mod) => (
-            <div
-              key={mod.id}
-              className="w-64 sm:w-72 shrink-0 p-4 rounded-xl bg-nexus-surface/60 border border-nexus-border/60 opacity-70 hover:opacity-100 transition-opacity flex flex-col justify-between"
-            >
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <Badge variant="outline" size="sm" className="font-mono text-[10px]">
-                    CCEE Mod {mod.order}
-                  </Badge>
-                  <span className="text-[10px] text-nexus-text-muted flex items-center gap-1">
-                    <Lock className="w-3 h-3" /> Coming Soon
-                  </span>
-                </div>
-                <h4 className="text-sm font-bold text-nexus-text">{mod.name}</h4>
-                <p className="text-xs text-nexus-text-secondary line-clamp-2 leading-relaxed">
-                  {mod.description}
-                </p>
-              </div>
-
-              <div className="pt-3 mt-3 border-t border-nexus-border/40 text-[11px] font-mono text-nexus-text-muted">
-                {mod.durationHours}h • {mod.topicCount} curriculum topics
-              </div>
-            </div>
-          ))}
-        </HorizontalScrollContainer>
-
-        {/* Collection 4: Curriculum Reference Library & Rapid Tools */}
-        <div className="pt-4 border-t border-nexus-border/60">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Card
-              variant="interactive"
-              padding="md"
-              onClick={() => navigate('/cmce/exam')}
-              className="space-y-2 group"
+            <div
+              onClick={() => navigate('/cmce/practice')}
+              className="group rounded-xl bg-[#141416] border border-white/5 hover:border-white/15 p-5 cursor-pointer transition-all hover:bg-[#18181c] space-y-2"
             >
-              <div className="p-2.5 rounded-lg bg-nexus-elevated border border-nexus-border text-nexus-accent w-fit">
-                <GraduationCap className="w-5 h-5" />
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-semibold text-neutral-400">PRACTICE</span>
+                <ChevronRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
               </div>
-              <h4 className="text-sm font-bold text-nexus-text group-hover:text-nexus-accent transition-colors">
+              <h4 className="text-sm font-bold text-white group-hover:text-neutral-100">
+                MCQ Practice Engine
+              </h4>
+              <p className="text-xs text-neutral-400 leading-relaxed">
+                Filter and test across technical subjects with sequential A–D choices and full explanations.
+              </p>
+            </div>
+
+            <div
+              onClick={() => navigate('/cmce/exam')}
+              className="group rounded-xl bg-[#141416] border border-white/5 hover:border-white/15 p-5 cursor-pointer transition-all hover:bg-[#18181c] space-y-2"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-semibold text-neutral-400">EXAMINATION</span>
+                <ChevronRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+              </div>
+              <h4 className="text-sm font-bold text-white group-hover:text-neutral-100">
                 Full Mock Exam
               </h4>
-              <p className="text-xs text-nexus-text-secondary">
-                Simulate timed exam conditions with a 50-question comprehensive assessment.
+              <p className="text-xs text-neutral-400 leading-relaxed">
+                Simulate timed CDAC exam conditions with 50 randomized questions and diagnostic review.
               </p>
-            </Card>
+            </div>
 
-            <Card
-              variant="interactive"
-              padding="md"
-              onClick={() => navigate('/cmce/question-bank')}
-              className="space-y-2 group"
-            >
-              <div className="p-2.5 rounded-lg bg-nexus-elevated border border-nexus-border text-nexus-cyan w-fit">
-                <Database className="w-5 h-5" />
-              </div>
-              <h4 className="text-sm font-bold text-nexus-text group-hover:text-nexus-cyan transition-colors">
-                Question Bank
-              </h4>
-              <p className="text-xs text-nexus-text-secondary">
-                Explore and filter all {totalQuestions} verified CDAC curriculum questions.
-              </p>
-            </Card>
-
-            <Card
-              variant="interactive"
-              padding="md"
+            <div
               onClick={() => navigate('/cmce/review')}
-              className="space-y-2 group"
+              className="group rounded-xl bg-[#141416] border border-white/5 hover:border-white/15 p-5 cursor-pointer transition-all hover:bg-[#18181c] space-y-2"
             >
-              <div className="p-2.5 rounded-lg bg-nexus-elevated border border-nexus-border text-nexus-text w-fit">
-                <RotateCcw className="w-5 h-5" />
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-semibold text-neutral-400">REVISION</span>
+                <ChevronRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
               </div>
-              <h4 className="text-sm font-bold text-nexus-text group-hover:text-nexus-accent transition-colors">
+              <h4 className="text-sm font-bold text-white group-hover:text-neutral-100">
                 Review Mistakes
               </h4>
-              <p className="text-xs text-nexus-text-secondary">
-                Target questions answered incorrectly in previous practice attempts.
+              <p className="text-xs text-neutral-400 leading-relaxed">
+                Focus on previous errors, bookmarks, and questions requiring deeper conceptual study.
               </p>
-            </Card>
+            </div>
 
-            <Card
-              variant="interactive"
-              padding="md"
-              onClick={() => navigate('/cmce/analytics')}
-              className="space-y-2 group"
+            <div
+              onClick={() => navigate('/cmce/topics')}
+              className="group rounded-xl bg-[#141416] border border-white/5 hover:border-white/15 p-5 cursor-pointer transition-all hover:bg-[#18181c] space-y-2"
             >
-              <div className="p-2.5 rounded-lg bg-nexus-elevated border border-nexus-border text-nexus-cyan w-fit">
-                <BarChart3 className="w-5 h-5" />
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-semibold text-neutral-400">EXPLORER</span>
+                <ChevronRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
               </div>
-              <h4 className="text-sm font-bold text-nexus-text group-hover:text-nexus-cyan transition-colors">
-                Analytics & Insights
+              <h4 className="text-sm font-bold text-white group-hover:text-neutral-100">
+                Curriculum Topics
               </h4>
-              <p className="text-xs text-nexus-text-secondary">
-                Monitor accuracy metrics, subject coverage, and historical speed data.
+              <p className="text-xs text-neutral-400 leading-relaxed">
+                Browse detailed syllabus breakdown, curriculum objectives, and reference materials.
               </p>
-            </Card>
+            </div>
           </div>
-        </div>
+        </section>
 
-        {/* Footer */}
-        <footer className="pt-6 border-t border-nexus-border/40 text-center">
-          <p className="text-xs text-nexus-text-muted">
-            PGCP-ITISS at CDAC • The Complete Preparation Hub
+        {/* Minimal Subtle Footer */}
+        <footer className="pt-8 border-t border-white/5 text-center">
+          <p className="text-xs text-neutral-400 font-mono">
+            PGCP-ITISS • Centre for Development of Advanced Computing (C-DAC)
           </p>
         </footer>
       </div>
@@ -538,233 +450,384 @@ export const ExamSelectionPage: React.FC = () => {
   }
 
   // ─────────────────────────────────────────────────────────────
-  // LIGHT THEME (Apple Inspired Experience)
+  // 2. LIGHT THEME — Apple Editorial Minimalist Experience
   // ─────────────────────────────────────────────────────────────
   return (
-    <div className="w-full max-w-5xl mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8 space-y-12 animate-fadeIn select-none">
+    <div className="w-full max-w-6xl mx-auto py-10 sm:py-16 px-4 sm:px-6 lg:px-8 space-y-16 animate-fadeIn select-none text-[#1d1d1f]">
       {/* Editorial Hero Section */}
-      <div className="rounded-3xl bg-nexus-surface border border-nexus-border/80 p-8 sm:p-14 text-center shadow-subtle">
-        <div className="flex flex-col items-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center justify-center p-3.5 rounded-2xl bg-nexus-accent/10 border border-nexus-accent/20 text-nexus-accent">
-            <BookOpenCheck className="w-8 h-8 sm:w-10 sm:h-10" />
-          </div>
+      <section className="space-y-4 max-w-3xl">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f2f2f7] text-[#6e6e73] text-xs font-mono uppercase tracking-wider">
+          <span>PGCP-ITISS Certification Hub</span>
+        </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-nexus-text tracking-tight">
-            Your PGCP-ITISS Journey, Organized.
+        <div className="space-y-2">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1d1d1f] tracking-tight leading-tight">
+            ITISS Companion
           </h1>
-
-          <p className="text-base sm:text-lg text-nexus-text-secondary max-w-2xl leading-relaxed">
-            Everything you need for CMCE and CCEE preparation—study resources, practical guides, MCQs, mock tests, and focused revision in one place.
+          <p className="text-xl sm:text-2xl font-medium text-[#6e6e73]">
+            Your PGCP-ITISS journey, organized.
           </p>
         </div>
-      </div>
 
-      {/* Two Prominent Editorial Exam Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-        {/* CMCE Card */}
-        <Card
-          variant="default"
-          padding="none"
-          role="button"
-          tabIndex={0}
-          aria-label="Select Common Module Comprehensive Examination (CMCE)"
-          onClick={() => handleSelectStage('cmce')}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              handleSelectStage('cmce');
-            }
-          }}
-          className="group flex flex-col justify-between overflow-hidden cursor-pointer rounded-2xl border border-nexus-border/80 bg-nexus-surface hover:border-nexus-accent/50 hover:shadow-card transition-all duration-200"
-        >
-          <div className="p-6 sm:p-8 flex flex-col flex-1 justify-between gap-6">
-            <div className="space-y-4">
-              <div className="flex items-start justify-between gap-3">
-                <div className="p-3 rounded-xl bg-nexus-accent/10 border border-nexus-accent/20 text-nexus-accent">
-                  <BookOpen className="w-6 h-6 sm:w-7 sm:h-7" />
-                </div>
-                <div className="flex flex-wrap items-center justify-end gap-2">
-                  <Badge variant="default" size="sm" className="gap-1.5 px-2.5 py-0.5">
-                    <Clock className="w-3.5 h-3.5 text-nexus-text-muted" />
-                    <span>~3 months into course</span>
-                  </Badge>
-                  <Badge variant="primary" size="sm" className="gap-1.5 px-2.5 py-0.5">
-                    <Layers className="w-3.5 h-3.5" />
-                    <span>4 Modules Ready</span>
-                  </Badge>
-                </div>
+        <p className="text-base text-[#86868b] leading-relaxed">
+          Study smarter for CMCE and CCEE with structured learning resources, practical guides, MCQs, mock examinations, and focused revision.
+        </p>
+      </section>
+
+      {/* Two Prominent Entry Points (CMCE & CCEE) */}
+      <section className="space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+          <h2 className="text-xs font-mono font-semibold uppercase tracking-widest text-[#86868b]">
+            Examination Stages
+          </h2>
+          <span className="text-xs text-[#86868b] font-mono hidden sm:inline">Select your examination target</span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* CMCE Preparation Card */}
+          <div
+            onClick={() => handleSelectStage('cmce')}
+            className="group relative rounded-3xl bg-white border border-[#e5e5ea] hover:border-[#d1d1d6] p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 cursor-pointer shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)]"
+          >
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#2e5a44]/10 text-[#2e5a44] text-xs font-mono font-semibold tracking-wide">
+                  STAGE 1 • MID-TERM
+                </span>
+                <span className="text-xs text-[#86868b] font-mono">
+                  ~3 months into course
+                </span>
               </div>
 
               <div>
-                <h2 className="text-2xl font-bold text-nexus-text tracking-tight group-hover:text-nexus-accent transition-colors">
-                  CMCE
-                </h2>
-                <p className="text-sm font-semibold text-nexus-text-secondary mt-0.5">
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#1d1d1f] tracking-tight group-hover:text-[#2e5a44] transition-colors">
+                  CMCE Preparation
+                </h3>
+                <p className="text-sm font-medium text-[#6e6e73] mt-1">
                   Common Module Comprehensive Examination
                 </p>
               </div>
 
-              <p className="text-xs sm:text-sm text-nexus-text-muted leading-relaxed">
+              <p className="text-sm text-[#86868b] leading-relaxed">
                 {EXAM_STAGES.cmce.description}
               </p>
 
-              <div className="pt-2 space-y-2">
-                <div className="text-[11px] font-semibold uppercase tracking-wider text-nexus-text-muted flex items-center justify-between">
-                  <span>Curriculum Modules</span>
-                  <span className="font-mono text-[10px] text-nexus-text-muted">{cmceModules.length} Modules</span>
+              {/* Module List Preview */}
+              <div className="pt-2 space-y-2.5">
+                <div className="text-[11px] font-mono uppercase tracking-wider text-[#86868b]">
+                  Curriculum Modules (4 Ready)
                 </div>
-                <ul className="space-y-1.5">
-                  {cmceModules.map((module, idx) => (
-                    <li
-                      key={module.id}
-                      className="flex items-center gap-2.5 text-xs sm:text-sm text-nexus-text-secondary group-hover:text-nexus-text transition-colors p-2.5 rounded-lg bg-nexus-elevated/40 border border-nexus-border/40"
+                <div className="space-y-1.5">
+                  {cmceModules.map((mod, idx) => (
+                    <div
+                      key={mod.id}
+                      className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#fbfbfd] border border-[#f0f0f3] text-xs text-[#1d1d1f] group-hover:border-[#e5e5ea] transition-colors"
                     >
-                      <span className="shrink-0 w-5 h-5 rounded-md bg-nexus-surface border border-nexus-border flex items-center justify-center font-mono text-[10px] text-nexus-text-muted">
-                        {idx + 1}
-                      </span>
-                      <span className="font-medium truncate">{module.name}</span>
-                      <ChevronRight className="w-3.5 h-3.5 ml-auto text-nexus-text-muted/50 group-hover:text-nexus-accent transition-colors shrink-0" />
-                    </li>
+                      <span className="font-mono text-[#86868b] text-[11px] mr-2.5">0{idx + 1}</span>
+                      <span className="font-medium truncate flex-1">{mod.name}</span>
+                      <span className="font-mono text-[11px] text-[#86868b] shrink-0 ml-3">{mod.durationHours} hrs</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
 
-            <div className="pt-2">
-              <Button
-                variant="primary"
-                size="md"
-                className="w-full justify-center font-semibold"
-                icon={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
-                iconPosition="right"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleSelectStage('cmce');
-                }}
-              >
-                CMCE Preparation →
-              </Button>
+            {/* Direct CTA */}
+            <div className="pt-8 mt-8 border-t border-[#f2f2f7] flex items-center justify-between">
+              <span className="text-xs font-mono text-[#86868b]">
+                {totalQuestions.toLocaleString()} Verified MCQs
+              </span>
+              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1d1d1f] hover:bg-black text-white text-xs font-semibold tracking-wide transition-all group-hover:translate-x-0.5">
+                CMCE Preparation
+                <ArrowRight className="w-3.5 h-3.5" />
+              </span>
             </div>
           </div>
-        </Card>
 
-        {/* CCEE Card */}
-        <Card
-          variant="default"
-          padding="none"
-          role="button"
-          tabIndex={0}
-          aria-label="Select Course Comprehensive End Examination (CCEE)"
-          onClick={() => handleSelectStage('ccee')}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              handleSelectStage('ccee');
-            }
-          }}
-          className="group flex flex-col justify-between overflow-hidden cursor-pointer rounded-2xl border border-nexus-border/80 bg-nexus-surface hover:border-nexus-accent/50 hover:shadow-card transition-all duration-200"
-        >
-          <div className="p-6 sm:p-8 flex flex-col flex-1 justify-between gap-6">
-            <div className="space-y-4">
-              <div className="flex items-start justify-between gap-3">
-                <div className="p-3 rounded-xl bg-nexus-elevated border border-nexus-border text-nexus-text-secondary">
-                  <Shield className="w-6 h-6 sm:w-7 sm:h-7" />
-                </div>
-                <div className="flex flex-wrap items-center justify-end gap-2">
-                  <Badge variant="default" size="sm" className="gap-1.5 px-2.5 py-0.5">
-                    <Clock className="w-3.5 h-3.5 text-nexus-text-muted" />
-                    <span>{EXAM_STAGES.ccee.timing}</span>
-                  </Badge>
-                  <Badge variant="outline" size="sm" className="gap-1.5 px-2.5 py-0.5">
-                    <Layers className="w-3.5 h-3.5" />
-                    <span>5 Modules</span>
-                  </Badge>
-                </div>
+          {/* CCEE Preparation Card */}
+          <div
+            onClick={() => handleSelectStage('ccee')}
+            className="group relative rounded-3xl bg-white border border-[#e5e5ea] hover:border-[#d1d1d6] p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 cursor-pointer shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)]"
+          >
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#f2f2f7] text-[#6e6e73] text-xs font-mono font-semibold tracking-wide">
+                  STAGE 2 • END-TERM
+                </span>
+                <span className="text-xs text-[#86868b] font-mono flex items-center gap-1">
+                  <Lock className="w-3 h-3" /> Specialization Phase
+                </span>
               </div>
 
               <div>
-                <h2 className="text-2xl font-bold text-nexus-text tracking-tight group-hover:text-nexus-accent transition-colors">
-                  CCEE
-                </h2>
-                <p className="text-sm font-semibold text-nexus-text-secondary mt-0.5">
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#1d1d1f] tracking-tight group-hover:text-[#2e5a44] transition-colors">
+                  CCEE Preparation
+                </h3>
+                <p className="text-sm font-medium text-[#6e6e73] mt-1">
                   Course Comprehensive End Examination
                 </p>
               </div>
 
-              <p className="text-xs sm:text-sm text-nexus-text-muted leading-relaxed">
+              <p className="text-sm text-[#86868b] leading-relaxed">
                 {EXAM_STAGES.ccee.description}
               </p>
 
-              <div className="pt-2 space-y-2">
-                <div className="text-[11px] font-semibold uppercase tracking-wider text-nexus-text-muted flex items-center justify-between">
-                  <span>Curriculum Modules</span>
-                  <span className="font-mono text-[10px] text-nexus-text-muted">{cceeModules.length} Modules</span>
+              {/* Module List Preview */}
+              <div className="pt-2 space-y-2.5">
+                <div className="text-[11px] font-mono uppercase tracking-wider text-[#86868b]">
+                  Advanced Tracks (5 Modules)
                 </div>
-                <ul className="space-y-1.5">
-                  {cceeModules.map((module, idx) => (
-                    <li
-                      key={module.id}
-                      className="flex items-center gap-2.5 text-xs sm:text-sm text-nexus-text-secondary group-hover:text-nexus-text transition-colors p-2.5 rounded-lg bg-nexus-elevated/40 border border-nexus-border/40"
+                <div className="space-y-1.5">
+                  {cceeModules.map((mod, idx) => (
+                    <div
+                      key={mod.id}
+                      className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#fbfbfd] border border-[#f0f0f3] text-xs text-[#6e6e73] group-hover:text-[#1d1d1f] transition-colors"
                     >
-                      <span className="shrink-0 w-5 h-5 rounded-md bg-nexus-surface border border-nexus-border flex items-center justify-center font-mono text-[10px] text-nexus-text-muted">
-                        {idx + 1}
-                      </span>
-                      <span className="font-medium truncate">{module.name}</span>
-                      <ChevronRight className="w-3.5 h-3.5 ml-auto text-nexus-text-muted/50 group-hover:text-nexus-accent transition-colors shrink-0" />
-                    </li>
+                      <span className="font-mono text-[#86868b] text-[11px] mr-2.5">0{idx + 1}</span>
+                      <span className="font-medium truncate flex-1">{mod.name}</span>
+                      <span className="font-mono text-[11px] text-[#86868b] shrink-0 ml-3">{mod.durationHours} hrs</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
 
-            <div className="pt-2">
-              <Button
-                variant="secondary"
-                size="md"
-                className="w-full justify-center font-semibold"
-                icon={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
-                iconPosition="right"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleSelectStage('ccee');
-                }}
-              >
-                CCEE Overview →
-              </Button>
+            {/* Direct CTA */}
+            <div className="pt-8 mt-8 border-t border-[#f2f2f7] flex items-center justify-between">
+              <span className="text-xs font-mono text-[#86868b]">
+                {EXAM_STAGES.ccee.timing}
+              </span>
+              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#f2f2f7] hover:bg-[#e5e5ea] text-[#1d1d1f] text-xs font-semibold tracking-wide transition-all group-hover:translate-x-0.5">
+                CCEE Overview
+                <ArrowRight className="w-3.5 h-3.5" />
+              </span>
             </div>
           </div>
-        </Card>
-      </div>
+        </div>
+      </section>
 
-      {/* Editorial Highlights Section */}
-      <div className="rounded-2xl bg-nexus-elevated/50 border border-nexus-border/60 p-6 sm:p-8 space-y-4">
-        <h3 className="text-base font-semibold text-nexus-text">Curriculum Study Highlights</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-          <div className="space-y-1">
-            <span className="font-semibold text-nexus-text block">7,783 Verified Questions</span>
-            <p className="text-nexus-text-secondary leading-relaxed">
-              Complete question banks across Computer Networks, C & Python, COSA Linux/Windows, and DevOps.
+      {/* Continue Learning OR Curated Starting Point */}
+      <section className="space-y-3">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xs font-mono font-semibold uppercase tracking-widest text-[#86868b]">
+            {recentAttempt ? 'Continue Learning' : 'Curated Curriculum Starting Point'}
+          </h2>
+          <span className="text-xs text-[#86868b] font-mono">
+            {recentAttempt ? 'Saved session on this device' : 'Recommended starting place'}
+          </span>
+        </div>
+
+        {recentAttempt ? (
+          <div className="rounded-2xl bg-white border border-[#e5e5ea] p-6 sm:p-7 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-[0_1px_6px_rgba(0,0,0,0.02)]">
+            <div className="space-y-1.5 max-w-xl">
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-[#2e5a44]/10 text-[#2e5a44] uppercase">
+                  Session In Progress
+                </span>
+                <span className="text-xs text-[#86868b] font-mono">Mode: {recentAttempt.mode}</span>
+              </div>
+              <h4 className="text-lg font-bold text-[#1d1d1f] tracking-tight">
+                {recentAttempt.title}
+              </h4>
+              <p className="text-xs text-[#86868b]">
+                {recentAttempt.items.length} questions •{' '}
+                {recentAttempt.items.filter((i) => i.selectedOptionId).length} completed
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3 shrink-0">
+              <button
+                onClick={() =>
+                  navigate(
+                    recentAttempt.isCompleted
+                      ? `/results/${recentAttempt.id}`
+                      : `/quiz/${recentAttempt.id}`
+                  )
+                }
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1d1d1f] hover:bg-black text-white text-xs font-semibold transition-colors"
+              >
+                <Play className="w-3.5 h-3.5 fill-current" />
+                {recentAttempt.isCompleted ? 'Review Results' : 'Resume Session'}
+              </button>
+              <button
+                onClick={() => handleSelectStage('cmce')}
+                className="px-4 py-2.5 rounded-full bg-[#f2f2f7] hover:bg-[#e5e5ea] text-[#1d1d1f] text-xs font-medium transition-colors"
+              >
+                Switch Module
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-2xl bg-white border border-[#e5e5ea] p-6 sm:p-7 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-[0_1px_6px_rgba(0,0,0,0.02)]">
+            <div className="space-y-1.5 max-w-2xl">
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-[#f2f2f7] text-[#6e6e73] uppercase">
+                  CMCE Module 01 Foundation
+                </span>
+                <span className="text-xs text-[#86868b] font-mono">2,103 Questions</span>
+              </div>
+              <h4 className="text-lg font-bold text-[#1d1d1f] tracking-tight">
+                Fundamental of Computer Networks (FCN)
+              </h4>
+              <p className="text-xs text-[#86868b] leading-relaxed">
+                Begin your preparation with networking fundamentals: OSI architecture, subnetting algorithms, Ethernet switching, and routing protocols.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3 shrink-0">
+              <button
+                onClick={() => navigate('/cmce/fcn/practice')}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1d1d1f] hover:bg-black text-white text-xs font-semibold transition-colors"
+              >
+                <Play className="w-3.5 h-3.5 fill-current" />
+                Start Practice
+              </button>
+              <button
+                onClick={() => navigate('/cmce/fcn')}
+                className="px-4 py-2.5 rounded-full bg-[#f2f2f7] hover:bg-[#e5e5ea] text-[#1d1d1f] text-xs font-medium transition-colors"
+              >
+                Explore Curriculum
+              </button>
+            </div>
+          </div>
+        )}
+      </section>
+
+      {/* Section: Your Modules */}
+      <section className="space-y-5">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-xs font-mono font-semibold uppercase tracking-widest text-[#86868b]">
+              Your Modules
+            </h2>
+            <p className="text-xs text-[#86868b] mt-0.5">
+              Foundational CMCE examination subjects
             </p>
           </div>
-          <div className="space-y-1">
-            <span className="font-semibold text-nexus-text block">Official Explanations</span>
-            <p className="text-nexus-text-secondary leading-relaxed">
-              Option-by-option rationale, distractor breakdown, and CDAC curriculum references.
+          <button
+            onClick={() => handleSelectStage('cmce')}
+            className="text-xs font-medium text-[#6e6e73] hover:text-[#1d1d1f] transition-colors"
+          >
+            View all 4 modules →
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {cmceModules.map((mod, idx) => (
+            <div
+              key={mod.id}
+              onClick={() => navigate(`/cmce/${mod.slug}`)}
+              className="group rounded-2xl bg-white border border-[#e5e5ea] hover:border-[#d1d1d6] p-6 flex flex-col justify-between cursor-pointer transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)]"
+            >
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-xs text-[#86868b] font-semibold">
+                    0{idx + 1}
+                  </span>
+                  <span className="text-[10px] font-mono text-[#2e5a44] bg-[#2e5a44]/10 px-2 py-0.5 rounded-full">
+                    Ready
+                  </span>
+                </div>
+
+                <div>
+                  <h4 className="text-sm font-bold text-[#1d1d1f] group-hover:text-[#2e5a44] transition-colors">
+                    {mod.name}
+                  </h4>
+                  <p className="text-xs text-[#86868b] mt-1 line-clamp-2 leading-relaxed">
+                    {mod.description}
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-4 mt-4 border-t border-[#f2f2f7] flex items-center justify-between text-xs text-[#86868b]">
+                <span className="font-mono text-[11px]">{mod.durationHours} hrs • {mod.topicCount} topics</span>
+                <ChevronRight className="w-4 h-4 text-[#86868b] group-hover:text-[#1d1d1f] group-hover:translate-x-0.5 transition-all" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Section: Study Resources */}
+      <section className="space-y-5 pt-4 border-t border-[#f2f2f7]">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xs font-mono font-semibold uppercase tracking-widest text-[#86868b]">
+            Study Resources
+          </h2>
+          <span className="text-xs text-[#86868b] font-mono">Curriculum tools & revision</span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div
+            onClick={() => navigate('/cmce/practice')}
+            className="group rounded-2xl bg-white border border-[#e5e5ea] hover:border-[#d1d1d6] p-6 cursor-pointer transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] space-y-2"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono font-semibold text-[#86868b]">PRACTICE</span>
+              <ChevronRight className="w-3.5 h-3.5 text-[#86868b] group-hover:text-[#1d1d1f] group-hover:translate-x-0.5 transition-all" />
+            </div>
+            <h4 className="text-sm font-bold text-[#1d1d1f] group-hover:text-[#2e5a44] transition-colors">
+              MCQ Practice Engine
+            </h4>
+            <p className="text-xs text-[#86868b] leading-relaxed">
+              Drill topic-by-topic with canonical A–D options and official curriculum rationales.
             </p>
           </div>
-          <div className="space-y-1">
-            <span className="font-semibold text-nexus-text block">Exam Environment Simulation</span>
-            <p className="text-nexus-text-secondary leading-relaxed">
-              Realistic countdown timer, question navigator, mark for review, and diagnostic scoring reports.
+
+          <div
+            onClick={() => navigate('/cmce/exam')}
+            className="group rounded-2xl bg-white border border-[#e5e5ea] hover:border-[#d1d1d6] p-6 cursor-pointer transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] space-y-2"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono font-semibold text-[#86868b]">EXAMINATION</span>
+              <ChevronRight className="w-3.5 h-3.5 text-[#86868b] group-hover:text-[#1d1d1f] group-hover:translate-x-0.5 transition-all" />
+            </div>
+            <h4 className="text-sm font-bold text-[#1d1d1f] group-hover:text-[#2e5a44] transition-colors">
+              Full Mock Exam
+            </h4>
+            <p className="text-xs text-[#86868b] leading-relaxed">
+              Simulate realistic exam conditions with 50 randomized questions and diagnostic feedback.
+            </p>
+          </div>
+
+          <div
+            onClick={() => navigate('/cmce/review')}
+            className="group rounded-2xl bg-white border border-[#e5e5ea] hover:border-[#d1d1d6] p-6 cursor-pointer transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] space-y-2"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono font-semibold text-[#86868b]">REVISION</span>
+              <ChevronRight className="w-3.5 h-3.5 text-[#86868b] group-hover:text-[#1d1d1f] group-hover:translate-x-0.5 transition-all" />
+            </div>
+            <h4 className="text-sm font-bold text-[#1d1d1f] group-hover:text-[#2e5a44] transition-colors">
+              Review Mistakes
+            </h4>
+            <p className="text-xs text-[#86868b] leading-relaxed">
+              Focus on incorrect attempts, bookmarked questions, and high-difficulty areas.
+            </p>
+          </div>
+
+          <div
+            onClick={() => navigate('/cmce/topics')}
+            className="group rounded-2xl bg-white border border-[#e5e5ea] hover:border-[#d1d1d6] p-6 cursor-pointer transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] space-y-2"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono font-semibold text-[#86868b]">EXPLORER</span>
+              <ChevronRight className="w-3.5 h-3.5 text-[#86868b] group-hover:text-[#1d1d1f] group-hover:translate-x-0.5 transition-all" />
+            </div>
+            <h4 className="text-sm font-bold text-[#1d1d1f] group-hover:text-[#2e5a44] transition-colors">
+              Curriculum Topics
+            </h4>
+            <p className="text-xs text-[#86868b] leading-relaxed">
+              Review comprehensive syllabus outlines, subject topics, and learning objectives.
             </p>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Footer */}
-      <footer className="pt-6 border-t border-nexus-border/40 text-center">
-        <p className="text-xs text-nexus-text-muted">
-          PGCP-ITISS at CDAC • Built for exam success
+      {/* Minimal Editorial Footer */}
+      <footer className="pt-8 border-t border-[#f2f2f7] text-center">
+        <p className="text-xs text-[#86868b] font-mono">
+          PGCP-ITISS • Centre for Development of Advanced Computing (C-DAC)
         </p>
       </footer>
     </div>

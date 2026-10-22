@@ -333,61 +333,56 @@ export const ModuleWorkspacePage: React.FC = () => {
       </div>
 
       {/* Module Workspace Header Banner */}
-      <Card padding="lg" className="bg-nexus-surface border-nexus-border relative overflow-hidden">
+      <div className="rounded-3xl bg-nexus-surface border border-nexus-border/80 p-7 sm:p-8 relative overflow-hidden shadow-card">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="flex items-start gap-4">
-            <div className="p-3.5 rounded-xl bg-nexus-elevated border border-nexus-border text-nexus-accent shrink-0">
-              <ModuleIcon className="w-7 h-7" />
+          <div className="space-y-3">
+            <div className="flex items-center flex-wrap gap-2 text-xs font-mono">
+              <span className="px-2.5 py-0.5 rounded-full bg-nexus-accent/15 text-nexus-accent font-semibold uppercase">
+                {module.shortName}
+              </span>
+              <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-500 font-semibold">
+                Available
+              </span>
+              <span className="text-nexus-text-muted">
+                Module {module.order} of {module.examStage.toUpperCase()}
+              </span>
             </div>
-            <div className="space-y-1.5">
-              <div className="flex items-center flex-wrap gap-2">
-                <Badge variant="primary" size="sm">
-                  {module.shortName}
-                </Badge>
-                <Badge variant="success" size="sm">
-                  Available
-                </Badge>
-                <span className="text-xs text-nexus-text-muted">
-                  Module {module.order} of {module.examStage.toUpperCase()}
-                </span>
-              </div>
-              <h1 className="text-xl sm:text-2xl font-bold text-nexus-text tracking-tight">
-                {module.name}
-              </h1>
-              <p className="text-sm text-nexus-text-secondary max-w-2xl leading-relaxed">
-                {module.description}
-              </p>
-            </div>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-nexus-text tracking-tight">
+              {module.name}
+            </h1>
+            <p className="text-sm text-nexus-text-secondary max-w-2xl leading-relaxed">
+              {module.description}
+            </p>
           </div>
 
           {/* Quick Metrics */}
-          <div className="flex items-center gap-3 shrink-0 self-start md:self-center border-t md:border-t-0 md:border-l border-nexus-border/60 pt-4 md:pt-0 md:pl-6">
+          <div className="flex items-center gap-4 shrink-0 self-start md:self-center border-t md:border-t-0 md:border-l border-nexus-border/60 pt-4 md:pt-0 md:pl-8">
             <div className="text-center px-2">
-              <div className="text-lg sm:text-xl font-bold font-mono text-nexus-text">
-                {isLoading ? '...' : questions.length}
+              <div className="text-xl sm:text-2xl font-bold font-mono text-nexus-text">
+                {isLoading ? '...' : questions.length.toLocaleString()}
               </div>
-              <div className="text-[11px] text-nexus-text-muted">Questions</div>
+              <div className="text-[11px] text-nexus-text-muted uppercase font-mono tracking-wider">Questions</div>
             </div>
             <div className="w-px h-8 bg-nexus-border/60" />
             <div className="text-center px-2">
-              <div className="text-lg sm:text-xl font-bold font-mono text-nexus-accent">
+              <div className="text-xl sm:text-2xl font-bold font-mono text-nexus-accent">
                 {module.durationHours}h
               </div>
-              <div className="text-[11px] text-nexus-text-muted">Duration</div>
+              <div className="text-[11px] text-nexus-text-muted uppercase font-mono tracking-wider">Duration</div>
             </div>
             <div className="w-px h-8 bg-nexus-border/60" />
             <div className="text-center px-2">
-              <div className="text-lg sm:text-xl font-bold font-mono text-nexus-text">
+              <div className="text-xl sm:text-2xl font-bold font-mono text-nexus-text">
                 {module.topicCount}
               </div>
-              <div className="text-[11px] text-nexus-text-muted">Topics</div>
+              <div className="text-[11px] text-nexus-text-muted uppercase font-mono tracking-wider">Topics</div>
             </div>
           </div>
         </div>
-      </Card>
+      </div>
 
-      {/* Tab Navigation Bar (Horizontal pills/buttons) */}
-      <div className="flex items-center gap-1.5 p-1 bg-nexus-surface border border-nexus-border rounded-lg overflow-x-auto scrollbar-none">
+      {/* Tab Navigation Bar (Horizontal pills) */}
+      <div className="flex items-center gap-1.5 p-1.5 bg-nexus-surface border border-nexus-border/80 rounded-full overflow-x-auto no-scrollbar">
         {tabs.map((tab) => {
           const TabIcon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -395,7 +390,7 @@ export const ModuleWorkspacePage: React.FC = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-md whitespace-nowrap transition-all duration-150 ${
+              className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-full whitespace-nowrap transition-all duration-150 ${
                 isActive
                   ? 'bg-nexus-accent text-white shadow-subtle'
                   : 'text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated'
@@ -405,7 +400,7 @@ export const ModuleWorkspacePage: React.FC = () => {
               <span>{tab.label}</span>
               {typeof tab.badgeCount === 'number' && tab.badgeCount > 0 && (
                 <span
-                  className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
+                  className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
                     isActive ? 'bg-white/20 text-white' : 'bg-nexus-elevated text-nexus-text-muted'
                   }`}
                 >
@@ -422,92 +417,84 @@ export const ModuleWorkspacePage: React.FC = () => {
         <div className="space-y-6">
           {/* Quick Action Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Card
-              variant="interactive"
-              padding="md"
+            <div
               onClick={() => setActiveTab('practice')}
-              className="flex items-center gap-3.5 group"
+              className="group rounded-2xl bg-nexus-surface border border-nexus-border/80 hover:border-nexus-accent/50 p-5 cursor-pointer transition-all duration-200 shadow-sm hover:shadow-card flex flex-col justify-between"
             >
-              <div className="p-2.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 group-hover:scale-105 transition-transform">
-                <Terminal className="w-5 h-5" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="text-xs font-medium text-nexus-text flex items-center justify-between">
-                  <span>Start Practice</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-nexus-text-muted group-hover:translate-x-0.5 transition-transform" />
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-mono font-bold uppercase text-nexus-text-muted">PRACTICE</span>
+                  <ChevronRight className="w-3.5 h-3.5 text-nexus-text-muted group-hover:text-nexus-text group-hover:translate-x-0.5 transition-all" />
                 </div>
-                <div className="text-[11px] text-nexus-text-muted truncate">
+                <h4 className="text-sm font-bold text-nexus-text group-hover:text-nexus-accent transition-colors">
+                  Start Practice
+                </h4>
+                <p className="text-xs text-nexus-text-secondary leading-relaxed">
                   {moduleCategories.length} curriculum domains ({questions.length} MCQs)
-                </div>
+                </p>
               </div>
-            </Card>
+            </div>
 
-            <Card
-              variant="interactive"
-              padding="md"
+            <div
               onClick={() => setActiveTab('study_materials')}
-              className="flex items-center gap-3.5 group"
+              className="group rounded-2xl bg-nexus-surface border border-nexus-border/80 hover:border-nexus-accent/50 p-5 cursor-pointer transition-all duration-200 shadow-sm hover:shadow-card flex flex-col justify-between"
             >
-              <div className="p-2.5 rounded-lg bg-nexus-elevated text-nexus-accent border border-nexus-border group-hover:scale-105 transition-transform">
-                <FileText className="w-5 h-5" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="text-xs font-medium text-nexus-text flex items-center justify-between">
-                  <span>Study Materials</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-nexus-text-muted group-hover:translate-x-0.5 transition-transform" />
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-mono font-bold uppercase text-nexus-text-muted">MATERIALS</span>
+                  <ChevronRight className="w-3.5 h-3.5 text-nexus-text-muted group-hover:text-nexus-text group-hover:translate-x-0.5 transition-all" />
                 </div>
-                <div className="text-[11px] text-nexus-text-muted truncate">
+                <h4 className="text-sm font-bold text-nexus-text group-hover:text-nexus-accent transition-colors">
+                  Study Materials
+                </h4>
+                <p className="text-xs text-nexus-text-secondary leading-relaxed">
                   {manifest.studyResources.length} Reference PDFs & Notes
-                </div>
+                </p>
               </div>
-            </Card>
+            </div>
 
-            <Card
-              variant="interactive"
-              padding="md"
+            <div
               onClick={() => setActiveTab('practical_guides')}
-              className="flex items-center gap-3.5 group"
+              className="group rounded-2xl bg-nexus-surface border border-nexus-border/80 hover:border-nexus-accent/50 p-5 cursor-pointer transition-all duration-200 shadow-sm hover:shadow-card flex flex-col justify-between"
             >
-              <div className="p-2.5 rounded-lg bg-nexus-elevated text-nexus-terracotta border border-nexus-border group-hover:scale-105 transition-transform">
-                <Code2 className="w-5 h-5" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="text-xs font-medium text-nexus-text flex items-center justify-between">
-                  <span>Practical Guides</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-nexus-text-muted group-hover:translate-x-0.5 transition-transform" />
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-mono font-bold uppercase text-nexus-text-muted">LABS</span>
+                  <ChevronRight className="w-3.5 h-3.5 text-nexus-text-muted group-hover:text-nexus-text group-hover:translate-x-0.5 transition-all" />
                 </div>
-                <div className="text-[11px] text-nexus-text-muted truncate">
+                <h4 className="text-sm font-bold text-nexus-text group-hover:text-nexus-accent transition-colors">
+                  Practical Guides
+                </h4>
+                <p className="text-xs text-nexus-text-secondary leading-relaxed">
                   {manifest.practicalGuides.length} Lab Walkthroughs
-                </div>
+                </p>
               </div>
-            </Card>
+            </div>
 
-            <Card
-              variant="interactive"
-              padding="md"
+            <div
               onClick={() => setActiveTab('exam')}
-              className="flex items-center gap-3.5 group"
+              className="group rounded-2xl bg-nexus-surface border border-nexus-border/80 hover:border-nexus-accent/50 p-5 cursor-pointer transition-all duration-200 shadow-sm hover:shadow-card flex flex-col justify-between"
             >
-              <div className="p-2.5 rounded-lg bg-nexus-elevated text-nexus-accent border border-nexus-border group-hover:scale-105 transition-transform">
-                <GraduationCap className="w-5 h-5" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="text-xs font-medium text-nexus-text flex items-center justify-between">
-                  <span>Mock Exam</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-nexus-text-muted group-hover:translate-x-0.5 transition-transform" />
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-mono font-bold uppercase text-nexus-text-muted">ASSESSMENT</span>
+                  <ChevronRight className="w-3.5 h-3.5 text-nexus-text-muted group-hover:text-nexus-text group-hover:translate-x-0.5 transition-all" />
                 </div>
-                <div className="text-[11px] text-nexus-text-muted truncate">
+                <h4 className="text-sm font-bold text-nexus-text group-hover:text-nexus-accent transition-colors">
+                  Mock Exam
+                </h4>
+                <p className="text-xs text-nexus-text-secondary leading-relaxed">
                   Simulate timed exam conditions
-                </div>
+                </p>
               </div>
-            </Card>
+            </div>
           </div>
 
           {/* Module Stats: Question count per domain */}
           {moduleCategories.length > 0 && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <h2 className="text-xs font-semibold text-nexus-text uppercase tracking-wider">
+                <h2 className="text-xs font-mono font-semibold text-nexus-text uppercase tracking-wider">
                   Question Bank Breakdown by Domain
                 </h2>
                 <span className="text-xs text-nexus-text-muted font-mono">
@@ -516,45 +503,40 @@ export const ModuleWorkspacePage: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {moduleCategories.map((cat) => {
-                  const SubIcon = cat.Icon;
-                  return (
-                    <Card key={cat.id} padding="md" className="space-y-3 flex flex-col justify-between">
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <div className="p-2 rounded-lg bg-nexus-elevated border border-nexus-border text-nexus-accent">
-                              <SubIcon className="w-4 h-4" />
-                            </div>
-                            <span className="text-sm font-semibold text-nexus-text">{cat.shortTitle}</span>
-                          </div>
-                          <Badge variant="default" size="sm" className="font-mono">
-                            {cat.count} MCQs
-                          </Badge>
-                        </div>
-                        <p className="text-xs text-nexus-text-secondary leading-relaxed line-clamp-3">
-                          {cat.description}
-                        </p>
-                      </div>
-
-                      <div className="pt-2 border-t border-nexus-border/60 flex items-center justify-between">
-                        <span className="text-[11px] text-nexus-text-muted font-mono">
-                          {Math.round((cat.count / (questions.length || 1)) * 100)}% of module
+                {moduleCategories.map((cat) => (
+                  <div
+                    key={cat.id}
+                    className="rounded-2xl bg-nexus-surface border border-nexus-border/80 p-6 flex flex-col justify-between shadow-sm space-y-4"
+                  >
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-bold text-nexus-text">{cat.shortTitle}</span>
+                        <span className="font-mono text-xs px-2 py-0.5 rounded-full bg-nexus-elevated border border-nexus-border text-nexus-text-secondary">
+                          {cat.count} MCQs
                         </span>
-                        <Button
-                          size="sm"
-                          variant="secondary"
-                          onClick={cat.handlePractice}
-                          icon={<ChevronRight className="w-3.5 h-3.5" />}
-                          iconPosition="right"
-                          className="text-xs"
-                        >
-                          Practice
-                        </Button>
                       </div>
-                    </Card>
-                  );
-                })}
+                      <p className="text-xs text-nexus-text-secondary leading-relaxed line-clamp-3">
+                        {cat.description}
+                      </p>
+                    </div>
+
+                    <div className="pt-3 border-t border-nexus-border/60 flex items-center justify-between">
+                      <span className="text-[11px] text-nexus-text-muted font-mono">
+                        {Math.round((cat.count / (questions.length || 1)) * 100)}% of module
+                      </span>
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        onClick={cat.handlePractice}
+                        icon={<ChevronRight className="w-3.5 h-3.5" />}
+                        iconPosition="right"
+                        className="text-xs rounded-full px-4"
+                      >
+                        Practice
+                      </Button>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           )}

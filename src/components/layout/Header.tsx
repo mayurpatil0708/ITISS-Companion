@@ -129,13 +129,13 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
         {/* Command Palette Trigger */}
         <button
           onClick={() => setCommandPaletteOpen(true)}
-          className="flex items-center gap-2 px-2.5 sm:px-3 py-1.5 text-xs rounded bg-nexus-elevated border border-nexus-border text-nexus-text-secondary hover:text-nexus-text hover:border-nexus-accent/40 transition-all cursor-pointer"
+          className="flex items-center gap-2 px-3 py-1.5 text-xs rounded-full bg-nexus-elevated/70 border border-nexus-border/80 text-nexus-text-secondary hover:text-nexus-text hover:border-nexus-accent/40 transition-all cursor-pointer shadow-sm"
           aria-label="Search and command palette"
         >
           <Search className="w-3.5 h-3.5" />
-          <span className="hidden md:inline">Search questions, topics...</span>
+          <span className="hidden md:inline">Search curriculum...</span>
           <span className="md:hidden">Search</span>
-          <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-nexus-surface border border-nexus-border rounded text-nexus-text-muted">
+          <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-nexus-surface border border-nexus-border/80 rounded-full text-nexus-text-muted">
             Ctrl+K
           </kbd>
         </button>
@@ -143,14 +143,14 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
         {/* Theme Toggle with Dual System Indicator */}
         <button
           onClick={toggleTheme}
-          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium bg-nexus-elevated border border-nexus-border text-nexus-text-secondary hover:text-nexus-text hover:border-nexus-accent/40 transition-all cursor-pointer"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-nexus-elevated/70 border border-nexus-border/80 text-nexus-text-secondary hover:text-nexus-text hover:border-nexus-accent/40 transition-all cursor-pointer shadow-sm"
           aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           title={`Switch to ${theme === 'dark' ? 'Apple Light' : 'Netflix/Spotify Dark'} mode`}
         >
           {theme === 'dark' ? (
             <>
               <Sun className="w-3.5 h-3.5 text-amber-400" />
-              <span className="hidden sm:inline font-mono text-[11px]">Apple Light</span>
+              <span className="hidden sm:inline font-mono text-[11px]">Light Mode</span>
             </>
           ) : (
             <>
