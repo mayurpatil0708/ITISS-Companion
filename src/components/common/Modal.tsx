@@ -47,29 +47,29 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 dark:bg-black/60 backdrop-blur-md animate-fadeIn"
       role="dialog"
       aria-modal="true"
       onClick={onClose}
     >
       <div
         ref={modalRef}
-        className={`w-full ${maxWidths[maxWidth]} bg-nexus-surface border border-nexus-border rounded-xl shadow-elevated overflow-hidden flex flex-col max-h-[90vh]`}
+        className={`w-full ${maxWidths[maxWidth]} bg-nexus-surface/95 backdrop-blur-xl border border-nexus-border-strong rounded-3xl shadow-modal glass-sheen overflow-hidden flex flex-col max-h-[90vh]`}
         onClick={(e) => e.stopPropagation()}
       >
         {title && (
-          <div className="flex items-center justify-between px-5 py-4 border-b border-nexus-border bg-nexus-elevated/40">
-            <h3 className="font-semibold text-nexus-text text-base">{title}</h3>
+          <div className="flex items-center justify-between px-6 py-4 border-b border-nexus-border/80 bg-nexus-elevated/30">
+            <h3 className="font-bold text-nexus-text text-base tracking-tight">{title}</h3>
             <button
               onClick={onClose}
-              className="p-1 rounded text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated transition-colors"
+              className="p-1.5 rounded-full text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated transition-colors"
               aria-label="Close dialog"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
         )}
-        <div className="p-5 overflow-y-auto flex-1">{children}</div>
+        <div className="p-6 overflow-y-auto flex-1">{children}</div>
       </div>
     </div>
   );

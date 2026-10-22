@@ -132,7 +132,7 @@ export const ResultsPage: React.FC = () => {
   return (
     <div className="space-y-8 animate-fadeIn max-w-5xl mx-auto pb-16">
       {/* 1. Header & Summary Hero */}
-      <div className="p-6 sm:p-8 rounded-lg bg-nexus-surface border border-nexus-border flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-subtle">
+      <div className="p-6 sm:p-8 rounded-3xl bg-nexus-surface border border-nexus-border flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-card glass-sheen">
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <Badge variant={passedBenchmark ? 'success' : 'warning'}>
@@ -308,10 +308,10 @@ export const ResultsPage: React.FC = () => {
                 key={f.id}
                 type="button"
                 onClick={() => setFilter(f.id as any)}
-                className={`px-2.5 py-1 rounded text-xs font-mono transition-colors ${
+                className={`px-3 py-1 rounded-full text-xs font-mono transition-all active:scale-[0.98] ${
                   filter === f.id
-                    ? 'bg-nexus-accent text-white font-semibold'
-                    : 'bg-nexus-elevated text-nexus-text-secondary hover:text-nexus-text'
+                    ? 'bg-nexus-accent text-white dark:text-[#101316] font-semibold shadow-xs'
+                    : 'bg-nexus-elevated text-nexus-text-secondary hover:text-nexus-text border border-nexus-border'
                 }`}
               >
                 {f.label}

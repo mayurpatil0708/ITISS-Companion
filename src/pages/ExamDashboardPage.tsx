@@ -238,7 +238,7 @@ export const ExamDashboardPage: React.FC = () => {
                       {isAvailable ? 'Comprehensive materials included' : 'Scheduled for later phase'}
                     </span>
                     {isAvailable ? (
-                      <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#e50914] hover:bg-[#f40612] text-white text-xs font-bold tracking-wide transition-all group-hover:translate-x-0.5">
+                      <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-nexus-accent hover:bg-nexus-accent-hover text-white dark:text-[#101316] text-xs font-bold tracking-wide transition-all shadow-md group-hover:translate-x-0.5 active:scale-[0.98]">
                         Open Workspace
                         <ArrowRight className="w-3.5 h-3.5" />
                       </span>
@@ -405,7 +405,7 @@ export const ExamDashboardPage: React.FC = () => {
                       MODULE 0{idx + 1}
                     </span>
                     {isAvailable ? (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2e5a44]/10 text-[#2e5a44] text-xs font-mono font-semibold">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-nexus-accent/10 text-nexus-accent text-xs font-mono font-semibold">
                         <CheckCircle2 className="w-3.5 h-3.5" /> Ready
                       </span>
                     ) : (
@@ -416,7 +416,7 @@ export const ExamDashboardPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#1d1d1f] tracking-tight group-hover:text-[#2e5a44] transition-colors">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#1d1d1f] tracking-tight group-hover:text-nexus-accent transition-colors">
                       {mod.name}
                     </h3>
                     <p className="text-sm text-[#86868b] mt-2 leading-relaxed">
@@ -444,7 +444,7 @@ export const ExamDashboardPage: React.FC = () => {
                     {isAvailable ? 'Materials ready' : 'Future phase'}
                   </span>
                   {isAvailable ? (
-                    <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1d1d1f] hover:bg-black text-white text-xs font-semibold tracking-wide transition-all group-hover:translate-x-0.5">
+                    <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-nexus-accent hover:bg-nexus-accent-hover text-white text-xs font-semibold tracking-wide transition-all shadow-sm group-hover:translate-x-0.5 active:scale-[0.98]">
                       Open Workspace
                       <ArrowRight className="w-3.5 h-3.5" />
                     </span>
@@ -473,13 +473,13 @@ export const ExamDashboardPage: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div
               onClick={() => navigate(`/${stage}/practice`)}
-              className="group rounded-2xl bg-white border border-[#e5e5ea] hover:border-[#d1d1d6] p-6 cursor-pointer transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] space-y-2"
+              className="group rounded-2xl bg-white border border-[#e5e5ea] hover:border-[#d1d1d6] p-6 cursor-pointer transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] space-y-2 active:scale-[0.98]"
             >
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-semibold text-[#86868b]">CROSS-MODULE</span>
                 <ChevronRight className="w-3.5 h-3.5 text-[#86868b] group-hover:text-[#1d1d1f] group-hover:translate-x-0.5 transition-all" />
               </div>
-              <h4 className="text-sm font-bold text-[#1d1d1f] group-hover:text-[#2e5a44] transition-colors">
+              <h4 className="text-sm font-bold text-[#1d1d1f] group-hover:text-nexus-accent transition-colors">
                 Practice All {currentStage.toUpperCase()} Questions
               </h4>
               <p className="text-xs text-[#86868b] leading-relaxed">
@@ -489,13 +489,13 @@ export const ExamDashboardPage: React.FC = () => {
 
             <div
               onClick={() => navigate(`/${stage}/exam`)}
-              className="group rounded-2xl bg-white border border-[#e5e5ea] hover:border-[#d1d1d6] p-6 cursor-pointer transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] space-y-2"
+              className="group rounded-2xl bg-white border border-[#e5e5ea] hover:border-[#d1d1d6] p-6 cursor-pointer transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] space-y-2 active:scale-[0.98]"
             >
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-semibold text-[#86868b]">EXAM SIMULATION</span>
                 <ChevronRight className="w-3.5 h-3.5 text-[#86868b] group-hover:text-[#1d1d1f] group-hover:translate-x-0.5 transition-all" />
               </div>
-              <h4 className="text-sm font-bold text-[#1d1d1f] group-hover:text-[#2e5a44] transition-colors">
+              <h4 className="text-sm font-bold text-[#1d1d1f] group-hover:text-nexus-accent transition-colors">
                 Full Stage Mock Exam
               </h4>
               <p className="text-xs text-[#86868b] leading-relaxed">
@@ -505,13 +505,13 @@ export const ExamDashboardPage: React.FC = () => {
 
             <div
               onClick={() => navigate(`/${stage}/review`)}
-              className="group rounded-2xl bg-white border border-[#e5e5ea] hover:border-[#d1d1d6] p-6 cursor-pointer transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] space-y-2"
+              className="group rounded-2xl bg-white border border-[#e5e5ea] hover:border-[#d1d1d6] p-6 cursor-pointer transition-all duration-200 hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] space-y-2 active:scale-[0.98]"
             >
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-semibold text-[#86868b]">REVISION</span>
                 <ChevronRight className="w-3.5 h-3.5 text-[#86868b] group-hover:text-[#1d1d1f] group-hover:translate-x-0.5 transition-all" />
               </div>
-              <h4 className="text-sm font-bold text-[#1d1d1f] group-hover:text-[#2e5a44] transition-colors">
+              <h4 className="text-sm font-bold text-[#1d1d1f] group-hover:text-nexus-accent transition-colors">
                 Review Mistakes
               </h4>
               <p className="text-xs text-[#86868b] leading-relaxed">

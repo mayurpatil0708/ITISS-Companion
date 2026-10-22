@@ -159,10 +159,10 @@ export const ReviewPage: React.FC = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setActiveTab('incorrect')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded text-xs font-medium transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium transition-all active:scale-[0.98] ${
                 activeTab === 'incorrect'
-                  ? 'bg-nexus-accent text-white font-semibold shadow-xs'
-                  : 'bg-nexus-elevated text-nexus-text-secondary hover:text-nexus-text'
+                  ? 'bg-nexus-accent text-white dark:text-[#101316] font-semibold shadow-xs'
+                  : 'bg-nexus-elevated text-nexus-text-secondary hover:text-nexus-text border border-nexus-border'
               }`}
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -171,10 +171,10 @@ export const ReviewPage: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('bookmarked')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded text-xs font-medium transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium transition-all active:scale-[0.98] ${
                 activeTab === 'bookmarked'
-                  ? 'bg-nexus-accent text-white font-semibold shadow-xs'
-                  : 'bg-nexus-elevated text-nexus-text-secondary hover:text-nexus-text'
+                  ? 'bg-nexus-accent text-white dark:text-[#101316] font-semibold shadow-xs'
+                  : 'bg-nexus-elevated text-nexus-text-secondary hover:text-nexus-text border border-nexus-border'
               }`}
             >
               <Bookmark className="w-3.5 h-3.5" />

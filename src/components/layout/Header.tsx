@@ -93,26 +93,26 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
   const breadcrumbs = buildBreadcrumbs();
 
   return (
-    <header className="h-14 border-b border-nexus-border bg-nexus-surface/90 backdrop-blur-md sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6">
+    <header className="h-14 border-b border-nexus-border bg-nexus-glass backdrop-blur-xl glass-sheen sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6 transition-colors duration-200">
       {/* Left: Mobile Toggle & Breadcrumbs */}
       <div className="flex items-center gap-3">
         <button
           onClick={onToggleSidebar}
-          className="lg:hidden p-1.5 rounded text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated transition-colors"
+          className="lg:hidden p-1.5 rounded-lg text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated transition-colors"
           aria-label="Toggle Navigation Menu"
         >
           <Menu className="w-5 h-5" />
         </button>
 
         {/* Dynamic Breadcrumbs */}
-        <nav aria-label="Breadcrumb" className="hidden sm:flex items-center gap-1.5 text-xs text-nexus-text-secondary">
+        <nav aria-label="Breadcrumb" className="hidden sm:flex items-center gap-1.5 text-xs text-nexus-text-secondary font-medium">
           {breadcrumbs.map((crumb, idx) => {
             const isLast = idx === breadcrumbs.length - 1;
             return (
               <React.Fragment key={crumb.path + idx}>
                 {idx > 0 && <ChevronRight className="w-3.5 h-3.5 text-nexus-text-muted" />}
                 {isLast ? (
-                  <span className="font-medium text-nexus-text">{crumb.label}</span>
+                  <span className="font-semibold text-nexus-text">{crumb.label}</span>
                 ) : (
                   <Link to={crumb.path} className="hover:text-nexus-text transition-colors">
                     {crumb.label}
@@ -129,11 +129,11 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
         {/* Command Palette Trigger */}
         <button
           onClick={() => setCommandPaletteOpen(true)}
-          className="flex items-center gap-2 px-3 py-1.5 text-xs rounded-full bg-nexus-elevated/70 border border-nexus-border/80 text-nexus-text-secondary hover:text-nexus-text hover:border-nexus-accent/40 transition-all cursor-pointer shadow-sm"
+          className="flex items-center gap-2 px-3.5 py-1.5 text-xs rounded-full bg-nexus-elevated/80 border border-nexus-border text-nexus-text-secondary hover:text-nexus-text hover:border-nexus-border-strong hover:bg-nexus-elevated transition-all duration-150 cursor-pointer shadow-subtle active:scale-[0.98]"
           aria-label="Search and command palette"
         >
-          <Search className="w-3.5 h-3.5" />
-          <span className="hidden md:inline">Search curriculum...</span>
+          <Search className="w-3.5 h-3.5 text-nexus-accent" />
+          <span className="hidden md:inline font-medium">Search curriculum...</span>
           <span className="md:hidden">Search</span>
           <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-nexus-surface border border-nexus-border/80 rounded-full text-nexus-text-muted">
             Ctrl+K
@@ -143,14 +143,14 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
         {/* Theme Toggle with Dual System Indicator */}
         <button
           onClick={toggleTheme}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-nexus-elevated/70 border border-nexus-border/80 text-nexus-text-secondary hover:text-nexus-text hover:border-nexus-accent/40 transition-all cursor-pointer shadow-sm"
-          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-          title={`Switch to ${theme === 'dark' ? 'Apple Light' : 'Netflix/Spotify Dark'} mode`}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-nexus-elevated/80 border border-nexus-border text-nexus-text-secondary hover:text-nexus-text hover:border-nexus-border-strong hover:bg-nexus-elevated transition-all duration-150 cursor-pointer shadow-subtle active:scale-[0.98]"
+          aria-label={`Switch to ${theme === 'dark' ? 'Light Editorial' : 'Dark Cinema'} mode`}
+          title={`Switch to ${theme === 'dark' ? 'Light Editorial' : 'Dark Cinema'} mode`}
         >
           {theme === 'dark' ? (
             <>
               <Sun className="w-3.5 h-3.5 text-amber-400" />
-              <span className="hidden sm:inline font-mono text-[11px]">Light Mode</span>
+              <span className="hidden sm:inline font-mono text-[11px]">Light Editorial</span>
             </>
           ) : (
             <>
@@ -164,19 +164,19 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
         <div className="relative">
           <button
             onClick={() => setShowNotifications(!showNotifications)}
-            className="p-2 rounded text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated border border-transparent hover:border-nexus-border transition-colors relative"
+            className="p-2 rounded-full text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated/80 transition-colors relative"
             aria-label="View notifications"
           >
             <Bell className="w-4 h-4" />
             {notifications.length > 0 && (
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-nexus-accent" />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-nexus-accent ring-2 ring-nexus-surface" />
             )}
           </button>
 
           {/* Notifications Dropdown */}
           {showNotifications && (
-            <div className="absolute right-0 mt-2 w-80 bg-nexus-surface border border-nexus-border rounded-lg shadow-elevated z-50 overflow-hidden animate-fadeIn">
-              <div className="px-4 py-2.5 border-b border-nexus-border flex items-center justify-between bg-nexus-elevated/40">
+            <div className="absolute right-0 mt-2 w-80 bg-nexus-surface/95 backdrop-blur-xl border border-nexus-border rounded-2xl shadow-modal z-50 overflow-hidden animate-fadeIn glass-sheen">
+              <div className="px-4 py-3 border-b border-nexus-border flex items-center justify-between bg-nexus-elevated/40">
                 <span className="text-xs font-semibold text-nexus-text">Notifications</span>
                 <span className="text-[11px] font-mono text-nexus-text-muted">{notifications.length} active</span>
               </div>

@@ -3,51 +3,67 @@
 @tailwind utilities;
 
 :root {
-  /* Light Theme Tokens — Apple-inspired: warm ivory canvas, pure white surfaces, deep charcoal text, calm sage & terracotta */
-  --color-bg: #fbfbfd;
-  --color-sidebar: #f5f5f7;
-  --color-surface: #ffffff;
-  --color-elevated: #f0f0f3;
-  --color-border: #e5e5ea;
-  --color-border-subtle: #f2f2f5;
-  --color-text: #1d1d1f;
-  --color-text-secondary: #6e6e73;
-  --color-text-muted: #86868b;
-  --color-accent: #2e5a44; /* Apple calm forest sage */
-  --color-accent-hover: #224333;
-  --color-terracotta: #c25e3e; /* Warm terracotta supporting accent */
-  --color-terracotta-hover: #a84c2f;
-  --color-cyan: #3d6a54; /* Muted sage-olive */
-  --color-cyan-hover: #2e5241;
-  --color-success: #287247;
-  --color-warning: #b45309;
-  --color-error: #c2410c;
-  --color-brand-primary: #2e5a44;
-  --color-brand-highlight: #c25e3e;
+  /* Light Editorial theme tokens */
+  --color-bg: #F3F2EE;
+  --color-bg-secondary: #EAE9E3;
+  --color-sidebar: #EAE9E3;
+  --color-surface: #FCFBF8;
+  --color-elevated: #FFFFFF;
+  --color-elevated-high: #FFFFFF;
+  --color-border: rgba(32, 39, 35, 0.10);
+  --color-border-subtle: rgba(32, 39, 35, 0.05);
+  --color-border-strong: rgba(32, 39, 35, 0.18);
+  --color-text: #202723;
+  --color-text-secondary: #616C67;
+  --color-text-muted: #7D8781;
+  --color-accent: #236B5B; /* Restrained forest green */
+  --color-accent-hover: #1b5346;
+  --color-accent-secondary: #596FA8; /* Muted slate periwinkle */
+  --color-accent-secondary-hover: #485b8c;
+  --color-cyan: #236B5B;
+  --color-cyan-hover: #1b5346;
+  --color-terracotta: #596FA8;
+  --color-terracotta-hover: #485b8c;
+  --color-glass: rgba(252, 251, 248, 0.82);
+  --color-success: #247653;
+  --color-warning: #95651B;
+  --color-error: #B34B52;
+  --color-brand-primary: #236B5B;
+  --color-brand-highlight: #596FA8;
+  --shadow-glass: rgba(32, 39, 35, 0.06);
+  --sheen-color: rgba(255, 255, 255, 0.85);
 }
 
 .dark {
-  /* Dark Theme Tokens — Netflix × Spotify inspired: deep charcoal near-black, graphite surfaces, Netflix warm red CTA, Spotify green progress */
-  --color-bg: #121212; /* Spotify near-black foundation */
-  --color-sidebar: #0f0f10; /* Dark neutral sidebar */
-  --color-surface: #18181a; /* Main content surface */
-  --color-elevated: #242428; /* Graphite secondary panels */
-  --color-border: #2e2e34; /* Dark graphite borders */
-  --color-border-subtle: #1e1e24;
-  --color-text: #f5f5f7; /* Soft white */
-  --color-text-secondary: #a7a7a7; /* Spotify muted gray */
-  --color-text-muted: #737373;
-  --color-accent: #e50914; /* Netflix restrained warm red */
-  --color-accent-hover: #b80710;
-  --color-terracotta: #e50914;
-  --color-terracotta-hover: #b80710;
-  --color-cyan: #1db954; /* Spotify green */
-  --color-cyan-hover: #1aa34a;
-  --color-success: #1db954; /* Spotify green */
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
-  --color-brand-primary: #e50914;
-  --color-brand-highlight: #1db954;
+  /* Dark Cinema theme tokens */
+  --color-bg: #101316;
+  --color-bg-secondary: #151A1E;
+  --color-sidebar: #151A1E;
+  --color-surface: #1B2228;
+  --color-elevated: #232C33;
+  --color-elevated-high: #2C3740;
+  --color-border: rgba(218, 232, 238, 0.12);
+  --color-border-subtle: rgba(218, 232, 238, 0.06);
+  --color-border-strong: rgba(218, 232, 238, 0.22);
+  --color-text: #F1F5F7;
+  --color-text-secondary: #A9B4BC;
+  --color-text-muted: #7E8A94;
+  --color-accent: #75D6C2; /* Luminous teal */
+  --color-accent-hover: #60c5b0;
+  --color-accent-secondary: #A8B8F8; /* Muted periwinkle */
+  --color-accent-secondary-hover: #93a5ea;
+  --color-cyan: #75D6C2;
+  --color-cyan-hover: #60c5b0;
+  --color-terracotta: #A8B8F8;
+  --color-terracotta-hover: #93a5ea;
+  --color-glass: rgba(21, 26, 30, 0.78);
+  --color-success: #7BD8A7;
+  --color-warning: #E9C681;
+  --color-error: #F08B91;
+  --color-brand-primary: #75D6C2;
+  --color-brand-highlight: #A8B8F8;
+  --shadow-glass: rgba(0, 0, 0, 0.45);
+  --sheen-color: rgba(255, 255, 255, 0.12);
 }
 
 /* Custom Scrollbar */
@@ -66,7 +82,7 @@
   background: rgba(148, 163, 184, 0.45);
 }
 
-/* Horizontal scrollbar hiding utility for Netflix-style browsing rows */
+/* Hide scrollbar utility */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -75,17 +91,31 @@
   scrollbar-width: none;
 }
 
+/* Glass panel utility */
+.glass-panel {
+  background-color: var(--color-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 12px 32px 0 var(--shadow-glass), inset 0 1px 0 0 var(--sheen-color);
+}
+
+/* Specular top-edge sheen for cards */
+.glass-sheen {
+  box-shadow: inset 0 1px 0 0 var(--sheen-color);
+}
+
 /* Focus styles for keyboard accessibility */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
-/* Subtle animation */
+/* Easing Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(3px);
+    transform: translateY(4px);
   }
   to {
     opacity: 1;
@@ -94,7 +124,7 @@
 }
 
 .animate-fadeIn {
-  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Reduced motion preference */
@@ -104,5 +134,6 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+    transform: none !important;
   }
 }

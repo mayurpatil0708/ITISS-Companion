@@ -256,7 +256,7 @@ export const ActiveQuizPage: React.FC = () => {
   return (
     <div className="space-y-4 animate-fadeIn pb-16 max-w-7xl mx-auto">
       {/* 1. Quiz Header Bar */}
-      <div className="p-4 rounded-lg bg-nexus-surface border border-nexus-border flex flex-col md:flex-row md:items-center justify-between gap-3 shadow-subtle">
+      <div className="p-4 sm:p-5 rounded-2xl bg-nexus-surface/90 border border-nexus-border flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-card glass-sheen">
         {/* Left: Metadata & Breadcrumb */}
         <div className="flex items-center gap-3">
           <button
@@ -473,16 +473,16 @@ export const ActiveQuizPage: React.FC = () => {
                   <div
                     key={opt.id}
                     onClick={() => handleSelectOption(opt.id)}
-                    className={`p-4 rounded-lg border cursor-pointer transition-all flex items-start gap-3.5 ${optionStyles}`}
+                    className={`p-4 sm:p-4.5 rounded-xl border cursor-pointer transition-all duration-150 flex items-start gap-3.5 active:scale-[0.99] ${optionStyles}`}
                     role="radio"
                     aria-checked={isSelected}
                     tabIndex={0}
                   >
                     {/* Option letter pill */}
                     <div
-                      className={`w-7 h-7 rounded flex items-center justify-center font-mono text-xs font-bold flex-shrink-0 transition-colors ${
+                      className={`w-7 h-7 rounded-lg flex items-center justify-center font-mono text-xs font-bold flex-shrink-0 transition-colors ${
                         isSelected
-                          ? 'bg-nexus-accent text-white'
+                          ? 'bg-nexus-accent text-white dark:text-[#101316] shadow-xs'
                           : 'bg-nexus-surface border border-nexus-border text-nexus-text-secondary'
                       }`}
                     >

@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'cyan';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'cyan' | 'glass';
   size?: 'sm' | 'md' | 'lg';
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
@@ -21,21 +21,30 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none rounded-md select-none';
+  const baseStyles =
+    'inline-flex items-center justify-center font-medium transition-all duration-200 ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none select-none active:scale-[0.98] cursor-pointer';
 
   const variants = {
-    primary: 'bg-nexus-accent hover:bg-nexus-accent-hover text-white shadow-subtle focus-visible:ring-nexus-accent',
-    cyan: 'bg-nexus-cyan hover:bg-nexus-cyan-hover text-white font-medium shadow-subtle focus-visible:ring-nexus-cyan',
-    secondary: 'bg-nexus-elevated hover:bg-nexus-border/60 text-nexus-text border border-nexus-border focus-visible:ring-nexus-accent',
-    outline: 'border border-nexus-border hover:bg-nexus-elevated text-nexus-text focus-visible:ring-nexus-accent',
-    ghost: 'hover:bg-nexus-elevated text-nexus-text-secondary hover:text-nexus-text focus-visible:ring-nexus-accent',
-    danger: 'bg-nexus-error/10 hover:bg-nexus-error/20 text-nexus-error border border-nexus-error/25 focus-visible:ring-nexus-error',
+    primary:
+      'bg-nexus-accent hover:bg-nexus-accent-hover text-white dark:text-[#101316] font-semibold shadow-sm focus-visible:ring-nexus-accent',
+    cyan:
+      'bg-nexus-accent hover:bg-nexus-accent-hover text-white dark:text-[#101316] font-semibold shadow-sm focus-visible:ring-nexus-accent',
+    secondary:
+      'bg-nexus-surface hover:bg-nexus-elevated text-nexus-text border border-nexus-border shadow-subtle focus-visible:ring-nexus-accent',
+    outline:
+      'border border-nexus-border hover:bg-nexus-elevated text-nexus-text focus-visible:ring-nexus-accent',
+    ghost:
+      'hover:bg-nexus-elevated/80 text-nexus-text-secondary hover:text-nexus-text focus-visible:ring-nexus-accent',
+    glass:
+      'bg-nexus-glass backdrop-blur-md border border-nexus-border text-nexus-text hover:bg-nexus-elevated shadow-subtle focus-visible:ring-nexus-accent',
+    danger:
+      'bg-nexus-error/15 hover:bg-nexus-error/25 text-nexus-error border border-nexus-error/30 focus-visible:ring-nexus-error',
   };
 
   const sizes = {
-    sm: 'text-xs px-2.5 py-1.5 gap-1.5 rounded',
-    md: 'text-sm px-3.5 py-2 gap-2 rounded',
-    lg: 'text-base px-5 py-2.5 gap-2.5 rounded-md',
+    sm: 'text-xs px-3 py-1.5 gap-1.5 rounded-full',
+    md: 'text-sm px-4 py-2 gap-2 rounded-full',
+    lg: 'text-base px-6 py-2.5 gap-2.5 rounded-full font-semibold',
   };
 
   return (

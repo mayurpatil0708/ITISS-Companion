@@ -102,45 +102,45 @@ export const ExamSelectionPage: React.FC = () => {
             {/* CMCE Preparation Card */}
             <div
               onClick={() => handleSelectStage('cmce')}
-              className="group relative rounded-2xl bg-[#161619] border border-white/10 hover:border-white/20 p-7 sm:p-8 flex flex-col justify-between transition-all duration-200 cursor-pointer shadow-lg hover:shadow-2xl hover:bg-[#1a1a1e]"
+              className="group relative rounded-3xl bg-nexus-surface border border-nexus-border hover:border-nexus-border-strong p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 cursor-pointer shadow-card hover:shadow-elevated hover:-translate-y-0.5 glass-sheen"
             >
               <div className="space-y-5">
                 <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-mono font-semibold tracking-wide">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-nexus-accent/15 text-nexus-accent text-xs font-mono font-semibold tracking-wide">
                     STAGE 01 • ACTIVE
                   </span>
-                  <span className="text-xs text-neutral-400 font-mono">
+                  <span className="text-xs text-nexus-text-muted font-mono">
                     ~3 Months into course
                   </span>
                 </div>
 
                 <div>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-neutral-100 transition-colors">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-nexus-text tracking-tight group-hover:text-white transition-colors">
                     CMCE Preparation
                   </h3>
-                  <p className="text-sm font-medium text-neutral-400 mt-1">
+                  <p className="text-sm font-medium text-nexus-text-secondary mt-1">
                     Common Module Comprehensive Examination
                   </p>
                 </div>
 
-                <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+                <p className="text-xs sm:text-sm text-nexus-text-secondary leading-relaxed">
                   {EXAM_STAGES.cmce.description}
                 </p>
 
                 {/* Module List Preview */}
                 <div className="pt-2 space-y-2">
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-500">
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-nexus-text-muted">
                     Included Modules (4 Ready)
                   </div>
                   <div className="space-y-1.5">
                     {cmceModules.map((mod, idx) => (
                       <div
                         key={mod.id}
-                        className="flex items-center justify-between px-3 py-2 rounded-lg bg-white/[0.03] text-xs text-neutral-300 group-hover:text-white transition-colors"
+                        className="flex items-center justify-between px-3.5 py-2 rounded-xl bg-nexus-elevated/60 text-xs text-nexus-text-secondary group-hover:text-nexus-text transition-colors"
                       >
-                        <span className="font-mono text-neutral-400 text-[11px] mr-2">0{idx + 1}</span>
+                        <span className="font-mono text-nexus-text-muted text-[11px] mr-2">0{idx + 1}</span>
                         <span className="font-medium truncate flex-1">{mod.name}</span>
-                        <span className="font-mono text-[11px] text-neutral-400 shrink-0 ml-3">{mod.durationHours}h</span>
+                        <span className="font-mono text-[11px] text-nexus-text-muted shrink-0 ml-3">{mod.durationHours}h</span>
                       </div>
                     ))}
                   </div>
@@ -148,11 +148,11 @@ export const ExamSelectionPage: React.FC = () => {
               </div>
 
               {/* Direct CTA */}
-              <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between">
-                <span className="text-xs font-mono text-neutral-400">
+              <div className="pt-6 mt-6 border-t border-nexus-border flex items-center justify-between">
+                <span className="text-xs font-mono text-nexus-text-muted">
                   {totalQuestions.toLocaleString()} Practice Questions
                 </span>
-                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#e50914] hover:bg-[#f40612] text-white text-xs font-bold tracking-wide transition-all shadow-md group-hover:translate-x-0.5">
+                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-nexus-accent hover:bg-nexus-accent-hover text-white dark:text-[#101316] text-xs font-bold tracking-wide transition-all shadow-md group-hover:translate-x-0.5 active:scale-[0.98]">
                   CMCE Workspace
                   <ArrowRight className="w-3.5 h-3.5" />
                 </span>
@@ -162,45 +162,45 @@ export const ExamSelectionPage: React.FC = () => {
             {/* CCEE Preparation Card */}
             <div
               onClick={() => handleSelectStage('ccee')}
-              className="group relative rounded-2xl bg-[#141416]/90 border border-white/5 hover:border-white/15 p-7 sm:p-8 flex flex-col justify-between transition-all duration-200 cursor-pointer shadow-md hover:shadow-xl hover:bg-[#18181c]"
+              className="group relative rounded-3xl bg-nexus-surface/70 border border-nexus-border/60 hover:border-nexus-border-strong p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 cursor-pointer shadow-card hover:shadow-elevated hover:-translate-y-0.5"
             >
               <div className="space-y-5">
                 <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 text-neutral-300 text-xs font-mono font-semibold tracking-wide">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-nexus-elevated text-nexus-text-secondary text-xs font-mono font-semibold tracking-wide">
                     STAGE 02 • SPECIALIZATION
                   </span>
-                  <span className="text-xs text-neutral-500 font-mono flex items-center gap-1">
+                  <span className="text-xs text-nexus-text-muted font-mono flex items-center gap-1">
                     <Lock className="w-3 h-3" /> End-Term Examination
                   </span>
                 </div>
 
                 <div>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-neutral-100 transition-colors">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-nexus-text tracking-tight group-hover:text-white transition-colors">
                     CCEE Preparation
                   </h3>
-                  <p className="text-sm font-medium text-neutral-400 mt-1">
+                  <p className="text-sm font-medium text-nexus-text-secondary mt-1">
                     Course Comprehensive End Examination
                   </p>
                 </div>
 
-                <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+                <p className="text-xs sm:text-sm text-nexus-text-secondary leading-relaxed">
                   {EXAM_STAGES.ccee.description}
                 </p>
 
                 {/* Module List Preview */}
                 <div className="pt-2 space-y-2">
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-500">
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-nexus-text-muted">
                     Advanced Specialization Modules (5 Tracks)
                   </div>
                   <div className="space-y-1.5">
                     {cceeModules.map((mod, idx) => (
                       <div
                         key={mod.id}
-                        className="flex items-center justify-between px-3 py-2 rounded-lg bg-white/[0.02] text-xs text-neutral-400 group-hover:text-neutral-300 transition-colors"
+                        className="flex items-center justify-between px-3.5 py-2 rounded-xl bg-nexus-elevated/40 text-xs text-nexus-text-muted group-hover:text-nexus-text-secondary transition-colors"
                       >
-                        <span className="font-mono text-neutral-400 text-[11px] mr-2">0{idx + 1}</span>
+                        <span className="font-mono text-nexus-text-muted text-[11px] mr-2">0{idx + 1}</span>
                         <span className="font-medium truncate flex-1">{mod.name}</span>
-                        <span className="font-mono text-[11px] text-neutral-400 shrink-0 ml-3">{mod.durationHours}h</span>
+                        <span className="font-mono text-[11px] text-nexus-text-muted shrink-0 ml-3">{mod.durationHours}h</span>
                       </div>
                     ))}
                   </div>
@@ -208,11 +208,11 @@ export const ExamSelectionPage: React.FC = () => {
               </div>
 
               {/* Direct CTA */}
-              <div className="pt-6 mt-6 border-t border-white/5 flex items-center justify-between">
-                <span className="text-xs font-mono text-neutral-400">
+              <div className="pt-6 mt-6 border-t border-nexus-border/60 flex items-center justify-between">
+                <span className="text-xs font-mono text-nexus-text-muted">
                   {EXAM_STAGES.ccee.timing}
                 </span>
-                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold tracking-wide transition-all group-hover:translate-x-0.5">
+                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-nexus-elevated hover:bg-nexus-surface-elevated text-nexus-text text-xs font-bold tracking-wide transition-all border border-nexus-border group-hover:translate-x-0.5 active:scale-[0.98]">
                   CCEE Overview
                   <ArrowRight className="w-3.5 h-3.5" />
                 </span>
@@ -233,18 +233,18 @@ export const ExamSelectionPage: React.FC = () => {
           </div>
 
           {recentAttempt ? (
-            <div className="rounded-xl bg-[#18181c] border border-white/10 p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-5">
+            <div className="rounded-2xl bg-nexus-surface border border-nexus-border p-6 sm:p-7 flex flex-col md:flex-row md:items-center justify-between gap-5 shadow-card glass-sheen">
               <div className="space-y-1.5 max-w-xl">
                 <div className="flex items-center gap-2">
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-500/20 text-emerald-400 uppercase">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-nexus-accent/15 text-nexus-accent uppercase">
                     Session In Progress
                   </span>
-                  <span className="text-xs text-neutral-400 font-mono">Mode: {recentAttempt.mode}</span>
+                  <span className="text-xs text-nexus-text-muted font-mono">Mode: {recentAttempt.mode}</span>
                 </div>
-                <h4 className="text-lg font-bold text-white tracking-tight">
+                <h4 className="text-lg font-bold text-nexus-text tracking-tight">
                   {recentAttempt.title}
                 </h4>
-                <p className="text-xs text-neutral-400">
+                <p className="text-xs text-nexus-text-secondary">
                   {recentAttempt.items.length} questions •{' '}
                   {recentAttempt.items.filter((i) => i.selectedOptionId).length} completed
                 </p>
@@ -259,32 +259,32 @@ export const ExamSelectionPage: React.FC = () => {
                         : `/quiz/${recentAttempt.id}`
                     )
                   }
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#e50914] hover:bg-[#f40612] text-white text-xs font-bold transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-nexus-accent hover:bg-nexus-accent-hover text-white dark:text-[#101316] text-xs font-bold transition-all shadow-md active:scale-[0.98]"
                 >
                   <Play className="w-3.5 h-3.5 fill-current" />
                   {recentAttempt.isCompleted ? 'Review Results' : 'Resume Session'}
                 </button>
                 <button
                   onClick={() => handleSelectStage('cmce')}
-                  className="px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/15 text-neutral-200 text-xs font-medium transition-colors"
+                  className="px-4 py-2.5 rounded-full bg-nexus-elevated hover:bg-nexus-surface text-nexus-text text-xs font-medium border border-nexus-border transition-colors active:scale-[0.98]"
                 >
                   Switch Module
                 </button>
               </div>
             </div>
           ) : (
-            <div className="rounded-xl bg-[#18181c] border border-white/10 p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-5">
+            <div className="rounded-2xl bg-nexus-surface border border-nexus-border p-6 sm:p-7 flex flex-col md:flex-row md:items-center justify-between gap-5 shadow-card glass-sheen">
               <div className="space-y-1.5 max-w-2xl">
                 <div className="flex items-center gap-2">
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-white/10 text-neutral-300 uppercase">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-nexus-accent/15 text-nexus-accent uppercase">
                     CMCE Module 01 Recommended
                   </span>
-                  <span className="text-xs text-neutral-400 font-mono">2,103 Questions</span>
+                  <span className="text-xs text-nexus-text-muted font-mono">2,103 Questions</span>
                 </div>
-                <h4 className="text-lg font-bold text-white tracking-tight">
+                <h4 className="text-lg font-bold text-nexus-text tracking-tight">
                   Fundamental of Computer Networks (FCN)
                 </h4>
-                <p className="text-xs text-neutral-400 leading-relaxed">
+                <p className="text-xs text-nexus-text-secondary leading-relaxed">
                   Start with the foundational core: OSI 7-layer architecture, IPv4/IPv6 CIDR subnetting, Ethernet switching, and dynamic routing protocols.
                 </p>
               </div>
@@ -292,14 +292,14 @@ export const ExamSelectionPage: React.FC = () => {
               <div className="flex items-center gap-3 shrink-0">
                 <button
                   onClick={() => navigate('/cmce/fcn/practice')}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#e50914] hover:bg-[#f40612] text-white text-xs font-bold transition-colors shadow"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-nexus-accent hover:bg-nexus-accent-hover text-white dark:text-[#101316] text-xs font-bold transition-all shadow-md active:scale-[0.98]"
                 >
                   <Play className="w-3.5 h-3.5 fill-current" />
                   Start Practice
                 </button>
                 <button
                   onClick={() => navigate('/cmce/fcn')}
-                  className="px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/15 text-neutral-200 text-xs font-medium transition-colors"
+                  className="px-4 py-2.5 rounded-full bg-nexus-elevated hover:bg-nexus-surface text-nexus-text text-xs font-medium border border-nexus-border transition-colors active:scale-[0.98]"
                 >
                   Explore Curriculum
                 </button>
@@ -491,7 +491,7 @@ export const ExamSelectionPage: React.FC = () => {
           >
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#2e5a44]/10 text-[#2e5a44] text-xs font-mono font-semibold tracking-wide">
+                <span className="inline-flex items-center px-3 py-1 rounded-full bg-nexus-accent/10 text-nexus-accent text-xs font-mono font-semibold tracking-wide">
                   STAGE 1 • MID-TERM
                 </span>
                 <span className="text-xs text-[#86868b] font-mono">
@@ -500,7 +500,7 @@ export const ExamSelectionPage: React.FC = () => {
               </div>
 
               <div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-[#1d1d1f] tracking-tight group-hover:text-[#2e5a44] transition-colors">
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#1d1d1f] tracking-tight group-hover:text-nexus-accent transition-colors">
                   CMCE Preparation
                 </h3>
                 <p className="text-sm font-medium text-[#6e6e73] mt-1">
@@ -537,7 +537,7 @@ export const ExamSelectionPage: React.FC = () => {
               <span className="text-xs font-mono text-[#86868b]">
                 {totalQuestions.toLocaleString()} Verified MCQs
               </span>
-              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1d1d1f] hover:bg-black text-white text-xs font-semibold tracking-wide transition-all group-hover:translate-x-0.5">
+              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-nexus-accent hover:bg-nexus-accent-hover text-white text-xs font-semibold tracking-wide transition-all shadow-sm group-hover:translate-x-0.5 active:scale-[0.98]">
                 CMCE Preparation
                 <ArrowRight className="w-3.5 h-3.5" />
               </span>
@@ -560,7 +560,7 @@ export const ExamSelectionPage: React.FC = () => {
               </div>
 
               <div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-[#1d1d1f] tracking-tight group-hover:text-[#2e5a44] transition-colors">
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#1d1d1f] tracking-tight group-hover:text-nexus-accent transition-colors">
                   CCEE Preparation
                 </h3>
                 <p className="text-sm font-medium text-[#6e6e73] mt-1">
@@ -597,7 +597,7 @@ export const ExamSelectionPage: React.FC = () => {
               <span className="text-xs font-mono text-[#86868b]">
                 {EXAM_STAGES.ccee.timing}
               </span>
-              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#f2f2f7] hover:bg-[#e5e5ea] text-[#1d1d1f] text-xs font-semibold tracking-wide transition-all group-hover:translate-x-0.5">
+              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#f2f2f7] hover:bg-[#e5e5ea] text-[#1d1d1f] text-xs font-semibold tracking-wide transition-all group-hover:translate-x-0.5 active:scale-[0.98]">
                 CCEE Overview
                 <ArrowRight className="w-3.5 h-3.5" />
               </span>
@@ -621,7 +621,7 @@ export const ExamSelectionPage: React.FC = () => {
           <div className="rounded-2xl bg-white border border-[#e5e5ea] p-6 sm:p-7 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-[0_1px_6px_rgba(0,0,0,0.02)]">
             <div className="space-y-1.5 max-w-xl">
               <div className="flex items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-[#2e5a44]/10 text-[#2e5a44] uppercase">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-nexus-accent/10 text-nexus-accent uppercase">
                   Session In Progress
                 </span>
                 <span className="text-xs text-[#86868b] font-mono">Mode: {recentAttempt.mode}</span>
@@ -644,14 +644,14 @@ export const ExamSelectionPage: React.FC = () => {
                       : `/quiz/${recentAttempt.id}`
                   )
                 }
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1d1d1f] hover:bg-black text-white text-xs font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-nexus-accent hover:bg-nexus-accent-hover text-white text-xs font-semibold transition-all shadow-sm active:scale-[0.98]"
               >
                 <Play className="w-3.5 h-3.5 fill-current" />
                 {recentAttempt.isCompleted ? 'Review Results' : 'Resume Session'}
               </button>
               <button
                 onClick={() => handleSelectStage('cmce')}
-                className="px-4 py-2.5 rounded-full bg-[#f2f2f7] hover:bg-[#e5e5ea] text-[#1d1d1f] text-xs font-medium transition-colors"
+                className="px-4 py-2.5 rounded-full bg-[#f2f2f7] hover:bg-[#e5e5ea] text-[#1d1d1f] text-xs font-medium transition-colors active:scale-[0.98]"
               >
                 Switch Module
               </button>
@@ -677,14 +677,14 @@ export const ExamSelectionPage: React.FC = () => {
             <div className="flex items-center gap-3 shrink-0">
               <button
                 onClick={() => navigate('/cmce/fcn/practice')}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1d1d1f] hover:bg-black text-white text-xs font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-nexus-accent hover:bg-nexus-accent-hover text-white text-xs font-semibold transition-all shadow-sm active:scale-[0.98]"
               >
                 <Play className="w-3.5 h-3.5 fill-current" />
                 Start Practice
               </button>
               <button
                 onClick={() => navigate('/cmce/fcn')}
-                className="px-4 py-2.5 rounded-full bg-[#f2f2f7] hover:bg-[#e5e5ea] text-[#1d1d1f] text-xs font-medium transition-colors"
+                className="px-4 py-2.5 rounded-full bg-[#f2f2f7] hover:bg-[#e5e5ea] text-[#1d1d1f] text-xs font-medium transition-colors active:scale-[0.98]"
               >
                 Explore Curriculum
               </button>

@@ -239,10 +239,10 @@ export const TopicExplorerPage: React.FC = () => {
                 key={sub.id}
                 type="button"
                 onClick={() => setSubjectFilter(sub.id as any)}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition-colors whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all active:scale-[0.98] whitespace-nowrap ${
                   subjectFilter === sub.id
-                    ? 'bg-nexus-accent text-white font-semibold'
-                    : 'bg-nexus-elevated text-nexus-text-secondary hover:text-nexus-text'
+                    ? 'bg-nexus-accent text-white dark:text-[#101316] font-semibold shadow-xs'
+                    : 'bg-nexus-elevated text-nexus-text-secondary hover:text-nexus-text border border-nexus-border'
                 }`}
               >
                 {sub.label}

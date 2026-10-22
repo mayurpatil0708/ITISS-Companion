@@ -390,9 +390,9 @@ export const ModuleWorkspacePage: React.FC = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-full whitespace-nowrap transition-all duration-150 ${
+              className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-full whitespace-nowrap transition-all duration-150 active:scale-[0.98] ${
                 isActive
-                  ? 'bg-nexus-accent text-white shadow-subtle'
+                  ? 'bg-nexus-accent text-white dark:text-[#101316] shadow-subtle'
                   : 'text-nexus-text-secondary hover:text-nexus-text hover:bg-nexus-elevated'
               }`}
             >
@@ -401,7 +401,7 @@ export const ModuleWorkspacePage: React.FC = () => {
               {typeof tab.badgeCount === 'number' && tab.badgeCount > 0 && (
                 <span
                   className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
-                    isActive ? 'bg-white/20 text-white' : 'bg-nexus-elevated text-nexus-text-muted'
+                    isActive ? 'bg-black/15 dark:bg-black/25 text-white dark:text-[#101316]' : 'bg-nexus-elevated text-nexus-text-muted'
                   }`}
                 >
                   {tab.badgeCount}
